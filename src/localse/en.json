@@ -1,0 +1,30 @@
+{
+  "home": {
+    "picasso": "I am always doing things I can’t do.\nThat is how I get to learn how to do them.",
+    "picassofull": "Pablo Picasso",
+    "scroll": "Scroll Down"
+  },
+  "about": {
+    "title": "About",
+    "txt": "By gaining proficiency in Adobe tools and development languages,\nI am establishing myself as a versatile professional capable of handling both design and development tasks in practical settings."
+  },
+  "menu": {
+    "home": "Home",
+    "work": "Work",
+    "design": "Design Work",
+    "thirdparty": "Third Party",
+    "incon": "Inconvenience",
+    "sam": "Samyang",
+    "song": "SongJoung",
+    "mou": "English MouMou",
+    "backc": "Back Chun",
+    "introducepage": "(Introduction Page)",
+    "landpage": "(Landing Page)",
+    "businesspage": "(Business)",
+    "edupage": "(Education)",
+    "exhibpage": "(Exhibition)",
+    "other": "Other Design",
+    "mywork": "Task organization"
+  }
+
+}
