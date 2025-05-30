@@ -3,8 +3,10 @@ import { onMounted, ref, nextTick } from 'vue'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useI18n } from 'vue-i18n'
-import { SplitText } from "gsap/SplitText";
+import { SplitText } from "gsap/SplitText"
 import Buttonvue from '@/components/Button.vue'
+import NameCardVue from '@/components/NameCard.vue'
+
 const { t, locale } = useI18n()
 
 
@@ -318,12 +320,11 @@ onMounted(() => {
       <div id="split" class="look-move">
         {{ t('home.moveto') }}
       </div>
-      <router-link to="#">
+      <!-- <router-link to="#">
         <Buttonvue></Buttonvue>
-      </router-link>
+      </router-link> -->
       <div class="sns-box">
-        <a href="https://www.instagram.com/mjtwinart/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-        <a href="mailto:mjtwins1@naver.com"><i class="fa-solid fa-envelope"></i></a>
+        <NameCardVue></NameCardVue>
       </div>
     </div>    
   </div>
