@@ -2,14 +2,46 @@
   "home": {
     "picasso": "I am always doing things I can’t do.\nThat is how I get to learn how to do them.",
     "picassofull": "Pablo Picasso",
-    "scroll": "Scroll Down"
+    "scroll": "Scroll Down",
+    "past": "Past Art"
+
   },
   "about": {
     "title": "About",
-    "txt": "By gaining proficiency in Adobe tools and development languages,\nI am establishing myself as a versatile professional capable of handling both design and development tasks in practical settings."
+    "txt": "By gaining proficiency in Adobe tools and development languages,\nI am establishing myself as a versatile professional capable of handling both design and development tasks in practical settings.",
+    "expre": "EXPERIENCE",
+    "sextxt": {
+      "tit": "Samsung Electronics DS",
+      "part": "TMG People System",
+      "date": "Employment Period",
+      "dateday": "2023.01 ~ 2025.01",
+      "positit": "Position",
+      "position": "Web UI/UX, Developer",
+      "respontit": "Responsibilities",
+      "respons": "Overall web UI/UX design and development for Samsung Electronics’ HR system\nDevelopment of component-based UI considering web accessibility and standards\nImplementation of web interfaces that effectively visualize large-scale data",
+      "keyachtit": "Key Achievements & Technical Skills",
+      "keyach": "Designed a structure with improved component reusability and maintainability based on Vue.js\nCollaborated closely with designers and planners to deliver intuitive user experiences (UX)\nIntroduced performance optimization strategies such as lazy loading and code splitting",
+      "techstit": "Tech Stack",
+      "techstack": "Vue.js, HTML5, SCSS, JavaScript (ES6+), Git, Adobe"
+    },
+    "wextxt": {
+      "tit": "Wisetech",
+      "part": "Frontend / Design",
+      "date": "Employment Period",
+      "dateday": "2022.06 ~ 2024.03",
+      "positit": "Position",
+      "position": "UI/UX Designer & Frontend Developer / Web & App Designer and Publisher",
+      "respontit": "Responsibilities",
+      "respons": "Designed mobile app UI/UX and created screen layouts\nImplemented frontend features and animations using Flutter\nLed UI/UX improvements based on user feedback\nPlanned and created web/app designs considering UI/UX principles\nBuilt responsive websites and maintained existing platforms\nApplied designs to improve accessibility and user convenience",
+      "keyachtit": "Key Achievements & Skills",
+      "keyach": "Independently handled design and development; launched the app in a short period\nManaged schedules and collaboration in a remote environment using Adobe XD and Git\nImplemented interactive and responsive UI with focus on user experience\nSolely responsible for all corporate web/app design and publishing tasks\nAchieved high-quality results reflected in live homepage and subpages\nImproved mobile usability through HTML/CSS-based responsive publishing",
+      "techstit": "Tech Stack",
+      "techstack": "Flutter, Dart, Adobe XD, Git, HTML5, CSS3, JavaScript, jQuery, Photoshop, Illustrator"
+    }
   },
   "menu": {
     "home": "Home",
+    "myskill": "My Skills",
     "work": "Work",
     "design": "Design Work",
     "thirdparty": "Third Party",
@@ -25,6 +57,63 @@
     "exhibpage": "(Exhibition)",
     "other": "Other Design",
     "mywork": "Task organization"
+  },
+  "education": {
+    "title": "Education",
+    "schools": [
+      {
+        "name": "Hanyang Cyber University (Seoul)",
+        "major": "New Media Design (Arts)",
+        "degree": "Bachelor's Degree",
+        "period": "2020.03 ~ 2022.02",
+        "gpa": "4.2 / 4.5",
+        "note": "Studied various aspects of video, web design, publishing, and UI/UX."
+      },
+      {
+        "name": "Myongji College (Seoul)",
+        "major": "Fashion Textile Ceramic (Arts)",
+        "degree": "Associate's Degree",
+        "period": "2013.03 ~ 2015.02",
+        "gpa": "4.3 / 4.5",
+        "note": "Textile, Ceramics"
+      },
+      {
+        "name": "Seoul Arts High School",
+        "major": "Sculpture (Arts)",
+        "degree": "High School Diploma",
+        "period": "Graduated in 2013.02",
+        "gpa": "-",
+        "note": "General Arts"
+      }
+    ]
+  },
+  "certificates": {
+    "title": "Certificates",
+    "list": [
+      {
+        "name": "Web Design Technician",
+        "date": "2022.09",
+        "issuer": "Human Resources Development Service of Korea",
+        "status": "Passed"
+      },
+      {
+        "name": "GTQ (Graphic Technology Qualification)",
+        "date": "2013.12",
+        "issuer": "Korean Productivity Center",
+        "status": "Passed"
+      },
+      {
+        "name": "Driver’s License",
+        "date": "2016.04",
+        "issuer": "Korean National Police Agency",
+        "status": "Passed"
+      },
+      {
+        "name": "Art Psychotherapy Level 2",
+        "date": "2014.01",
+        "issuer": "Korea Cyber Education Center",
+        "status": "Passed"
+      }
+    ]
   }
-
 }

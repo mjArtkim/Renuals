@@ -1,15 +1,45 @@
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref, nextTick } from 'vue'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useI18n } from 'vue-i18n'
-
+import { SplitText } from "gsap/SplitText";
 const { t, locale } = useI18n()
 
 
 gsap.registerPlugin(ScrollTrigger)
 
 onMounted(() => {
+  document.fonts.ready.then(() => {
+    const split = new SplitText("#split", { type: "chars" });
+    const tl = gsap.timeline({ repeat: 30 });
+
+    gsap.set("#split", { opacity: 1 });
+    tl.from(split.chars, {
+      duration: 1,
+      y: 100,
+      rotation: 90,
+      opacity: 0,
+      ease: "elastic",
+      stagger: 0.03,
+    });
+
+    tl.to(
+      split.chars,
+      {
+        duration: 2,
+        opacity: 0,
+        rotation: "random(-2000, 2000)",
+        physics2D: {
+          angle: "random(240, 320)",
+          velocity: "random(300, 600)",
+          gravity: 800,
+        },
+        stagger: 0.015,
+      },
+      3
+    );
+  });
   const isMobile = window.innerWidth <= 1200
   if (isMobile) return
 
@@ -46,7 +76,6 @@ onMounted(() => {
   // box-2 animation
   gsap.to('.box-2', {
     y: -120,
-    backgroundColor: '#1e90ff',
     ease: 'none',
     scrollTrigger: {
       trigger: '.box-2',
@@ -81,7 +110,9 @@ onMounted(() => {
         }),
     })
   })
+
 })
+
 </script>
 
 
@@ -89,7 +120,7 @@ onMounted(() => {
   <div>
     <div class="description">
       <div class="main-box">
-        <h1 class="main-tit">ART WORK</h1>
+        <h1 class="main-tit" data-aos="zoom-out"  data-aos-duration="1000">ART WORK</h1>
         <div class="main-txt">
           <div class="cutxt">{{ t('home.picasso') }}</div>
           <div>- {{ t('home.picassofull') }} -</div>
@@ -109,21 +140,168 @@ onMounted(() => {
         <div class="side-txt" data-aos="fade-left" data-aos-delay="200">ART</div>
       </section>
       <section class="panel gray">
-        <div class="box-2">Gray Section</div>
+        <div class="box-2">
+          <div class="box-2-img">
+            <h2>{{ t('home.past') }}</h2>
+            <ul class="edu-img">
+              <li data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000"><img src="@/assets/img/edu_01.png"></li>
+              <li data-aos="fade-left" data-aos-delay="300" data-aos-duration="1000"><img src="@/assets/img/edu_02.png"></li>
+              <li data-aos="fade-left" data-aos-delay="400" data-aos-duration="1000"><img src="@/assets/img/edu_03.png"></li>
+              <li data-aos="fade-left" data-aos-delay="500" data-aos-duration="1000"><img src="@/assets/img/edu_04.png"></li>
+              <li data-aos="fade-left" data-aos-delay="600" data-aos-duration="1000"><img src="@/assets/img/edu_05.png"></li>
+              <li data-aos="fade-left" data-aos-delay="700" data-aos-duration="1000"><img src="@/assets/img/edu_06.png"></li>
+            </ul>
+          </div>
+          <div class="box-2-inner pcs">
+            <div>
+              <h2>{{ t('education.title') }}</h2>
+              <ul class="education-list">
+                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                  <strong>{{ t('education.schools.0.name') }}</strong>
+                  <p>{{ t('education.schools.0.degree') }} / {{ t('education.schools.0.major') }}</p>
+                  <p>{{ t('education.schools.0.period') }}</p>
+                  <p v-if="t('education.schools.0.gpa') !== ''">GPA: {{ t('education.schools.0.gpa') }}</p>
+                  <p v-if="t('education.schools.0.note') !== ''">{{ t('education.schools.0.note') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                  <strong>{{ t('education.schools.1.name') }}</strong>
+                  <p>{{ t('education.schools.1.degree') }} / {{ t('education.schools.1.major') }}</p>
+                  <p>{{ t('education.schools.1.period') }}</p>
+                  <p v-if="t('education.schools.1.gpa') !== ''">GPA: {{ t('education.schools.1.gpa') }}</p>
+                  <p v-if="t('education.schools.1.note') !== ''">{{ t('education.schools.1.note') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                  <strong>{{ t('education.schools.2.name') }}</strong>
+                  <p>{{ t('education.schools.2.degree') }} / {{ t('education.schools.2.major') }}</p>
+                  <p>{{ t('education.schools.2.period') }}</p>
+                  <p v-if="t('education.schools.2.gpa') !== ''">GPA: {{ t('education.schools.2.gpa') }}</p>
+                  <p v-if="t('education.schools.2.note') !== ''">{{ t('education.schools.2.note') }}</p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2>{{ t('certificates.title') }}</h2>
+              <ul class="certificate-list">
+                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                  <strong>{{ t('certificates.list.0.name') }}</strong>
+                  <p>{{ t('certificates.list.0.date') }} / {{ t('certificates.list.0.issuer') }} / {{ t('certificates.list.0.status') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                  <strong>{{ t('certificates.list.1.name') }}</strong>
+                  <p>{{ t('certificates.list.1.date') }} / {{ t('certificates.list.1.issuer') }} / {{ t('certificates.list.1.status') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                  <strong>{{ t('certificates.list.2.name') }}</strong>
+                  <p>{{ t('certificates.list.2.date') }} / {{ t('certificates.list.2.issuer') }} / {{ t('certificates.list.2.status') }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="grays mobiles">
+        <div class="box-2">
+          <div class="box-2-inner">
+            <div>
+              <h2>{{ t('education.title') }}</h2>
+              <ul class="education-list">
+                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
+                  <strong>{{ t('education.schools.0.name') }}</strong>
+                  <p>{{ t('education.schools.0.degree') }} / {{ t('education.schools.0.major') }}</p>
+                  <p>{{ t('education.schools.0.period') }}</p>
+                  <p v-if="t('education.schools.0.gpa') !== ''">GPA: {{ t('education.schools.0.gpa') }}</p>
+                  <p v-if="t('education.schools.0.note') !== ''">{{ t('education.schools.0.note') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
+                  <strong>{{ t('education.schools.1.name') }}</strong>
+                  <p>{{ t('education.schools.1.degree') }} / {{ t('education.schools.1.major') }}</p>
+                  <p>{{ t('education.schools.1.period') }}</p>
+                  <p v-if="t('education.schools.1.gpa') !== ''">GPA: {{ t('education.schools.1.gpa') }}</p>
+                  <p v-if="t('education.schools.1.note') !== ''">{{ t('education.schools.1.note') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
+                  <strong>{{ t('education.schools.2.name') }}</strong>
+                  <p>{{ t('education.schools.2.degree') }} / {{ t('education.schools.2.major') }}</p>
+                  <p>{{ t('education.schools.2.period') }}</p>
+                  <p v-if="t('education.schools.2.gpa') !== ''">GPA: {{ t('education.schools.2.gpa') }}</p>
+                  <p v-if="t('education.schools.2.note') !== ''">{{ t('education.schools.2.note') }}</p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h2>{{ t('certificates.title') }}</h2>
+              <ul class="certificate-list">
+                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
+                  <strong>{{ t('certificates.list.0.name') }}</strong>
+                  <p>{{ t('certificates.list.0.date') }} / {{ t('certificates.list.0.issuer') }} / {{ t('certificates.list.0.status') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
+                  <strong>{{ t('certificates.list.1.name') }}</strong>
+                  <p>{{ t('certificates.list.1.date') }} / {{ t('certificates.list.1.issuer') }} / {{ t('certificates.list.1.status') }}</p>
+                </li>
+                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                  <strong>{{ t('certificates.list.2.name') }}</strong>
+                  <p>{{ t('certificates.list.2.date') }} / {{ t('certificates.list.2.issuer') }} / {{ t('certificates.list.2.status') }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="panel purple">
-        <div class="box-3">Gray Section</div>
+        <div class="box-3">
+          <div class="box-3-inner">
+            <h2>{{ t('about.expre') }}.1</h2>
+            <ul>
+              <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="bold">{{ t('about.sextxt.tit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">{{ t('about.sextxt.part') }}</li>
+              <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="bold">{{ t('about.sextxt.date') }}</li>
+              <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">{{ t('about.sextxt.dateday') }}</li>
+              <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000" class="bold">{{ t('about.sextxt.positit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1000">{{ t('about.sextxt.position') }}</li>
+              <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000" class="bold">{{ t('about.sextxt.respontit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1000" class="cutxt">{{ t('about.sextxt.respons') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000" class="bold">{{ t('about.sextxt.keyachtit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1000" class="cutxt">{{ t('about.sextxt.keyach') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000" class="bold">{{ t('about.sextxt.techstit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1000">{{ t('about.sextxt.techstack') }}</li>
+            </ul>
+          </div>
+          <div class="box-3-inner">
+            <h2>{{ t('about.expre') }}.2</h2>
+            <ul>
+              <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="bold">{{ t('about.wextxt.tit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">{{ t('about.wextxt.part') }}</li>
+              <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="bold">{{ t('about.wextxt.date') }}</li>
+              <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">{{ t('about.wextxt.dateday') }}</li>
+              <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000" class="bold">{{ t('about.wextxt.positit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1000">{{ t('about.wextxt.position') }}</li>
+              <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000" class="bold">{{ t('about.wextxt.respontit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1000" class="cutxt">{{ t('about.wextxt.respons') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000" class="bold">{{ t('about.wextxt.keyachtit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1000" class="cutxt">{{ t('about.wextxt.keyach') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000" class="bold">{{ t('about.wextxt.techstit') }}</li>
+              <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1000">{{ t('about.wextxt.techstack') }}</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
     <div class="final">
-
+      <div>
+        더 알아보고 싶다면?
+      </div>
+      <div id="split" style="opacity: 0;">
+        My Skills 로 이동하기
+      </div>
+      <button>here</button>
     </div>    
   </div>
 </template>
 
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 .description {
   background-image: url('@/assets/img/bg_1.png');
   background-repeat: no-repeat;
@@ -200,7 +378,7 @@ onMounted(() => {
 .panel {
   flex: 0 0 100vw;
   width: 100%;
-  height: 100vh;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -240,33 +418,101 @@ onMounted(() => {
   text-shadow: 0px 0px 10px #ffc9c9,
               -10px -10px 10px #ffffff;
   }
+.box-2 {
+  display: flex;
+  gap: 10px 50px;
+}
+.box-2-img {
+  height: 90vh;
+  img {
+    width: 85%;
+  }
+}
+.edu-img {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.box-2-inner {
+  display: grid;
+  grid-template-rows: 1.6fr 1fr;
+  h2 {
+    font-size: 3vw;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
+  }
+  ul {
+    position: relative;
+    font-size: 18px;
+    padding-left: 30px;
+    &::after {
+      position: absolute;
+      display: block;
+      clear: both;
+      content: '';
+      width: 3px;
+      height: 100%;
+      background-color: #333;
+      top: 0;
+      left: 0;
+    }
+  }
+  @media (min-width: 1201px) {
+    min-width: 500px;
+  }
+}
+.box-3 {
+  display: flex;
+  gap: 0 20px;
+  h2 {
+    font-size: 3vw;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
+  }
+  ul {
+    position: relative;
+    font-size: 18px;
+    padding-left: 30px;
+    &::after {
+      position: absolute;
+      display: block;
+      clear: both;
+      content: '';
+      width: 3px;
+      height: 100%;
+      background-color: #333;
+      top: 0;
+      left: 0;
+    }
+    li {
+      padding: 3px 0;
+    }
+  }
+}
 .red { 
   position: relative;
+  height: 100vh;
   background: #FACAC2;
   background: linear-gradient(145deg,rgba(250, 202, 194, 1) 0%, rgba(255, 255, 255, 1) 50%);
 }
 .gray { 
+  height: 100vh;
   background-image: url('@/assets/img/bg_2.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 .purple { 
+  height: 100vh;
   background-image: url('@/assets/img/bg_3.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
-.green { 
-  background-image: url('@/assets/img/bg_4.png');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 
 .final {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f8f8f8;
+  background: #fff;
   text-align: center;
   font-size: 2rem;
 }
@@ -279,9 +525,9 @@ onMounted(() => {
 
   .panel {
     width: 100vw;
-    height: 100vh;
   }
-
+  .red { 
+  height: 100vh;}
   .description {
     background-size: cover;
   }
@@ -303,12 +549,46 @@ onMounted(() => {
     position: absolute;
     right: 20px;
     font-size: 15vw;
+  }
+  .pcs{display: none;}
+  .gray {
+    height: 100%;
+    padding: 0 20px;
+  }
+  .box-2-img {
+    height: 100%;
+    img {
+      width: 100%;
+    }
+    h2 {
+      font-size: 30px;
     }
   }
+  .grays { 
+    height: 100%;
+    padding: 20px;
+    background-image: url('@/assets/img/bg_2.png');
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+  }
+  .box-2-inner {
+    gap: 20px 0;
+    h2 {
+      font-size: 10vw;
+    }
+    .education-list, .certificate-list{
+      font-size: 16px;
+    }
+  }
+}
 @media (min-width: 1201px) {
   .scroll-down {
     right: 45%;
     font-size: 16px;
+  }
+  .mobiles {
+    display: none;
   }
 }
 </style>

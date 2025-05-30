@@ -57,3 +57,6 @@ a {text-decoration: none; color: #292929;}
 .cutxt {
   white-space: pre-line;
 }
+.bold {
+  font-weight: 700;
+}
