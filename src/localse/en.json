@@ -13,35 +13,7 @@
   "about": {
     "title": "About",
     "txt": "By gaining proficiency in Adobe tools and development languages,\nI am establishing myself as a versatile professional capable of handling both design and development tasks in practical settings.",
-    "expre": "EXPERIENCE",
-    "sextxt": {
-      "tit": "Samsung Electronics DS",
-      "part": "TMG People System",
-      "date": "Employment Period",
-      "dateday": "2023.01 ~ 2025.01",
-      "positit": "Position",
-      "position": "Web UI/UX, Developer",
-      "respontit": "Responsibilities",
-      "respons": "Overall web UI/UX design and development for Samsung Electronics’ HR system\nDevelopment of component-based UI considering web accessibility and standards\nImplementation of web interfaces that effectively visualize large-scale data",
-      "keyachtit": "Key Achievements & Technical Skills",
-      "keyach": "Designed a structure with improved component reusability and maintainability based on Vue.js\nCollaborated closely with designers and planners to deliver intuitive user experiences (UX)\nIntroduced performance optimization strategies such as lazy loading and code splitting",
-      "techstit": "Tech Stack",
-      "techstack": "Vue.js, HTML5, SCSS, JavaScript (ES6+), Git, Adobe"
-    },
-    "wextxt": {
-      "tit": "Wisetech",
-      "part": "Frontend / Design",
-      "date": "Employment Period",
-      "dateday": "2022.06 ~ 2024.03",
-      "positit": "Position",
-      "position": "UI/UX Designer & Frontend Developer / Web & App Designer and Publisher",
-      "respontit": "Responsibilities",
-      "respons": "Designed mobile app UI/UX and created screen layouts\nImplemented frontend features and animations using Flutter\nLed UI/UX improvements based on user feedback\nPlanned and created web/app designs considering UI/UX principles\nBuilt responsive websites and maintained existing platforms\nApplied designs to improve accessibility and user convenience",
-      "keyachtit": "Key Achievements & Skills",
-      "keyach": "Independently handled design and development; launched the app in a short period\nManaged schedules and collaboration in a remote environment using Adobe XD and Git\nImplemented interactive and responsive UI with focus on user experience\nSolely responsible for all corporate web/app design and publishing tasks\nAchieved high-quality results reflected in live homepage and subpages\nImproved mobile usability through HTML/CSS-based responsive publishing",
-      "techstit": "Tech Stack",
-      "techstack": "Flutter, Dart, Adobe XD, Git, HTML5, CSS3, JavaScript, jQuery, Photoshop, Illustrator"
-    }
+    "expre": "EXPERIENCE"
   },
   "menu": {
     "home": "Home",
@@ -60,7 +32,10 @@
     "edupage": "(Education)",
     "exhibpage": "(Exhibition)",
     "other": "Other Design",
-    "mywork": "Task organization"
+    "mywork": "Task organization",
+    "tip": "TIP",
+    "apjms": "APJMS",
+    "dsawrd": "DS AWARDS PORTAL"
   },
   "education": {
     "title": "Education",

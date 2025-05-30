@@ -4,11 +4,10 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useI18n } from 'vue-i18n'
 import { SplitText } from "gsap/SplitText"
-import Buttonvue from '@/components/Button.vue'
 import NameCardVue from '@/components/NameCard.vue'
+import WorkVue from '@/components/Work.vue'
 
 const { t, locale } = useI18n()
-
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -252,64 +251,9 @@ onMounted(() => {
         </div>
       </section>
       <section class="panel purple">
-        <div>
-          <h2 class="ex-tit">{{ t('about.expre') }}</h2>
-          <div class="box-3">
-            <div class="box-3-inner">
-              <ul>
-                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200" class="bold">{{ t('about.sextxt.tit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">{{ t('about.sextxt.part') }}</li>
-                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200" class="bold">{{ t('about.sextxt.date') }}</li>
-                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">{{ t('about.sextxt.dateday') }}</li>
-                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200" class="bold">{{ t('about.sextxt.positit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1200">{{ t('about.sextxt.position') }}</li>
-                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1200" class="bold">{{ t('about.sextxt.respontit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1200" class="cutxt">{{ t('about.sextxt.respons') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1200" class="bold">{{ t('about.sextxt.keyachtit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1200" class="cutxt">{{ t('about.sextxt.keyach') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1200" class="bold">{{ t('about.sextxt.techstit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1200">{{ t('about.sextxt.techstack') }}</li>
-              </ul>
-            </div>
-            <div class="box-3-inner pcs">
-              <ul>
-                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.tit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1300">{{ t('about.wextxt.part') }}</li>
-                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1300" class="bold">{{ t('about.wextxt.date') }}</li>
-                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1300">{{ t('about.wextxt.dateday') }}</li>
-                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1300" class="bold">{{ t('about.wextxt.positit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1300">{{ t('about.wextxt.position') }}</li>
-                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1300" class="bold">{{ t('about.wextxt.respontit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.respons') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1300" class="bold">{{ t('about.wextxt.keyachtit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.keyach') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.techstit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1300">{{ t('about.wextxt.techstack') }}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="purples mobiles">
-        <div>
-          <div class="box-3">
-            <div class="box-3-inner">
-              <ul>
-                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.tit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1300">{{ t('about.wextxt.part') }}</li>
-                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1300" class="bold">{{ t('about.wextxt.date') }}</li>
-                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1300">{{ t('about.wextxt.dateday') }}</li>
-                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1300" class="bold">{{ t('about.wextxt.positit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1300">{{ t('about.wextxt.position') }}</li>
-                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1300" class="bold">{{ t('about.wextxt.respontit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.respons') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1300" class="bold">{{ t('about.wextxt.keyachtit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.keyach') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.techstit') }}</li>
-                <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1300">{{ t('about.wextxt.techstack') }}</li>
-              </ul>
-            </div>
-          </div>
+        <div class="box-3">
+          <h2>{{ t('menu.work') }}</h2>
+          <WorkVue></WorkVue>
         </div>
       </section>
     </div>
@@ -320,9 +264,6 @@ onMounted(() => {
       <div id="split" class="look-move">
         {{ t('home.moveto') }}
       </div>
-      <!-- <router-link to="#">
-        <Buttonvue></Buttonvue>
-      </router-link> -->
       <div class="sns-box">
         <NameCardVue></NameCardVue>
       </div>
@@ -409,7 +350,6 @@ onMounted(() => {
 .panel {
   flex: 0 0 100vw;
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -491,32 +431,12 @@ onMounted(() => {
   }
 }
 .box-3 {
-  display: flex;
-  gap: 0 20px;
   h2 {
     font-size: 3vw;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
   }
-  ul {
-    position: relative;
-    font-size: 18px;
-    padding-left: 30px;
-    &::after {
-      position: absolute;
-      display: block;
-      clear: both;
-      content: '';
-      width: 3px;
-      height: 100%;
-      background-color: #333;
-      top: 0;
-      left: 0;
-    }
-    li {
-      padding: 3px 0;
-    }
-  }
 }
+
 .red { 
   position: relative;
   height: 100vh;
@@ -584,7 +504,7 @@ onMounted(() => {
     height: auto;
   }
   .panel {
-    width: 100vw;
+    width: 100vw; 
   }
   .red { 
   height: 100vh;}
@@ -641,6 +561,11 @@ onMounted(() => {
       font-size: 16px;
     }
   }
+  .box-3 {
+  h2 {
+    font-size: 10vw;
+  }
+}
   .purple { 
     height: 100%;
     padding: 20px;
@@ -648,14 +573,6 @@ onMounted(() => {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-  }
-  .purples { 
-    height: 100%;
-    padding: 20px;
-    background-image: url('@/assets/img/bg_5.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
   }
   .ex-tit{
     font-size: 10vw;
@@ -669,7 +586,17 @@ onMounted(() => {
   .look-move {
     font-size: 8vw;
   }
-  
+  .box-3-inner {
+    min-height: 80vh;
+    max-height: 100%;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    padding: 10px;
+  }
 }
 @media (min-width: 1201px) {
   .scroll-down {
