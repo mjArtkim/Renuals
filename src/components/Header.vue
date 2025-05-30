@@ -5,7 +5,7 @@ const isMenuVisible = ref(false);
 const activeIndex = ref(null);
 const menuItems = computed(() => [
   { title: t('menu.home'), link: '/', submenu: [] },
-  { title: t('menu.myskill'), link: '/myskills', submenu: [] },
+  // { title: t('menu.myskill'), link: '/myskills', submenu: [] },
   {
     title: t('menu.work'),
     link: [],

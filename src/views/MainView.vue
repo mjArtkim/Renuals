@@ -4,6 +4,7 @@ import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import { useI18n } from 'vue-i18n'
 import { SplitText } from "gsap/SplitText";
+import Buttonvue from '@/components/Button.vue'
 const { t, locale } = useI18n()
 
 
@@ -249,52 +250,81 @@ onMounted(() => {
         </div>
       </section>
       <section class="panel purple">
-        <div class="box-3">
-          <div class="box-3-inner">
-            <h2>{{ t('about.expre') }}.1</h2>
-            <ul>
-              <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="bold">{{ t('about.sextxt.tit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">{{ t('about.sextxt.part') }}</li>
-              <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="bold">{{ t('about.sextxt.date') }}</li>
-              <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">{{ t('about.sextxt.dateday') }}</li>
-              <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000" class="bold">{{ t('about.sextxt.positit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1000">{{ t('about.sextxt.position') }}</li>
-              <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000" class="bold">{{ t('about.sextxt.respontit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1000" class="cutxt">{{ t('about.sextxt.respons') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000" class="bold">{{ t('about.sextxt.keyachtit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1000" class="cutxt">{{ t('about.sextxt.keyach') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000" class="bold">{{ t('about.sextxt.techstit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1000">{{ t('about.sextxt.techstack') }}</li>
-            </ul>
+        <div>
+          <h2 class="ex-tit">{{ t('about.expre') }}</h2>
+          <div class="box-3">
+            <div class="box-3-inner">
+              <ul>
+                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200" class="bold">{{ t('about.sextxt.tit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">{{ t('about.sextxt.part') }}</li>
+                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200" class="bold">{{ t('about.sextxt.date') }}</li>
+                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">{{ t('about.sextxt.dateday') }}</li>
+                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200" class="bold">{{ t('about.sextxt.positit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1200">{{ t('about.sextxt.position') }}</li>
+                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1200" class="bold">{{ t('about.sextxt.respontit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1200" class="cutxt">{{ t('about.sextxt.respons') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1200" class="bold">{{ t('about.sextxt.keyachtit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1200" class="cutxt">{{ t('about.sextxt.keyach') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1200" class="bold">{{ t('about.sextxt.techstit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1200">{{ t('about.sextxt.techstack') }}</li>
+              </ul>
+            </div>
+            <div class="box-3-inner pcs">
+              <ul>
+                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.tit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1300">{{ t('about.wextxt.part') }}</li>
+                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1300" class="bold">{{ t('about.wextxt.date') }}</li>
+                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1300">{{ t('about.wextxt.dateday') }}</li>
+                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1300" class="bold">{{ t('about.wextxt.positit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1300">{{ t('about.wextxt.position') }}</li>
+                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1300" class="bold">{{ t('about.wextxt.respontit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.respons') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1300" class="bold">{{ t('about.wextxt.keyachtit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.keyach') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.techstit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1300">{{ t('about.wextxt.techstack') }}</li>
+              </ul>
+            </div>
           </div>
-          <div class="box-3-inner">
-            <h2>{{ t('about.expre') }}.2</h2>
-            <ul>
-              <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" class="bold">{{ t('about.wextxt.tit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">{{ t('about.wextxt.part') }}</li>
-              <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" class="bold">{{ t('about.wextxt.date') }}</li>
-              <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1000">{{ t('about.wextxt.dateday') }}</li>
-              <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000" class="bold">{{ t('about.wextxt.positit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1000">{{ t('about.wextxt.position') }}</li>
-              <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000" class="bold">{{ t('about.wextxt.respontit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1000" class="cutxt">{{ t('about.wextxt.respons') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000" class="bold">{{ t('about.wextxt.keyachtit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1000" class="cutxt">{{ t('about.wextxt.keyach') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000" class="bold">{{ t('about.wextxt.techstit') }}</li>
-              <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1000">{{ t('about.wextxt.techstack') }}</li>
-            </ul>
+        </div>
+      </section>
+      <section class="purples mobiles">
+        <div>
+          <div class="box-3">
+            <div class="box-3-inner">
+              <ul>
+                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.tit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1300">{{ t('about.wextxt.part') }}</li>
+                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1300" class="bold">{{ t('about.wextxt.date') }}</li>
+                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1300">{{ t('about.wextxt.dateday') }}</li>
+                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1300" class="bold">{{ t('about.wextxt.positit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1300">{{ t('about.wextxt.position') }}</li>
+                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1300" class="bold">{{ t('about.wextxt.respontit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.respons') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1300" class="bold">{{ t('about.wextxt.keyachtit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1100" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.keyach') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.techstit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="1300" data-aos-duration="1300">{{ t('about.wextxt.techstack') }}</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
     </div>
     <div class="final">
-      <div>
-        더 알아보고 싶다면?
+      <div class="look-more">
+        {{ t('home.moreinfo') }}
       </div>
-      <div id="split" style="opacity: 0;">
-        My Skills 로 이동하기
+      <div id="split" class="look-move">
+        {{ t('home.moveto') }}
       </div>
-      <button>here</button>
+      <router-link to="#">
+        <Buttonvue></Buttonvue>
+      </router-link>
+      <div class="sns-box">
+        <a href="https://www.instagram.com/mjtwinart/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+        <a href="mailto:mjtwins1@naver.com"><i class="fa-solid fa-envelope"></i></a>
+      </div>
     </div>    
   </div>
 </template>
@@ -505,16 +535,46 @@ onMounted(() => {
   background-size: cover;
 }
 
-
+.ex-tit {
+  font-size: 3vw;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
+  padding-bottom: 20px;
+}
 .final {
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #fff;
+  background: #f5f5f5;
   text-align: center;
-  font-size: 2rem;
+}
+.look-more {
+  font-size: 2.5vw;
+  margin-bottom: 30px;
+}
+.look-move {
+  font-size: 2vw;
+  opacity: 0;
+  margin-bottom: 30px;
+}
+.here-move {
+  border-radius: 5px;
+  padding: 10px 20px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow:  20px 20px 60px #ddd,
+              -20px -20px 60px #ffffff;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.sns-box {
+  display: flex;
+  gap: 20px;
+  margin-top: 50px;
+  font-size: 10vw;
+  i {
+    color: #333;  
+  }
 }
 @media (max-width: 1200px) {
   .container {
@@ -522,7 +582,6 @@ onMounted(() => {
     width: 100%;
     height: auto;
   }
-
   .panel {
     width: 100vw;
   }
@@ -581,6 +640,35 @@ onMounted(() => {
       font-size: 16px;
     }
   }
+  .purple { 
+    height: 100%;
+    padding: 20px;
+    background-image: url('@/assets/img/bg_3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .purples { 
+    height: 100%;
+    padding: 20px;
+    background-image: url('@/assets/img/bg_5.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  .ex-tit{
+    font-size: 10vw;
+  }
+  .final {
+    padding: 0 20px;
+  }
+  .look-more {
+    font-size: 8vw;
+  }
+  .look-move {
+    font-size: 8vw;
+  }
+  
 }
 @media (min-width: 1201px) {
   .scroll-down {
@@ -590,5 +678,14 @@ onMounted(() => {
   .mobiles {
     display: none;
   }
+  .sns-box {
+    font-size: 3vw;
+  i {
+    
+  }
+  :hover {
+      color: #feb6b6;
+    }
+}
 }
 </style>
