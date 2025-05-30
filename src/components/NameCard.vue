@@ -53,7 +53,7 @@ const { t, locale } = useI18n()
 .name-card {
   height: 100%;
   border-radius: 50px;
-  background: linear-gradient(135deg, rgb(255, 187, 0) 0%, rgb(226, 197, 8) 100%);
+  background: linear-gradient(135deg, rgb(255, 120, 120) 0%, rgb(255, 195, 195) 100%);
   transition: all 0.5s ease-in-out;
   transform-style: preserve-3d;
   box-shadow: rgba(71, 48, 5, 0) 40px 50px 25px -40px, rgba(71, 46, 5, 0.2) 0px 25px 25px -5px;
@@ -81,14 +81,14 @@ const { t, locale } = useI18n()
 
 .card-txt .card-tit {
   display: block;
-  color: #897700;
+  color: #791d11;
   font-weight: 900;
   font-size: 20px;
 }
 
 .card-txt .card-in-txt {
   display: block;
-  color: rgba(137, 96, 0, 0.765);
+  color: rgba(137, 0, 0, 0.765);
   font-size: 15px;
   margin-top: 20px;
 }
@@ -121,7 +121,7 @@ const { t, locale } = useI18n()
 .bottom .view-more .view-more-button {
   background: none;
   border: none;
-  color: #c37c00;
+  color: #c33100;
   font-weight: bolder;
   font-size: 12px;
   margin-right: 5px;
@@ -131,7 +131,7 @@ const { t, locale } = useI18n()
   fill: none;
   max-height: 15px;
   font-size: 15px;
-  color: #c37c00;
+  color: #c33100;
 }
 
 .bottom .social-buttons-container {
@@ -166,7 +166,7 @@ const { t, locale } = useI18n()
 
 
 .bottom .social-buttons-container .social-button:hover {
-  background: #ffa113;
+  background: #ff6c6c;
 }
 
 
@@ -189,10 +189,10 @@ const { t, locale } = useI18n()
   border-radius: 50%;
   top: 0;
   right: 0;
-  box-shadow: rgba(100, 100, 111, 0.2) -10px 10px 20px 0px;
+  box-shadow: rgba(100, 111, 100, 0.2) -10px 10px 20px 0px;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  background: rgba(249, 174, 0, 0.2);
+  background: rgba(249, 66, 0, 0.2);
   transition: all 0.5s ease-in-out;
 }
 
