@@ -53,7 +53,7 @@ button {border: 0; background-color: transparent; cursor: pointer;}
 .sound-only {position: absolute; left: -9999em; top: -9999em;}
 .clearfix:after {content: ''; display: block; clear: both;}
 ol, ul {list-style-type: none;}
-a {text-decoration: none; color: #292929;}
+a {text-decoration: none; color: #292929 !important;}
 .cutxt {
   white-space: pre-line;
 }

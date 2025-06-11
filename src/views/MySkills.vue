@@ -3,14 +3,19 @@ import { ref, onMounted, onBeforeUnmount } from 'vue';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Scrollbar from 'smooth-scrollbar';
+import CanvasTrail from '@/components/CanvasTrail.vue';
+import NameCardVue from '@/components/NameCard.vue'
+import { useI18n } from 'vue-i18n'
+import { SplitText } from "gsap/SplitText"
+import PicassoCard from "@/components/PicassoCard.vue"
 
+const { t, locale } = useI18n()
 gsap.registerPlugin(ScrollTrigger);
 
 const scrollerRef = ref(null);
 let bodyScrollBar;
 
 onMounted(() => {
-  // smooth-scrollbar 초기화 (document.body 대신 scrollerRef 엘리먼트)
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
     damping: 0.1,
     delegateTo: document,
@@ -95,6 +100,37 @@ onMounted(() => {
     end: () => "+=" + images.length * window.innerHeight,
     invalidateOnRefresh: true,
   });
+
+  document.fonts.ready.then(() => {
+    const split = new SplitText("#split", { type: "chars" });
+    const tl = gsap.timeline({ repeat: 30 });
+
+    gsap.set("#split", { opacity: 1 });
+    tl.from(split.chars, {
+      duration: 1,
+      y: 100,
+      rotation: 90,
+      opacity: 0,
+      ease: "elastic",
+      stagger: 0.03,
+    });
+
+    tl.to(
+      split.chars,
+      {
+        duration: 2,
+        opacity: 0,
+        rotation: "random(-2000, 2000)",
+        physics2D: {
+          angle: "random(240, 320)",
+          velocity: "random(300, 600)",
+          gravity: 800,
+        },
+        stagger: 0.015,
+      },
+      3
+    );
+  });
 });
 
 onBeforeUnmount(() => {
@@ -104,49 +140,136 @@ onBeforeUnmount(() => {
     bodyScrollBar.destroy();
   }
 });
+
+
+
+
 </script>
 <template>
   <div class="scroller" ref="scrollerRef">
-    <section class="orange">
-      <div class="text">This is some text inside of a div block.</div>
+    <section class="description">
+      <CanvasTrail></CanvasTrail>
+      <div class="main-box">
+        <PicassoCard></PicassoCard>
+        <div class="scroll-down">
+          <div>{{ t('home.scroll') }} </div>
+          <div class="material-icons-round">keyboard_double_arrow_down</div>
+        </div>
+      </div>
     </section>
 
     <section class="black">
       <div class="text-wrap">
-        <div class="panel-text blue-text">Blue</div>
-        <div class="panel-text red-text">Red</div>
-        <div class="panel-text orange-text">Orange</div>
-        <div class="panel-text purple-text">Purple</div>
-        <div class="panel-text purple-text1">Purple1</div>
-        <div class="panel-text purple-text2">Purple2</div>
-        <div class="panel-text purple-text2">Purple2</div>
+        <div class="panel-text blue-text">
+          <div>This is My Work</div>
+        </div>
+
+        <div class="panel-text blue-text">
+          <div>{{ t('menu.thirdparty') }}</div>
+          <div>{{ t('menu.introducepage') }}</div>
+        </div>
+        <div class="panel-text red-text">
+          <div>{{ t('menu.incon') }}</div>
+          <div>{{ t('menu.landpage') }}</div>
+        </div>
+        <div class="panel-text orange-text">
+          <div>{{ t('menu.sam') }}</div>
+          <div>{{ t('menu.businesspage') }}</div>
+        </div>
+        <div class="panel-text purple-text">
+          <div>{{ t('menu.song') }}</div>
+          <div>{{ t('menu.introducepage') }}</div>
+        </div>
+        <div class="panel-text purple-text1">
+          <div>{{ t('menu.mou') }}</div>
+          <div>{{ t('menu.edupage') }}</div>
+        </div>
+        <div class="panel-text purple-text2">
+          <div>{{ t('menu.backc') }}</div>
+          <div>{{ t('menu.exhibapge') }}</div>
+        </div>
+
       </div>
 
       <div class="p-wrap">
+        <div class="panel purple2"></div>
         <div class="panel blue"></div>
         <div class="panel red"></div>
         <div class="panel orange"></div>
         <div class="panel purple"></div>
         <div class="panel purple1"></div>
         <div class="panel purple2"></div>
-        <div class="panel purple2"></div>
       </div>
     </section>
 
-    <section class="blue"></section>
+    <div class="final">
+      <div class="look-more">
+        {{ t('home.moreinfo') }}
+      </div>
+      <div id="split" class="look-move">
+        {{ t('home.moveto') }}
+      </div>
+      <div class="sns-box">
+        <NameCardVue></NameCardVue>
+      </div>
+    </div> 
   </div>
 </template>
 
 
 
-<style scoped>
-body,
-html {
-  margin: 0;
-}
+<style scoped lang="scss">
+
 .scroller {
   height: 100vh;
 }
+.description {
+  background-image: url('@/assets/img/bg_1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  overflow: hidden !important;
+}
+.main-box {
+  width: 100%;
+  padding: 10%;
+  height: 100vh;
+  display: grid;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 40px;
+  font-size: 20px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+  color: #fff;
+  animation: bounce 2s infinite;
+  text-align: center;
+  padding-top: 20px;
+  cursor: default;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(6px);
+  }
+  60% {
+    transform: translateY(3px);
+  }
+}
+
 
 .orange {
   display: -webkit-box;
@@ -162,7 +285,7 @@ html {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-image: url('@/assets/img/bg_4.png');
+  /* background-image: url('@/assets/img/bg_4.png'); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -189,7 +312,7 @@ html {
 
 .blue {
   height: 100vh;
-  background-color: #00026d;
+
 }
 
 
@@ -233,12 +356,15 @@ html {
 .panel-text.orange-text {
   color: orange;
 }
-
-
-
-
-
-
+.panel-text.purple-text2 { 
+  color: rebeccapurple; 
+  position: absolute;
+  top: 200px; }
+.panel-text.purple-text3 { 
+  color: darkmagenta; 
+  position: absolute; 
+  top: 250px; 
+}
 .p-wrap {
   position: relative;
   overflow: hidden;
@@ -255,7 +381,6 @@ html {
   z-index: 1;
   width: 100%;
   height: 100%;
-  background-image: url("../images/5ed12171d9d512cb2feead83_5.jpg");
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -263,7 +388,6 @@ html {
 
 .panel._2 {
   z-index: 1;
-  background-image: url("../images/5f5a5b3515c4dd0c2c455925_110642301_938622823267359_7859124022958180678_n201.jpg");
 }
 
 .panel.blue {
@@ -284,12 +408,54 @@ html {
 
 .panel.purple {
   z-index: auto;
-  background-color: #808;
-  background-image: none;
 }
-.purple2 { background-color: rebeccapurple; }
-.purple3 { background-color: darkmagenta; }
+.panel.purple2 {
+  z-index: auto;
+  background-image: url('@/assets/img/edu_05.png');
+  background-size: cover;
+  background-position: top center;
+}
+.panel.purple3 { 
+  z-index: auto;
+  background-color: darkmagenta; 
+}
 
-.purple-text2 { color: rebeccapurple; position: absolute; top: 200px; }
-.purple-text3 { color: darkmagenta; position: absolute; top: 250px; }
+
+
+.final {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f5f5;
+  text-align: center;
+}
+.look-more {
+  font-size: 2.5vw;
+  margin-bottom: 30px;
+}
+.look-move {
+  font-size: 2vw;
+  opacity: 0;
+  margin-bottom: 30px;
+}
+.here-move {
+  border-radius: 5px;
+  padding: 10px 20px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow:  20px 20px 60px #ddd,
+              -20px -20px 60px #ffffff;
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.sns-box {
+  display: flex;
+  gap: 20px;
+  margin-top: 50px;
+  font-size: 10vw;
+  i {
+    color: #333;  
+  }
+}
 </style>

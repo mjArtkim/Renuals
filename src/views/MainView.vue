@@ -159,24 +159,24 @@ onMounted(() => {
               <h2>{{ t('education.title') }}</h2>
               <ul class="education-list">
                 <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                  <strong>{{ t('education.schools.0.name') }}</strong>
-                  <p>{{ t('education.schools.0.degree') }} / {{ t('education.schools.0.major') }}</p>
-                  <p>{{ t('education.schools.0.period') }}</p>
-                  <p v-if="t('education.schools.0.gpa') !== ''">GPA: {{ t('education.schools.0.gpa') }}</p>
+                  <!-- <strong>{{ t('education.schools.0.name') }}</strong> -->
+                  <p>{{ t('education.schools.0.major') }}</p>
+                  <!-- <p>{{ t('education.schools.0.period') }}</p>
+                  <p v-if="t('education.schools.0.gpa') !== ''">GPA: {{ t('education.schools.0.gpa') }}</p> -->
                   <p v-if="t('education.schools.0.note') !== ''">{{ t('education.schools.0.note') }}</p>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                  <strong>{{ t('education.schools.1.name') }}</strong>
-                  <p>{{ t('education.schools.1.degree') }} / {{ t('education.schools.1.major') }}</p>
-                  <p>{{ t('education.schools.1.period') }}</p>
-                  <p v-if="t('education.schools.1.gpa') !== ''">GPA: {{ t('education.schools.1.gpa') }}</p>
+                  <!-- <strong>{{ t('education.schools.1.name') }}</strong> -->
+                  <p> {{ t('education.schools.1.major') }}</p>
+                  <!-- <p>{{ t('education.schools.1.period') }}</p>
+                  <p v-if="t('education.schools.1.gpa') !== ''">GPA: {{ t('education.schools.1.gpa') }}</p> -->
                   <p v-if="t('education.schools.1.note') !== ''">{{ t('education.schools.1.note') }}</p>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
-                  <strong>{{ t('education.schools.2.name') }}</strong>
-                  <p>{{ t('education.schools.2.degree') }} / {{ t('education.schools.2.major') }}</p>
-                  <p>{{ t('education.schools.2.period') }}</p>
-                  <p v-if="t('education.schools.2.gpa') !== ''">GPA: {{ t('education.schools.2.gpa') }}</p>
+                  <!-- <strong>{{ t('education.schools.2.name') }}</strong> -->
+                  <p>{{ t('education.schools.2.major') }}</p>
+                  <!-- <p>{{ t('education.schools.2.period') }}</p>
+                  <p v-if="t('education.schools.2.gpa') !== ''">GPA: {{ t('education.schools.2.gpa') }}</p> -->
                   <p v-if="t('education.schools.2.note') !== ''">{{ t('education.schools.2.note') }}</p>
                 </li>
               </ul>
@@ -186,16 +186,16 @@ onMounted(() => {
               <ul class="certificate-list">
                 <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                   <strong>{{ t('certificates.list.0.name') }}</strong>
-                  <p>{{ t('certificates.list.0.date') }} / {{ t('certificates.list.0.issuer') }} / {{ t('certificates.list.0.status') }}</p>
+                  <!-- <p>{{ t('certificates.list.0.date') }} / {{ t('certificates.list.0.issuer') }} / {{ t('certificates.list.0.status') }}</p> -->
                 </li>
                 <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                   <strong>{{ t('certificates.list.1.name') }}</strong>
-                  <p>{{ t('certificates.list.1.date') }} / {{ t('certificates.list.1.issuer') }} / {{ t('certificates.list.1.status') }}</p>
+                  <!-- <p>{{ t('certificates.list.1.date') }} / {{ t('certificates.list.1.issuer') }} / {{ t('certificates.list.1.status') }}</p> -->
                 </li>
-                <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
+                <!-- <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                   <strong>{{ t('certificates.list.2.name') }}</strong>
                   <p>{{ t('certificates.list.2.date') }} / {{ t('certificates.list.2.issuer') }} / {{ t('certificates.list.2.status') }}</p>
-                </li>
+                </li> -->
               </ul>
             </div>
           </div>
@@ -208,25 +208,25 @@ onMounted(() => {
               <h2>{{ t('education.title') }}</h2>
               <ul class="education-list">
                 <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                  <strong>{{ t('education.schools.0.name') }}</strong>
-                  <p>{{ t('education.schools.0.degree') }} / {{ t('education.schools.0.major') }}</p>
-                  <p>{{ t('education.schools.0.period') }}</p>
-                  <p v-if="t('education.schools.0.gpa') !== ''">GPA: {{ t('education.schools.0.gpa') }}</p>
+                  <!-- <strong>{{ t('education.schools.0.name') }}</strong> -->
+                  <p>{{ t('education.schools.0.major') }}</p>
+                  <!-- <p>{{ t('education.schools.0.period') }}</p>
+                  <p v-if="t('education.schools.0.gpa') !== ''">GPA: {{ t('education.schools.0.gpa') }}</p> -->
                   <p v-if="t('education.schools.0.note') !== ''">{{ t('education.schools.0.note') }}</p>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000">
-                  <strong>{{ t('education.schools.1.name') }}</strong>
-                  <p>{{ t('education.schools.1.degree') }} / {{ t('education.schools.1.major') }}</p>
-                  <p>{{ t('education.schools.1.period') }}</p>
-                  <p v-if="t('education.schools.1.gpa') !== ''">GPA: {{ t('education.schools.1.gpa') }}</p>
+                  <!-- <strong>{{ t('education.schools.1.name') }}</strong> -->
+                  <p> {{ t('education.schools.1.major') }}</p>
+                  <!-- <p>{{ t('education.schools.1.period') }}</p>
+                  <p v-if="t('education.schools.1.gpa') !== ''">GPA: {{ t('education.schools.1.gpa') }}</p> -->
                   <p v-if="t('education.schools.1.note') !== ''">{{ t('education.schools.1.note') }}</p>
                 </li>
                 <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1000">
                   <strong>{{ t('education.schools.2.name') }}</strong>
-                  <p>{{ t('education.schools.2.degree') }} / {{ t('education.schools.2.major') }}</p>
-                  <p>{{ t('education.schools.2.period') }}</p>
-                  <p v-if="t('education.schools.2.gpa') !== ''">GPA: {{ t('education.schools.2.gpa') }}</p>
-                  <p v-if="t('education.schools.2.note') !== ''">{{ t('education.schools.2.note') }}</p>
+                  <!-- <p>{{ t('education.schools.2.degree') }} / {{ t('education.schools.2.major') }}</p> -->
+                  <!-- <p>{{ t('education.schools.2.period') }}</p> -->
+                  <!-- <p v-if="t('education.schools.2.gpa') !== ''">GPA: {{ t('education.schools.2.gpa') }}</p>
+                  <p v-if="t('education.schools.2.note') !== ''">{{ t('education.schools.2.note') }}</p> -->
                 </li>
               </ul>
             </div>
@@ -235,15 +235,15 @@ onMounted(() => {
               <ul class="certificate-list">
                 <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1000">
                   <strong>{{ t('certificates.list.0.name') }}</strong>
-                  <p>{{ t('certificates.list.0.date') }} / {{ t('certificates.list.0.issuer') }} / {{ t('certificates.list.0.status') }}</p>
+                  <!-- <p>{{ t('certificates.list.0.date') }} / {{ t('certificates.list.0.issuer') }} / {{ t('certificates.list.0.status') }}</p> -->
                 </li>
                 <li data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                   <strong>{{ t('certificates.list.1.name') }}</strong>
-                  <p>{{ t('certificates.list.1.date') }} / {{ t('certificates.list.1.issuer') }} / {{ t('certificates.list.1.status') }}</p>
+                  <!-- <p>{{ t('certificates.list.1.date') }} / {{ t('certificates.list.1.issuer') }} / {{ t('certificates.list.1.status') }}</p> -->
                 </li>
                 <li data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                   <strong>{{ t('certificates.list.2.name') }}</strong>
-                  <p>{{ t('certificates.list.2.date') }} / {{ t('certificates.list.2.issuer') }} / {{ t('certificates.list.2.status') }}</p>
+                  <!-- <p>{{ t('certificates.list.2.date') }} / {{ t('certificates.list.2.issuer') }} / {{ t('certificates.list.2.status') }}</p> -->
                 </li>
               </ul>
             </div>
@@ -405,7 +405,7 @@ onMounted(() => {
 }
 .box-2-inner {
   display: grid;
-  grid-template-rows: 1.6fr 1fr;
+  grid-template-rows: 1fr 1fr;
   h2 {
     font-size: 3vw;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;

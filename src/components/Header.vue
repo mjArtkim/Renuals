@@ -113,12 +113,18 @@ function changeLanguage(lang) {
     font-size: 18px;
     transition: ease-in-out 0.3s;
     font-family: 'HallymMjo';
+    color: #292929;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
   }
   .active {
     font-weight: 700;
     border-bottom-right-radius: 10px;
     border-top-left-radius: 10px;
-    background-color: #ff7553fb;
+    box-shadow: 0 0px 10px 0 rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur( 6px );
+    -webkit-backdrop-filter: blur( 6px );
+    background-color: rgba(255, 255, 255, 0.2);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
     color: #fff;
   }
 }
