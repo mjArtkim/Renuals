@@ -141,8 +141,18 @@ onBeforeUnmount(() => {
   }
 });
 
+const scrollToTop = () => {
+  if (bodyScrollBar) {
+    bodyScrollBar.scrollTo(0, 0, 800); // 800ms 동안 부드럽게 스크롤
+  }
+};
 
-
+const scrollToBottom = () => {
+  if (bodyScrollBar) {
+    const maxScrollTop = bodyScrollBar.limit.y;
+    bodyScrollBar.scrollTo(0, maxScrollTop, 800);
+  }
+};
 
 </script>
 <template>
@@ -161,9 +171,8 @@ onBeforeUnmount(() => {
     <section class="black">
       <div class="text-wrap">
         <div class="panel-text blue-text">
-          <div>This is My Work</div>
+          <div>My Work</div>
         </div>
-
         <div class="panel-text blue-text">
           <div>{{ t('menu.thirdparty') }}</div>
           <div>{{ t('menu.introducepage') }}</div>
@@ -174,23 +183,22 @@ onBeforeUnmount(() => {
         </div>
         <div class="panel-text orange-text">
           <div>{{ t('menu.sam') }}</div>
-          <div>{{ t('menu.businesspage') }}</div>
+          <div>{{ t('menu.businesspage') }}</div>    
         </div>
         <div class="panel-text purple-text">
           <div>{{ t('menu.song') }}</div>
-          <div>{{ t('menu.introducepage') }}</div>
+          <div>{{ t('menu.introducepage') }}</div>   
         </div>
         <div class="panel-text purple-text1">
           <div>{{ t('menu.mou') }}</div>
-          <div>{{ t('menu.edupage') }}</div>
+          <div>{{ t('menu.edupage') }}</div>     
         </div>
         <div class="panel-text purple-text2">
           <div>{{ t('menu.backc') }}</div>
-          <div>{{ t('menu.exhibapge') }}</div>
+          <div>{{ t('menu.exhibpage') }}</div>        
         </div>
-
       </div>
-
+      
       <div class="p-wrap">
         <div class="panel purple2"></div>
         <div class="panel blue"></div>
@@ -198,7 +206,7 @@ onBeforeUnmount(() => {
         <div class="panel orange"></div>
         <div class="panel purple"></div>
         <div class="panel purple1"></div>
-        <div class="panel purple2"></div>
+        <div class="panel purple3"></div>
       </div>
     </section>
 
@@ -213,6 +221,14 @@ onBeforeUnmount(() => {
         <NameCardVue></NameCardVue>
       </div>
     </div> 
+    <div class="scroll-btn-group">
+      <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
+      <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
+    </div>
+    <div class="scroll-btn-group2">
+      <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
+      <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
+    </div>
   </div>
 </template>
 
@@ -222,9 +238,9 @@ onBeforeUnmount(() => {
 
 .scroller {
   height: 100vh;
+  overflow: hidden;
 }
 .description {
-  background-image: url('@/assets/img/bg_1.png');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -237,11 +253,10 @@ onBeforeUnmount(() => {
   padding: 10%;
   height: 100vh;
   display: grid;
-  
+  align-items: center;
+  justify-items: center;
   @media (max-width: 768px) {
     padding: 20px;
-    align-items: center;
-    justify-items: center;
   }
 }
 
@@ -298,6 +313,7 @@ onBeforeUnmount(() => {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
+  position: relative;
   display: flex;
   height: 100vh;
   -webkit-justify-content: space-around;
@@ -307,7 +323,10 @@ onBeforeUnmount(() => {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  background-color: #fff;
+  background-color: #202020;
+  @media (max-width: 1400px) {
+      flex-direction: column;
+  }
 }
 
 .blue {
@@ -319,8 +338,12 @@ onBeforeUnmount(() => {
 .text-wrap {
   position: relative;
   overflow: hidden;
-  width: 450px;
+  width: 30%;
   height: 80vh;
+  @media (max-width: 1400px) {
+    width: 90%;
+    height: 40vh;
+  }
 }
 
 .panel-text {
@@ -336,40 +359,70 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
   font-weight: 900;
   text-align:center;
-
   transform:translateY(100%);
   opacity: 0;
+  @media (max-width: 768px) {
+    font-size: 7vw;
+  }
 }
 
 .panel-text.blue-text {
-  color: blue;
+  color: #fff;
+  .panel-move {
+    color: #fff !important;
+  }
 }
 
 .panel-text.red-text {
-  color: red;
+  color: rgb(102, 150, 255);
+  .panel-move {
+    color: rgb(102, 150, 255) !important;
+  }
 }
 
 .panel-text.purple-text {
-  color: purple;
+  color: rgb(255, 190, 121);
+  .panel-move {
+    color: rgb(255, 190, 121) !important;
+  }
 }
 
 .panel-text.orange-text {
-  color: orange;
+  color: rgb(198, 132, 255);
+  .panel-move {
+    color: rgb(198, 132, 255) !important;
+  }
+}
+
+.panel-text.purple-text1 { 
+  color: rgb(255, 241, 83); 
+  position: absolute;
+  .panel-move {
+    color: rgb(255, 241, 83) !important;
+  }
 }
 .panel-text.purple-text2 { 
-  color: rebeccapurple; 
-  position: absolute;
-  top: 200px; }
-.panel-text.purple-text3 { 
-  color: darkmagenta; 
+  color: rgb(255, 255, 255); 
   position: absolute; 
+  .panel-move {
+    color: #fff !important;
+  }
   top: 250px; 
+  @media (max-width: 1400px) {
+    top: 0px; 
+  }
 }
 .p-wrap {
   position: relative;
   overflow: hidden;
-  width: 450px;
+  width: 70%;
   height: 80vh;
+  border-top-left-radius: 30px;
+  @media (max-width: 1400px) {
+    width: 90%;
+    height: 60vh;
+    border-top-right-radius: 30px;
+  }
 }
 
 .panel {
@@ -384,6 +437,10 @@ onBeforeUnmount(() => {
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: top left;
+  @media (max-width: 1400px) {
+    background-position: top;   
+  }
 }
 
 .panel._2 {
@@ -392,34 +449,36 @@ onBeforeUnmount(() => {
 
 .panel.blue {
   z-index: auto;
+  background-image: url('@/assets/img/work_02.png');
+
 }
 
 .panel.red {
   z-index: auto;
-  background-color: red;
-  background-image: none;
+  background-image: url('@/assets/img/work_03.png');
 }
 
 .panel.orange {
   z-index: auto;
-  background-color: #cf5d00;
-  background-image: none;
+  background-image: url('@/assets/img/work_04.png');
 }
 
 .panel.purple {
   z-index: auto;
+  background-image: url('@/assets/img/work_05.png');
 }
 .panel.purple2 {
   z-index: auto;
-  background-image: url('@/assets/img/edu_05.png');
-  background-size: cover;
-  background-position: top center;
+  background-image: url('@/assets/img/work_01.png');
+}
+.panel.purple1 { 
+  z-index: auto;
+  background-image: url('@/assets/img/work_06.png');
 }
 .panel.purple3 { 
   z-index: auto;
-  background-color: darkmagenta; 
+  background-image: url('@/assets/img/work_07.png');
 }
-
 
 
 .final {
@@ -440,6 +499,14 @@ onBeforeUnmount(() => {
   opacity: 0;
   margin-bottom: 30px;
 }
+@media (max-width: 768px) {
+  .look-more {
+    font-size: 7vw;
+  }
+  .look-move {
+    font-size: 6vw;
+  }
+}
 .here-move {
   border-radius: 5px;
   padding: 10px 20px;
@@ -458,4 +525,68 @@ onBeforeUnmount(() => {
     color: #333;  
   }
 }
+.scroll-btn-group {
+  position: fixed;
+  right: 50px;
+  top: 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+  .scroll-btn {
+    padding: 5px 8px;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  @media (max-width: 768px) {
+    right: 20px;
+    top: 8%;
+  }
+}
+
+
+.scroll-btn:hover {
+  background-color: #555 !important;
+}
+
+
+.scroll-btn-group2 {
+  position: fixed;
+  right: 50px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 999;
+  .scroll-btn {
+    padding: 5px 8px;
+    background: rgba( 255, 255, 255, 0.1 );
+    box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  @media (max-width: 768px) {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
 </style>

@@ -55,14 +55,12 @@ const { t, locale } = useI18n()
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="900" data-aos-duration="500">
-        <img src="@/assets/img/work_08.png">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.apjms') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="00">
-        <img src="@/assets/img/work_09.png">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.dsawrd') }}</p>
           <p class="cards__description"></p>

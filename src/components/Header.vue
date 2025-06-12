@@ -105,7 +105,7 @@ function changeLanguage(lang) {
 .lang-box {
   position: absolute;
   top: 20px;
-  right: 80px;
+  right: 150px;
   display: flex;
   button {
     padding: 0.5rem 1rem;
@@ -131,7 +131,7 @@ function changeLanguage(lang) {
 .pf-gnb-label {
     position: fixed;
     right: 100px;
-    top: 85px;
+    top: 10px;
     width: 70px;
     height: 70px;
     z-index: 3;

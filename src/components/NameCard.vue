@@ -19,7 +19,7 @@
           </button>
         </div>
         <div class="view-more">
-          <router-link to="#" class="view-more-button">View More</router-link>
+          <a href="http://ideartk.com/portfolio/other.html" class="view-more-button">View More</a>
           <i class="fa-solid fa-arrow-right"></i>
         </div>
       </div>
@@ -42,7 +42,7 @@ const { t, locale } = useI18n()
 
 </script>
 
-<style scoped>
+<style scoped >
 
 .parent {
   width: 320px;
