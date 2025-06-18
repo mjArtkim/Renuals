@@ -235,7 +235,9 @@ const scrollToBottom = () => {
 
 
 <style scoped lang="scss">
-
+::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
 .scroller {
   height: 100vh;
   overflow: hidden;

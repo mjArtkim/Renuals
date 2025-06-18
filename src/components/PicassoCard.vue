@@ -11,7 +11,7 @@ const { t } = useI18n()
 
     <div class="content">
       <div class="main-box2">
-        <h1 class="main-tit" data-aos="zoom-out"  data-aos-duration="200">ART WORK</h1>
+        <h1 class="main-tit">ART WORK</h1>
         <div class="main-txt">
           <div class="cutxt">{{ t('home.picasso') }}</div>
           <div>- {{ t('home.picassofull') }} -</div>

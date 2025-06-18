@@ -61,8 +61,8 @@ function changeLanguage(lang) {
     </div>
     <div>
       <button class="pf-gnb-label" @click="toggleMenu"><span class="material-icons-round" :class="{ actives: isMenuVisible }">add</span></button>
-      <nav id="pf-gnb" v-show="isMenuVisible">
-        <ul>
+      <div id="pf-gnb" v-show="isMenuVisible">
+        <ul class="pf-ul">
           <li
             v-for="(item, index) in menuItems"
             :key="index"
@@ -89,7 +89,7 @@ function changeLanguage(lang) {
             </ul>
           </li>
         </ul>
-      </nav>
+      </div>
     </div>
   </header>
 </template>
@@ -99,7 +99,7 @@ function changeLanguage(lang) {
   position: relative;
   top: 0;
   right: 30px;
-  z-index: 11;
+  z-index: 99;
 }
 
 .lang-box {
@@ -149,13 +149,13 @@ function changeLanguage(lang) {
 }
 
 #pf-gnb {
-    position: fixed;
+    position: fixed !important;
     top: 0;
     right: 0;
     width: 100%;
     max-width: 600px;
-    height: 100%;
-    padding: 150px 80px;
+    height: 100vh !important;
+    padding: 50px 80px;
     background-color: #fff;
     border-left: 1px solid #eee;
     overflow: auto;
@@ -222,6 +222,13 @@ function changeLanguage(lang) {
       font-size: 16px;
     }
   }
+  #pf-gnb {
+    padding: 50px 50px;
+    .depth1 {
+      line-height: 2.2;
+      font-size: 24px;
+    }
+}
 }
 
 @media screen and (min-width: 768px) {
