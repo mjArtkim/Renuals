@@ -58,3 +58,7 @@ a {text-decoration: none; color: #292929 !important;}
 .bold {
   font-weight: 700;
 }
+.bold-20 {
+  font-weight: 700;
+  font-size: 20px;
+}

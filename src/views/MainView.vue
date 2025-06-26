@@ -63,7 +63,7 @@ onMounted(() => {
 
   // box-1 animation
   gsap.to('.box-1', {
-    y: -130,
+    y: -100,
     duration: 2,
     ease: 'elastic',
     scrollTrigger: {
@@ -121,11 +121,10 @@ onMounted(() => {
 <template>
   <div>
     <div class="description">
-      <div class="main-box">
-        <h1 class="main-tit" data-aos="zoom-out"  data-aos-duration="1000">ART WORK</h1>
+      <div class="main-boxs">
+        <h1 class="main-tits" data-aos="zoom-out"  data-aos-duration="1000">ART {{  t('about.expre') }}</h1>
         <div class="main-txt">
-          <div class="cutxt">{{ t('home.picasso') }}</div>
-          <div>- {{ t('home.picassofull') }} -</div>
+          <div class="cutxt">{{ t('about.txt') }}</div>
         </div>
         <div class="scroll-down">
           <div>{{ t('home.scroll') }} </div>
@@ -137,9 +136,47 @@ onMounted(() => {
       <section class="panel red">
         <div class="box-1">
           <h2>{{ t('about.title') }}</h2>
-          <div class="cutxt">{{ t('about.txt') }}</div>
+          <ul>
+            <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1200" class="bold">{{ t('about.sextxt.tit') }}</li>
+            <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1200">{{ t('about.sextxt.part') }}</li>
+            <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1200" class="bold">{{ t('about.sextxt.date') }}</li>
+            <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1200">{{ t('about.sextxt.dateday') }}</li>
+            <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1200" class="bold">{{ t('about.sextxt.positit') }}</li>
+            <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1200">{{ t('about.sextxt.position') }}</li>
+            <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1200" class="bold">{{ t('about.sextxt.respontit') }}</li>
+            <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1200" class="cutxt">{{ t('about.sextxt.respons') }}</li>
+          </ul>
+          <br>
+          <ul class="pcs">
+            <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.tit') }}</li>
+            <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1300">{{ t('about.wextxt.part') }}</li>
+            <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1300" class="bold">{{ t('about.wextxt.date') }}</li>
+            <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1300">{{ t('about.wextxt.dateday') }}</li>
+            <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1300" class="bold">{{ t('about.wextxt.positit') }}</li>
+            <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1300">{{ t('about.wextxt.position') }}</li>
+            <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1300" class="bold">{{ t('about.wextxt.respontit') }}</li>
+            <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.respons') }}</li>
+          </ul>
         </div>
         <div class="side-txt" data-aos="fade-left" data-aos-delay="200">ART</div>
+      </section>
+      <section class="purples mobiles">
+        <div>
+          <div class="box-1">
+            <div class="box-1-inner">
+              <ul>
+                <li data-aos="fade-up" data-aos-delay="200" data-aos-duration="1300" class="bold">{{ t('about.wextxt.tit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="300" data-aos-duration="1300">{{ t('about.wextxt.part') }}</li>
+                <li data-aos="fade-up" data-aos-delay="400" data-aos-duration="1300" class="bold">{{ t('about.wextxt.date') }}</li>
+                <li data-aos="fade-up" data-aos-delay="500" data-aos-duration="1300">{{ t('about.wextxt.dateday') }}</li>
+                <li data-aos="fade-up" data-aos-delay="600" data-aos-duration="1300" class="bold">{{ t('about.wextxt.positit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="700" data-aos-duration="1300">{{ t('about.wextxt.position') }}</li>
+                <li data-aos="fade-up" data-aos-delay="800" data-aos-duration="1300" class="bold">{{ t('about.wextxt.respontit') }}</li>
+                <li data-aos="fade-up" data-aos-delay="900" data-aos-duration="1300" class="cutxt">{{ t('about.wextxt.respons') }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
       <section class="panel gray">
         <div class="box-2">
@@ -250,20 +287,20 @@ onMounted(() => {
           </div>
         </div>
       </section>
-      <section class="panel purple">
+      <!-- <section class="panel purple">
         <div class="box-3">
           <h2>{{ t('menu.work') }}</h2>
           <WorkVue></WorkVue>
         </div>
-      </section>
+      </section> -->
     </div>
     <div class="final">
-      <div class="look-more">
+       <div class="look-more">
         {{ t('home.moreinfo') }}
       </div>
-      <div id="split" class="look-move">
+      <!--<div id="split" class="look-move">
         {{ t('home.moveto') }}
-      </div>
+      </div> -->
       <div class="sns-box">
         <NameCardVue></NameCardVue>
       </div>
@@ -283,18 +320,18 @@ onMounted(() => {
   height: 100vh;
   overflow: hidden !important;
 }
-.main-box {
+.main-boxs {
   width: 100%;
   padding: 10%;
   height: 100vh;
   display: grid;
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px 20px;
     align-items: center;
     justify-items: center;
   }
 }
-.main-tit {
+.main-tits {
   color: #fff;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
   font-size: 7vw;
@@ -318,7 +355,7 @@ onMounted(() => {
 
 .scroll-down {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   font-size: 20px;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
   font-weight: bold;
@@ -359,7 +396,7 @@ onMounted(() => {
   h2 {
     font-size: 5vw;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3) ;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
   .cutxt {
     position: relative;
@@ -551,6 +588,7 @@ onMounted(() => {
     background-repeat: no-repeat;
     background-position: right;
     background-size: cover;
+    box-shadow: 0 !important;
   }
   .box-2-inner {
     gap: 20px 0;
