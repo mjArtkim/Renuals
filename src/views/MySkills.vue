@@ -190,8 +190,8 @@ const scrollToBottom = () => {
           <div>{{ t('menu.introducepage') }}</div>   
         </div>
         <div class="panel-text purple-text1">
-          <div>{{ t('menu.mou') }}</div>
-          <div>{{ t('menu.edupage') }}</div>     
+          <div>{{ t('menu.thp') }}</div>
+          <div>{{ t('menu.introducepage') }}</div>     
         </div>
         <div class="panel-text purple-text2">
           <div>{{ t('menu.backc') }}</div>

@@ -15,7 +15,7 @@ const menuItems = computed(() => [
       { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
       { name: t('menu.sam'), intro: t('menu.businesspage'), link: 'http://ideartk.com/samyang/' },
       { name: t('menu.song'), intro: t('menu.introducepage'), link: 'http://ideartk.com/songjung/' },
-      { name: t('menu.mou'), intro: t('menu.edupage'), link: 'http://ideartk.com/english' },
+      // { name: t('menu.mou'), intro: t('menu.edupage'), link: 'http://ideartk.com/english' },
       { name: t('menu.backc'), intro: t('menu.exhibpage'), link: 'http://ideartk.com/backchun/index.html' },
     ]
   },
