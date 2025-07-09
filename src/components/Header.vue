@@ -11,6 +11,7 @@ const menuItems = computed(() => [
     link: [],
     submenu: [
       { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com' },
+      { name: t('menu.thp'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com/prog' },
       { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
       { name: t('menu.sam'), intro: t('menu.businesspage'), link: 'http://ideartk.com/samyang/' },
       { name: t('menu.song'), intro: t('menu.introducepage'), link: 'http://ideartk.com/songjung/' },
