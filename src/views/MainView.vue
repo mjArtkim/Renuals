@@ -623,6 +623,7 @@ onMounted(() => {
   }
   .look-move {
     font-size: 8vw;
+    padding: 0 30px;
   }
   .box-3-inner {
     min-height: 80vh;

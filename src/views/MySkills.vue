@@ -507,6 +507,7 @@ const scrollToBottom = () => {
   }
   .look-move {
     font-size: 6vw;
+    padding: 0 30px;
   }
 }
 .here-move {
