@@ -177,6 +177,10 @@ const scrollToBottom = () => {
           <div>{{ t('menu.thirdparty') }}</div>
           <div>{{ t('menu.introducepage') }}</div>
         </div>
+        <div class="panel-text purple-text1">
+          <div>{{ t('menu.thp') }}</div>
+          <div>{{ t('menu.introducepage') }}</div>     
+        </div>
         <div class="panel-text red-text">
           <div>{{ t('menu.incon') }}</div>
           <div>{{ t('menu.landpage') }}</div>
@@ -189,10 +193,6 @@ const scrollToBottom = () => {
           <div>{{ t('menu.song') }}</div>
           <div>{{ t('menu.introducepage') }}</div>   
         </div>
-        <div class="panel-text purple-text1">
-          <div>{{ t('menu.thp') }}</div>
-          <div>{{ t('menu.introducepage') }}</div>     
-        </div>
         <div class="panel-text purple-text2">
           <div>{{ t('menu.backc') }}</div>
           <div>{{ t('menu.exhibpage') }}</div>        
@@ -202,10 +202,10 @@ const scrollToBottom = () => {
       <div class="p-wrap">
         <div class="panel purple2"></div>
         <div class="panel blue"></div>
+        <div class="panel purple1"></div>
         <div class="panel red"></div>
         <div class="panel orange"></div>
         <div class="panel purple"></div>
-        <div class="panel purple1"></div>
         <div class="panel purple3"></div>
       </div>
     </section>
