@@ -324,10 +324,11 @@ const scrollToBottom = () => {
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
-  align-items: center;
+  align-items: end;
   background-color: #202020;
   @media (max-width: 1400px) {
       flex-direction: column;
+      align-items: center;
   }
 }
 
