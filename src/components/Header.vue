@@ -19,14 +19,14 @@ const menuItems = computed(() => [
       { name: t('menu.backc'), intro: t('menu.exhibpage'), link: 'http://ideartm.com/backchun/index.html' },
     ]
   },
-  {
-    title: t('menu.design'),
-    link: [],
-    submenu: [
-      { name: t('menu.other'), link: 'http://ideartm.com/portfolio/other.html' },
-      // { name: t('menu.mywork'), link: 'http://ideartk.com/portfolio/mywork.html' },
-    ]
-  },
+  { title: t('menu.design'), link: '/other', submenu: [] },
+  // {
+  //   title: t('menu.design'),
+  //   link: [],
+  //   submenu: [
+  //     { name: t('menu.other'), link: '/other' },
+  //   ]
+  // },
 ]);
 
 function toggleMenu() {
@@ -82,7 +82,7 @@ function changeLanguage(lang) {
                 class="depth2-item"
                 :style="{ animationDelay: `${subIdx * 0.1}s` }"
               >
-                <a :href="sub.link" target="_blank">
+                <a :href="sub.link">
                   {{ sub.name }}<br>
                   <div class="intro-txt">{{ sub.intro }}</div>
                 </a>
