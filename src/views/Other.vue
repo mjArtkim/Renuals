@@ -80,10 +80,15 @@ onUnmounted(() => {
       <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
         <div class="modal-content">
           <button class="close-btn" @click="closeModal">×</button>
-          <img :src="selectedPost.image" :alt="selectedPost.title" class="modal-img" />
-          <h3>{{ selectedPost.title }}</h3>
-          <p>{{ selectedPost.content }}</p>
-          <small>{{ selectedPost.date }}</small>
+          <div>
+            <img :src="selectedPost.image" :alt="selectedPost.title" class="modal-img" />
+            <div>
+            <h3>{{ selectedPost.title }}</h3>
+            <p>{{ selectedPost.content }}</p>
+            <small>{{ selectedPost.date }}</small>
+            </div>
+            <button @click="closeModal" class="close-txt">Close</button>
+          </div>
         </div>
       </div>
     </div>
@@ -178,6 +183,10 @@ onUnmounted(() => {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
+  @media (max-width: 1200px) {
+    padding: 0px 30px 0;
+  }
 }
 
 .modal-content {
@@ -214,6 +223,7 @@ onUnmounted(() => {
     transform: rotate(135deg);
   }
 }
+.close-txt{color: #333;}
 .fade-enter-active, .fade-leave-active {
   transition: all 0.3s ease;
 }

@@ -11,14 +11,14 @@ export const posts = [
     image: '/images/brocher.jpg',
     title: 'Starbucks Poster',
     content: 'I created a poster related to Starbucks At Home.',
-    date: '2021-10-00',
+    date: '2021-10-11',
   },
   {
     id: 3,
     image: '/images/coffee.jpg',
     title: 'Starbucks Brochure',
     content: 'I created a brochure about Starbucks coffee beans.',
-    date: '2021-05-00',
+    date: '2021-05-10',
   },
   {
     id: 4,
