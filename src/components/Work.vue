@@ -6,49 +6,49 @@ const { t, locale } = useI18n()
 <template>
   <div class="card-grid">
       <div class="cards" data-aos="fade-up" data-aos-delay="200" data-aos-duration="100">
-        <img src="@/assets/img/work_01.png">
+        <img src="@/assets/img/work_01.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.thirdparty') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="300" data-aos-duration="500">
-        <img src="@/assets/img/work_02.png">
+        <img src="@/assets/img/work_02.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.incon') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="400" data-aos-duration="500">
-        <img src="@/assets/img/work_03.png">
+        <img src="@/assets/img/work_03.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.sam') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="500" data-aos-duration="500">
-        <img src="@/assets/img/work_04.png">
+        <img src="@/assets/img/work_04.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.mou') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="600" data-aos-duration="500">
-        <img src="@/assets/img/work_05.png">
+        <img src="@/assets/img/work_05.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.backc') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="700" data-aos-duration="500">
-        <img src="@/assets/img/work_06.png">
+        <img src="@/assets/img/work_06.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.song') }}</p>
           <p class="cards__description"></p>
         </div>
       </div>
       <div class="cards" data-aos="fade-up" data-aos-delay="800" data-aos-duration="500">
-        <img src="@/assets/img/work_07.png">
+        <img src="@/assets/img/work_07.webp">
         <div class="cards__content">
           <p class="cards__title">{{ t('menu.tip') }}</p>
           <p class="cards__description"></p>

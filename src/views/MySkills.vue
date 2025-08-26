@@ -302,7 +302,7 @@ const scrollToBottom = () => {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  /* background-image: url('@/assets/img/bg_4.png'); */
+  /* background-image: url('@/assets/img/bg_4.webp'); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -452,35 +452,35 @@ const scrollToBottom = () => {
 
 .panel.blue {
   z-index: auto;
-  background-image: url('@/assets/img/work_02.png');
+  background-image: url('@/assets/img/work_02.webp');
 
 }
 
 .panel.red {
   z-index: auto;
-  background-image: url('@/assets/img/work_03.png');
+  background-image: url('@/assets/img/work_03.webp');
 }
 
 .panel.orange {
   z-index: auto;
-  background-image: url('@/assets/img/work_04.png');
+  background-image: url('@/assets/img/work_04.webp');
 }
 
 .panel.purple {
   z-index: auto;
-  background-image: url('@/assets/img/work_05.png');
+  background-image: url('@/assets/img/work_05.webp');
 }
 .panel.purple2 {
   z-index: auto;
-  background-image: url('@/assets/img/work_01.png');
+  background-image: url('@/assets/img/work_01.webp');
 }
 .panel.purple1 { 
   z-index: auto;
-  background-image: url('@/assets/img/work_06.png');
+  background-image: url('@/assets/img/work_06.webp');
 }
 .panel.purple3 { 
   z-index: auto;
-  background-image: url('@/assets/img/work_07.png');
+  background-image: url('@/assets/img/work_07.webp');
 }
 
 
