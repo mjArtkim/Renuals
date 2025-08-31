@@ -42,15 +42,30 @@ function toggleItem(index) {
 }
 function handleClick(item, index, event) {
   if (item.submenu.length > 0) {
-    event.preventDefault(); // 기본 링크 막고 토글
-    toggleItem(index);
+    event.preventDefault() // 서브메뉴 있는 경우 → 이동 막고 열기
+    toggleItem(index)
+  } else {
+    // 서브메뉴 없는 경우 → 이동
+    if (item.link && item.link !== '#') {
+      window.location.href = item.link
+    }
   }
-  // submenu가 없으면 (예: Home) → 기본 링크 이동
 }
+
 const { t, locale } = useI18n();
 
 function changeLanguage(lang) {
   locale.value = lang
+}
+function handleKeydown(event, index) {
+  if (event.key === 'ArrowDown') {
+    activeIndex.value = index
+    const firstSub = document.querySelector(`#submenu-${index} a`)
+    firstSub?.focus()
+  }
+  if (event.key === 'Escape') {
+    activeIndex.value = null
+  }
 }
 </script>
 
@@ -63,33 +78,49 @@ function changeLanguage(lang) {
     <div>
       <button class="pf-gnb-label" @click="toggleMenu"><span class="material-icons-round" :class="{ actives: isMenuVisible }">add</span></button>
       <div id="pf-gnb" v-show="isMenuVisible">
-        <ul class="pf-ul">
-          <li
-            v-for="(item, index) in menuItems"
-            :key="index"
-            class="depth1"
-          >
-          <a
-            :href="item.link"
-            @click="handleClick(item, index, $event)"
-            :class="{ activegnb: activeIndex === index }">
-            {{ item.title }}
-          </a>
-            <ul v-if="activeIndex === index" class="depth2">
-              <li
-                v-for="(sub, subIdx) in item.submenu"
-                :key="sub"
-                class="depth2-item"
-                :style="{ animationDelay: `${subIdx * 0.1}s` }"
-              >
-                <a :href="sub.link">
-                  {{ sub.name }}<br>
-                  <div class="intro-txt">{{ sub.intro }}</div>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <ul class="pf-ul" role="menubar">
+  <li
+    v-for="(item, index) in menuItems"
+    :key="index"
+    class="depth1"
+    role="none"
+  >
+    <a
+    :href="item.link || '#'"
+  role="menuitem"
+  tabindex="0"
+  @keydown.enter.prevent="handleClick(item, index, $event)"
+  @click="handleClick(item, index, $event)"
+      :class="{ activegnb: activeIndex === index }"
+    >
+      {{ item.title }}
+    </a>
+
+    <ul
+      v-if="activeIndex === index"
+      role="menu"
+      class="depth2"
+      :id="`submenu-${index}`"
+    >
+      <li
+        v-for="(sub, subIdx) in item.submenu"
+        :key="sub.link"
+        role="none"
+        class="depth2-item"
+        :style="{ animationDelay: `${subIdx * 0.1}s` }"
+      >
+        <a 
+          :href="sub.link"
+          role="menuitem"
+          tabindex="0" 
+        >
+          {{ sub.name }}
+          <div class="intro-txt">{{ sub.intro }}</div>
+        </a>
+      </li>
+    </ul>
+  </li>
+</ul>
       </div>
     </div>
   </header>
