@@ -8,7 +8,9 @@ import NameCardVue from '@/components/NameCard.vue'
 import { useI18n } from 'vue-i18n'
 import { SplitText } from "gsap/SplitText"
 import PicassoCard from "@/components/PicassoCard.vue"
+import { Physics2DPlugin } from "gsap/Physics2DPlugin";
 
+gsap.registerPlugin(Physics2DPlugin);
 const { t, locale } = useI18n()
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,7 +94,7 @@ onMounted(() => {
     scroller: scrollerRef.value,
     scrub: true,
     markers: false,
-    pinSpacing: false,
+    // pinSpacing: false,
     pin: true,
     start: () => "top top",
     end: () => "+=" + images.length * window.innerHeight,
