@@ -21,7 +21,6 @@ onMounted(() => {
     delegateTo: document,
   });
 
-  // ScrollTrigger scroller proxy 설정
   ScrollTrigger.scrollerProxy(scrollerRef.value, {
     scrollTop(value) {
       if (arguments.length) {
@@ -29,7 +28,6 @@ onMounted(() => {
       }
       return bodyScrollBar.scrollTop;
     },
-    // 필요시 scrollLeft 구현 가능
     getBoundingClientRect() {
       return {
         top: 0,
@@ -42,7 +40,7 @@ onMounted(() => {
 
   bodyScrollBar.addListener(ScrollTrigger.update);
 
-  // panels zIndex 설정
+
   gsap.set(".panel", {
     zIndex: (i, target, targets) => targets.length - i,
   });
@@ -89,12 +87,12 @@ onMounted(() => {
       .to(text, { duration: 0.33, opacity: 0, y: "0%" }, 0.66);
   });
 
-  // section.black 고정 핀 설정
   ScrollTrigger.create({
     trigger: "section.black",
     scroller: scrollerRef.value,
     scrub: true,
     markers: false,
+    pinSpacing: false,
     pin: true,
     start: () => "top top",
     end: () => "+=" + images.length * window.innerHeight,
@@ -134,7 +132,6 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  // ScrollTrigger 및 스크롤바 정리
   ScrollTrigger.getAll().forEach(st => st.kill());
   if (bodyScrollBar) {
     bodyScrollBar.destroy();
@@ -236,11 +233,12 @@ const scrollToBottom = () => {
 
 <style scoped lang="scss">
 ::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+  display: none !important; /* Chrome, Safari, Edge */
 }
 .scroller {
   height: 100vh;
   overflow: hidden;
+  overflow-x: hidden !important;
 }
 .description {
   background-repeat: no-repeat;
@@ -286,7 +284,6 @@ const scrollToBottom = () => {
     transform: translateY(3px);
   }
 }
-
 
 .orange {
   display: -webkit-box;
