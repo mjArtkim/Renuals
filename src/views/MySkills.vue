@@ -101,36 +101,36 @@ onMounted(() => {
     invalidateOnRefresh: true,
   });
 
-  document.fonts.ready.then(() => {
-    const split = new SplitText("#split", { type: "chars" });
-    const tl = gsap.timeline({ repeat: 30 });
+  // document.fonts.ready.then(() => {
+  //   const split = new SplitText("#split", { type: "chars" });
+  //   const tl = gsap.timeline({ repeat: 30 });
 
-    gsap.set("#split", { opacity: 1 });
-    tl.from(split.chars, {
-      duration: 1,
-      y: 100,
-      rotation: 90,
-      opacity: 0,
-      ease: "elastic",
-      stagger: 0.03,
-    });
+  //   gsap.set("#split", { opacity: 1 });
+  //   tl.from(split.chars, {
+  //     duration: 1,
+  //     y: 100,
+  //     rotation: 90,
+  //     opacity: 0,
+  //     ease: "elastic",
+  //     stagger: 0.03,
+  //   });
 
-    tl.to(
-      split.chars,
-      {
-        duration: 2,
-        opacity: 0,
-        rotation: "random(-2000, 2000)",
-        physics2D: {
-          angle: "random(240, 320)",
-          velocity: "random(300, 600)",
-          gravity: 800,
-        },
-        stagger: 0.015,
-      },
-      3
-    );
-  });
+  //   tl.to(
+  //     split.chars,
+  //     {
+  //       duration: 2,
+  //       opacity: 0,
+  //       rotation: "random(-2000, 2000)",
+  //       physics2D: {
+  //         angle: "random(240, 320)",
+  //         velocity: "random(300, 600)",
+  //         gravity: 800,
+  //       },
+  //       stagger: 0.015,
+  //     },
+  //     3
+  //   );
+  // });
 });
 
 onBeforeUnmount(() => {
@@ -213,7 +213,7 @@ const scrollToBottom = () => {
       <div class="look-more">
         {{ t('home.moreinfo') }}
       </div>
-      <div id="split" class="look-move">
+      <div class="look-move">
         {{ t('home.moveto') }}
       </div>
       <div class="sns-box">
@@ -234,6 +234,7 @@ const scrollToBottom = () => {
 
 
 <style scoped lang="scss">
+
 ::-webkit-scrollbar {
   display: none !important; /* Chrome, Safari, Edge */
 }
@@ -498,7 +499,6 @@ const scrollToBottom = () => {
 }
 .look-move {
   font-size: 2vw;
-  opacity: 0;
   margin-bottom: 30px;
 }
 @media (max-width: 768px) {

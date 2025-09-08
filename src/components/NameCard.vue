@@ -11,15 +11,15 @@
           <button class="social-button">
             <a href="https://www.instagram.com/mjtwinart/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
           </button>
-          <!-- <button class="social-button">
-            <a href="https://www.instagram.com/mjtwinart/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-          </button> -->
+          <button class="social-button">
+            <a href="https://github.com/mjArtkim" target="_blank"><img src="@/assets/img/github_mark.png"></a>
+          </button>
           <button class="social-button">
             <a href="mailto:mjtwins1@naver.com"><i class="fa-solid fa-envelope"></i></a>
           </button>
         </div>
         <div class="view-more">
-          <a href="http://ideartk.com/portfolio/other.html" class="view-more-button">View More</a>
+          <router-link to="/other" class="view-more-button">View More</router-link>
           <i class="fa-solid fa-arrow-right"></i>
         </div>
       </div>
@@ -42,7 +42,7 @@ const { t, locale } = useI18n()
 
 </script>
 
-<style scoped >
+<style scoped lang="scss">
 
 .parent {
   width: 320px;
@@ -66,8 +66,6 @@ const { t, locale } = useI18n()
   border-radius: 55px;
   border-top-right-radius: 100%;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.349) 0%, rgba(255, 255, 255, 0.815) 100%);
-  /* -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px); */
   transform: translate3d(0px, 0px, 25px);
   border-left: 1px solid white;
   border-bottom: 1px solid white;
@@ -77,20 +75,18 @@ const { t, locale } = useI18n()
 .card-txt {
   padding: 100px 60px 0px 30px;
   transform: translate3d(0, 0, 26px);
-}
-
-.card-txt .card-tit {
-  display: block;
-  color: #791d11;
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.card-txt .card-in-txt {
-  display: block;
-  color: rgba(137, 0, 0, 0.765);
-  font-size: 15px;
-  margin-top: 20px;
+  .card-tit {
+    display: block;
+    color: #791d11;
+    font-weight: 900;
+    font-size: 20px;
+  }
+  .card-in-txt {
+    display: block;
+    color: rgba(137, 0, 0, 0.765);
+    font-size: 15px;
+    margin-top: 20px;
+  }
 }
 
 .bottom {
@@ -104,34 +100,31 @@ const { t, locale } = useI18n()
   align-items: center;
   justify-content: space-between;
   transform: translate3d(0, 0, 26px);
-}
 
-.bottom .view-more {
-  display: flex;
-  align-items: center;
-  width: 40%;
-  justify-content: flex-end;
-  transition: all 0.2s ease-in-out;
-}
-
-.bottom .view-more:hover {
-  transform: translate3d(0, 0, 10px);
-}
-
-.bottom .view-more .view-more-button {
-  background: none;
-  border: none;
-  color: #c33100;
-  font-weight: bolder;
-  font-size: 12px;
-  margin-right: 5px;
-}
-
-.bottom .view-more i {
-  fill: none;
-  max-height: 15px;
-  font-size: 15px;
-  color: #c33100;
+  .view-more {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    justify-content: flex-end;
+    transition: all 0.2s ease-in-out;
+    &:hover {  
+      transform: translate3d(0, 0, 10px);
+    }
+    .view-more-button {
+      background: none;
+      border: none;
+      color: #c33100;
+      font-weight: bolder;
+      font-size: 12px;
+      margin-right: 5px;
+    }
+    i {
+      fill: none;
+      max-height: 15px;
+      font-size: 15px;
+      color: #c33100;
+    }
+  }
 }
 
 .bottom .social-buttons-container {
@@ -150,6 +143,9 @@ const { t, locale } = useI18n()
   display: grid;
   place-content: center;
   box-shadow: rgba(5, 71, 17, 0.5) 0px 7px 5px -5px;
+  img {
+    width: 100%;
+  }
 }
 
 .bottom .social-buttons-container .social-button:first-child {
