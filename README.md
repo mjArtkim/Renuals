@@ -1,29 +1,29 @@
-# 🎵 Progressive House Project
+# 💻 Renuals - Personal Portfolio
 
-![Vue](https://img.shields.io/badge/Vue.js-3.x-42b883?logo=vue.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-4.x-3178c6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-3.x-646cff?logo=vite&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green)
+This is my **personal portfolio website** built with **Vue 3 + Vite**.  
+It showcases my projects, skills, and experience as a web developer.
 
-This project is a **Vue 3 + TypeScript + Vite** based web application.  
-It was created as a **personal project** dedicated to **Progressive House** 🎶.
+---
+
+## 🌍 Link
+
+🔗 https://www.ideartm.com
 
 ---
 
 ## 🚀 Tech Stack
 
 - ⚡ **Vue 3 (Composition API + `<script setup>`)**
-- 🔷 **TypeScript**
+- 🟦 **JavaScript (ES6+)**
 - ⚙️ **Vite**
-- 🎨 **SCSS / TailwindCSS** (if needed)
+- 🎨 **SCSS**
+- 🌐 **Responsive & Mobile-friendly design**
 
 ---
 
 ## 📸 Preview
 
-> (Add a screenshot or GIF of your project here)
-
-![screenshot](./screenshot.png)
+![Portfolio Screenshot](./src/assets/img/scs_re.png)
 
 ---
 
