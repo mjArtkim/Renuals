@@ -1,16 +1,33 @@
-# renuals
+# 🎵 Progressive House Project
 
-This template should help get you started developing with Vue 3 in Vite.
+![Vue](https://img.shields.io/badge/Vue.js-3.x-42b883?logo=vue.js&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-4.x-3178c6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-3.x-646cff?logo=vite&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-## Recommended IDE Setup
+This project is a **Vue 3 + TypeScript + Vite** based web application.  
+It was created as a **personal project** dedicated to **Progressive House** 🎶.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+---
 
-## Customize configuration
+## 🚀 Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+- ⚡ **Vue 3 (Composition API + `<script setup>`)**
+- 🔷 **TypeScript**
+- ⚙️ **Vite**
+- 🎨 **SCSS / TailwindCSS** (if needed)
 
-## Project Setup
+---
+
+## 📸 Preview
+
+> (Add a screenshot or GIF of your project here)
+
+![screenshot](./screenshot.png)
+
+---
+
+## 🛠️ Project Setup
 
 ```sh
 npm install
