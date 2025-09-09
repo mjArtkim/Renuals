@@ -64,7 +64,16 @@
     "mywork": "작업 정리",
     "tip": "TIP",
     "apjms": "APJMS",
-    "dsawrd": "DS AWARDS PORTAL"
+    "dsawrd": "DS AWARDS PORTAL",
+    "strengths": "강점",
+    "endtoend":"전 과정 수행 능력",
+    "endtoendtxt":"와이어프레임, 프로토타입부터 개발 및 배포까지 전 과정을 수행합니다.",
+    "usercd": "사용자 중심 디자인",
+    "usercdtxt": "사용성, 접근성, 포용적 디자인을 중시합니다.",
+    "collabo": "협업 능력",
+    "collabotxt": "디자이너, 개발자, 이해관계자와의 협업 경험이 풍부합니다.",
+    "global": "글로벌 마인드셋",
+    "globaltxt": "다양한 문화와 환경 속에서 적응하며 협업할 수 있는 글로벌 역량을 갖추고 있습니다."
   },
   "education": {
     "title": "전공",

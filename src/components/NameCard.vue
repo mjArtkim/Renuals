@@ -90,7 +90,7 @@ const { t, locale } = useI18n()
 }
 
 .bottom {
-  padding: 10px 12px;
+  padding: 10px;
   transform-style: preserve-3d;
   position: absolute;
   bottom: 20px;
@@ -135,6 +135,7 @@ const { t, locale } = useI18n()
 
 .bottom .social-buttons-container .social-button {
   width: 30px;
+  height: 30px;
   aspect-ratio: 1;
   padding: 5px;
   background: rgb(255, 255, 255);

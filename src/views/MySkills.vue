@@ -169,43 +169,32 @@ const scrollToBottom = () => {
 
     <section class="black">
       <div class="text-wrap">
-        <div class="panel-text blue-text">
-          <div>My Work</div>
+        <div class="panel-text white-text">
+          <div class="pan-tit">{{ t('menu.strengths') }}</div>
         </div>
         <div class="panel-text blue-text">
-          <div>{{ t('menu.thirdparty') }}</div>
-          <div>{{ t('menu.introducepage') }}</div>
+          <div class="pan-tit">{{ t('menu.endtoend') }}</div>
+          <div class="pan-txt">{{ t('menu.endtoendtxt') }}</div>
         </div>
-        <div class="panel-text purple-text1">
-          <div>{{ t('menu.thp') }}</div>
-          <div>{{ t('menu.introducepage') }}</div>     
-        </div>
-        <div class="panel-text red-text">
-          <div>{{ t('menu.incon') }}</div>
-          <div>{{ t('menu.landpage') }}</div>
+        <div class="panel-text yellow-text">
+          <div class="pan-tit">{{ t('menu.usercd') }}</div>
+          <div class="pan-txt">{{ t('menu.usercdtxt') }}</div>     
         </div>
         <div class="panel-text orange-text">
-          <div>{{ t('menu.sam') }}</div>
-          <div>{{ t('menu.businesspage') }}</div>    
+          <div class="pan-tit">{{ t('menu.collabo') }}</div>
+          <div class="pan-txt">{{ t('menu.collabotxt') }}</div>
         </div>
-        <div class="panel-text purple-text">
-          <div>{{ t('menu.song') }}</div>
-          <div>{{ t('menu.introducepage') }}</div>   
-        </div>
-        <div class="panel-text purple-text2">
-          <div>{{ t('menu.backc') }}</div>
-          <div>{{ t('menu.exhibpage') }}</div>        
+        <div class="panel-text white-text2">
+          <div class="pan-tit">{{ t('menu.global') }}</div>
+          <div class="pan-txt">{{ t('menu.globaltxt') }}</div>    
         </div>
       </div>
-      
       <div class="p-wrap">
-        <div class="panel purple2"></div>
+        <div class="panel purple"></div>
         <div class="panel blue"></div>
-        <div class="panel purple1"></div>
         <div class="panel red"></div>
         <div class="panel orange"></div>
-        <div class="panel purple"></div>
-        <div class="panel purple3"></div>
+        <div class="panel white"></div>
       </div>
     </section>
 
@@ -342,13 +331,22 @@ const scrollToBottom = () => {
   position: relative;
   overflow: hidden;
   width: 30%;
-  height: 80vh;
+  height: 100vh;
   @media (max-width: 1400px) {
     width: 90%;
     height: 40vh;
   }
 }
-
+.pan-tit {
+  font-size: 30px;
+  font-weight: 900;
+  @media (max-width: 768px) {
+    font-size: 7vw;
+  }
+}
+.pan-txt {
+  font-size: 16px;
+}
 .panel-text {
   position: absolute;
   left: 0%;
@@ -358,59 +356,54 @@ const scrollToBottom = () => {
   z-index: 1;
   width: 100%;
   height: 100%;
-  font-size: 40px;
   text-transform: uppercase;
-  font-weight: 900;
+  padding: 0 20px;
   text-align:center;
   transform:translateY(100%);
   opacity: 0;
-  @media (max-width: 768px) {
-    font-size: 7vw;
-  }
 }
 
-.panel-text.blue-text {
+.panel-text.white-text {
   color: #fff;
   .panel-move {
     color: #fff !important;
   }
 }
 
-.panel-text.red-text {
+.panel-text.blue-text {
   color: rgb(102, 150, 255);
   .panel-move {
     color: rgb(102, 150, 255) !important;
   }
 }
 
-.panel-text.purple-text {
+.panel-text.orange-text {
   color: rgb(255, 190, 121);
   .panel-move {
     color: rgb(255, 190, 121) !important;
   }
 }
 
-.panel-text.orange-text {
+.panel-text.purple-text {
   color: rgb(198, 132, 255);
   .panel-move {
     color: rgb(198, 132, 255) !important;
   }
 }
 
-.panel-text.purple-text1 { 
+.panel-text.yellow-text { 
   color: rgb(255, 241, 83); 
   position: absolute;
   .panel-move {
     color: rgb(255, 241, 83) !important;
   }
 }
-.panel-text.purple-text2 { 
+.panel-text.white-text2 { 
   color: rgb(255, 255, 255); 
   position: absolute; 
   .panel-move {
     color: #fff !important;
   }
-  top: 250px; 
   @media (max-width: 1400px) {
     top: 0px; 
   }
@@ -419,12 +412,13 @@ const scrollToBottom = () => {
   position: relative;
   overflow: hidden;
   width: 70%;
-  height: 80vh;
-  border-top-left-radius: 30px;
+  height: 100vh;
+
   @media (max-width: 1400px) {
     width: 90%;
     height: 60vh;
-    border-top-right-radius: 30px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
   }
 }
 
@@ -449,11 +443,13 @@ const scrollToBottom = () => {
 .panel._2 {
   z-index: 1;
 }
-
+.panel.purple {
+  z-index: auto;
+  background-image: url('@/assets/img/work_01.webp');
+}
 .panel.blue {
   z-index: auto;
-  background-image: url('@/assets/img/work_02.webp');
-
+  background-image: url('@/assets/img/work_06.webp');
 }
 
 .panel.red {
@@ -466,22 +462,12 @@ const scrollToBottom = () => {
   background-image: url('@/assets/img/work_04.webp');
 }
 
-.panel.purple {
+
+.panel.white { 
   z-index: auto;
   background-image: url('@/assets/img/work_05.webp');
 }
-.panel.purple2 {
-  z-index: auto;
-  background-image: url('@/assets/img/work_01.webp');
-}
-.panel.purple1 { 
-  z-index: auto;
-  background-image: url('@/assets/img/work_06.webp');
-}
-.panel.purple3 { 
-  z-index: auto;
-  background-image: url('@/assets/img/work_07.webp');
-}
+
 
 
 .final {

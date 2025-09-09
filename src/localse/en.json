@@ -64,7 +64,16 @@
     "mywork": "Task organization",
     "tip": "TIP",
     "apjms": "APJMS",
-    "dsawrd": "DS AWARDS PORTAL"
+    "dsawrd": "DS AWARDS PORTAL",
+    "strengths": "Strengths",
+    "endtoend":"End-to-End Process",
+    "endtoendtxt":"From wireframes and prototypes to development and deployment.",
+    "usercd": "User-Centered Design",
+    "usercdtxt": "Focus on usability, accessibility, and inclusive design.",
+    "collabo": "Cross-funtional Collaboration",
+    "collabotxt": "Experience working with designers, developers, and stakeholders.",
+    "global": "Gloval Mindset",
+    "globaltxt": "Adaptable and motivated to work in diverse, multicultural teams."
   },
   "education": {
     "title": "Major",
