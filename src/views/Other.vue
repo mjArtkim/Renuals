@@ -129,6 +129,10 @@ onUnmounted(() => {
   gap: 10px;
   padding: 30px 20px;
   justify-items: center;
+  @media screen and (max-width: 400px) {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 30px 10px;
+    }
   @media screen and (max-width: 616px) {
       grid-template-columns: repeat(2, 1fr);
       gap: 30px 10px;
@@ -147,7 +151,7 @@ onUnmounted(() => {
     }
 }
 .post-thumbnail {
-  --size: clamp(180px, 21vw, 350px);
+  --size: clamp(160px, 21vw, 350px);
   width: var(--size);
   height: var(--size);
   cursor: pointer;
@@ -161,6 +165,7 @@ onUnmounted(() => {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top; 
 }
 
 .thumbnail-title {
