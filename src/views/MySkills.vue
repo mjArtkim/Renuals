@@ -1,14 +1,15 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import Scrollbar from 'smooth-scrollbar';
-import CanvasTrail from '@/components/CanvasTrail.vue';
+import ScrollTrigger from 'gsap/ScrollTrigger'
+import Scrollbar from 'smooth-scrollbar'
+import CanvasTrail from '@/components/CanvasTrail.vue'
 import NameCardVue from '@/components/NameCard.vue'
 import { useI18n } from 'vue-i18n'
 import { SplitText } from "gsap/SplitText"
 import PicassoCard from "@/components/PicassoCard.vue"
-import { Physics2DPlugin } from "gsap/Physics2DPlugin";
+import { Physics2DPlugin } from "gsap/Physics2DPlugin"
+import SkillVue from '@/components/Skill.vue'
 
 gsap.registerPlugin(Physics2DPlugin);
 const { t, locale } = useI18n()
@@ -197,7 +198,9 @@ const scrollToBottom = () => {
         <div class="panel white"></div>
       </div>
     </section>
-
+    <section class="skill-view">
+      <SkillVue></SkillVue>
+    </section>
     <div class="final">
       <div class="look-more">
         {{ t('home.moreinfo') }}
@@ -476,14 +479,16 @@ const scrollToBottom = () => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: #f5f5f5;
+  background: #202020;
   text-align: center;
 }
 .look-more {
+  color: #fff;
   font-size: 2.5vw;
   margin-bottom: 30px;
 }
 .look-move {
+  color: #fff;
   font-size: 2vw;
   margin-bottom: 30px;
 }
@@ -565,7 +570,7 @@ const scrollToBottom = () => {
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    color: #333;
+    color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -576,6 +581,11 @@ const scrollToBottom = () => {
     right: 20px;
     bottom: 20px;
   }
+}
+.skill-view {
+  width: 100%;
+  height: 100vh;
+  background-color: #202020;
 }
 
 </style>
