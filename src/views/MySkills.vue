@@ -11,6 +11,7 @@ import PicassoCard from "@/components/PicassoCard.vue"
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import SkillVue from '@/components/Skill.vue'
 
+const text = ref(' SKILLS')
 gsap.registerPlugin(Physics2DPlugin);
 const { t, locale } = useI18n()
 gsap.registerPlugin(ScrollTrigger);
@@ -199,7 +200,12 @@ const scrollToBottom = () => {
       </div>
     </section>
     <section class="skill-view">
-      <SkillVue></SkillVue>
+      <div class="sk-move">
+        <span v-for="n in 15" :key="n">{{ text }}</span>
+      </div>
+      <div class="sk-views">
+        <SkillVue></SkillVue>
+      </div>
     </section>
     <div class="final">
       <div class="look-more">
@@ -583,9 +589,35 @@ const scrollToBottom = () => {
   }
 }
 .skill-view {
+  position: relative;
   width: 100%;
   height: 100vh;
   background-color: #202020;
+  .sk-move {
+    white-space: nowrap;
+    overflow: hidden;
+    -webkit-text-stroke: 1px #eee;
+    font-size: clamp(2rem, 4vw, 5vw); 
+    font-weight: bold;
+    text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.9);
+    display: inline-block;
+    animation: scroll-left 25s linear infinite;
+  }
+  .sk-views{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
 </style>

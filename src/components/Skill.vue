@@ -1,205 +1,106 @@
 <script setup>
-import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n() 
+import { ref } from 'vue'
+import { skills } from '@/data/skillsData.js'
+
+const selectedSkill = ref(null)
+
+const selectSkill = (skill) => {
+  if (selectedSkill.value?.id === skill.id) {
+    selectedSkill.value = null
+  } else {
+    selectedSkill.value = skill
+  }
+}
+const isOpen = ref({
+  design: true,
+  developer: false
+})
+const toggleGroup = (group) => {
+  for (const key in isOpen.value) {
+    if (key === group) {
+      isOpen.value[key] = !isOpen.value[key]
+      if (!isOpen.value[key]) selectedSkill.value = null
+    } else {
+      isOpen.value[key] = false
+    }
+  }
+}
 </script>
+
 <template>
   <div class="sk-box">
-    <div>
-      <h2>SKILLS</h2>
-      <div>- Choose one</div>
+    <div class="sk-select">
+      <div class="sk-choo">
+        <div class="sk-tit">
+          <h2>SKILLS</h2>
+        </div>
+        <ol>
+          <li>
+            <div @click="toggleGroup('design')" class="sk-cho-tit">
+              <h3>DESIGN</h3>
+              <button class="material-icons-round"> {{ isOpen.design ? 'expand_less' : 'expand_more' }}</button>
+            </div>
+            <transition name="expand">
+            <ul v-show="isOpen.design" class="sk-lists">
+              <li 
+              v-for="item in skills.design" 
+              :key="item.id" 
+              :class="{ 'select-ac': selectedSkill?.id === item.id }" 
+              class="sk-ln-list"
+              @click="selectSkill(item)"  
+              >
+                <div class="sk-list-txt">
+                  <img :src="item.icon" />
+                  <div>{{ item.name }}</div>
+                </div>
+                <div class="sk-checkbox">
+                  <input 
+                    type="checkbox" 
+                    :id="item.id" 
+                    :checked="selectedSkill?.id === item.id"
+                    @change.stop="selectSkill(item)"   
+                  />
+                  <label :for="item.id">
+                    <div class="sk-tick"></div>
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </transition>
+          </li>
+          <li>
+            <div @click="toggleGroup('developer')" class="sk-cho-tit">
+              <h3>DEVELOPER</h3>
+              <button class="material-icons-round"> {{ isOpen.developer ? 'expand_less' : 'expand_more' }}</button>
+            </div>
+            <transition name="expand">
+            <ul v-show="isOpen.developer"  class="sk-lists">
+              <li v-for="item in skills.developer" :key="item.id" :class="{ 'select-ac': selectedSkill?.id === item.id }" class="sk-ln-list">
+                <div class="sk-list-txt">
+                  <img :src="item.icon" />
+                  <div>{{ item.name }}</div>
+                </div>
+                <div class="sk-checkbox">
+                  <input 
+                    type="checkbox" 
+                    :id="item.id" 
+                    :checked="selectedSkill?.id === item.id"
+                    @change="selectSkill(item)" 
+                  />
+                  <label :for="item.id">
+                    <div class="sk-tick"></div>
+                  </label>
+                </div>
+              </li>
+            </ul>
+            </transition>
+          </li>
+        </ol>
+      </div>
     </div>
-    <div class="sk-choo">
-      <ol>
-        <li>
-          <div>
-            <h3>DESIGN</h3>
-            <button class="material-icons-round">expand_more</button>
-          </div>
-          <ul>
-            <li>
-              <img src="@/assets/img/skills/xd_i.png">
-              <div>Adobe XD</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/ps_i.png">
-              <div>Adobe Photoshop</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/ai_i.png">
-              <div>Adobe Illustrator</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/pr_i.png">
-              <div>Adobe Premiere Pro</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/ae_i.png">
-              <div>Adobe After Effects</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/fg_i.png">
-              <div>Figma</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <div>
-            <h3>DEVELOPER</h3>
-            <button class="material-icons-round">expand_more</button>
-          </div>
-          <ul>
-            <li>
-              <img src="@/assets/img/skills/vue_i.png">
-              <div>VUE</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/html_i.png">
-              <div>HTML</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/css_i.png">
-              <div>CSS</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/javascript_i.png">
-              <div>Javascript</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/typescript_i.png">
-              <div>Typescript</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/flutter_i.png">
-              <div>Flutter</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-            <li>
-              <img src="@/assets/img/skills/php_i.png">
-              <div>PHP</div>
-              <div class="sk-checkbox">
-                <input type="checkbox" id="sk_check" />
-                <label for="sk_check">
-                  <div class="sk-tick"></div>
-                </label>
-              </div>
-            </li>
-          </ul>
-        </li>
-      </ol>
-    </div>
-    <div class="sk-view">
-      <ol>
-        <li>
-          <img src="@/assets/img/skills/skils_d_01.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_d_02.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_d_03.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_d_04.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_d_05.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_d_06.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_01.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_02.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_03.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_04.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_05.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_06.png">
-        </li>
-        <li>
-          <img src="@/assets/img/skills/skils_e_07.png">
-        </li>
-      </ol>
+    <div class="sk-view" :class="{ self: selectedSkill }">
+      <img v-if="selectedSkill" :src="selectedSkill.view" />
+      <div v-else> Choose One</div>
     </div>
   </div>
 </template>
@@ -207,6 +108,135 @@ const { t, locale } = useI18n()
 
 
 <style lang="scss">
+.sk-box {
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 5px 5px 30px rgba(255, 255, 255, 0.1);
+  .sk-select {
+    color: #fff;
+    height: 100%;
+    .sk-tit{
+      display: flex;
+      align-items: center;
+      h2 {
+        margin-right: 20px;
+        font-size: clamp(26px, 2.6vw, 60px);
+      }
+      div {
+        font-size: clamp(16px, 1.05vw, 22px);
+      }
+    }
+  }
+  .sk-choo {
+    ol{ 
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      li{
+        .sk-cho-tit{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          cursor: pointer;
+          font-size: clamp(18px, 1.3vw, 36px);
+          padding: 5px ;
+          button {
+            font-size: clamp(24px, 2vw, 38px);
+            color: #fff;
+          }
+          &:hover {
+            border-radius: 5px;
+            outline: 1px solid rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+    }
+  }
+}
+.sk-view {
+  max-width: 1000px;
+  justify-self: center;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  div {
+    font-size: clamp(26px, 2.6vw, 60px);
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+  }
+  img {width: 100%;}
+}
+.self {
+  justify-self: end !important;
+}
+.sk-lists {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 520px;
+}
+.sk-ln-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.2s;
+  padding: 0 15px;
+  cursor: pointer;
+  .sk-list-txt {
+    display: flex;
+    align-items: center;
+    
+    img {
+      margin-right: 30px;
+    }
+  }
+}
+.select-ac {
+  width: 105%;
+  height: 50px;
+  padding: 0 15px 0 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 5px 5px 30px rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+.expand-enter-active,
+.expand-leave-active {
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  overflow: hidden;
+}
+.expand-enter-from,
+.expand-leave-to {
+  max-height: 0;
+  opacity: 0;
+}
+.expand-enter-to,
+.expand-leave-from {
+  max-height: 550px;
+  opacity: 1;
+}
+
 .sk-checkbox {
   * {
     -webkit-tap-highlight-color: transparent;
