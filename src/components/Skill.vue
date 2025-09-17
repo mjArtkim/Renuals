@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive, nextTick } from 'vue'
+import { gsap } from 'gsap'
 import { skills } from '@/data/skillsData.js'
 
 const selectedSkill = ref(null)
@@ -11,6 +12,7 @@ const selectSkill = (skill) => {
     selectedSkill.value = skill
   }
 }
+
 const isOpen = ref({
   design: true,
   developer: false
@@ -25,82 +27,205 @@ const toggleGroup = (group) => {
     }
   }
 }
+const categories = {
+  design: 'DESIGN',
+  developer: 'DEVELOPER'
+}
+const selectedCategory = ref('design')
+const selectedSkillm = ref(null)
+const isCategoryOpen = ref(false)
+const isSkillOpen = ref(false)
+
+const skillRefs = ref([])
+const categoryRefs = ref([])
+const toggleSkillDropdown = async () => {
+  isSkillOpen.value = !isSkillOpen.value
+  await nextTick()
+  const elements = skillRefs.value
+  if (isSkillOpen.value) {
+    gsap.set(elements, { y: -20, opacity: 0 })
+    gsap.to(elements, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+  } else {
+    gsap.to(elements, { opacity: 0, stagger: 0.05, duration: 0.3, ease: 'power1.inOut' })
+  }
+}
+const toggleCategoryDropdown = async () => {
+  isCategoryOpen.value = !isCategoryOpen.value
+  await nextTick()
+  const elements = categoryRefs.value
+  if (isCategoryOpen.value) {
+    gsap.set(elements, { y: -20, opacity: 0 })
+    gsap.to(elements, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.1,
+      duration: 0.4,
+      ease: 'power2.out'
+    })
+  } else {
+    gsap.to(elements, { opacity: 0, stagger: 0.05, duration: 0.3, ease: 'power1.inOut' })
+  }
+}
+const selectCategory = (key) => {
+  selectedCategory.value = key
+  isCategoryOpen.value = false
+  selectedSkillm.value = null
+  selectedSkill.value = null
+}
+const selectSkillm = (skill, index) => {
+  selectedSkillm.value = skill
+  selectedSkill.value = skill
+  isSkillOpen.value = false
+
+  const target = inputRefs.value[index]
+  const tl = gsap.timeline()
+  tl.to(target, { scale: 1.2, duration: 0.25 })
+    .to(target, { y: 0, duration: 0.25 })
+    .to(target, { scale: 1, duration: 0.25 })
+    .to(target, {duration: 0.5 })
+    .to(target, { opacity: 0, duration: 0.25, delay: 0.2 })
+}
 </script>
 
 <template>
-  <div class="sk-box">
-    <div class="sk-select">
-      <div class="sk-choo">
-        <div class="sk-tit">
-          <h2>SKILLS</h2>
-        </div>
-        <ol>
-          <li>
-            <div @click="toggleGroup('design')" class="sk-cho-tit">
-              <h3>DESIGN</h3>
-              <button class="material-icons-round"> {{ isOpen.design ? 'expand_less' : 'expand_more' }}</button>
-            </div>
-            <transition name="expand">
-            <ul v-show="isOpen.design" class="sk-lists">
-              <li 
-              v-for="item in skills.design" 
-              :key="item.id" 
-              :class="{ 'select-ac': selectedSkill?.id === item.id }" 
-              class="sk-ln-list"
-              @click="selectSkill(item)"  
-              >
-                <div class="sk-list-txt">
-                  <img :src="item.icon" />
-                  <div>{{ item.name }}</div>
-                </div>
-                <div class="sk-checkbox">
-                  <input 
-                    type="checkbox" 
-                    :id="item.id" 
-                    :checked="selectedSkill?.id === item.id"
-                    @change.stop="selectSkill(item)"   
-                  />
-                  <label :for="item.id">
-                    <div class="sk-tick"></div>
-                  </label>
-                </div>
-              </li>
-            </ul>
-          </transition>
-          </li>
-          <li>
-            <div @click="toggleGroup('developer')" class="sk-cho-tit">
-              <h3>DEVELOPER</h3>
-              <button class="material-icons-round"> {{ isOpen.developer ? 'expand_less' : 'expand_more' }}</button>
-            </div>
-            <transition name="expand">
-            <ul v-show="isOpen.developer"  class="sk-lists">
-              <li v-for="item in skills.developer" :key="item.id" :class="{ 'select-ac': selectedSkill?.id === item.id }" class="sk-ln-list">
-                <div class="sk-list-txt">
-                  <img :src="item.icon" />
-                  <div>{{ item.name }}</div>
-                </div>
-                <div class="sk-checkbox">
-                  <input 
-                    type="checkbox" 
-                    :id="item.id" 
-                    :checked="selectedSkill?.id === item.id"
-                    @change="selectSkill(item)" 
-                  />
-                  <label :for="item.id">
-                    <div class="sk-tick"></div>
-                  </label>
-                </div>
-              </li>
-            </ul>
+  <div class="pc">
+    <div class="sk-box">
+      <div class="sk-select">
+        <div class="sk-choo">
+          <div class="sk-tit">
+            <h2>SKILLS</h2>
+          </div>
+          <ol>
+            <li>
+              <div @click="toggleGroup('design')" class="sk-cho-tit">
+                <h3>DESIGN</h3>
+                <button class="material-icons-round"> {{ isOpen.design ? 'expand_less' : 'expand_more' }}</button>
+              </div>
+              <transition name="expand">
+              <ul v-show="isOpen.design" class="sk-lists">
+                <li 
+                v-for="item in skills.design" 
+                :key="item.id" 
+                :class="{ 'select-ac': selectedSkill?.id === item.id }" 
+                class="sk-ln-list"
+                @click="selectSkill(item)"  
+                >
+                  <div class="sk-list-txt">
+                    <img :src="item.icon" />
+                    <div>{{ item.name }}</div>
+                  </div>
+                  <div class="sk-checkbox">
+                    <input 
+                      type="checkbox" 
+                      :id="item.id" 
+                      :checked="selectedSkill?.id === item.id"
+                      @change.stop="selectSkill(item)"   
+                    />
+                    <label :for="item.id">
+                      <div class="sk-tick"></div>
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </transition>
-          </li>
-        </ol>
+            </li>
+            <li>
+              <div @click="toggleGroup('developer')" class="sk-cho-tit">
+                <h3>DEVELOPER</h3>
+                <button class="material-icons-round"> {{ isOpen.developer ? 'expand_less' : 'expand_more' }}</button>
+              </div>
+              <transition name="expand">
+              <ul v-show="isOpen.developer"  class="sk-lists">
+                <li v-for="item in skills.developer" :key="item.id" :class="{ 'select-ac': selectedSkill?.id === item.id }" class="sk-ln-list">
+                  <div class="sk-list-txt">
+                    <img :src="item.icon" />
+                    <div>{{ item.name }}</div>
+                  </div>
+                  <div class="sk-checkbox">
+                    <input 
+                      type="checkbox" 
+                      :id="item.id" 
+                      :checked="selectedSkill?.id === item.id"
+                      @change="selectSkill(item)" 
+                    />
+                    <label :for="item.id">
+                      <div class="sk-tick"></div>
+                    </label>
+                  </div>
+                </li>
+              </ul>
+              </transition>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <div class="sk-view" :class="{ self: selectedSkill }">
+        <img v-if="selectedSkill" :src="selectedSkill.view" />
+        <div v-else> Choose One</div>
       </div>
     </div>
-    <div class="sk-view" :class="{ self: selectedSkill }">
-      <img v-if="selectedSkill" :src="selectedSkill.view" />
-      <div v-else> Choose One</div>
+  </div>
+  <div class="mb">
+    <div class="mb-sk-box">
+      <div class="mb-select">
+        <div class="mb-choo">
+          <div class="sk-tit">
+            <h2>SKILLS</h2>
+          </div>
+          <ol>
+            <li class="sk-mb-chobox">
+              <div class="mb-list-sel">
+                <div class="sk-cho-tit" @click="toggleCategoryDropdown">
+                  {{ categories[selectedCategory] }}
+                  <span class="arrow">{{ isCategoryOpen ? '▲' : '▼' }}</span>
+                </div>
+                <ul v-show="isCategoryOpen" class="select-ctr">
+                  <li
+                    v-for="(label, key) in categories"
+                    :key="key"
+                    ref="categoryRefs"
+                    @click="selectCategory(key)"
+                  >
+                    {{ label }}
+                  </li>
+                </ul>
+              </div>
+              <div class="mb-list-sel">
+                <div class="sk-selected" @click="toggleSkillDropdown">
+                  {{ selectedSkillm ? selectedSkillm.name : '-- Choose One --' }}
+                  <span class="arrow">{{ isSkillOpen ? '▲' : '▼' }}</span>
+                </div>
+                <transition name="expand">
+                  <ul v-show="isSkillOpen" class="mb-sk-lists">
+                    <li
+                      v-for="(item, index) in skills[selectedCategory]"
+                      :key="item.id"
+                      class="sk-ln-list"
+                      ref="skillRefs"
+                      @click.stop="selectSkillm(item, index)"
+                    >
+                      <div class="mb-sk-list-txt">
+                        <img :src="item.icon" />
+                        <div>{{ item.name }}</div>
+                      </div>
+                    </li>
+                  </ul>
+                </transition>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="md-sk-view" :class="{ self: selectedSkill }">
+          <img v-if="selectedSkill" :src="selectedSkill.mview" />
+          <div v-else>Choose One</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -108,6 +233,25 @@ const toggleGroup = (group) => {
 
 
 <style lang="scss">
+  @media (max-width: 1400px) {
+    .pc {display: none;}
+    .mb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  @media (min-width: 1401px) {
+    .pc {    
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; 
+      width: 90%; 
+    }
+    .mb {display: none;}
+  }
 .sk-box {
   padding: 20px;
   border-radius: 10px;
@@ -353,5 +497,94 @@ const toggleGroup = (group) => {
     }
   }
 }
-
+.mb-sk-box {
+  padding: 20px;
+  border-radius: 10px;
+  width: 90vw;
+  min-height: 70vh;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 5px 5px 30px rgba(255, 255, 255, 0.1);
+  .mb-select {
+    color: #fff;
+    height: 100%;
+    .sk-tit{
+      display: flex;
+      align-items: center;
+      h2 {
+        margin-right: 20px;
+        font-size: clamp(26px, 2.6vw, 60px);
+      }
+      div {
+        font-size: clamp(16px, 1.05vw, 22px);
+      }
+    }
+    .mb-choo{
+      ol {
+        .sk-mb-chobox {
+          display: grid;
+          grid-template-columns: 38% 62%;
+          margin: 10px 0;
+        }
+      }
+    }
+  }
+}
+.mb-list-sel {
+  position: relative;
+}
+.select-ctr {
+  position: absolute;
+  top: 35px;
+  background-color: #545454;
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  li {
+    line-height: 2;
+  }
+}
+.mb-sk-lists {
+  position: absolute;
+  top: 35px;
+  background-color: #545454;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  li {
+    height: 58px;
+    .mb-sk-list-txt {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 20px;
+    }
+  }
+  }
+}
+.md-sk-view {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  div {
+    height: 610px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(26px, 2.6vw, 60px);
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+  }
+  img {
+    width: 100%;
+  }
+}
 </style>

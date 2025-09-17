@@ -591,11 +591,12 @@ const scrollToBottom = () => {
 .skill-view {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100vh;    
+  overflow: hidden !important;
   background-color: #202020;
   .sk-move {
     white-space: nowrap;
-    overflow: hidden;
+    overflow: hidden !important;
     -webkit-text-stroke: 1px #eee;
     font-size: clamp(2rem, 4vw, 5vw); 
     font-weight: bold;
