@@ -142,7 +142,13 @@ const selectSkillm = (skill, index) => {
               </div>
               <transition name="expand">
               <ul v-show="isOpen.developer"  class="sk-lists">
-                <li v-for="item in skills.developer" :key="item.id" :class="{ 'select-ac': selectedSkill?.id === item.id }" class="sk-ln-list">
+                <li 
+                v-for="item in skills.developer" 
+                :key="item.id" 
+                :class="{ 'select-ac': selectedSkill?.id === item.id }" 
+                class="sk-ln-list"
+                @click="selectSkill(item)"
+                >
                   <div class="sk-list-txt">
                     <img :src="item.icon" />
                     <div>{{ item.name }}</div>
@@ -222,7 +228,15 @@ const selectSkillm = (skill, index) => {
           </ol>
         </div>
         <div class="md-sk-view" :class="{ self: selectedSkill }">
-          <img v-if="selectedSkill" :src="selectedSkill.mview" />
+          <picture v-if="selectedSkill">
+    <!-- 700~1399px 일 때 -->
+    <source
+      media="(min-width: 1010px) and (max-width: 1399px)"
+      :srcset="selectedSkill.view"
+    />
+    <!-- 그 외 해상도 -->
+    <img :src="selectedSkill.mview" />
+  </picture>
           <div v-else>Choose One</div>
         </div>
       </div>
@@ -584,7 +598,7 @@ const selectSkillm = (skill, index) => {
     font-weight: bold;
   }
   img {
-    width: 100%;
+    height: 100%;
   }
 }
 </style>
