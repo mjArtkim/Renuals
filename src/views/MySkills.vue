@@ -596,6 +596,7 @@ const scrollToBottom = () => {
   background-color: #202020;
   .sk-move {
     white-space: nowrap;
+    color: #202020;
     overflow: hidden !important;
     -webkit-text-stroke: 1px #eee;
     font-size: clamp(2rem, 4vw, 5vw); 
