@@ -46,6 +46,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #202020;
 }
 button {border: 0; background-color: transparent; cursor: pointer;}
 .sound-only {position: absolute; left: -9999em; top: -9999em;}

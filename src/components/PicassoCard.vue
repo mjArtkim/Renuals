@@ -1,15 +1,12 @@
-<script setup>
-import { useI18n } from 'vue-i18n'
-const { t } = useI18n()
-</script>
-
 <template>
   <div class="card">
+
     <div class="points_wrapper">
       <div class="point" v-for="n in 10" :key="n"></div>
     </div>
 
     <div class="content">
+      <div class="liquid-bg"></div>
       <div class="main-box2">
         <h1 class="main-tit">ART WORK</h1>
         <div class="main-txt">
@@ -21,11 +18,18 @@ const { t } = useI18n()
   </div>
 </template>
 
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+
+const { t } = useI18n()
+
+</script>
+
 <style scoped lang="scss">
 .card {
   --border: 5px;
-  --rounded: 10px;
-  --quantity: 12;
+  --rounded: 20px;
   --h-card: 500px;
   margin: 0 auto;
   width: 80%;
@@ -36,38 +40,77 @@ const { t } = useI18n()
   justify-content: center;
   position: relative;
   padding: var(--border);
-  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur( 6px );
-  -webkit-backdrop-filter: blur( 6px );
-  background-color: rgba(255, 255, 255, 0.2);
-  transition: 0.3s ease-in-out;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: 0.5s;
+  border-radius: calc(var(--rounded) - 4px);
+  background: rgba(255, 255, 255, 0.0);
+  backdrop-filter: blur(3px) brightness(0.9) contrast(120%) saturate(180%);
+  -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(120%) saturate(180%);
+  z-index: 1;
 }
 .card:hover {
   width: 90%;
-  --h-card: 550px;
-  backdrop-filter: blur( 8px );
-  -webkit-backdrop-filter: blur( 8px );
-  background-color: rgba(0, 0, 0, 0.3);
+  height: 530px;
+  backdrop-filter: blur(8px) brightness(0.95) contrast(120%) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) brightness(0.95) contrast(120%) saturate(180%);
 }
-.card::before,
-.card::after {
+.card::before{ 
   content: "";
-  z-index: -1;
   position: absolute;
-  will-change: auto;
-  --size: calc(100%);
-  width: var(--size);
-  height: var(--size);
-  border-radius: var(--rounded);
-  background-size: 400% 400%;
+  inset: 0;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, #ffffff8d 0%, #a0a0a05b 50%, #ffffff68 100%);
+  filter: blur(50px);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+} 
+.card:hover::before{ 
+  background: linear-gradient(145deg, #ffffffcd 0%, #a0a0a05b 50%, #ffffffc6 100%);
+}
+.card::after { 
+  content: "";
+  position: absolute;
+  filter: blur(24px); 
+  opacity: 0.7; 
+  animation-delay: 0.5s; 
+}
+.liquid-bg {
+  position: absolute;
+
+}
+.content {
+  position: absolute;
+  inset: var(--border);
+  border-radius: calc(var(--rounded) - 4px);
+  overflow: hidden;
+  z-index: 7;
 }
 
-.card::after {
-  filter: blur(24px);
-  opacity: 0.7;
-  animation-delay: 0.5s;
+/* 텍스트 */
+.main-box2 {
+  position: relative;
+  z-index: 2; /* 필터 위 */
+  display: grid;
+  height: 100%;
+  padding: 20px;
+  place-items: center;
 }
-
+.main-tit {
+  font-size: 7vw;
+  color: #fff;
+  text-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+.main-txt {
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.6);
+}
 
 .points_wrapper {
   position: absolute;
@@ -115,66 +158,6 @@ const { t } = useI18n()
   }
 }
 
-.content {
-  position: absolute;
-  width: calc(100% - (var(--border) * 4));
-  height: calc(100% - (var(--border) * 4));
-  border-radius: calc(var(--rounded) - 4px);
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  z-index: 7;
-}
-.main-box2 {
-  display: grid;
-  height: 100%;
-  padding: 20px;
-  align-items: center;
-  justify-items: center;
-  align-content: center;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-.main-box2::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    90deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.7) 50%,
-    transparent 60%
-  );
-  animation: diagonalShine 4s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-.main-tit {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5) ;
-  font-size: 7vw;
-  align-self: end !important;
-  @media (max-width: 768px) {
-    font-size: 14vw;
-    text-align: center;
-  }
-}
-.main-txt {
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  text-align: center;
-  justify-content: end;
-  padding: 0 10px;
-  color: #fff;
-  @media (max-width: 768px) {
-    font-size: 16px;
-  }
-}
 @keyframes diagonalShine {
   0% {
     transform: translate(-150%, -150%) rotate(45deg);
@@ -188,9 +171,6 @@ const { t } = useI18n()
     opacity: 0.2;
   }
 }
-
-
-
 .cutxt {
   font-weight: 600;
   margin-bottom: 1rem;

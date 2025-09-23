@@ -273,9 +273,9 @@ const selectSkillm = (skill, index) => {
   display: grid;
   grid-template-columns: 20% 80%;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background:transparent;
+  backdrop-filter: blur(3px) brightness(0.9) contrast(120%) saturate(180%);
+  -webkit-backdrop-filter: blur(3px) brightness(0.9) contrast(120%) saturate(180%);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
@@ -517,9 +517,9 @@ const selectSkillm = (skill, index) => {
   width: 90vw;
   min-height: 70vh;
   border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  background:transparent;
+  backdrop-filter: blur(3px) brightness(0.9) contrast(120%) saturate(180%);
+  -webkit-backdrop-filter: blur(3px) brightness(0.9) contrast(120%) saturate(180%);
   box-shadow: 
     0 8px 32px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.5),

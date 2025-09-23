@@ -29,7 +29,7 @@
         <span class="circle circle3"></span>
         <span class="circle circle4"></span>
         <span class="circle circle5">
-          <img src="@/assets/img/apple-icon-180x180.png">
+          
         </span>
       </div>
     </div>
@@ -53,7 +53,7 @@ const { t, locale } = useI18n()
 .name-card {
   height: 100%;
   border-radius: 50px;
-  background: linear-gradient(135deg, rgb(255, 120, 120) 0%, rgb(255, 195, 195) 100%);
+  background: linear-gradient(135deg, rgb(222, 236, 255) 0%, rgb(92, 152, 255) 100%);
   transition: all 0.5s ease-in-out;
   transform-style: preserve-3d;
   box-shadow: rgba(71, 48, 5, 0) 40px 50px 25px -40px, rgba(71, 46, 5, 0.2) 0px 25px 25px -5px;
@@ -77,13 +77,13 @@ const { t, locale } = useI18n()
   transform: translate3d(0, 0, 26px);
   .card-tit {
     display: block;
-    color: #791d11;
+    color: #000000;
     font-weight: 900;
     font-size: 20px;
   }
   .card-in-txt {
     display: block;
-    color: rgba(137, 0, 0, 0.765);
+    color: rgba(0, 0, 0, 0.765);
     font-size: 15px;
     margin-top: 20px;
   }
@@ -113,7 +113,7 @@ const { t, locale } = useI18n()
     .view-more-button {
       background: none;
       border: none;
-      color: #c33100;
+      color: #000000;
       font-weight: bolder;
       font-size: 12px;
       margin-right: 5px;
@@ -122,7 +122,7 @@ const { t, locale } = useI18n()
       fill: none;
       max-height: 15px;
       font-size: 15px;
-      color: #c33100;
+      color: #000000;
     }
   }
 }
@@ -163,7 +163,7 @@ const { t, locale } = useI18n()
 
 
 .bottom .social-buttons-container .social-button:hover {
-  background: #ff6c6c;
+  background: linear-gradient(135deg,rgb(222, 236, 255) 0%, rgb(92, 152, 255) 100%);
 }
 
 
@@ -183,19 +183,20 @@ const { t, locale } = useI18n()
   display: block;
   position: absolute;
   aspect-ratio: 1;
-  border-radius: 50%;
+
   top: 0;
   right: 0;
   box-shadow: rgba(100, 111, 100, 0.2) -10px 10px 20px 0px;
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
-  background: rgba(249, 66, 0, 0.2);
+  background: linear-gradient(135deg,rgba(222, 236, 255, 0.2) 0%, rgba(92, 152, 255, 0.2) 100%);
   transition: all 0.5s ease-in-out;
 }
 
 .logo .circle1 {
   width: 170px;
   transform: translate3d(0, 0, 20px);
+  border-radius: 30px;
   top: 8px;
   right: 8px;
 }
@@ -208,6 +209,7 @@ const { t, locale } = useI18n()
   -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(1px);
   transition-delay: 0.4s;
+  border-radius: 30px;
 }
 
 .logo .circle3 {
@@ -216,6 +218,7 @@ const { t, locale } = useI18n()
   top: 17px;
   right: 17px;
   transition-delay: 0.8s;
+  border-radius: 30px;
 }
 
 .logo .circle4 {
@@ -224,6 +227,7 @@ const { t, locale } = useI18n()
   top: 23px;
   right: 23px;
   transition-delay: 1.2s;
+  border-radius: 30px;
 }
 
 .logo .circle5 {
@@ -234,6 +238,7 @@ const { t, locale } = useI18n()
   display: grid;
   place-content: center;
   transition-delay: 1.6s;
+  border-radius: 15px;
 }
 
 .logo .circle5 img {
