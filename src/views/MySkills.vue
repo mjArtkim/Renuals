@@ -5,6 +5,7 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
 import CanvasTrail from '@/components/CanvasTrail.vue'
 import NameCardVue from '@/components/NameCard.vue'
+import ContactFormVue from '@/components/ContactForm.vue'
 import { useI18n } from 'vue-i18n'
 import { SplitText } from "gsap/SplitText"
 import PicassoCard from "@/components/PicassoCard.vue"
@@ -49,8 +50,7 @@ onMounted(() => {
     zIndex: (i, target, targets) => targets.length - i,
   });
 
-  // 패널 이미지 애니메이션
-  const images = gsap.utils.toArray('.panel'); // 모든 패널 선택
+  const images = gsap.utils.toArray('.panel'); 
   images.forEach((image, i) => {
   var tl = gsap.timeline({
     scrollTrigger: {
@@ -103,36 +103,6 @@ onMounted(() => {
     invalidateOnRefresh: true,
   });
 
-  // document.fonts.ready.then(() => {
-  //   const split = new SplitText("#split", { type: "chars" });
-  //   const tl = gsap.timeline({ repeat: 30 });
-
-  //   gsap.set("#split", { opacity: 1 });
-  //   tl.from(split.chars, {
-  //     duration: 1,
-  //     y: 100,
-  //     rotation: 90,
-  //     opacity: 0,
-  //     ease: "elastic",
-  //     stagger: 0.03,
-  //   });
-
-  //   tl.to(
-  //     split.chars,
-  //     {
-  //       duration: 2,
-  //       opacity: 0,
-  //       rotation: "random(-2000, 2000)",
-  //       physics2D: {
-  //         angle: "random(240, 320)",
-  //         velocity: "random(300, 600)",
-  //         gravity: 800,
-  //       },
-  //       stagger: 0.015,
-  //     },
-  //     3
-  //   );
-  // });
 });
 
 onBeforeUnmount(() => {
@@ -144,7 +114,7 @@ onBeforeUnmount(() => {
 
 const scrollToTop = () => {
   if (bodyScrollBar) {
-    bodyScrollBar.scrollTo(0, 0, 800); // 800ms 동안 부드럽게 스크롤
+    bodyScrollBar.scrollTo(0, 0, 800); 
   }
 };
 
@@ -208,14 +178,19 @@ const scrollToBottom = () => {
       </div>
     </section>
     <div class="final">
-      <div class="look-more">
-        {{ t('home.moreinfo') }}
+      <div class="form-container">
+        <ContactFormVue></ContactFormVue>
       </div>
-      <div class="look-move">
-        {{ t('home.moveto') }}
-      </div>
-      <div class="sns-box">
-        <NameCardVue></NameCardVue>
+      <div>
+        <div class="look-more">
+          {{ t('home.moreinfo') }}
+        </div>
+        <div class="look-move">
+          {{ t('home.moveto') }}
+        </div>
+        <div class="sns-box">
+          <NameCardVue></NameCardVue>
+        </div>
       </div>
     </div> 
     <div class="scroll-btn-group">
@@ -481,12 +456,19 @@ const scrollToBottom = () => {
 
 .final {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
-  background: #202020;
   text-align: center;
+  background: #202020;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+  }
+
 }
 .look-more {
   color: #fff;
