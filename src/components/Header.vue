@@ -1,33 +1,50 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 const isMenuVisible = ref(false);
 const activeIndex = ref(null);
-const menuItems = computed(() => [
-  { title: t('menu.home'), link: '/', submenu: [] },
-  // { title: t('menu.mystory'), link: '/myskills', submenu: [] },
-  {
-    title: t('menu.work'),
-    link: [],
-    submenu: [
-      { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com' },
-      { name: t('menu.thp'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com/prog' },
-      { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
-      { name: t('menu.sam'), intro: t('menu.businesspage'), link: 'http://ideartk.com/samyang/' },
-      { name: t('menu.song'), intro: t('menu.introducepage'), link: 'http://ideartk.com/songjung/' },
-      // { name: t('menu.mou'), intro: t('menu.edupage'), link: 'http://ideartk.com/english' },
-      { name: t('menu.backc'), intro: t('menu.exhibpage'), link: 'http://ideartm.com/backchun/index.html' },
-    ]
-  },
-  { title: t('menu.design'), link: '/other', submenu: [] },
-  // {
-  //   title: t('menu.design'),
-  //   link: [],
-  //   submenu: [
-  //     { name: t('menu.other'), link: '/other' },
-  //   ]
-  // },
-]);
+
+const screenWidth = ref(window.innerWidth)
+
+const updateWidth = () => {
+  screenWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  window.addEventListener('resize', updateWidth)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', updateWidth)
+})
+
+const menuItems = computed(() => {
+  const items = [
+    { title: t('menu.home'), link: '/', submenu: [] },
+    { title: t('menu.about'), link: '#first', submenu: [] },
+    { title: t('menu.skill'), link: '#second', submenu: [] },
+    {
+      title: t('menu.work'),
+      link: '#third',
+      submenu: [
+        { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com' },
+        { name: t('menu.thp'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com/prog' },
+        { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
+        { name: t('menu.sam'), intro: t('menu.businesspage'), link: 'http://ideartk.com/samyang/' },
+        { name: t('menu.song'), intro: t('menu.introducepage'), link: 'http://ideartk.com/songjung/' },
+        { name: t('menu.backc'), intro: t('menu.exhibpage'), link: 'http://ideartm.com/backchun/index.html' },
+        { name: t('menu.design'), intro: t('menu.other'), link: '/other' },
+      ]
+    },
+    { title: t('menu.contact'), link: '#fourth', submenu: [] },
+  ]
+
+  if (screenWidth.value >= 1200) {
+    return items.filter(item => item.title !== t('menu.home'))
+  }
+
+  return items
+})
 
 function toggleMenu() {
   isMenuVisible.value = !isMenuVisible.value;
@@ -42,10 +59,9 @@ function toggleItem(index) {
 }
 function handleClick(item, index, event) {
   if (item.submenu.length > 0) {
-    event.preventDefault() // 서브메뉴 있는 경우 → 이동 막고 열기
+    event.preventDefault()
     toggleItem(index)
   } else {
-    // 서브메뉴 없는 경우 → 이동
     if (item.link && item.link !== '#') {
       window.location.href = item.link
     }
@@ -71,56 +87,107 @@ function handleKeydown(event, index) {
 
 <template>
   <header class="header">
-    <div class="lang-box">
-      <button @click="changeLanguage('en')" :class="{ active: locale === 'en' }">EN</button>
-      <button @click="changeLanguage('ko')" :class="{ active: locale === 'ko' }">KR</button>
+    <div class="pc-gnb">
+      <div id="pc-pf-gnb">
+        <router-link to="/"><div>logo</div></router-link>
+        <ul class="pf-ul" role="menubar">
+          <li
+            v-for="(item, index) in menuItems"
+            :key="index"
+            class="depth1"
+            role="none">
+            <a
+              :href="item.link || '#'"
+              role="menuitem"
+              tabindex="0"
+              @keydown.enter.prevent="handleClick(item, index, $event)"
+              @click="handleClick(item, index, $event)"
+              :class="{ activegnb: activeIndex === index }">
+              {{ item.title }}
+            </a>
+            <ul
+              v-if="activeIndex === index"
+              role="menu"
+              class="depth2"
+              :id="`submenu-${index}`"
+            >
+              <li
+                v-for="(sub, subIdx) in item.submenu"
+                :key="sub.link"
+                role="none"
+                class="depth2-item"
+                :style="{ animationDelay: `${subIdx * 0.1}s` }"
+              >
+                <a 
+                  :href="sub.link"
+                  role="menuitem"
+                  tabindex="0" 
+                >
+                  {{ sub.name }}
+                  <div class="intro-txt">({{ sub.intro }})</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>       
+            <div class="lang-box">
+              <button @click="changeLanguage('en')" :class="{ active: locale === 'en' }">EN</button>
+              <button @click="changeLanguage('ko')" :class="{ active: locale === 'ko' }">KR</button>
+            </div>  
+          </li>
+        </ul>
+      </div>
     </div>
-    <div>
+    <div class="mobile-gnb">
       <button class="pf-gnb-label" @click="toggleMenu"><span class="material-icons-round" :class="{ actives: isMenuVisible }">add</span></button>
       <div id="pf-gnb" v-show="isMenuVisible">
         <ul class="pf-ul" role="menubar">
-  <li
-    v-for="(item, index) in menuItems"
-    :key="index"
-    class="depth1"
-    role="none"
-  >
-    <a
-    :href="item.link || '#'"
-  role="menuitem"
-  tabindex="0"
-  @keydown.enter.prevent="handleClick(item, index, $event)"
-  @click="handleClick(item, index, $event)"
-      :class="{ activegnb: activeIndex === index }"
-    >
-      {{ item.title }}
-    </a>
+          <li
+            v-for="(item, index) in menuItems"
+            :key="index"
+            class="depth1"
+            role="none">
+            <a
+              :href="item.link || '#'"
+              role="menuitem"
+              tabindex="0"
+              @keydown.enter.prevent="handleClick(item, index, $event)"
+              @click="handleClick(item, index, $event)"
+              :class="{ activegnb: activeIndex === index }">
+              {{ item.title }}
+            </a>
 
-    <ul
-      v-if="activeIndex === index"
-      role="menu"
-      class="depth2"
-      :id="`submenu-${index}`"
-    >
-      <li
-        v-for="(sub, subIdx) in item.submenu"
-        :key="sub.link"
-        role="none"
-        class="depth2-item"
-        :style="{ animationDelay: `${subIdx * 0.1}s` }"
-      >
-        <a 
-          :href="sub.link"
-          role="menuitem"
-          tabindex="0" 
-        >
-          {{ sub.name }}
-          <div class="intro-txt">{{ sub.intro }}</div>
-        </a>
-      </li>
-    </ul>
-  </li>
-</ul>
+            <ul
+              v-if="activeIndex === index"
+              role="menu"
+              class="depth2"
+              :id="`submenu-${index}`"
+            >
+              <li
+                v-for="(sub, subIdx) in item.submenu"
+                :key="sub.link"
+                role="none"
+                class="depth2-item"
+                :style="{ animationDelay: `${subIdx * 0.1}s` }"
+              >
+                <a 
+                  :href="sub.link"
+                  role="menuitem"
+                  tabindex="0" 
+                >
+                  {{ sub.name }}
+                  <div class="intro-txt">{{ sub.intro }}</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>       
+            <div class="lang-box">
+              <button @click="changeLanguage('en')" :class="{ active: locale === 'en' }">EN</button>
+              <button @click="changeLanguage('ko')" :class="{ active: locale === 'ko' }">KR</button>
+            </div>  
+          </li>
+        </ul>
       </div>
     </div>
   </header>
@@ -135,9 +202,6 @@ function handleKeydown(event, index) {
 }
 
 .lang-box {
-  position: absolute;
-  top: 20px;
-  right: 150px;
   display: flex;
   button {
     padding: 0.5rem 1rem;
@@ -179,7 +243,40 @@ function handleKeydown(event, index) {
   color: #333 !important;
   transform: rotate(135deg);
 }
-
+#pc-pf-gnb {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 50px 50px 20px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  .pf-ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    li {
+      max-width: 180px;
+    }
+  }
+  .depth1 {
+    text-align: center;
+    font-size: 1.4em;
+  }
+  .depth2 {
+    text-align: center;
+    .depth2-item {
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeUp 0.4s ease forwards;
+      padding-left: 10px;
+      font-size: 0.8em;
+      line-height: 2;
+      &:hover > a{
+        color: #ff7553fb !important;
+      }
+    }
+  }
+}
 #pf-gnb {
     position: fixed !important;
     top: 0;
@@ -205,22 +302,25 @@ function handleKeydown(event, index) {
       line-height: 2.5;
       font-size: 2em;
     }
+    .depth2 {
+      .depth2-item {
+        opacity: 0;
+        transform: translateY(-10px);
+        animation: fadeUp 0.4s ease forwards;
+        padding-left: 10px;
+        font-size: 0.8em;
+        line-height: 2;
+        &:hover > a{
+          color: #ff7553fb !important;
+        }
+      }
+    } 
 }
 .activegnb {
   color: #ff7553fb !important;
 }
 
-.depth2-item {
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: fadeUp 0.4s ease forwards;
-  padding-left: 10px;
-  font-size: 0.8em;
-  line-height: 2;
-  &:hover > a{
-    color: #ff7553fb !important;
-  }
-}
+
 .intro-txt {
   font-size: 0.8em;
 }
@@ -241,6 +341,13 @@ function handleKeydown(event, index) {
 }
 
 @media screen and (max-width: 1200px) {
+  .mobile-gnb{
+    display: block;
+  }
+  .pc-gnb{
+    display: none;
+  }
+}
   .pf-gnb-label {
     right: 30px;
     top: 30px;
@@ -261,7 +368,7 @@ function handleKeydown(event, index) {
       font-size: 24px;
     }
 }
-}
+
 
 @media screen and (min-width: 768px) {
 
@@ -276,8 +383,13 @@ function handleKeydown(event, index) {
 }
 
 /* PC부터 1024px~ */
-@media screen and (min-width: 1024px) {
-
+@media screen and (min-width: 1201px) {
+  .mobile-gnb{
+    display: none;
+  }
+  .pc-gnb{
+    display: block;
+  }
 }
 
 </style>

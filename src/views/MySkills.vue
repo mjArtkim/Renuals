@@ -9,6 +9,7 @@ import ContactFormVue from '@/components/ContactForm.vue'
 import { useI18n } from 'vue-i18n'
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import SkillVue from '@/components/Skill.vue'
+import Footer from '@/components/Footer.vue'
 
 const text = ref(' SKILLS')
 gsap.registerPlugin(Physics2DPlugin);
@@ -126,49 +127,51 @@ const scrollToBottom = () => {
 </script>
 <template>
   <div class="scroller" ref="scrollerRef">
-    <section class="description">
+    <section class="description" id="first">
       <NewMainVue></NewMainVue>
     </section>
-    <section class="skill-view">
-      <div class="sk-move">
-        <span v-for="n in 15" :key="n">{{ text }}</span>
-      </div>
-      <div class="sk-views">
-        <SkillVue></SkillVue>
-      </div>
+    <section id="second">
+      <section class="skill-view">
+        <div class="sk-move">
+          <span v-for="n in 15" :key="n">{{ text }}</span>
+        </div>
+        <div class="sk-views">
+          <SkillVue></SkillVue>
+        </div>
+      </section>
+      <section class="black">
+        <div class="text-wrap">
+          <div class="panel-text white-text">
+            <div class="pan-tit">{{ t('menu.strengths') }}</div>
+          </div>
+          <div class="panel-text blue-text">
+            <div class="pan-tit">{{ t('menu.endtoend') }}</div>
+            <div class="pan-txt">{{ t('menu.endtoendtxt') }}</div>
+          </div>
+          <div class="panel-text yellow-text">
+            <div class="pan-tit">{{ t('menu.usercd') }}</div>
+            <div class="pan-txt">{{ t('menu.usercdtxt') }}</div>     
+          </div>
+          <div class="panel-text orange-text">
+            <div class="pan-tit">{{ t('menu.collabo') }}</div>
+            <div class="pan-txt">{{ t('menu.collabotxt') }}</div>
+          </div>
+          <div class="panel-text white-text2">
+            <div class="pan-tit">{{ t('menu.global') }}</div>
+            <div class="pan-txt">{{ t('menu.globaltxt') }}</div>    
+          </div>
+        </div>
+        <div class="p-wrap">
+          <div class="panel purple"></div>
+          <div class="panel blue"></div>
+          <div class="panel red"></div>
+          <div class="panel orange"></div>
+          <div class="panel white"></div>
+        </div>
+      </section>
     </section>
-    <section class="black">
-      <div class="text-wrap">
-        <div class="panel-text white-text">
-          <div class="pan-tit">{{ t('menu.strengths') }}</div>
-        </div>
-        <div class="panel-text blue-text">
-          <div class="pan-tit">{{ t('menu.endtoend') }}</div>
-          <div class="pan-txt">{{ t('menu.endtoendtxt') }}</div>
-        </div>
-        <div class="panel-text yellow-text">
-          <div class="pan-tit">{{ t('menu.usercd') }}</div>
-          <div class="pan-txt">{{ t('menu.usercdtxt') }}</div>     
-        </div>
-        <div class="panel-text orange-text">
-          <div class="pan-tit">{{ t('menu.collabo') }}</div>
-          <div class="pan-txt">{{ t('menu.collabotxt') }}</div>
-        </div>
-        <div class="panel-text white-text2">
-          <div class="pan-tit">{{ t('menu.global') }}</div>
-          <div class="pan-txt">{{ t('menu.globaltxt') }}</div>    
-        </div>
-      </div>
-      <div class="p-wrap">
-        <div class="panel purple"></div>
-        <div class="panel blue"></div>
-        <div class="panel red"></div>
-        <div class="panel orange"></div>
-        <div class="panel white"></div>
-      </div>
-    </section>
-
-    <div class="final">
+    <div id="third"></div>
+    <div class="final" id="fourth">
       <div class="form-container">
         <ContactFormVue></ContactFormVue>
       </div>
@@ -184,6 +187,7 @@ const scrollToBottom = () => {
         </div>
       </div>
     </div> 
+    <Footer></Footer>
     <div class="scroll-btn-group">
       <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
       <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
