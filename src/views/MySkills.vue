@@ -3,12 +3,10 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
-import CanvasTrail from '@/components/CanvasTrail.vue'
+import NewMainVue from '@/views/NewMain.vue'
 import NameCardVue from '@/components/NameCard.vue'
 import ContactFormVue from '@/components/ContactForm.vue'
 import { useI18n } from 'vue-i18n'
-import { SplitText } from "gsap/SplitText"
-import PicassoCard from "@/components/PicassoCard.vue"
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import SkillVue from '@/components/Skill.vue'
 
@@ -129,16 +127,16 @@ const scrollToBottom = () => {
 <template>
   <div class="scroller" ref="scrollerRef">
     <section class="description">
-      <CanvasTrail></CanvasTrail>
-      <div class="main-box">
-        <PicassoCard></PicassoCard>
-        <div class="scroll-down">
-          <div>{{ t('home.scroll') }} </div>
-          <div class="material-icons-round">keyboard_double_arrow_down</div>
-        </div>
+      <NewMainVue></NewMainVue>
+    </section>
+    <section class="skill-view">
+      <div class="sk-move">
+        <span v-for="n in 15" :key="n">{{ text }}</span>
+      </div>
+      <div class="sk-views">
+        <SkillVue></SkillVue>
       </div>
     </section>
-
     <section class="black">
       <div class="text-wrap">
         <div class="panel-text white-text">
@@ -169,14 +167,7 @@ const scrollToBottom = () => {
         <div class="panel white"></div>
       </div>
     </section>
-    <section class="skill-view">
-      <div class="sk-move">
-        <span v-for="n in 15" :key="n">{{ text }}</span>
-      </div>
-      <div class="sk-views">
-        <SkillVue></SkillVue>
-      </div>
-    </section>
+
     <div class="final">
       <div class="form-container">
         <ContactFormVue></ContactFormVue>

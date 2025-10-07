@@ -132,5 +132,22 @@
         "status": "Passed"
       }
     ]
+  },
+  "new":{
+    "maintxt": "With professional experience in web design and UI/UX development, I specialize in delivering responsive, user-focused digital experiences for web and mobile, as well as a variety of design and visual projects.",
+    "abouttit": "EVERY CHALLENGE IS AN OPPORTUNITY FOR GROWTH.",
+    "abouttxt": "I VIEW EVERY CHALLENGE AS A VALUABLE OPPERTUNITY TO STRENGTHEN MY SKILLS, ENHANCE ADAPTABILITY, AND CREATE GREATER IMPACT.",
+    "hello": "HELLO",
+    "im": "I'M MINJI KIM",
+    "imtxt": "I deliver company objectives through web and digital design by creating modern, user-friendly and responsive visual solutions. Responsive visual solutions, while collaborating with Cross-functional teams, developers and planners—to ensure clarity And engagement and alignment with project goals.",
+    "skills":[
+      {
+        "webdesign":"In my web design, I implement user-centered responsive layouts and effective navigation to ensure accessibility. Additionally, I incorporate interactive elements as supplementary features to enhance the overall user experience.",
+        "appdesign":"In my app design process, I take into account user needs and behavior patterns, service objectives, information architecture, platform-specific requirements, visual consistency, accessibility, and technical constraints to create effective and user-centered solutions.",
+        "creative":"ADD CONTENT",
+        "uiux":"ADD CONTENT",
+        "development":"ADD CONTENT"
+      }
+    ]
   }
 }
