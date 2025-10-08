@@ -15,11 +15,8 @@ const nameRef = ref(null)
 const subListRef = ref(null)
 const miniTxtRef = ref(null)
 
-let currentTween = null
-let currentTargets = null
-
 const config = {
-  duration: 0.8,
+  duration: 0.6,
   stagger: 0.05,
   ease: "osmo-ease",
 }
@@ -27,7 +24,6 @@ const config = {
 function animate(target) {
   if (!target) return
 
-  // SplitText 처리
   const split = SplitText.create(target, {
     type: "words",
     wordsClass: "word",
@@ -54,8 +50,8 @@ onMounted(() => {
   document.fonts.ready.then(() => {
     const elements = [headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value]
     elements.forEach((el, i) => {
-      gsap.delayedCall(i * 0.6, () => {
-        gsap.to(el, { opacity: 1, duration: 0.5 })
+      gsap.delayedCall(i * 0.4, () => {
+        gsap.to(el, { opacity: 1, duration: 0.4 })
         animate(el)
       })
     })

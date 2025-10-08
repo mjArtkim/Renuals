@@ -8,7 +8,7 @@ import NameCardVue from '@/components/NameCard.vue'
 import ContactFormVue from '@/components/ContactForm.vue'
 import { useI18n } from 'vue-i18n'
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
-import SkillVue from '@/components/Skill.vue'
+import AboutVue from '@/components/About.vue'
 import Footer from '@/components/Footer.vue'
 
 const text = ref(' SKILLS')
@@ -138,14 +138,12 @@ const scrollToBottom = () => {
     <section class="description" id="first">
       <NewMainVue></NewMainVue>
     </section>
-    <section id="second">
-      <section class="skill-view">
-
-        <div class="sk-views">
-          <SkillVue></SkillVue>
-        </div>
-      </section>
-      <section class="black">
+    <section class="skill-view">
+      <div class="sk-views">
+        <AboutVue></AboutVue>
+      </div>
+    </section>
+    <section class="black">
         <div class="text-wrap">
           <div class="panel-text white-text">
             <div class="pan-tit">{{ t('menu.strengths') }}</div>
@@ -175,7 +173,6 @@ const scrollToBottom = () => {
           <div class="panel white"></div>
         </div>
       </section>
-    </section>
     <div class="works" id="third">
       <div class="sk-move">
             <span v-for="n in 15" :key="n">{{ text }}</span>
@@ -186,22 +183,14 @@ const scrollToBottom = () => {
         <ContactFormVue></ContactFormVue>
       </div>
       <div>
-        <div class="look-more">
-          {{ t('home.moreinfo') }}
-        </div>
-        <div class="look-move">
-          {{ t('home.moveto') }}
-        </div>
         <div class="sns-box">
 
           <NameCardVue></NameCardVue>
         </div>
       </div>
     </div> 
-    <Footer></Footer>
-   
-
-  </div>
+      <Footer></Footer>
+    </div>
     <transition name="fade">      
       <div class="scroll-btn-group2" v-if="isScrolling">
         <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
@@ -285,11 +274,9 @@ const scrollToBottom = () => {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .text {
   color: #fff;
 }
-
 .black {
   display: -webkit-box;
   display: -webkit-flex;
@@ -304,19 +291,14 @@ const scrollToBottom = () => {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: end;
-  background-color: #202020;
   @media (max-width: 1400px) {
       flex-direction: column;
       align-items: center;
   }
 }
-
 .blue {
   height: 100vh;
-
 }
-
-
 .text-wrap {
   position: relative;
   overflow: hidden;
@@ -354,9 +336,9 @@ const scrollToBottom = () => {
 }
 
 .panel-text.white-text {
-  color: #fff;
+  color: #292929;
   .panel-move {
-    color: #fff !important;
+    color: #292929 !important;
   }
 }
 
@@ -382,17 +364,17 @@ const scrollToBottom = () => {
 }
 
 .panel-text.yellow-text { 
-  color: rgb(255, 241, 83); 
+  color: rgb(104, 203, 43); 
   position: absolute;
   .panel-move {
-    color: rgb(255, 241, 83) !important;
+    color: rgb(104, 203, 43) !important;
   }
 }
 .panel-text.white-text2 { 
-  color: rgb(255, 255, 255); 
+  color: #292929; 
   position: absolute; 
   .panel-move {
-    color: #fff !important;
+    color: #292929 !important;
   }
   @media (max-width: 1400px) {
     top: 0px; 
@@ -467,7 +449,6 @@ const scrollToBottom = () => {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: #202020;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
@@ -475,16 +456,6 @@ const scrollToBottom = () => {
     align-items: center; 
   }
 
-}
-.look-more {
-  color: #fff;
-  font-size: 2.5vw;
-  margin-bottom: 30px;
-}
-.look-move {
-  color: #fff;
-  font-size: 2vw;
-  margin-bottom: 30px;
 }
 @media (max-width: 768px) {
   .look-more {
@@ -566,6 +537,7 @@ const scrollToBottom = () => {
     bottom: 20px;
   }
 }
+
 .skill-view {
   position: relative;
   width: 100%;
