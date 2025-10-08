@@ -92,7 +92,7 @@ onMounted(() => {
   height: 100%;
   width: 100%;
   font-family:'GmarketSans';
-
+  --font-scale: 0.08; 
   &__container{
     position: relative;
     &::before{
@@ -130,20 +130,18 @@ onMounted(() => {
     position: relative;
     padding: 15% 50px 0;
     width: 100%;
-    --font-scale: 0.08; 
-
   }
   &__minitit{
     text-align: right;
-    letter-spacing: 0.8em;
-    font-size: calc(var(--font-scale) * 13vw);
+    letter-spacing: 0.6em;
+    font-size: clamp(12px, calc(var(--font-scale) * 14vw), 22px);
     padding-right: 5px;
     overflow: hidden;
   }
   &__tit{
     position: relative;
     text-align: center;
-    font-size: calc(var(--font-scale) * 94vw);
+    font-size: clamp(50px, calc(var(--font-scale) * 94vw), 150px);
     font-weight: 800;
     color: #000;
     mix-blend-mode: overlay;
@@ -173,30 +171,76 @@ onMounted(() => {
   }
   &__subbox{
     background-color: #fff;
-    grid-area: sub;
-    --font-scale: 0.08;
     width: calc(var(--width) * 0.43);
     margin-left: 20%;
     padding: 130px 20px 20px;
-
-
   }
   &__name{
-    font-size: calc(var(--font-scale) * 20vw);
+    font-size: clamp(14px, calc(var(--font-scale) * 20vw), 28px);
     padding-bottom: 50px;
-    overflow: hidden;
   }
   &__sublist{
-    font-size: calc(var(--font-scale) * 19vw);
-    li {
-  overflow: hidden;
-}
+    font-size: clamp(14px, calc(var(--font-scale) * 19vw), 22px);
   }
   &__minitxt{
     float: right;
     width: calc(var(--width) * 0.4);
     padding: 10px 55px 0;
     font-size: 14px;
+    font-weight: 300;
+  }
+  @media (max-width: 361px) {
+    &__img{
+      width: 100%;
+      height: 100%;
+      background-position: 90% 0% !important;
+      background-size: auto 60%;
+    }
+  }
+  @media (max-width: 520px) {
+
+    &__img{
+      width: 100%;
+      height: 100%;
+      background-position: 85% 0%;
+      background-size: auto 60%;
+    }
+    &__main{
+      margin: 50px 0 0;
+      padding: 15% 30px 15%;
+    }
+    &__minitit{
+      position: absolute;
+      width: calc(var(--width) * 0.5);
+      text-align: left;
+      letter-spacing: 0.5em;
+      padding-right: 0;
+      padding-left: 5px;
+    }
+    &__tit{
+      padding-top: 20%;
+      text-align: left;
+      &::after{
+        display: none;
+      }
+    }
+    &__subbox{
+      width: calc(var(--width) * 0.8);
+      margin-left: 0%;
+      margin: 0 30px;
+      padding: 30px 10px 10px;
+    }
+    &__name{
+      padding-bottom: 30px;
+      overflow: hidden;
+    }
+    &__minitxt{
+      float: none;
+      text-align: center;
+      width: 100%;
+      padding: 50px 30px 0;
+      font-size: 14px;
+    }
   }
 }
 </style>
