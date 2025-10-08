@@ -1,7 +1,66 @@
 <script setup>
+import { ref, onMounted } from "vue"
+import { gsap } from "gsap"
+import { SplitText } from "gsap/SplitText"
+import { CustomEase } from "gsap/CustomEase"
+
 import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
 
+gsap.registerPlugin(SplitText, CustomEase)
+CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1")
+const headingRef = ref(null)
+const miniTitRef = ref(null)
+const nameRef = ref(null)
+const subListRef = ref(null)
+const miniTxtRef = ref(null)
+
+let currentTween = null
+let currentTargets = null
+
+const config = {
+  duration: 0.8,
+  stagger: 0.05,
+  ease: "osmo-ease",
+}
+
+function animate(target) {
+  if (!target) return
+
+  // SplitText 처리
+  const split = SplitText.create(target, {
+    type: "words",
+    wordsClass: "word",
+  })
+
+  gsap.fromTo(
+    split.words,
+    { yPercent: 50, opacity: 0 },
+    {
+      yPercent: 0,
+      opacity: 1,
+      duration: config.duration,
+      stagger: config.stagger,
+      ease: config.ease,
+    }
+  )
+}
+
+onMounted(() => {
+  gsap.set([headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value], {
+    opacity: 0,
+  })
+
+  document.fonts.ready.then(() => {
+    const elements = [headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value]
+    elements.forEach((el, i) => {
+      gsap.delayedCall(i * 0.6, () => {
+        gsap.to(el, { opacity: 1, duration: 0.5 })
+        animate(el)
+      })
+    })
+  })
+})
 </script>
 
 <template>
@@ -9,18 +68,18 @@ const { t, locale } = useI18n()
     <div class="new__container">
       <div class="new__img"></div>
       <div class="new__main">
-        <div class="new__minitit">BASED IN SOUTH KOREA</div>
-        <h1 class="new__tit">CREATIVE DESIGNER</h1>
+        <div class="new__minitit" ref="miniTitRef">BASED IN SOUTH KOREA</div>
+        <h1 data-split="heading" ref="headingRef" class="new__tit">CREATIVE DESIGNER</h1>
       </div>
       <div class="new__subbox">
-        <h4 class="new__name">MINJI KIM</h4>
-        <ul class="new__sublist">
+        <h4 class="new__name" ref="nameRef">MINJI KIM</h4>
+        <ul class="new__sublist" ref="subListRef">
           <li>DESIGN WORK</li>
           <li>WEB DESIGN[UI/UX]</li>
           <li>WEB DEVELOPMENT</li>
         </ul>
       </div>
-      <div class="new__minitxt">
+      <div class="new__minitxt" ref="miniTxtRef">
         {{ t('new.maintxt') }}
       </div>
     </div>
@@ -29,19 +88,33 @@ const { t, locale } = useI18n()
 
 <style lang="scss">
 .new {
+  --width: 100%;
   height: 100%;
   width: 100%;
   font-family:'GmarketSans';
 
   &__container{
     position: relative;
-    display: grid;
-    grid-template-areas: 
-    ". . ."
-    "main main main"
-    ". . ."
-    ". sub sub"
-    ". . mini";
+    &::before{
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #fff;
+      top: 15%;
+      z-index: -1;
+    }
+    &::after{
+      position: absolute;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background-color: #fff;
+      bottom: 15%;
+      z-index: -1;
+    }
   }
   &__img{
     position: absolute;
@@ -58,32 +131,72 @@ const { t, locale } = useI18n()
     padding: 15% 50px 0;
     width: 100%;
     --font-scale: 0.08; 
-    grid-area: main;
+
   }
   &__minitit{
     text-align: right;
     letter-spacing: 0.8em;
-    font-size: calc(var(--font-scale) * 14vw);
+    font-size: calc(var(--font-scale) * 13vw);
     padding-right: 5px;
+    overflow: hidden;
   }
   &__tit{
+    position: relative;
     text-align: center;
     font-size: calc(var(--font-scale) * 94vw);
     font-weight: 800;
     color: #000;
     mix-blend-mode: overlay;
+    z-index: 1;
+    &::before{
+      position: absolute;
+      content: '';
+      display: block;
+      width: 1px;
+      height: 100vh;
+      background-color: #fff;
+      top: -150%;
+      left: 10%;
+      z-index: -1;
+    }
+    &::after{
+      position: absolute;
+      content: '';
+      display: block;
+      width: 1px;
+      height: 100vh;
+      background-color: #fff;
+      top: -150%;
+      right: 5%;
+      z-index: -1;
+    }
   }
   &__subbox{
     background-color: #fff;
     grid-area: sub;
     --font-scale: 0.08;
+    width: calc(var(--width) * 0.43);
+    margin-left: 20%;
+    padding: 130px 20px 20px;
+
+
   }
   &__name{
     font-size: calc(var(--font-scale) * 20vw);
+    padding-bottom: 50px;
+    overflow: hidden;
   }
-  &__sublist{}
+  &__sublist{
+    font-size: calc(var(--font-scale) * 19vw);
+    li {
+  overflow: hidden;
+}
+  }
   &__minitxt{
-    grid-area: mini;
+    float: right;
+    width: calc(var(--width) * 0.4);
+    padding: 10px 55px 0;
+    font-size: 14px;
   }
 }
 </style>

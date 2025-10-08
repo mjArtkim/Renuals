@@ -18,6 +18,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const scrollerRef = ref(null);
 let bodyScrollBar;
+const isScrolling = ref(false)
+let scrollTimeout = null
 
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
@@ -101,6 +103,11 @@ onMounted(() => {
     end: () => "+=" + images.length * window.innerHeight,
     invalidateOnRefresh: true,
   });
+  bodyScrollBar.addListener(({ offset }) => {
+    // offset.y = 현재 스크롤 위치
+    // 예: 0이면 맨 위, 200 이상이면 버튼 표시
+    isScrolling.value = offset.y > 0
+  })
 
 });
 
@@ -123,6 +130,7 @@ const scrollToBottom = () => {
     bodyScrollBar.scrollTo(0, maxScrollTop, 800);
   }
 };
+
 
 </script>
 <template>
@@ -191,15 +199,15 @@ const scrollToBottom = () => {
       </div>
     </div> 
     <Footer></Footer>
-    <div class="scroll-btn-group">
-      <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
-      <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
-    </div>
-    <div class="scroll-btn-group2">
-      <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
-      <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
-    </div>
+   
+
   </div>
+    <transition name="fade">      
+      <div class="scroll-btn-group2" v-if="isScrolling">
+        <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
+        <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
+      </div>
+    </transition>
 </template>
 
 
@@ -207,7 +215,7 @@ const scrollToBottom = () => {
 <style scoped lang="scss">
 
 ::-webkit-scrollbar {
-  display: none !important; /* Chrome, Safari, Edge */
+  display: none !important; 
 }
 .scroller {
   height: 100vh;
@@ -219,7 +227,7 @@ const scrollToBottom = () => {
   background-size: cover;
   position: relative;
   z-index: 10;
-  height: 100vh;
+  min-height: 100vh;
   overflow: hidden !important;
 }
 .main-box {
@@ -524,38 +532,9 @@ const scrollToBottom = () => {
     color: #333;  
   }
 }
-.scroll-btn-group {
-  position: fixed;
-  right: 50px;
-  top: 8%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 999;
-  .scroll-btn {
-    padding: 5px 8px;
-    background: rgba( 255, 255, 255, 0.1 );
-    box-shadow: 0 3px 20px 0 rgba(0, 0, 0, 0.37);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-  }
-  @media (max-width: 768px) {
-    right: 20px;
-    top: 8%;
-  }
-}
-
-
 .scroll-btn:hover {
   background-color: #555 !important;
+  color: #eee !important;
 }
 
 
@@ -575,7 +554,7 @@ const scrollToBottom = () => {
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-    color: #fff;
+    color: #292929;
     border: none;
     border-radius: 6px;
     cursor: pointer;
@@ -609,5 +588,19 @@ const scrollToBottom = () => {
   100% {
     transform: translateX(-50%);
   }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px); /* 살짝 아래에서 올라오는 느낌 */
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>
