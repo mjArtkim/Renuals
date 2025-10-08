@@ -1,5 +1,5 @@
 import './assets/main.css'
-
+import './assets/font.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -8,7 +8,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import ko from './localse/ko.json'
 import en from './localse/en.json'
-
+import 'pretendard/dist/web/static/pretendard.css'
 const i18n = createI18n({
   legacy: false, 
   locale: 'en',

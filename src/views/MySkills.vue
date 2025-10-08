@@ -132,9 +132,7 @@ const scrollToBottom = () => {
     </section>
     <section id="second">
       <section class="skill-view">
-        <div class="sk-move">
-          <span v-for="n in 15" :key="n">{{ text }}</span>
-        </div>
+
         <div class="sk-views">
           <SkillVue></SkillVue>
         </div>
@@ -170,7 +168,11 @@ const scrollToBottom = () => {
         </div>
       </section>
     </section>
-    <div id="third"></div>
+    <div class="works" id="third">
+      <div class="sk-move">
+            <span v-for="n in 15" :key="n">{{ text }}</span>
+          </div>
+    </div>
     <div class="final" id="fourth">
       <div class="form-container">
         <ContactFormVue></ContactFormVue>
@@ -183,6 +185,7 @@ const scrollToBottom = () => {
           {{ t('home.moveto') }}
         </div>
         <div class="sns-box">
+
           <NameCardVue></NameCardVue>
         </div>
       </div>
@@ -493,11 +496,30 @@ const scrollToBottom = () => {
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
+.works {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;    
+  overflow: hidden !important;
+  .sk-move {
+    white-space: nowrap;
+    color: #202020;
+    overflow: hidden !important;
+    -webkit-text-stroke: 1px #eee;
+    font-size: clamp(2rem, 4vw, 5vw); 
+    font-weight: bold;
+    text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.9);
+    display: inline-block;
+    animation: scroll-left 25s linear infinite;
+  }
+}
 .sns-box {
+
   display: flex;
   gap: 20px;
   margin-top: 50px;
   font-size: 10vw;
+
   i {
     color: #333;  
   }
@@ -570,18 +592,7 @@ const scrollToBottom = () => {
   width: 100%;
   min-height: 100vh;    
   overflow: hidden !important;
-  background-color: #202020;
-  .sk-move {
-    white-space: nowrap;
-    color: #202020;
-    overflow: hidden !important;
-    -webkit-text-stroke: 1px #eee;
-    font-size: clamp(2rem, 4vw, 5vw); 
-    font-weight: bold;
-    text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.9);
-    display: inline-block;
-    animation: scroll-left 25s linear infinite;
-  }
+  background-color: #f1f1f1;
   .sk-views{
     height: 100%;
     display: flex;

@@ -1,66 +1,23 @@
+
 @font-face {
   font-family: 'GmarketSans';
-  src: url('@/assets/GmarketSansLight.otf') format('woff2');
-  font-weight: 400;
+  src: url('@/assets/font/GmarketSansLight.woff') format('woff');
+  font-weight: 300;
   font-style: light;
 }
 @font-face {
-  font-family: 'GmarketSans';
-  src: url('@/assets/GmarketSansMedium.otf') format('woff2');
-  font-weight: 600;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'GmarketSans';
-  src: url('@/assets/GmarketSansBold.otf') format('woff2');
-  font-weight: 800;
-  font-style: bold;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-Thin.woff') format('woff2');
-  font-weight: 100;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-ExtraLight.woff') format('woff2');
-  font-weight: 200;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-Light.woff') format('woff2');
-  font-weight: 300;
-  font-style: thin;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-Regular.woff') format('woff2');
-  font-weight: 400;
-  font-style: thin;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-Medium.woff') format('woff2');
+  font-family: 'GMarketSans';
+  src: url('@/assets/font/GmarketSansMedium.woff') format('woff');
   font-weight: 500;
+  font-display: swap;
 }
 @font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-SemiBold.woff') format('woff2');
-  font-weight: 600;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-Bold.woff') format('woff2');
+  font-family: 'GMarketSans';
+  src: url('@/assets/font/GmarketSansBold.woff') format('woff');
   font-weight: 700;
-  font-style: bold;
+  font-display: swap;
 }
 @font-face {
   font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-ExtraBold.woff') format('woff2');
-  font-weight: 800;
-}
-@font-face {
-  font-family: 'Pretendard';
-  src: url('@/assets/Pretendard-Black.woff') format('woff2');
-  font-weight: 900;
+  src: url('/node_modules/pretendard/dist/web/static/woff2/Pretendard-Regular.woff2') format('woff2');
 }
