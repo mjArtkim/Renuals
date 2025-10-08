@@ -198,7 +198,6 @@ onMounted(() => {
     }
   }
   @media (max-width: 520px) {
-
     &__img{
       width: 100%;
       height: 100%;
@@ -241,6 +240,83 @@ onMounted(() => {
       padding: 50px 30px 0;
       font-size: 14px;
     }
+  }
+  @media (min-width: 521px) and (max-width: 761px) {
+    &__img{
+      width: 100%;
+      height: 100%;
+      background-position: 85% 0%;
+      background-size: auto 75%;
+    }
+    &__main{
+      margin: 50px 0 0;
+      padding: 15% 30px 15%;
+    }
+    &__minitit{
+      position: absolute;
+      width: calc(var(--width) * 0.5);
+      text-align: left;
+      letter-spacing: 0.5em;
+      padding-right: 0;
+      padding-left: 5px;
+    }
+    &__tit{
+      padding-top: 20%;
+      text-align: left;
+      &::after{
+        display: none;
+      }
+    }
+    &__subbox{
+      width: calc(var(--width) * 0.8);
+      margin-left: 0%;
+      margin: 0 30px;
+      padding: 30px 10px 10px;
+    }
+    &__name{
+      padding-bottom: 30px;
+      overflow: hidden;
+    }
+    &__minitxt{
+      float: none;
+      text-align: center;
+      width: 100%;
+      padding: 80px 30px 0;
+      font-size: 14px;
+    }
+  }
+  @media (min-width: 762px) and (max-width: 1199px) {
+    &__img{
+      width: 100%;
+      background-size: auto 80%;
+    }
+    &__main{
+      margin: 50px 0 0;
+      padding: 10% 30px 0;
+    }
+    &__minitit{
+      text-align: left;
+      letter-spacing: 0.5em;
+      padding-right: 0;
+      padding-left: 5px;
+    }
+    &__tit{
+      text-align: left;
+      &::after{
+        display: none;
+      }
+    }
+    &__subbox{
+      width: calc(var(--width) * 0.5);
+      margin-left: 15%;
+      margin-top: 16%;
+      padding: 80px 10px 10px;
+    }
+    &__name{
+      padding-bottom: 30px;
+      overflow: hidden;
+    }
+
   }
 }
 </style>
