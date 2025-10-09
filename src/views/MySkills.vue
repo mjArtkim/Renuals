@@ -9,6 +9,7 @@ import ContactFormVue from '@/components/ContactForm.vue'
 import { useI18n } from 'vue-i18n'
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import AboutVue from '@/components/About.vue'
+import SkillView from '@/components/NewSkill.vue'
 import Footer from '@/components/Footer.vue'
 
 const text = ref(' SKILLS')
@@ -141,6 +142,9 @@ const scrollToBottom = () => {
     <section class="skill-view">
       <div class="sk-views">
         <AboutVue></AboutVue>
+      </div>
+      <div class="new-skill">
+        <SkillView></SkillView>
       </div>
     </section>
     <section class="black">
@@ -482,23 +486,20 @@ const scrollToBottom = () => {
   overflow: hidden !important;
   .sk-move {
     white-space: nowrap;
-    color: #202020;
+    color: #f1f1f1;
     overflow: hidden !important;
-    -webkit-text-stroke: 1px #eee;
+    -webkit-text-stroke: 1px #292929;
     font-size: clamp(2rem, 4vw, 5vw); 
     font-weight: bold;
-    text-shadow: 0px 0px 25px rgba(0, 0, 0, 0.9);
     display: inline-block;
     animation: scroll-left 25s linear infinite;
   }
 }
 .sns-box {
-
   display: flex;
   gap: 20px;
   margin-top: 50px;
   font-size: 10vw;
-
   i {
     color: #333;  
   }
@@ -542,7 +543,6 @@ const scrollToBottom = () => {
   position: relative;
   width: 100%;
   min-height: 100vh;    
-  overflow: hidden !important;
   background-color: #f1f1f1;
   .sk-views{
     height: 100%;
@@ -552,7 +552,11 @@ const scrollToBottom = () => {
     justify-content: center;
   }
 }
-
+.new-skill {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
 @keyframes scroll-left {
   0% {
     transform: translateX(0%);

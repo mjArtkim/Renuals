@@ -93,5 +93,42 @@ export const skills = {
       view: '/images/skills/skils_e_07.webp', 
       mview:'/images/skills/skils_em_07.webp'
     }
+  ],
+  newskill:[
+    {
+      id: 1,
+      title: 'WEB DESIGN',
+      tags: ['Responsive Design', 'User-Centered', 'Effective Navigation', 'Interactive Elements', 'Web Accessibility'],
+      img: '/images/skills/skill_01.webp',
+      textKey: 'new.skills.webdesign'
+    },
+    {
+      id: 2,
+      title: 'APP DESIGN',
+      tags: ['Design systems', 'Responsive', 'Consistent', 'Visual Aesthetics', 'Interactivity'],
+      img: '/images/skills/skill_02.webp',
+      textKey: 'new.skills.appdesign'
+    },
+    {
+      id: 3,
+      title: 'CREATIVE DESIGN',
+      tags: ['Digital Design', 'Craft Design', 'Video Design', 'Social Media Design', 'Presentation Design'],
+      img: '/images/skills/skill_03.webp',
+      textKey: 'new.skills.creative'
+    },
+    {
+      id: 4,
+      title: 'UI·UX DESIGN',
+      tags: ['Wireframing', 'Prototyping', 'Visual Aesthetics', 'Interactivity'],
+      img: '/images/skills/skill_04.webp',
+      textKey: 'new.skills.uiux'
+    },
+    {
+      id: 5,
+      title: 'DEVELOPMENT',
+      tags: ['Frontend', 'Vue.js', 'SCSS/Javascript', 'Typescript', 'Flutter'],
+      img: '/images/skills/skill_05.webp',
+      textKey: 'new.skills.development'
+    }
   ]
 }

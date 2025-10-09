@@ -248,7 +248,7 @@ function handleKeydown(event, index) {
   top: 0;
   right: 0;
   width: 100%;
-  padding: 50px 50px 20px;
+  padding: 40px 50px 20px;
   display: grid;
   grid-template-columns: 20% 80%;
   .pf-ul {

@@ -143,14 +143,12 @@
     "hello": "HELLO",
     "im": "I'M MINJI KIM",
     "imtxt": "I deliver company objectives through web and digital design by creating modern, user-friendly and responsive visual solutions. Responsive visual solutions, while collaborating with Cross-functional teams, developers and planners—to ensure clarity And engagement and alignment with project goals.",
-    "skills":[
-      {
-        "webdesign":"In my web design, I implement user-centered responsive layouts and effective navigation to ensure accessibility. Additionally, I incorporate interactive elements as supplementary features to enhance the overall user experience.",
-        "appdesign":"In my app design process, I take into account user needs and behavior patterns, service objectives, information architecture, platform-specific requirements, visual consistency, accessibility, and technical constraints to create effective and user-centered solutions.",
-        "creative":"ADD CONTENT",
-        "uiux":"ADD CONTENT",
-        "development":"ADD CONTENT"
-      }
-    ]
+    "skills":{
+      "webdesign":"In my web design, I implement user-centered responsive layouts and effective navigation to ensure accessibility. Additionally, I incorporate interactive elements as supplementary features to enhance the overall user experience.",
+      "appdesign":"In my app design process, I take into account user needs and behavior patterns, service objectives, information architecture, platform-specific requirements, visual consistency, accessibility, and technical constraints to create effective and user-centered solutions.",
+      "creative":"ADD CONTENT",
+      "uiux":"ADD CONTENT",
+      "development":"ADD CONTENT"
+    }
   }
 }

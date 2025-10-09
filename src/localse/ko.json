@@ -45,6 +45,9 @@
   },
   "menu": {
     "home": "홈",
+    "about": "ABOUT",
+    "contact": "CONTECT",
+    "skill": "SKILLS",
     "mystory": "경험",
     "work": "작업",
     "design": "디자인 작업",
