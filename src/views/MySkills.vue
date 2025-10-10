@@ -12,7 +12,7 @@ import AboutVue from '@/components/About.vue'
 import SkillView from '@/components/NewSkill.vue'
 import Footer from '@/components/Footer.vue'
 
-const text = ref(' SKILLS')
+const text = ref(' WORKS')
 gsap.registerPlugin(Physics2DPlugin);
 const { t, locale } = useI18n()
 gsap.registerPlugin(ScrollTrigger);

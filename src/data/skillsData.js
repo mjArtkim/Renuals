@@ -97,38 +97,53 @@ export const skills = {
   newskill:[
     {
       id: 1,
-      title: 'WEB DESIGN',
+      color: 'red',
+      titleMain: 'WEB',
+      titleSub: 'DESIGN',
       tags: ['Responsive Design', 'User-Centered', 'Effective Navigation', 'Interactive Elements', 'Web Accessibility'],
       img: '/images/skills/skill_01.webp',
-      textKey: 'new.skills.webdesign'
+      textKey: 'new.skills.webdesign',
+      isHovered: false
     },
     {
       id: 2,
-      title: 'APP DESIGN',
+      color: 'red',
+      titleMain: 'APP',
+      titleSub: 'DESIGN',
       tags: ['Design systems', 'Responsive', 'Consistent', 'Visual Aesthetics', 'Interactivity'],
       img: '/images/skills/skill_02.webp',
-      textKey: 'new.skills.appdesign'
+      textKey: 'new.skills.appdesign',
+      isHovered: false
     },
     {
       id: 3,
-      title: 'CREATIVE DESIGN',
+      color: 'red',
+      titleMain: 'CREATIVE',
+      titleSub: 'DESIGN',
       tags: ['Digital Design', 'Craft Design', 'Video Design', 'Social Media Design', 'Presentation Design'],
       img: '/images/skills/skill_03.webp',
-      textKey: 'new.skills.creative'
+      textKey: 'new.skills.creative',
+      isHovered: false
     },
     {
       id: 4,
-      title: 'UI·UX DESIGN',
+      color: 'red',
+      titleMain: 'UI/UX',
+      titleSub: 'DESIGN',
       tags: ['Wireframing', 'Prototyping', 'Visual Aesthetics', 'Interactivity'],
       img: '/images/skills/skill_04.webp',
-      textKey: 'new.skills.uiux'
+      textKey: 'new.skills.uiux',
+      isHovered: false
     },
     {
       id: 5,
-      title: 'DEVELOPMENT',
+      color: 'red',
+      titleMain: 'DEVELOPMENT',
+      titleSub: '',
       tags: ['Frontend', 'Vue.js', 'SCSS/Javascript', 'Typescript', 'Flutter'],
       img: '/images/skills/skill_05.webp',
-      textKey: 'new.skills.development'
+      textKey: 'new.skills.development',
+      isHovered: false
     }
   ]
 }
