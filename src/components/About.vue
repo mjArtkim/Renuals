@@ -15,7 +15,7 @@ let splitInstance = null
 let tween = null
 watch(locale, () => {
   if (!splitInstance) return
-  splitInstance.revert() // 기존 span 제거
+  splitInstance.revert()
 
   const sheading = document.querySelector('[data-split="sheading"]')
   sheading.innerHTML = `
@@ -123,7 +123,7 @@ onBeforeUnmount(() => {
   }
   &__tit{
     font-family:'GmarketSans';
-    font-size: clamp(50px, calc(var(--font-scale) * 94vw), 150px);
+    font-size: clamp(60px, calc(var(--font-scale) * 94vw), 150px);
     text-align: center;
   }
   &__txt{
@@ -133,6 +133,7 @@ onBeforeUnmount(() => {
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    text-align: center;
   }
   &__txt1{
     padding: 0 20%;

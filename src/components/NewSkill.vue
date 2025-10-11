@@ -124,8 +124,6 @@ onMounted(() => {
     display: flex;
     justify-content: space-around;
     gap: 10px;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
   }
   &__li{
     position: relative;
@@ -171,8 +169,6 @@ onMounted(() => {
   }
   &__liflex{
     height: 100%;
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
     box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.3);
   
   }
@@ -204,12 +200,13 @@ onMounted(() => {
     inset: 0;
     opacity: 0;
     top: 0px;
-    transform: translateY(20px);
+    transform: translateY(0px);
     pointer-events: none;
     padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border: 1px solid #ddd;
   }
   &__con{    
     display: flex;
@@ -274,11 +271,11 @@ onMounted(() => {
       align-items: baseline;
     }
     &__name{
-      width: 50%;
-      top: 45%;
-      left: 0%;
-      -webkit-transform: skew(-10deg) rotate(-10deg) translate(50%, 0%);
-      transform: skew(-10deg) rotate(-10deg) translate(50%, 0%);
+      width: 200px;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: skew(-10deg) rotate(-10deg) translate(-50%, -100%);
+      transform: skew(-10deg) rotate(-10deg) translate(-50%, -100%);
     }
     &__imga{
       margin-top: 10px;
@@ -300,8 +297,8 @@ onMounted(() => {
         transform: scale(1.3);
       }
       .skill__name {
-        -webkit-transform: skew(-10deg) rotate(-10deg) translate(-150%, -50%);
-        transform: skew(-10deg) rotate(-10deg) translate(-150%, -50%);
+        -webkit-transform: skew(-10deg) rotate(-10deg) translate(-300%, -50%);
+        transform: skew(-10deg) rotate(-10deg) translate(-300%, -50%);
       }
       .skill__inner {
         pointer-events: auto;

@@ -10,6 +10,7 @@ import { useI18n } from 'vue-i18n'
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import AboutVue from '@/components/About.vue'
 import SkillView from '@/components/NewSkill.vue'
+import ToolView from '@/components/Tools.vue'
 import Footer from '@/components/Footer.vue'
 
 const text = ref(' WORKS')
@@ -69,12 +70,10 @@ onMounted(() => {
   tl.to(image, { height: 0 });
 });
 
-  // panel-text zIndex 설정
   gsap.set(".panel-text", {
     zIndex: (i, target, targets) => targets.length - i,
   });
 
-  // 텍스트 애니메이션
   const texts = gsap.utils.toArray(".panel-text");
   texts.forEach((text, i) => {
     const tl = gsap.timeline({
@@ -98,15 +97,12 @@ onMounted(() => {
     scroller: scrollerRef.value,
     scrub: true,
     markers: false,
-    // pinSpacing: false,
     pin: true,
     start: () => "top top",
     end: () => "+=" + images.length * window.innerHeight,
     invalidateOnRefresh: true,
   });
   bodyScrollBar.addListener(({ offset }) => {
-    // offset.y = 현재 스크롤 위치
-    // 예: 0이면 맨 위, 200 이상이면 버튼 표시
     isScrolling.value = offset.y > 0
   })
 
@@ -148,39 +144,42 @@ const scrollToBottom = () => {
       </div>
     </section>
     <section class="black">
-        <div class="text-wrap">
-          <div class="panel-text white-text">
-            <div class="pan-tit">{{ t('menu.strengths') }}</div>
-          </div>
-          <div class="panel-text blue-text">
-            <div class="pan-tit">{{ t('menu.endtoend') }}</div>
-            <div class="pan-txt">{{ t('menu.endtoendtxt') }}</div>
-          </div>
-          <div class="panel-text yellow-text">
-            <div class="pan-tit">{{ t('menu.usercd') }}</div>
-            <div class="pan-txt">{{ t('menu.usercdtxt') }}</div>     
-          </div>
-          <div class="panel-text orange-text">
-            <div class="pan-tit">{{ t('menu.collabo') }}</div>
-            <div class="pan-txt">{{ t('menu.collabotxt') }}</div>
-          </div>
-          <div class="panel-text white-text2">
-            <div class="pan-tit">{{ t('menu.global') }}</div>
-            <div class="pan-txt">{{ t('menu.globaltxt') }}</div>    
-          </div>
+      <div class="text-wrap">
+        <div class="panel-text white-text">
+          <div class="pan-tit">{{ t('menu.strengths') }}</div>
         </div>
-        <div class="p-wrap">
-          <div class="panel purple"></div>
-          <div class="panel blue"></div>
-          <div class="panel red"></div>
-          <div class="panel orange"></div>
-          <div class="panel white"></div>
+        <div class="panel-text blue-text">
+          <div class="pan-tit">{{ t('menu.endtoend') }}</div>
+          <div class="pan-txt">{{ t('menu.endtoendtxt') }}</div>
         </div>
-      </section>
+        <div class="panel-text yellow-text">
+          <div class="pan-tit">{{ t('menu.usercd') }}</div>
+          <div class="pan-txt">{{ t('menu.usercdtxt') }}</div>     
+        </div>
+        <div class="panel-text orange-text">
+          <div class="pan-tit">{{ t('menu.collabo') }}</div>
+          <div class="pan-txt">{{ t('menu.collabotxt') }}</div>
+        </div>
+        <div class="panel-text white-text2">
+          <div class="pan-tit">{{ t('menu.global') }}</div>
+          <div class="pan-txt">{{ t('menu.globaltxt') }}</div>    
+        </div>
+      </div>
+      <div class="p-wrap">
+        <div class="panel purple"></div>
+        <div class="panel blue"></div>
+        <div class="panel red"></div>
+        <div class="panel orange"></div>
+        <div class="panel white"></div>
+      </div>
+    </section>
+    <div class="tools">
+      <ToolView></ToolView>
+    </div>
     <div class="works" id="third">
       <div class="sk-move">
-            <span v-for="n in 15" :key="n">{{ text }}</span>
-          </div>
+        <span v-for="n in 15" :key="n">{{ text }}</span>
+      </div>
     </div>
     <div class="final" id="fourth">
       <div class="form-container">
@@ -188,7 +187,6 @@ const scrollToBottom = () => {
       </div>
       <div>
         <div class="sns-box">
-
           <NameCardVue></NameCardVue>
         </div>
       </div>
