@@ -4,92 +4,79 @@ export const skills = {
       id: 'xd', 
       name: 'Adobe XD', 
       icon: '/images/skills/xd_i.webp', 
-      view: '/images/skills/skils_d_01.webp',
-      mview: '/images/skills/skils_em_01.webp'
+      content: 'new.program.xd',
     },
     { 
       id: 'ps', 
       name: 'Adobe Photoshop', 
       icon: '/images/skills/ps_i.webp', 
-      view: '/images/skills/skils_d_02.webp',
-      mview: '/images/skills/skils_em_02.webp'
+      content: 'new.program.xd',
     },
     { 
       id: 'ai', 
       name: 'Adobe Illustrator', 
       icon: '/images/skills/ai_i.webp', 
-      view: '/images/skills/skils_d_03.webp',
-      mview: '/images/skills/skils_em_03.webp'
+      content: 'new.program.xd',
     },
     { 
       id: 'pr', 
       name: 'Adobe Premiere Pro', 
       icon: '/images/skills/pr_i.webp', 
-      view: '/images/skills/skils_d_04.webp',
-      mview: '/images/skills/skils_em_04.webp'
+      content: 'new.program.xd',
     },
     { 
       id: 'ae', 
       name: 'Adobe After Effects', 
       icon: '/images/skills/ae_i.webp', 
-      view: '/images/skills/skils_d_05.webp',
-      mview: '/images/skills/skils_em_05.webp'
+      content: 'new.program.xd',
     },
     { 
       id: 'fg', 
       name: 'Figma', 
       icon: '/images/skills/fg_i.webp', 
-      view: '/images/skills/skils_d_06.webp',
-      mview: '/images/skills/skils_em_06.webp'
+      content: 'new.program.xd',
     },
     { 
       id: 'vue', 
       name: 'VUE', 
       icon: '/images/skills/vue_i.webp', 
-      view: '/images/skills/skils_e_01.webp', 
-      mview:'/images/skills/skils_dm_01.webp' 
+      content: 'new.program.xd',
     },
     { 
       id: 'html', 
       name: 'HTML', 
       icon: '/images/skills/html_i.webp', 
-      view: '/images/skills/skils_e_02.webp', 
-      mview:'/images/skills/skils_dm_02.webp' 
+      content: 'new.program.xd',
     },
     { 
       id: 'css', 
       name: 'CSS', 
       icon: '/images/skills/css_i.webp', 
-      view: '/images/skills/skils_e_03.webp', 
-      mview:'/images/skills/skils_dm_03.webp' 
+      content: 'new.program.xd',
     },
     { 
       id: 'js', 
       name: 'Javascript', 
       icon: '/images/skills/javascript_i.webp', 
-      view: '/images/skills/skils_e_04.webp', 
-      mview:'/images/skills/skils_dm_04.webp' 
+      content: 'new.program.xd',
     },
     { 
       id: 'ts', 
       name: 'Typescript', 
       icon: '/images/skills/typescript_i.webp', 
-      view: '/images/skills/skils_e_05.webp', 
-      mview:'/images/skills/skils_dm_05.webp' 
+      content: 'new.program.xd',
     },
     { 
       id: 'flutter', 
       name: 'Flutter', 
       icon: '/images/skills/flutter_i.webp', 
-      view: '/images/skills/skils_e_06.webp', 
-      mview:'/images/skills/skils_dm_06.webp' 
+      content: 'new.program.xd',
     },
     { 
       id: 'php', 
       name: 'PHP', 
       icon: '/images/skills/php_i.webp', 
-      view: '/images/skills/skils_e_07.webp', 
-      mview:'/images/skills/skils_em_07.webp'
+      content: 'new.program.xd',
     }
   ],
   newskill:[

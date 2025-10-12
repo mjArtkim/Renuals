@@ -148,7 +148,7 @@ onBeforeUnmount(() => {
   }
   &__im {
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -178,6 +178,7 @@ onBeforeUnmount(() => {
   }
   @media (max-width: 800px) {
     &__im {
+      min-height: 80vh;
       img{
         width: 80%;
       }
@@ -189,6 +190,9 @@ onBeforeUnmount(() => {
     }
   }
   @media (max-width: 1199px) {
+    &__im {
+      min-height: 80vh;
+    }
     &__mail {
       margin: 5% 10% 10%;
     }

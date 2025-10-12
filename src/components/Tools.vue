@@ -1,10 +1,15 @@
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, computed } from 'vue'
 import { skills } from '@/data/skillsData.js'
 import { useI18n } from 'vue-i18n'
+import SafariView from '@/components/Safari.vue'
 const { t } = useI18n()
 const navItems = ref([])
-
+const selectedName = ref('') 
+const isSafariVisible = ref(false)
+const selectedSkill = computed(() => {
+  return skills.design.find(item => item.name === selectedName.value) || null
+})
 onMounted(async () => {
   await nextTick()
   navItems.value = document.querySelectorAll('.nav-item')
@@ -32,16 +37,36 @@ onMounted(async () => {
     })
   })
 })
+const handleClick = (name) => {
+  selectedName.value = name
+  isSafariVisible.value = true
+}
 </script>
 
 <template>
   <div class="cloneable">
+    <div class="title-box">
+      <h1>TOOL</h1>
+      <h2 v-if="selectedName" class="tool-name">
+        <SafariView 
+          v-if="isSafariVisible"
+          :title="selectedName"
+          @close="isSafariVisible = false"
+        >
+          <div v-if="selectedSkill">
+            {{ selectedSkill.content ? t(selectedSkill.content) : '' }}
+          </div>
+        </SafariView>
+      </h2>
+      <h2 v-else class="tool-none">Click App</h2>
+    </div>
     <div class="nav-container">
       <div class="nav-list">
         <div
           v-for="item in skills.design" 
           :key="item.id" 
           class="nav-item"
+          @click="handleClick(item.name)"
         >
           <a href="#" class="nav-item__link"> 
             <img :src="item.icon" />
@@ -57,15 +82,27 @@ onMounted(async () => {
 
 <style lang="scss">
 .cloneable {
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  display: flex;
+  min-height: 80vh;
   position: relative;
+  --font-scale: 0.08;
+  padding: 0 50px;
+  .title-box {
+    position: relative;
+    z-index: 50;
+  }
+  h1 {
+    font-family:'GmarketSans';
+    font-size: clamp(30px, calc(var(--font-scale) * 60vw), 80px);
+    text-align: center;
+    margin-bottom: 8%;
+  }
+  .tool-none{
+    text-align: center;
+  }
 }
 .nav-container {
   position: absolute;
-  top: 0;
+  bottom: 0;
   justify-content: center;
   align-items: flex-end;
   display: flex;
@@ -117,21 +154,24 @@ onMounted(async () => {
 }
 .nav-item__tooltip {
   z-index: 0;
-  background-color: var(--color-neutral-100);
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  color: #fff;
   opacity: 0;
   white-space: nowrap;
-  border-radius: .25em;
-  padding: .4em .5em;
-  font-size: 1em;
+  padding: 5px 10px;
+  border-radius: .1em;
+  text-align: center;
+  font-size: 0.7em;
   transition: transform .5s cubic-bezier(.16, 1, .3, 1), opacity .5s cubic-bezier(.16, 1, .3, 1);
   position: absolute;
-  top: 0;
-  transform: translate(0, -80%);
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-weight: 400;
 }
 
 .nav-item:hover .nav-item__tooltip{
 	opacity: 1;
-  transform:translate(0px, -140%);
+  transform: translate(-50%, -150%); 
 }
 </style>

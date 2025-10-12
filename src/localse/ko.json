@@ -151,7 +151,10 @@
         "uiux":"ADD CONTENT",
         "development":"ADD CONTENT"
       }
-    ]
+    ],
+    "program":{
+      "xd":"add content"
+    }
   }
 
 }
