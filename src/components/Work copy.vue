@@ -16,14 +16,22 @@ function initSlider() {
   let activeElement 
   const totalSlides = slides.length
 
-  totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides  
+  totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides  ;
+
   stepsParent.innerHTML = '' 
+
   slides.forEach((_, index) => {
   const stepClone = stepElement.cloneNode(true) 
   stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1 
-  stepsParent.appendChild(stepClone) }) 
-  const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]') 
-  const loop = horizontalLoop(slides, { paused: true, draggable: true, center: false, 
+    stepsParent.appendChild(stepClone) 
+  }) 
+
+  const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]') ;
+  const loop = horizontalLoop(slides, { 
+    paused: true, 
+    draggable: true, 
+    center: false, 
+
   onChange: (element, index) => { 
     activeElement && activeElement.classList.remove('active');
     const nextSibling = element.nextElementSibling || slides[0]; 
@@ -93,6 +101,7 @@ function horizontalLoop(items, config) {
           ? items[0].parentNode
           : gsap.utils.toArray(center)[0] || items[0].parentNode,
       totalWidth,
+
       getTotalWidth = () =>
         items[length - 1].offsetLeft +
         (xPercents[length - 1] / 100) * widths[length - 1] -
@@ -101,6 +110,7 @@ function horizontalLoop(items, config) {
         items[length - 1].offsetWidth *
           gsap.getProperty(items[length - 1], 'scaleX') +
         (parseFloat(config.paddingRight) || 0),
+        
       populateWidths = () => {
         let b1 = container.getBoundingClientRect(),
           b2

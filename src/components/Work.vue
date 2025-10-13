@@ -1,41 +1,56 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue' 
-import { gsap } from 'gsap' 
-import { Draggable } from 'gsap/Draggable' 
-import { InertiaPlugin } from 'gsap/InertiaPlugin' 
-gsap.registerPlugin(Draggable, InertiaPlugin) 
-function initSlider() { 
-  const wrapper = document.querySelector('[data-slider="list"]') 
-  const slides = gsap.utils.toArray('[data-slider="slide"]') 
-  const nextButton = document.querySelector('[data-slider="button-next"]')
-  const prevButton = document.querySelector('[data-slider="button-prev"]') 
-  const totalElement = document.querySelector('[data-slide-count="total"]') 
-  const stepElement = document.querySelector('[data-slide-count="step"]') 
-  const stepsParent = stepElement.parentElement 
+import { onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-  let activeElement 
+gsap.registerPlugin(Draggable, InertiaPlugin)
+
+function initSlider() {
+  const isMobile = window.innerWidth <= 880
+  const wrapper = document.querySelector('[data-slider="list"]')
+  const slides = gsap.utils.toArray('[data-slider="slide"]')
+
+  const nextButton = document.querySelector('[data-slider="button-next"]')
+  const prevButton = document.querySelector('[data-slider="button-prev"]')
+
+  const totalElement = document.querySelector('[data-slide-count="total"]')
+  const stepElement = document.querySelector('[data-slide-count="step"]')
+  const stepsParent = stepElement.parentElement
+
+  let activeElement
   const totalSlides = slides.length
 
-  totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides  
-  stepsParent.innerHTML = '' 
+  totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides
+
+  stepsParent.innerHTML = ''
   slides.forEach((_, index) => {
-  const stepClone = stepElement.cloneNode(true) 
-  stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1 
-  stepsParent.appendChild(stepClone) }) 
-  const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]') 
-  const loop = horizontalLoop(slides, { paused: true, draggable: true, center: false, 
-  onChange: (element, index) => { 
-    activeElement && activeElement.classList.remove('active');
-    const nextSibling = element.nextElementSibling || slides[0]; 
-    nextSibling.classList.add('active');
-    activeElement = nextSibling; 
-    gsap.to(allSteps, { 
-      y: `${-100 * index}%`, 
-      ease: 'power3',
-      duration: 0.45 
-      }) 
-    } 
-  }) 
+    const stepClone = stepElement.cloneNode(true)
+    stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1
+    stepsParent.appendChild(stepClone)
+  })
+
+  const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]')
+  const loopFn = isMobile ? verticalLoop : horizontalLoop;
+  const loop = loopFn(slides, { 
+    paused: true,
+    draggable: true,
+    center: false,
+
+    onChange: (element, index) => {
+      activeElement && activeElement.classList.remove('active');
+      const nextSibling = element.nextElementSibling || slides[0];
+      nextSibling.classList.add('active');
+      activeElement = nextSibling;
+      // const stepIndex = ((index % slides.length) + slides.length) % slides.length;
+      gsap.to(allSteps, {
+        y: `${-100 * index}%`,
+        ease: 'power3',
+        duration: 0.45
+      });
+    }
+  })
+
   slides.forEach((slide, i) =>
     slide.addEventListener('click', () =>
       loop.toIndex(i - 1, { ease: 'power3', duration: 0.725 })
@@ -49,6 +64,7 @@ function initSlider() {
     loop.previous({ ease: 'power3', duration: 0.725 })
   )
 }
+
 function horizontalLoop(items, config) {
   let timeline
   items = gsap.utils.toArray(items)
@@ -309,6 +325,273 @@ function horizontalLoop(items, config) {
 
   return timeline
 }
+
+function verticalLoop(items, config) {
+  let timeline;
+  items = gsap.utils.toArray(items);
+  config = config || {};
+
+  gsap.context(() => {
+    let onChange = config.onChange,
+      lastIndex = 0,
+      tl = gsap.timeline({
+        repeat: config.repeat,
+        onUpdate:
+          onChange &&
+          function () {
+            let i = tl.closestIndex();
+            // i = ((i % items.length) + items.length) % items.length; 
+            if (lastIndex !== i) {
+              lastIndex = i;
+              onChange(items[i], i);
+            }
+          },
+        paused: config.paused,
+        defaults: { ease: "none" },
+        onReverseComplete: () =>
+          tl.totalTime(tl.rawTime() + tl.duration() * 100),
+      }),
+      length = items.length,
+      startY = items[0].offsetTop,
+      times = [],
+      heights = [],
+      spaceBefore = [],
+      yPercents = [],
+      curIndex = 0,
+      indexIsDirty = false,
+      center = config.center,
+      pixelsPerSecond = (config.speed || 1) * 100,
+      snap =
+        config.snap === false
+          ? (v) => v
+          : gsap.utils.snap(config.snap || 1),
+      timeOffset = 0,
+      container =
+        center === true
+          ? items[0].parentNode
+          : gsap.utils.toArray(center)[0] || items[0].parentNode,
+      totalHeight,
+      
+      getTotalHeight = () =>
+        items[length - 1].offsetTop +
+        (yPercents[length - 1] / 100) * heights[length - 1] -
+        startY +
+        spaceBefore[0] +
+        items[length - 1].offsetHeight *
+          gsap.getProperty(items[length - 1], "scaleY") +
+        (parseFloat(config.paddingBottom) || 0),
+
+      populateHeights = () => {
+        let b1 = container.getBoundingClientRect(),
+          b2;
+        items.forEach((el, i) => {
+          heights[i] = parseFloat(gsap.getProperty(el, "height", "px"));
+          yPercents[i] = snap(
+            (parseFloat(gsap.getProperty(el, "y", "px")) / heights[i]) * 100 +
+              gsap.getProperty(el, "yPercent")
+          );
+          b2 = el.getBoundingClientRect();
+          spaceBefore[i] = b2.top - (i ? b1.bottom : b1.top);
+          b1 = b2;
+        });
+        gsap.set(items, { yPercent: (i) => yPercents[i] });
+        totalHeight = getTotalHeight();
+      },
+      timeWrap,
+      populateOffsets = () => {
+        timeOffset = center
+          ? tl.duration() * (container.offsetHeight / 2) / totalHeight
+          : 0
+        center &&
+          times.forEach((t, i) => {
+            times[i] = timeWrap(
+              tl.labels['label' + i] +
+                (tl.duration() * heights[i]) / 2 / totalHeight -
+                timeOffset
+            )
+          })
+      },
+      getClosest = (values, value, wrap) => {
+        let i = values.length,
+          closest = 1e10,
+          index = 0,
+          d
+        while (i--) {
+          d = Math.abs(values[i] - value)
+          if (d > wrap / 2) d = wrap - d
+          if (d < closest) {
+            closest = d
+            index = i
+          }
+        }
+        return index
+      },
+      populateTimeline = () => {
+        let i, item, curY, distanceToStart, distanceToLoop;
+        tl.clear();
+        for (i = 0; i < length; i++) {
+          item = items[i];
+          curY = (yPercents[i] / 100) * heights[i];
+          distanceToStart = item.offsetTop + curY - startY + spaceBefore[0];
+          distanceToLoop =
+            distanceToStart + heights[i] * gsap.getProperty(item, "scaleY");
+
+          tl.to(
+            item,
+            {
+              yPercent: snap(((curY - distanceToLoop) / heights[i]) * 100),
+              duration: distanceToLoop / pixelsPerSecond,
+            },
+            0
+          )
+            .fromTo(
+              item,
+              {
+                yPercent: snap(
+                  ((curY - distanceToLoop + totalHeight) / heights[i]) * 100
+                ),
+              },
+              {
+                yPercent: yPercents[i],
+                duration:
+                  (curY - distanceToLoop + totalHeight - curY) / pixelsPerSecond,
+                immediateRender: false,
+              },
+              distanceToLoop / pixelsPerSecond
+            )
+            .add("label" + i, distanceToStart / pixelsPerSecond);
+          times[i] = distanceToStart / pixelsPerSecond;
+        }
+        timeWrap = gsap.utils.wrap(0, tl.duration())
+      },
+      refresh = (deep) => {
+        let progress = tl.progress();
+        tl.progress(0, true);
+        populateHeights();
+        deep && populateTimeline();
+        populateOffsets()
+        deep && tl.draggable
+          ? tl.time(times[curIndex], true)
+          : tl.progress(progress, true);
+      },
+      onResize = () => refresh(true),
+      proxy;
+
+    gsap.set(items, { y: 0 });
+    populateHeights();
+    populateTimeline();
+    populateOffsets()
+    window.addEventListener("resize", onResize);
+
+    function toIndex(index, vars) {
+      vars = vars || {}
+      Math.abs(index - curIndex) > length / 2 &&
+        (index += index > curIndex ? -length : length)
+      let newIndex = gsap.utils.wrap(0, length, index),
+        time = times[newIndex]
+      if (time > tl.time() !== index > curIndex && index !== curIndex) {
+        time += tl.duration() * (index > curIndex ? 1 : -1)
+      }
+      if (time < 0 || time > tl.duration()) {
+        vars.modifiers = { time: timeWrap }
+      }
+      curIndex = newIndex
+      vars.overwrite = true
+      gsap.killTweensOf(proxy)
+      return vars.duration === 0
+        ? tl.time(timeWrap(time))
+        : tl.tweenTo(time, vars)
+    }
+    tl.toIndex = (index, vars) => toIndex(index, vars);
+    tl.closestIndex = (setCurrent) => {
+      let index = getClosest(times, tl.time(), tl.duration())
+      if (setCurrent) {
+        curIndex = index
+        indexIsDirty = false
+      }
+      return index
+    }
+
+    tl.current = () => (indexIsDirty ? tl.closestIndex(true) : curIndex)
+    tl.next = (vars) => toIndex(tl.current() + 1, vars);
+    tl.previous = (vars) => toIndex(tl.current() - 1, vars);
+    tl.times = times;
+
+    tl.progress(1, true).progress(0, true);
+    if (config.reversed) {
+      tl.vars.onReverseComplete()
+      tl.reverse()
+    }
+    if (config.draggable && typeof Draggable === "function") {
+      proxy = document.createElement("div");
+      let wrap = gsap.utils.wrap(0, 1),
+        ratio,
+        startProgress,
+        draggable,
+        dragSnap,
+        lastSnap,
+        initChangeY,
+        wasPlaying,
+        align = () =>
+          tl.progress(wrap(startProgress + (draggable.startY - draggable.y) * ratio)),
+        syncIndex = () => tl.closestIndex(true)
+
+      draggable = Draggable.create(proxy, {
+        trigger: items[0].parentNode,
+        type: "y",
+        inertia: true,
+        onPressInit() {
+          let x = this.y
+          gsap.killTweensOf(tl)
+          wasPlaying = !tl.paused()
+          tl.pause()
+          startProgress = tl.progress()
+          refresh()
+          ratio = 1 / totalHeight
+          initChangeY = startProgress / -ratio - x
+          gsap.set(proxy, { y: startProgress / -ratio })
+        },
+        onDrag: align,
+        onThrowUpdate: align,
+        overshootTolerance: 0,
+        inertia: true,
+        snap(value) {
+          if (Math.abs(startProgress / -ratio - this.y) < 10) {
+            return lastSnap + initChangeY
+          }
+          let time = -(value * ratio) * tl.duration(),
+            wrappedTime = timeWrap(time),
+            snapTime = times[getClosest(times, wrappedTime, tl.duration())],
+            dif = snapTime - wrappedTime
+          Math.abs(dif) > tl.duration() / 2 &&
+            (dif += dif < 0 ? tl.duration() : -tl.duration())
+          lastSnap = (time + dif) / tl.duration() / -ratio
+          return lastSnap
+        },
+        onRelease() {
+          syncIndex()
+          draggable.isThrowing && (indexIsDirty = true)
+        },
+        onThrowComplete: () => {
+          syncIndex()
+          wasPlaying && tl.play()
+        }
+      })[0];
+      tl.draggable = draggable;
+    }
+    tl.closestIndex(true);
+    lastIndex = curIndex
+    onChange && onChange(items[curIndex], curIndex)
+    timeline = tl
+
+    return () => window.removeEventListener("resize", onResize);
+  });
+
+  return timeline;
+}
+
+
+
 onMounted(() => { initSlider() })
 </script>
 <template>
@@ -702,24 +985,40 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
 }
 @media (max-width: 880px) {
   .works {
-    min-height: 70vh;
+    min-height: 75vh;
   }
   .overlay {
-    width: 20%;
-    background-image: linear-gradient(
-      90deg,
-      #f1f1f1 50%,
-      rgba(241, 241, 241, 0.3) 90%,
-      transparent
-    );
-    padding-left: 30px;
+    width: 100%;
+    height: 20%;
+    background-image: linear-gradient(-180deg, #f1f1f1 50%, rgba(241, 241, 241, 0.3) 90%, transparent);
   }
   .overlay-inner {
     height: 55vh;
   }
   .overlay-count-row {
-    grid-column-gap: 0.2em;
-    font-size: 4em;
+    position: absolute;
+    top: 0px;
+    grid-column-gap: .4em;
+    font-size: 3em;
+  }
+  .count-row-divider {
+    position: absolute;
+    top: 0px;
+    left: 1.5em;
+  }
+  .overlay-nav-row{
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+  }
+  .button {
+    width: 3em;
+    height: 3em;
+  }
+  .slider-wrap {
+    align-items: flex-start;
   }
   .slider-slide {
     width: 50%;
@@ -728,9 +1027,39 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
     padding-right: 1em;
     position: relative;
   }
+  .slider-list {
+    flex-direction: column;
+    align-items: center;
+  }
 
-
-
+  .slider-slide {
+    width: 100%;
+    height: auto;
+    padding: 1em 0;
+  }
+  [data-slider="list"].vertical {
+    flex-direction: column;
+  }
+  .slide-caption {
+    z-index: 2;
+    grid-column-gap: .4em;
+    grid-row-gap: .4em;
+    border: 1px solid rgba($color: #fff, $alpha: 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
+    -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
+    filter: brightness(1) saturate(1.2) contrast(0.85);
+    bottom: 30px;
+    right: 30px;
+    div {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    }
+    i {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    }
+  }
 }
 @media (min-width: 881px) and (max-width: 1200px) {
 }
