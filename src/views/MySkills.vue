@@ -177,9 +177,9 @@ const scrollToBottom = () => {
       <ToolView></ToolView>
     </div>
     <div class="works" id="third">
-      <div class="sk-move">
+      <!-- <div class="sk-move">
         <span v-for="n in 15" :key="n">{{ text }}</span>
-      </div>
+      </div> -->
     </div>
     <div class="final" id="fourth">
       <div class="form-container">

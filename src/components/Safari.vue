@@ -27,27 +27,24 @@ const props = defineProps({
         <span class="light minimize" :style="{ background: minimizeColor }"></span>
         <span class="light maximize" :style="{ background: maximizeColor }"></span>
       </div>
-
       <div class="address-bar">
         <div class="lock" v-if="showLock">🔒</div>
         <div class="title">{{ title }}</div>
       </div>
-
-      <div class="actions">
+      <!-- <div class="actions">
         <button class="action-btn" v-if="showShare">⇪</button>
         <button class="action-btn" v-if="showTabs">◱</button>
-      </div>
+      </div> -->
     </header>
-
     <main class="safari-body">
       <slot>
-        <div class="placeholder">Your content here (slot)</div>
+        <div class="placeholder"></div>
       </slot>
     </main>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .safari-window {
   width: 900px;
   max-width: 100%;
@@ -81,18 +78,41 @@ const props = defineProps({
   display: flex;
   gap: 8px;
   align-items: center;
-  width: 70px;
 }
 
 .light{
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: inline-block;
   box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
   border: 1px solid rgba(0,0,0,0.06);
 }
+.light.close {
+  position: relative;
+  cursor: pointer;
+}
 
+.light.close::before {
+  content: 'x';
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.safari-window.dark .light.close::before {
+  color: #fff;
+}
+
+.light.close:hover::before {
+  opacity: 1;
+}
 .address-bar{
   flex: 1;
   height: 32px;
@@ -146,10 +166,8 @@ const props = defineProps({
 }
 
 .safari-body{
-  min-height: 320px;
-  display: flex;
-  align-items: stretch;
-  justify-content: stretch;
+  min-height: 400px;
+  padding: 50px;
 }
 
 .placeholder{
@@ -164,8 +182,29 @@ const props = defineProps({
 .safari-window.dark .placeholder{ color: rgba(255,255,255,0.55); }
 .safari-window.dark .safari-footer{ color: rgba(255,255,255,0.55); border-top-color: rgba(255,255,255,0.03); }
 
-@media (max-width: 640px){
+@media (max-width: 1190px){
   .safari-window{ width: 100%; }
-  .title{ display:none; }
+  .safari-body{
+    min-height: 400px;
+    padding: 30px;
+  }
+  .light{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: inset 0 -1px 0 rgba(0,0,0,0.12);
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .light.close::before {
+    content: '\2715';
+    top: 50%;
+    opacity: 1;
+  }
+  .title{
+    font-weight: 600;
+    font-size: 14px;
+    max-width: 90%;
+  }
 }
 </style>

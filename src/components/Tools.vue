@@ -41,23 +41,25 @@ const handleClick = (name) => {
   selectedName.value = name
   isSafariVisible.value = true
 }
+
 </script>
 
 <template>
   <div class="cloneable">
     <div class="title-box">
       <h1>TOOL</h1>
-      <h2 v-if="selectedName" class="tool-name">
+      <div v-if="selectedName" class="tool-name">
         <SafariView 
           v-if="isSafariVisible"
           :title="selectedName"
-          @close="isSafariVisible = false"
+          @close="() => { isSafariVisible = false; selectedName = '' }"
         >
           <div v-if="selectedSkill">
+            <div>{{ selectedSkill.name }}</div>                
             {{ selectedSkill.content ? t(selectedSkill.content) : '' }}
           </div>
         </SafariView>
-      </h2>
+      </div>
       <h2 v-else class="tool-none">Click App</h2>
     </div>
     <div class="nav-container">
@@ -82,22 +84,30 @@ const handleClick = (name) => {
 
 <style lang="scss">
 .cloneable {
+  width: 100%;
   min-height: 80vh;
   position: relative;
   --font-scale: 0.08;
   padding: 0 50px;
+  display: flex;
+  justify-content: center;
   .title-box {
     position: relative;
-    z-index: 50;
   }
   h1 {
     font-family:'GmarketSans';
     font-size: clamp(30px, calc(var(--font-scale) * 60vw), 80px);
     text-align: center;
-    margin-bottom: 8%;
+    margin-bottom: 30px;
   }
   .tool-none{
+    height: 50%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    font-size: clamp(20px, calc(var(--font-scale) * 40vw), 50px);
+    color: rgba($color: #000000, $alpha: 0.5);
   }
 }
 .nav-container {
@@ -106,7 +116,6 @@ const handleClick = (name) => {
   justify-content: center;
   align-items: flex-end;
   display: flex;
-  inset: 0 0 10vh;
 }
 .nav-list {
   flex-flow: row;
@@ -118,11 +127,11 @@ const handleClick = (name) => {
   font-size: 1.4vw;
 }
 .nav-item {
+  position: relative;
   justify-content: center;
   align-items: center;
   width: 4em;
   transition: width .5s cubic-bezier(.16, 1, .3, 1);
-  position: relative;
 }
 
 .nav-item.hover {
@@ -173,5 +182,81 @@ const handleClick = (name) => {
 .nav-item:hover .nav-item__tooltip{
 	opacity: 1;
   transform: translate(-50%, -150%); 
+}
+@media (max-width: 880px) {
+  .cloneable {
+    width: 100%;
+    min-height: 85vh;
+    padding: 0 30px;
+  }
+  .title-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tool-name{
+    width: 100%;
+    margin-top: 100px;
+  }
+  .nav-container {
+    width: 90%;
+    overflow: auto;
+    justify-content: flex-start;
+    top: 70px;
+    bottom: auto;
+}
+  .nav-list {
+    align-items: flex-start;
+  }
+  .nav-item {
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+    width: 8em;
+  }
+  .nav-item.hover {
+    width: 11em;
+  }
+  .nav-item.sibling-close {
+    width: 10em;
+  }
+  .nav-item.sibling-far {
+    width: 9em;
+  }
+  .nav-item:hover .nav-item__tooltip{
+	opacity: 0;
+}
+
+}
+@media (min-width: 881px) and (max-width: 1200px)  {
+  .cloneable {
+    width: 100%;
+    padding: 0 30px;
+  }
+  .title-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tool-name{
+    width: 100%;
+  }
+  .nav-container {
+    width: 100%;
+  } 
+  .nav-item {
+    width: 5em;
+  }
+  .nav-item.hover {
+    width: 8em;
+  }
+  .nav-item.sibling-close {
+    width: 7em;
+  }
+  .nav-item.sibling-far {
+    width: 6em;
+  }
 }
 </style>
