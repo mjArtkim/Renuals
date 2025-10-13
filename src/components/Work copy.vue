@@ -728,9 +728,6 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
     padding-right: 1em;
     position: relative;
   }
-
-
-
 }
 @media (min-width: 881px) and (max-width: 1200px) {
 }

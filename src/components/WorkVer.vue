@@ -1,41 +1,56 @@
 <script setup>
-import { onMounted, onUnmounted } from 'vue' 
-import { gsap } from 'gsap' 
-import { Draggable } from 'gsap/Draggable' 
-import { InertiaPlugin } from 'gsap/InertiaPlugin' 
-gsap.registerPlugin(Draggable, InertiaPlugin) 
-function initSlider() { 
-  const wrapper = document.querySelector('[data-slider="list"]') 
-  const slides = gsap.utils.toArray('[data-slider="slide"]') 
-  const nextButton = document.querySelector('[data-slider="button-next"]')
-  const prevButton = document.querySelector('[data-slider="button-prev"]') 
-  const totalElement = document.querySelector('[data-slide-count="total"]') 
-  const stepElement = document.querySelector('[data-slide-count="step"]') 
-  const stepsParent = stepElement.parentElement 
+import { onMounted, onUnmounted } from 'vue'
+import { gsap } from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
-  let activeElement 
+gsap.registerPlugin(Draggable, InertiaPlugin)
+
+function initSlider() {
+  const isMobile = window.innerWidth <= 880
+  const wrapper = document.querySelector('[data-slider="list"]')
+  const slides = gsap.utils.toArray('[data-slider="slide"]')
+
+  const nextButton = document.querySelector('[data-slider="button-next"]')
+  const prevButton = document.querySelector('[data-slider="button-prev"]')
+
+  const totalElement = document.querySelector('[data-slide-count="total"]')
+  const stepElement = document.querySelector('[data-slide-count="step"]')
+  const stepsParent = stepElement.parentElement
+
+  let activeElement
   const totalSlides = slides.length
 
-  totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides  
-  stepsParent.innerHTML = '' 
+  totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides
+
+  stepsParent.innerHTML = ''
   slides.forEach((_, index) => {
-  const stepClone = stepElement.cloneNode(true) 
-  stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1 
-  stepsParent.appendChild(stepClone) }) 
-  const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]') 
-  const loop = horizontalLoop(slides, { paused: true, draggable: true, center: false, 
-  onChange: (element, index) => { 
-    activeElement && activeElement.classList.remove('active');
-    const nextSibling = element.nextElementSibling || slides[0]; 
-    nextSibling.classList.add('active');
-    activeElement = nextSibling; 
-    gsap.to(allSteps, { 
-      y: `${-100 * index}%`, 
-      ease: 'power3',
-      duration: 0.45 
-      }) 
-    } 
-  }) 
+    const stepClone = stepElement.cloneNode(true)
+    stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1
+    stepsParent.appendChild(stepClone)
+  })
+
+  const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]')
+  const loopFn = isMobile ? verticalLoop : horizontalLoop;
+  const loop = loopFn(slides, { 
+    paused: true,
+    draggable: true,
+    center: false,
+    repeat: -1,
+    onChange: (element, index) => {
+      activeElement && activeElement.classList.remove('active');
+      const nextSibling = element.nextElementSibling || slides[0];
+      nextSibling.classList.add('active');
+      activeElement = nextSibling;
+      const stepIndex = ((index % slides.length) + slides.length) % slides.length;
+      gsap.to(allSteps, {
+        y: `${-100 * index}%`,
+        ease: 'power3',
+        duration: 0.45
+      });
+    }
+  })
+
   slides.forEach((slide, i) =>
     slide.addEventListener('click', () =>
       loop.toIndex(i - 1, { ease: 'power3', duration: 0.725 })
@@ -49,6 +64,7 @@ function initSlider() {
     loop.previous({ ease: 'power3', duration: 0.725 })
   )
 }
+
 function horizontalLoop(items, config) {
   let timeline
   items = gsap.utils.toArray(items)
@@ -309,49 +325,231 @@ function horizontalLoop(items, config) {
 
   return timeline
 }
-onMounted(() => { initSlider() })
+
+function verticalLoop(items, config) {
+  let timeline;
+  items = gsap.utils.toArray(items);
+  config = config || {};
+
+  gsap.context(() => {
+    let onChange = config.onChange,
+      lastIndex = 0,
+      tl = gsap.timeline({
+        repeat: config.repeat,
+        paused: config.paused,
+        defaults: { ease: "none" },
+        onReverseComplete: () =>
+          tl.totalTime(tl.rawTime() + tl.duration() * 100),
+        onUpdate:
+          onChange &&
+          function () {
+            let i = tl.closestIndex();
+            i = ((i % items.length) + items.length) % items.length; 
+            if (lastIndex !== i) {
+              lastIndex = i;
+              onChange(items[i], i);
+            }
+          },
+      }),
+      length = items.length,
+      startY = items[0].offsetTop,
+      times = [],
+      heights = [],
+      spaceBefore = [],
+      yPercents = [],
+      curIndex = 0,
+      center = config.center,
+      pixelsPerSecond = (config.speed || 1) * 100,
+      snap =
+        config.snap === false
+          ? (v) => v
+          : gsap.utils.snap(config.snap || 1),
+      container =
+        center === true
+          ? items[0].parentNode
+          : gsap.utils.toArray(center)[0] || items[0].parentNode,
+      totalHeight,
+      populateHeights = () => {
+        let b1 = container.getBoundingClientRect(),
+          b2;
+        items.forEach((el, i) => {
+          heights[i] = parseFloat(gsap.getProperty(el, "height", "px"));
+          yPercents[i] = snap(
+            (parseFloat(gsap.getProperty(el, "y", "px")) / heights[i]) * 100 +
+              gsap.getProperty(el, "yPercent")
+          );
+          b2 = el.getBoundingClientRect();
+          spaceBefore[i] = b2.top - (i ? b1.bottom : b1.top);
+          b1 = b2;
+        });
+        gsap.set(items, { yPercent: (i) => yPercents[i] });
+        totalHeight = getTotalHeight();
+      },
+      getTotalHeight = () =>
+        items[length - 1].offsetTop +
+        (yPercents[length - 1] / 100) * heights[length - 1] -
+        startY +
+        spaceBefore[0] +
+        items[length - 1].offsetHeight *
+          gsap.getProperty(items[length - 1], "scaleY") +
+        (parseFloat(config.paddingBottom) || 0),
+      populateTimeline = () => {
+        let i, item, curY, distanceToStart, distanceToLoop;
+        tl.clear();
+        for (i = 0; i < length; i++) {
+          item = items[i];
+          curY = (yPercents[i] / 100) * heights[i];
+          distanceToStart = item.offsetTop + curY - startY + spaceBefore[0];
+          distanceToLoop =
+            distanceToStart + heights[i] * gsap.getProperty(item, "scaleY");
+
+          tl.to(
+            item,
+            {
+              yPercent: snap(((curY - distanceToLoop) / heights[i]) * 100),
+              duration: distanceToLoop / pixelsPerSecond,
+            },
+            0
+          )
+            .fromTo(
+              item,
+              {
+                yPercent: snap(
+                  ((curY - distanceToLoop + totalHeight) / heights[i]) * 100
+                ),
+              },
+              {
+                yPercent: yPercents[i],
+                duration:
+                  (curY - distanceToLoop + totalHeight - curY) / pixelsPerSecond,
+                immediateRender: false,
+              },
+              distanceToLoop / pixelsPerSecond
+            )
+            .add("label" + i, distanceToStart / pixelsPerSecond);
+          times[i] = distanceToStart / pixelsPerSecond;
+        }
+      },
+      refresh = (deep) => {
+        let progress = tl.progress();
+        tl.progress(0, true);
+        populateHeights();
+        deep && populateTimeline();
+        deep && tl.draggable
+          ? tl.time(times[curIndex], true)
+          : tl.progress(progress, true);
+      },
+      onResize = () => refresh(true),
+      proxy;
+
+    gsap.set(items, { y: 0 });
+    populateHeights();
+    populateTimeline();
+    window.addEventListener("resize", onResize);
+
+    function toIndex(index, vars) {
+      vars = vars || {};
+      const newIndex = ((index % length) + length) % length;
+      let time = times[newIndex];
+
+      if (Math.abs(index - curIndex) > length / 2) {
+        time += tl.duration() * (index > curIndex ? 1 : -1);
+      }
+
+      curIndex = newIndex;
+      vars.overwrite = true;
+
+      return vars.duration === 0 ? tl.time(time) : tl.tweenTo(time, vars);
+    }
+
+    tl.toIndex = (index, vars) => toIndex(index, vars);
+
+    tl.closestIndex = (setCurrent) => {
+      let closest = 1e10,
+        index = 0;
+      times.forEach((t, i) => {
+        let d = Math.abs(t - tl.time());
+        if (d < closest) {
+          closest = d;
+          index = i;
+        }
+      });
+      if (setCurrent) curIndex = index;
+      return index;
+    };
+
+    tl.current = () => curIndex;
+    tl.next = (vars) => toIndex(tl.current() + 1, vars);
+    tl.previous = (vars) => toIndex(tl.current() - 1, vars);
+    tl.times = times;
+
+    tl.progress(1, true).progress(0, true);
+
+    if (config.draggable && typeof Draggable === "function") {
+      proxy = document.createElement("div");
+      let draggable, startProgress;
+
+      draggable = Draggable.create(proxy, {
+        trigger: container,
+        type: "y",
+        inertia: true,
+        onPressInit: function () {
+          gsap.killTweensOf(tl);
+          tl.pause();
+          startProgress = tl.progress();
+        },
+        onDrag: function () {
+          tl.progress(startProgress - this.y / totalHeight);
+        },
+        onThrowUpdate: function () {
+          tl.progress(startProgress - this.y / totalHeight);
+        },
+      })[0];
+      tl.draggable = draggable;
+    }
+    tl.closestIndex(true);
+    lastIndex = curIndex;
+    timeline = tl;
+    return () => window.removeEventListener("resize", onResize);
+  });
+
+  return timeline;
+}
+
+
+
+onMounted(() => {
+  const init = () => {
+    const wrapper = document.querySelector('[data-slider="list"]')
+    wrapper.innerHTML = wrapper.innerHTML
+    initSlider()
+  }
+
+  init()
+  window.addEventListener('resize', () => {
+    const currentMode = window.innerWidth <= 880 ? 'vertical' : 'horizontal'
+    if (initSlider.mode !== currentMode) {
+      initSlider.mode = currentMode
+      init()
+    }
+  })
+})
 </script>
 <template>
   <section class="works">
     <div class="overlay">
       <div class="overlay-inner">
         <div class="overlay-count-row">
-          <div class="count-column"><h2 data-slide-count="step" class="count-heading">01</h2></div>
+          <div class="count-column">
+            <h2 data-slide-count="step" class="count-heading">01</h2>
+          </div>
           <div class="count-row-divider"></div>
-          <div class="count-column"><h2 data-slide-count="total" class="count-heading">06</h2></div>
+          <div class="count-column">
+            <h2 data-slide-count="total" class="count-heading">06</h2>
+          </div>
         </div>
-        <div class="overlay-nav-row">
-          <button aria-label="previous slide" data-slider="button-prev" class="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              viewbox="0 0 17 12"
-              fill="none"
-              class="button-arrow"
-            >
-              <path
-                d="M6.28871 12L7.53907 10.9111L3.48697 6.77778H16.5V5.22222H3.48697L7.53907 1.08889L6.28871 0L0.5 6L6.28871 12Z"
-                fill="currentColor"
-              ></path>
-            </svg>
-            <div class="button-overlay">
-              <div class="overlay-corner"></div>
-              <div class="overlay-corner top-right"></div>
-              <div class="overlay-corner bottom-left"></div>
-              <div class="overlay-corner bottom-right"></div>
-            </div></button
-          ><button aria-label="previous slide" data-slider="button-next" class="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="100%"
-              viewbox="0 0 17 12"
-              fill="none"
-              class="button-arrow next"
-            >
-              <path
-                d="M6.28871 12L7.53907 10.9111L3.48697 6.77778H16.5V5.22222H3.48697L7.53907 1.08889L6.28871 0L0.5 6L6.28871 12Z"
-                fill="currentColor"
-              ></path>
+        <div class="overlay-nav-row"><button aria-label="previous slide" data-slider="button-prev" class="button"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button-arrow">
+              <path d="M6.28871 12L7.53907 10.9111L3.48697 6.77778H16.5V5.22222H3.48697L7.53907 1.08889L6.28871 0L0.5 6L6.28871 12Z" fill="currentColor"></path>
             </svg>
             <div class="button-overlay">
               <div class="overlay-corner"></div>
@@ -359,8 +557,16 @@ onMounted(() => { initSlider() })
               <div class="overlay-corner bottom-left"></div>
               <div class="overlay-corner bottom-right"></div>
             </div>
-          </button>
-        </div>
+          </button><button aria-label="previous slide" data-slider="button-next" class="button"><svg xmlns="http://www.w3.org/2000/svg" width="100%" viewbox="0 0 17 12" fill="none" class="button-arrow next">
+              <path d="M6.28871 12L7.53907 10.9111L3.48697 6.77778H16.5V5.22222H3.48697L7.53907 1.08889L6.28871 0L0.5 6L6.28871 12Z" fill="currentColor"></path>
+            </svg>
+            <div class="button-overlay">
+              <div class="overlay-corner"></div>
+              <div class="overlay-corner top-right"></div>
+              <div class="overlay-corner bottom-left"></div>
+              <div class="overlay-corner bottom-right"></div>
+            </div>
+          </button></div>
       </div>
     </div>
     <div class="main">
@@ -368,11 +574,7 @@ onMounted(() => { initSlider() })
         <div data-slider="list" class="slider-list">
           <div data-slider="slide" class="slider-slide">
             <div class="slide-inner">
-              <img
-                src="@/assets/img/new/new_work_06.webp"
-                loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
-              />
+              <img src="@/assets/img/new/new_work_06.webp" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px">
               <div class="slide-caption">
                 <a href="#" class="caption">
                   <div>More</div>
@@ -383,11 +585,7 @@ onMounted(() => { initSlider() })
           </div>
           <div data-slider="slide" class="slider-slide active">
             <div class="slide-inner">
-              <img
-                src="@/assets/img/new/new_work_01.webp"
-                loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
-              />
+              <img src="@/assets/img/new/new_work_01.webp" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px">
               <div class="slide-caption">
                 <a href="#" class="caption">
                   <div>More</div>
@@ -398,11 +596,7 @@ onMounted(() => { initSlider() })
           </div>
           <div data-slider="slide" class="slider-slide">
             <div class="slide-inner">
-              <img
-                src="@/assets/img/new/new_work_02.webp"
-                loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
-              />
+              <img src="@/assets/img/new/new_work_02.webp" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px">
               <div class="slide-caption">
                 <a href="#" class="caption">
                   <div>More</div>
@@ -413,11 +607,7 @@ onMounted(() => { initSlider() })
           </div>
           <div data-slider="slide" class="slider-slide">
             <div class="slide-inner">
-              <img
-                src="@/assets/img/new/new_work_03.webp"
-                loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
-              />
+              <img src="@/assets/img/new/new_work_03.webp" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px">
               <div class="slide-caption">
                 <a href="#" class="caption">
                   <div>More</div>
@@ -428,11 +618,7 @@ onMounted(() => { initSlider() })
           </div>
           <div data-slider="slide" class="slider-slide">
             <div class="slide-inner">
-              <img
-                src="@/assets/img/new/new_work_04.webp"
-                loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
-              />
+              <img src="@/assets/img/new/new_work_04.webp" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px">
               <div class="slide-caption">
                 <a href="#" class="caption">
                   <div>More</div>
@@ -443,11 +629,7 @@ onMounted(() => { initSlider() })
           </div>
           <div data-slider="slide" class="slider-slide">
             <div class="slide-inner">
-              <img
-                src="@/assets/img/new/new_work_05.webp"
-                loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
-              />
+              <img src="@/assets/img/new/new_work_05.webp" loading="lazy" sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px">
               <div class="slide-caption">
                 <a href="#" class="caption">
                   <div>More</div>
@@ -462,6 +644,7 @@ onMounted(() => { initSlider() })
   </section>
 </template>
 <style lang="scss" scoped>
+
 .works {
   width: 100%;
   min-height: 60vh;
@@ -472,6 +655,7 @@ onMounted(() => { initSlider() })
   justify-content: center;
   align-items: center;
 }
+
 .overlay {
   z-index: 2;
   background-image: linear-gradient(90deg, #f1f1f1 50%, rgba(241, 241, 241, 0.3) 90%, transparent);
@@ -484,6 +668,7 @@ onMounted(() => { initSlider() })
   position: absolute;
   inset: 0% auto 0% 0%;
 }
+
 .overlay-inner {
   flex-flow: column;
   justify-content: space-between;
@@ -491,43 +676,49 @@ onMounted(() => { initSlider() })
   height: 28.125em;
   display: flex;
 }
+
 .overlay-count-row {
-  grid-column-gap: 0.2em;
-  grid-row-gap: 0.2em;
+  grid-column-gap: .2em;
+  grid-row-gap: .2em;
   flex-flow: row;
   justify-content: flex-start;
   align-items: center;
-  font-family: 'GmarketSans';
+  font-family:'GmarketSans';
   font-size: 5.625em;
   font-weight: 700;
   display: flex;
 }
+
 .count-column {
   height: 1em;
   overflow: hidden;
 }
+
 .count-heading {
   width: 2ch;
   font-size: 1em;
   line-height: 1;
   margin: 0px;
 }
+
 .count-row-divider {
   background-color: #000;
   width: 5px;
   height: 100%;
   transform: rotate(15deg);
 }
+
 .overlay-nav-row {
   grid-column-gap: 2em;
   grid-row-gap: 2em;
   display: flex;
 }
+
 .button {
   background-color: #0000;
   color: #000;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.4em;
+  border-radius: .4em;
   justify-content: center;
   align-items: center;
   width: 4em;
@@ -537,57 +728,65 @@ onMounted(() => { initSlider() })
   position: relative;
   font-size: inherit;
 }
+
 .button-arrow {
   flex: none;
   width: 1em;
-  height: 0.75em;
+  height: .75em;
 }
+
 .button-arrow.next {
   transform: rotate(180deg);
 }
+
 .button-overlay {
   z-index: 2;
   position: absolute;
   inset: -1px;
 }
+
 .overlay-corner {
   border-top: 1px solid #000;
   border-left: 1px solid #000;
-  border-top-left-radius: 0.4em;
+  border-top-left-radius: .4em;
   width: 1em;
   height: 1em;
 }
+
 .overlay-corner.top-right {
   position: absolute;
   inset: 0% 0% auto auto;
   transform: rotate(90deg);
 }
+
 .overlay-corner.bottom-left {
   position: absolute;
   inset: auto auto 0% 0%;
   transform: rotate(-90deg);
 }
+
 .overlay-corner.bottom-right {
   position: absolute;
   inset: auto 0% 0% auto;
   transform: rotate(180deg);
 }
-.button,
-.button-overlay {
-  transition:
-    transform 0.475s cubic-bezier(0.65, 0, 0.35, 1),
-    opacity 0.475s cubic-bezier(0.65, 0, 0.35, 1);
+
+.button, .button-overlay{ 
+  transition: transform 0.475s cubic-bezier(0.65, 0, 0.35, 1), 
+              opacity 0.475s cubic-bezier(0.65, 0, 0.35, 1);
 }
-.button:hover .button-overlay {
-  transform: scale(1.4);
+
+.button:hover .button-overlay{ 
+  transform: scale(1.4); 
 }
-.overlay-nav-row:hover:has(.button:hover) .button {
-  opacity: 0.4;
+.overlay-nav-row:hover:has(.button:hover) .button{ 
+  opacity: 0.4; 
 }
-.button:hover {
-  transform: scale(0.85);
-  opacity: 1 !important;
+.button:hover{ 
+  transform: scale(0.85); 
+  opacity: 1 !important; 
 }
+
 .main {
   z-index: 0;
   width: 100%;
@@ -596,6 +795,7 @@ onMounted(() => { initSlider() })
   inset: 0%;
   overflow: hidden;
 }
+
 .slider-wrap {
   justify-content: flex-start;
   align-items: center;
@@ -603,6 +803,7 @@ onMounted(() => { initSlider() })
   height: 100%;
   display: flex;
 }
+
 .slider-list {
   flex-flow: row;
   justify-content: flex-start;
@@ -610,73 +811,75 @@ onMounted(() => { initSlider() })
   display: flex;
   position: relative;
 }
+
 .slider-slide {
   flex: none;
   width: 42.5em;
   height: 28em;
   padding-left: 1.25em;
   padding-right: 1.25em;
-  transition: opacity 0.4s;
+  transition: opacity .4s;
   position: relative;
 }
-[data-slider='slide'] {
-  opacity: 0.2;
-}
-[data-slider='slide'].active {
-  opacity: 1;
-}
-[data-slider='slide'].active .slide-caption {
-  transition-delay: 0.3s;
-}
+
+[data-slider="slide"]{ opacity: 0.2; }
+[data-slider="slide"].active { opacity: 1; } 
+[data-slider="slide"].active .slide-caption{ transition-delay:0.3s;} 
+
 .slide-inner {
-  border-radius: 0.5em;
+  border-radius: .5em;
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
 }
-.slide-inner img {
+
+.slide-inner img{
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .slide-caption {
   z-index: 2;
-  grid-column-gap: 0.4em;
-  grid-row-gap: 0.4em;
+  grid-column-gap: .4em;
+  grid-row-gap: .4em;
   background-color: transparent;
   color: #000;
   white-space: nowrap;
-  border-radius: 0.25em;
+  border-radius: .25em;
   justify-content: flex-start;
   align-items: center;
-  padding: 0.4em 0.75em 0.4em 0.5em;
+  padding: .4em .75em .4em .5em;
   display: flex;
   position: absolute;
   bottom: 0;
   right: 0;
   overflow: hidden;
 }
+
 .caption {
   display: flex;
   align-items: center;
   gap: 0 10px;
   font-size: 14px;
 }
-.slide-caption {
-  transition:
-    transform 0.525s cubic-bezier(0.65, 0, 0.35, 1),
-    opacity 0.525s cubic-bezier(0.65, 0, 0.35, 1);
-  transition-delay: 0s;
+
+.slide-caption{ 
+  transition: transform 0.525s cubic-bezier(0.65, 0, 0.35, 1), 
+              opacity 0.525s cubic-bezier(0.65, 0, 0.35, 1); 
+  transition-delay:0s;
 }
-html:not(.wf-design-mode) .slide-caption {
-  opacity: 0;
-  transform: translate(-25%, 0px);
+
+html:not(.wf-design-mode) .slide-caption{ 
+  opacity: 0; 
+  transform:translate(-25%, 0px) 
 }
-html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
-  opacity: 1;
-  transform: translate(0%, 0px);
+html:not(.wf-design-mode) [data-slider="slide"].active .slide-caption{ 
+  opacity: 1; 
+  transform:translate(0%, 0px);
 }
+
 .osmo-credits {
   z-index: 999;
   pointer-events: none;
@@ -691,6 +894,7 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
   bottom: 0;
   left: 0;
 }
+
 .osmo-credits__p {
   pointer-events: auto;
   color: #efeeec80;
@@ -702,24 +906,40 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
 }
 @media (max-width: 880px) {
   .works {
-    min-height: 70vh;
+    min-height: 75vh;
   }
   .overlay {
-    width: 20%;
-    background-image: linear-gradient(
-      90deg,
-      #f1f1f1 50%,
-      rgba(241, 241, 241, 0.3) 90%,
-      transparent
-    );
-    padding-left: 30px;
+    width: 100%;
+    height: 20%;
+    background-image: linear-gradient(-180deg, #f1f1f1 50%, rgba(241, 241, 241, 0.3) 90%, transparent);
   }
   .overlay-inner {
     height: 55vh;
   }
   .overlay-count-row {
-    grid-column-gap: 0.2em;
-    font-size: 4em;
+    position: absolute;
+    top: 0px;
+    grid-column-gap: .4em;
+    font-size: 3em;
+  }
+  .count-row-divider {
+    position: absolute;
+    top: 0px;
+    left: 1.5em;
+  }
+  .overlay-nav-row{
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+  }
+  .button {
+    width: 3em;
+    height: 3em;
+  }
+  .slider-wrap {
+    align-items: flex-start;
   }
   .slider-slide {
     width: 50%;
@@ -728,10 +948,39 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
     padding-right: 1em;
     position: relative;
   }
+  .slider-list {
+    flex-direction: column;
+    align-items: center;
+  }
 
-
-
+  .slider-slide {
+    width: 100%;
+    height: auto;
+    padding: 1em 0;
+  }
+  [data-slider="list"].vertical {
+    flex-direction: column;
+  }
+  .slide-caption {
+    z-index: 2;
+    grid-column-gap: .4em;
+    grid-row-gap: .4em;
+    border: 1px solid rgba($color: #fff, $alpha: 0.3);
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
+    -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
+    filter: brightness(1) saturate(1.2) contrast(0.85);
+    bottom: 30px;
+    right: 30px;
+    div {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    }
+    i {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    }
+  }
 }
-@media (min-width: 881px) and (max-width: 1200px) {
-}
+@media (min-width: 881px) and (max-width: 1200px)  {}
 </style>

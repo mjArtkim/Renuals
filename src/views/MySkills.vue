@@ -495,6 +495,9 @@ const scrollToBottom = () => {
   }
   @media (max-width: 880px) {
     justify-content: space-between;
+    h1 {
+    padding: 50px 0 30px;
+  }
   }
 }
 .sns-box {
