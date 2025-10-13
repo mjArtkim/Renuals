@@ -11,6 +11,7 @@ import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import AboutVue from '@/components/About.vue'
 import SkillView from '@/components/NewSkill.vue'
 import ToolView from '@/components/Tools.vue'
+import WorksView from '@/components/Work.vue'
 import Footer from '@/components/Footer.vue'
 
 const text = ref(' WORKS')
@@ -176,10 +177,9 @@ const scrollToBottom = () => {
     <div class="tools">
       <ToolView></ToolView>
     </div>
-    <div class="works" id="third">
-      <!-- <div class="sk-move">
-        <span v-for="n in 15" :key="n">{{ text }}</span>
-      </div> -->
+    <div class="works-main" id="third">
+      <h1>WORKS</h1>
+      <WorksView></WorksView>
     </div>
     <div class="final" id="fourth">
       <div class="form-container">
@@ -477,20 +477,24 @@ const scrollToBottom = () => {
   color: #fff;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
-.works {
+.works-main {
   position: relative;
   width: 100%;
   min-height: 100vh;    
   overflow: hidden !important;
-  .sk-move {
-    white-space: nowrap;
-    color: #f1f1f1;
-    overflow: hidden !important;
-    -webkit-text-stroke: 1px #292929;
-    font-size: clamp(2rem, 4vw, 5vw); 
-    font-weight: bold;
-    display: inline-block;
-    animation: scroll-left 25s linear infinite;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;  
+  --font-scale: 0.08;
+  h1 {
+    padding: 50px 0;
+    font-family:'GmarketSans';
+    font-size: clamp(60px, calc(var(--font-scale) * 94vw), 150px);
+    text-align: center;
+  }
+  @media (max-width: 880px) {
+    justify-content: space-between;
   }
 }
 .sns-box {
