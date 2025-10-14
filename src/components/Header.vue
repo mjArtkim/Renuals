@@ -251,6 +251,15 @@ function handleKeydown(event, index) {
   padding: 40px 50px 20px;
   display: grid;
   grid-template-columns: 20% 80%;
+  background-image: linear-gradient(
+    -180deg,   
+    rgba(241, 241, 241, 1) 0%,
+    rgba(241, 241, 241, 0.6) 40%,
+    rgba(241, 241, 241, 0.2) 70%,
+    rgba(241, 241, 241, 0) 100%
+    );
+  backdrop-filter: blur(1px) brightness(0.9) contrast(125%) saturate(100%);
+      -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
   .pf-ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -272,7 +281,8 @@ function handleKeydown(event, index) {
       font-size: 0.8em;
       line-height: 2;
       &:hover > a{
-        color: #ff7553fb !important;
+        color: #005ffe !important;
+        font-weight: 700;
       }
     }
   }
@@ -295,7 +305,8 @@ function handleKeydown(event, index) {
       color: #333;
       transition: 0.2s;
       &:hover {
-        color: #ff7553fb;
+        color: #005ffe;
+        font-weight: 700;
       }
     }
     .depth1 {
@@ -311,13 +322,15 @@ function handleKeydown(event, index) {
         font-size: 0.8em;
         line-height: 2;
         &:hover > a{
-          color: #ff7553fb !important;
+          color: #005ffe!important;
+          font-weight: 700;
         }
       }
     } 
 }
 .activegnb {
-  color: #ff7553fb !important;
+  color: #005ffe !important;
+  font-weight: 700;
 }
 
 
