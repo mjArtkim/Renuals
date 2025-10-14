@@ -182,12 +182,15 @@ const scrollToBottom = () => {
       <WorksView></WorksView>
     </div>
     <div class="final" id="fourth">
-      <div class="form-container">
-        <ContactFormVue></ContactFormVue>
-      </div>
-      <div>
-        <div class="sns-box">
-          <NameCardVue></NameCardVue>
+      <h1>CONTACT</h1>
+      <div class="final-container">
+        <div class="form-container">
+          <ContactFormVue></ContactFormVue>
+        </div>
+        <div>
+          <div class="sns-box">
+            <NameCardVue></NameCardVue>
+          </div>
         </div>
       </div>
     </div> 
@@ -446,18 +449,27 @@ const scrollToBottom = () => {
 
 .final {
   height: 100vh;
+  padding: 0 50px;
+  --font-scale: 0.08;
+  h1 {
+    padding: 50px 0;
+    font-family:'GmarketSans';
+    font-size: clamp(60px, calc(var(--font-scale) * 94vw), 150px);
+    text-align: center;
+  }
+}
+.final-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
-  text-align: center;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; 
+    padding: 0 30px;
   }
-
 }
 @media (max-width: 768px) {
   .look-more {
@@ -502,9 +514,9 @@ const scrollToBottom = () => {
 }
 .sns-box {
   display: flex;
-  gap: 20px;
-  margin-top: 50px;
   font-size: 10vw;
+  justify-content: center;
+  align-content: center;
   i {
     color: #333;  
   }

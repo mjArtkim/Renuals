@@ -196,7 +196,7 @@ const { t, locale } = useI18n()
 .logo .circle1 {
   width: 170px;
   transform: translate3d(0, 0, 20px);
-  border-radius: 30px;
+  border-radius: 50px;
   top: 8px;
   right: 8px;
 }
@@ -209,7 +209,7 @@ const { t, locale } = useI18n()
   -webkit-backdrop-filter: blur(1px);
   backdrop-filter: blur(1px);
   transition-delay: 0.4s;
-  border-radius: 30px;
+  border-radius: 50px;
 }
 
 .logo .circle3 {
@@ -218,7 +218,7 @@ const { t, locale } = useI18n()
   top: 17px;
   right: 17px;
   transition-delay: 0.8s;
-  border-radius: 30px;
+  border-radius: 50px;
 }
 
 .logo .circle4 {
@@ -227,7 +227,7 @@ const { t, locale } = useI18n()
   top: 23px;
   right: 23px;
   transition-delay: 1.2s;
-  border-radius: 30px;
+  border-radius: 50px;
 }
 
 .logo .circle5 {
@@ -238,7 +238,7 @@ const { t, locale } = useI18n()
   display: grid;
   place-content: center;
   transition-delay: 1.6s;
-  border-radius: 15px;
+  border-radius: 30px;
 }
 
 .logo .circle5 img {
