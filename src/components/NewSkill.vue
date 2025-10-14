@@ -240,7 +240,7 @@ onMounted(() => {
   }
   &__names{
     font-family:'GmarketSans';
-    font-size: clamp(28px, calc(var(--font-scale) * 29vw), 38px);
+    font-size: clamp(20px, calc(var(--font-scale) * 29vw), 38px);
     font-weight: 800;
   }
 }

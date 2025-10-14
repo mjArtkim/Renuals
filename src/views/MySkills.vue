@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import gsap from 'gsap';
+import { gsap, Expo } from "gsap";
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
 import NewMainVue from '@/views/NewMain.vue'
@@ -23,7 +23,30 @@ const scrollerRef = ref(null);
 let bodyScrollBar;
 const isScrolling = ref(false)
 let scrollTimeout = null
+const cursorRef = ref(null);
+const textRef = ref(null);
 
+const pos = { x: 0, y: 0 };
+const vel = { x: 0, y: 0 };
+const set = {};
+function getScale(dx, dy) {
+  const distance = Math.sqrt(dx*dx + dy*dy);
+  return Math.min(distance / 300, 0.35);
+}
+function getAngle(dx, dy) {
+  return (Math.atan2(dy, dx) * 180) / Math.PI;
+}
+const loop = () => {
+  const rotation = getAngle(vel.x, vel.y);
+  const scale = getScale(vel.x, vel.y);
+
+  set.x(pos.x);
+  set.y(pos.y);
+  set.r(rotation);
+  set.sx(1 + scale);
+  set.sy(1 - scale);
+  set.rt(-rotation);
+};
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
     damping: 0.1,
@@ -106,7 +129,37 @@ onMounted(() => {
   bodyScrollBar.addListener(({ offset }) => {
     isScrolling.value = offset.y > 0
   })
+  set.x = gsap.quickSetter(cursorRef.value, "x", "px");
+  set.y = gsap.quickSetter(cursorRef.value, "y", "px");
+  set.r = gsap.quickSetter(cursorRef.value, "rotate", "deg");
+  set.sx = gsap.quickSetter(cursorRef.value, "scaleX");
+  set.sy = gsap.quickSetter(cursorRef.value, "scaleY");
+  set.rt = gsap.quickSetter(textRef.value, "rotate", "deg");
+  const handleMouseMove = (evt) => {
+    const mouseX = evt.clientX;
+    const mouseY = evt.clientY;
 
+    gsap.to(pos, {
+      x: mouseX,
+      y: mouseY,
+      duration: 0.8,
+      ease: Expo.easeOut,
+      onUpdate: () => {
+        vel.x = mouseX - pos.x;
+        vel.y = mouseY - pos.y;
+      }
+    });
+
+    loop();
+  }
+
+  document.body.addEventListener("mousemove", handleMouseMove);
+  gsap.ticker.add(loop);
+
+  onBeforeUnmount(() => {
+    document.body.removeEventListener("mousemove", handleMouseMove);
+    gsap.ticker.remove(loop);
+  });
 });
 
 onBeforeUnmount(() => {
@@ -204,6 +257,9 @@ const scrollToBottom = () => {
       <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
     </div>
   </transition>
+  <div ref="cursorRef" class="cursor">
+    <div ref="textRef" class="inside-text">ART</div>
+  </div>
 </template>
 
 
@@ -603,5 +659,49 @@ const scrollToBottom = () => {
 .fade-leave-from {
   opacity: 1;
   transform: translateY(0);
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-width: 2px;  
+  border-color: #004cfe;
+  border-radius: 75px;
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin:   50% 50%;
+  -o-transform-origin:      50% 50%;
+  -ms-transform-origin:   50% 50%;
+  transform-origin:       50% 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform:  translate(-50%, -50%);
+  -o-transform:    translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform:      translate(-50%, -50%);
+  will-change: width, height, transform, border;
+  z-index: 999;
+  pointer-events: none;
+}
+.inside-text {
+  width: 100%;
+  opacity: 1;
+  color: #004cfe;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+  mix-blend-mode: hard-light;
+}
+
+@media (max-width: 880px) {
+  .cursor {display: none;}
+  .shape{display: none;}
 }
 </style>

@@ -1,6 +1,9 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 onMounted(() => {
   const footerName = document.querySelector(".footer__name")
@@ -11,10 +14,7 @@ onMounted(() => {
     const mouseX = evt.clientX
     const mouseY = evt.clientY
     const rect = document.querySelector('.footer__name').getBoundingClientRect()
-    gsap.set(".cursor", {
-      x: mouseX - rect.left,
-      y: mouseY - rect.top,
-    })
+
     gsap.to(".shape", {
       x: mouseX - rect.left,
       y: mouseY - rect.top,
@@ -58,7 +58,6 @@ onMounted(() => {
         <h1>MIN JI KIM</h1>
         <div class="footer__copy">&copy; 2025 MINJI KIM. All right reserved. </div>
       </div>
-      <div class="cursor"></div>
     </div>
   </div>
 </template>
@@ -144,7 +143,7 @@ onMounted(() => {
   width: 30px;
   height: 30px;
   background: transparent;
-  border: 5px solid #005ffe;
+  border: 5px solid #5d00fe;
   border-radius: 50%;
   pointer-events: none;
   user-select: none;

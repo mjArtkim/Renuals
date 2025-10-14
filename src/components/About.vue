@@ -4,11 +4,13 @@ import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useI18n } from 'vue-i18n';
 
+import { useI18n } from 'vue-i18n';
 const { t, locale } = useI18n()
+
 gsap.registerPlugin(SplitText, CustomEase, ScrollTrigger)
 CustomEase.create("here-ease", "0.6, 0.05, 0, 1")
+
 let splitInstance = null
 let tween = null
 watch(locale, () => {
@@ -27,12 +29,14 @@ watch(locale, () => {
 onMounted(() => {
   const sheading = document.querySelector('[data-split="sheading"]');
   const scroller = document.querySelector(".scroller");
+  if (!scroller || !sheading) return;
+
   document.fonts.ready.then(() => {
     splitInstance = SplitText.create(sheading, {
       type: "chars",
       charsClass: "letter"
     });
-  const targets = sheading.querySelectorAll(".letter");
+    const targets = sheading.querySelectorAll(".letter");
     tween = gsap.fromTo(
       targets,
       { yPercent: 110, opacity: 0 },
@@ -45,9 +49,8 @@ onMounted(() => {
         scrollTrigger: {
           trigger: sheading,
           start: "top 80%",
-          scroller: scroller, 
-          toggleActions: "play none none reverse",
-          once: false 
+          scroller: scroller,
+          toggleActions: "play none none reverse"
         }
       }
     );
@@ -58,7 +61,7 @@ onBeforeUnmount(() => {
   if (tween) tween.kill();
   if (splitInstance) splitInstance.revert();
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-});
+})
 </script>
 
 <template>

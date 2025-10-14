@@ -181,10 +181,13 @@ function handleKeydown(event, index) {
               </li>
             </ul>
           </li>
-          <li>       
-            <div class="lang-box">
-              <button @click="changeLanguage('en')" :class="{ active: locale === 'en' }">EN</button>
-              <button @click="changeLanguage('ko')" :class="{ active: locale === 'ko' }">KR</button>
+          <li class="m-lang">
+            <div class="m-lang-tit">  
+              <div>LANGUAGE</div>
+            </div>
+            <div class="m-lang-box">
+              <div @click="changeLanguage('en')" :class="{ active: locale === 'en' }">EN</div>
+              <div @click="changeLanguage('ko')" :class="{ active: locale === 'ko' }">KR</div>
             </div>  
           </li>
         </ul>
@@ -234,13 +237,13 @@ function handleKeydown(event, index) {
     font-size: 28px;
     span {
       font-size: 50px;
-      color: #fff;
+      color: #000;
       text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
       transition: 0.2s;
   }
 }
 .pf-gnb-label span.actives {
-  color: #333 !important;
+  color: #707070 !important;
   transform: rotate(135deg);
 }
 #pc-pf-gnb {
@@ -337,6 +340,34 @@ function handleKeydown(event, index) {
 .intro-txt {
   font-size: 0.8em;
 }
+.m-lang {
+  line-height: 2.2;
+  font-weight: 600;
+  .m-lang-tit{
+    color: #707070;
+  }
+  .m-lang-box {
+    display: flex;
+    justify-content: space-around;
+    div {
+      cursor: pointer;
+      font-size: 24px;
+      transition: ease-in-out 0.3s;
+      color: #292929;
+
+    }
+    .active {
+      font-weight: 700;
+      border-bottom-right-radius: 10px;
+      border-top-left-radius: 10px;
+      box-shadow: 0 0px 10px 0 rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur( 6px );
+      -webkit-backdrop-filter: blur( 6px );
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #005ffe;
+    }
+  }
+}
 @keyframes fadeUp {
   to {
     opacity: 1;
@@ -362,8 +393,8 @@ function handleKeydown(event, index) {
   }
 }
   .pf-gnb-label {
-    right: 30px;
-    top: 30px;
+    right: 20px;
+    top: 20px;
   }
   .lang-box {
     top: 45px;
