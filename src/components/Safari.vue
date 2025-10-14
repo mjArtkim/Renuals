@@ -48,7 +48,7 @@ const props = defineProps({
 .safari-window {
   width: 900px;
   max-width: 100%;
-  border-radius: 12px;
+  border-radius: 24px;
   overflow: hidden;
   background: linear-gradient(180deg, #ffffff 0%, #fbfbfb 100%);
   box-shadow: 0 12px 30px rgba(20,20,30,0.12);
@@ -120,7 +120,7 @@ const props = defineProps({
   align-items: center;
   gap: 8px;
   padding: 0 12px;
-  border-radius: 8px;
+  border-radius: 30px;
   background: rgba(0,0,0,0.03);
   backdrop-filter: blur(6px);
   min-width: 0;

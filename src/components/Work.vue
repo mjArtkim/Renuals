@@ -340,7 +340,6 @@ function verticalLoop(items, config) {
           onChange &&
           function () {
             let i = tl.closestIndex();
-            // i = ((i % items.length) + items.length) % items.length; 
             if (lastIndex !== i) {
               lastIndex = i;
               onChange(items[i], i);
@@ -541,15 +540,15 @@ function verticalLoop(items, config) {
         type: "y",
         inertia: true,
         onPressInit() {
-          let x = this.y
-          gsap.killTweensOf(tl)
-          wasPlaying = !tl.paused()
-          tl.pause()
-          startProgress = tl.progress()
-          refresh()
-          ratio = 1 / totalHeight
-          initChangeY = startProgress / -ratio - x
-          gsap.set(proxy, { y: startProgress / -ratio })
+          let x = this.y;
+          gsap.killTweensOf(tl);
+          wasPlaying = !tl.paused();
+          tl.pause();
+          startProgress = tl.progress();
+          refresh();
+          ratio = 1 / totalHeight ? 1 / totalHeight : 0.000001;
+          initChangeY = startProgress / -ratio - x;
+          gsap.set(proxy, { y: startProgress / -ratio });
         },
         onDrag: align,
         onThrowUpdate: align,
@@ -590,7 +589,11 @@ function verticalLoop(items, config) {
   return timeline;
 }
 
-
+onUnmounted(() => {
+  window.removeEventListener('resize', onResize);
+  tl && tl.kill && tl.kill();
+  if (tl && tl.draggable) tl.draggable.kill();
+});
 
 onMounted(() => { initSlider() })
 </script>
@@ -654,7 +657,6 @@ onMounted(() => { initSlider() })
               <img
                 src="@/assets/img/new/new_work_06.webp"
                 loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
               />
               <div class="slide-caption">
                 <a href="#" class="caption">
@@ -669,7 +671,6 @@ onMounted(() => { initSlider() })
               <img
                 src="@/assets/img/new/new_work_01.webp"
                 loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
               />
               <div class="slide-caption">
                 <a href="#" class="caption">
@@ -684,7 +685,6 @@ onMounted(() => { initSlider() })
               <img
                 src="@/assets/img/new/new_work_02.webp"
                 loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
               />
               <div class="slide-caption">
                 <a href="#" class="caption">
@@ -699,7 +699,6 @@ onMounted(() => { initSlider() })
               <img
                 src="@/assets/img/new/new_work_03.webp"
                 loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
               />
               <div class="slide-caption">
                 <a href="#" class="caption">
@@ -714,7 +713,6 @@ onMounted(() => { initSlider() })
               <img
                 src="@/assets/img/new/new_work_04.webp"
                 loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
               />
               <div class="slide-caption">
                 <a href="#" class="caption">
@@ -729,7 +727,6 @@ onMounted(() => { initSlider() })
               <img
                 src="@/assets/img/new/new_work_05.webp"
                 loading="lazy"
-                sizes="(max-width: 479px) 90vw, (max-width: 1024px) 50vw, 560px"
               />
               <div class="slide-caption">
                 <a href="#" class="caption">
@@ -919,26 +916,45 @@ onMounted(() => { initSlider() })
   overflow: hidden;
 }
 .slide-inner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 1024px;
+  height: 100%; 
+  margin: auto;
+  object-fit: contain;
+  @media (max-width: 1024px) {
+    width: 70vw;
+  }
+
+  @media (max-width: 479px) {
+    width: 90vw;
+  }
 }
 .slide-caption {
+  display: flex;
+  position: absolute;
+  justify-content: flex-start;
+  align-items: center;
+  bottom: 30px;
+  right: 30px;
   z-index: 2;
   grid-column-gap: 0.4em;
   grid-row-gap: 0.4em;
-  background-color: transparent;
-  color: #000;
+  border: 1px solid rgba($color: #fff, $alpha: 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
+  -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
+  filter: brightness(1) saturate(1.2) contrast(0.85);
   white-space: nowrap;
   border-radius: 0.25em;
-  justify-content: flex-start;
-  align-items: center;
   padding: 0.4em 0.75em 0.4em 0.5em;
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  right: 0;
   overflow: hidden;
+  div {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    }
+    i {
+      color: #fff;
+      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    }
 }
 .caption {
   display: flex;
@@ -960,36 +976,14 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
   opacity: 1;
   transform: translate(0%, 0px);
 }
-.osmo-credits {
-  z-index: 999;
-  pointer-events: none;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 4em;
-  padding: 1em;
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-}
-.osmo-credits__p {
-  pointer-events: auto;
-  color: #efeeec80;
-  text-align: center;
-  margin: 0;
-  font-size: 1.125em;
-  font-weight: 500;
-  line-height: 1.3;
-}
+
 @media (max-width: 880px) {
   .works {
-    min-height: 75vh;
+    min-height: 80vh;
   }
   .overlay {
     width: 100%;
-    height: 20%;
+    height: 40%;
     background-image: linear-gradient(-180deg, #f1f1f1 50%, rgba(241, 241, 241, 0.3) 90%, transparent);
   }
   .overlay-inner {
@@ -1019,6 +1013,7 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
   }
   .slider-wrap {
     align-items: flex-start;
+    justify-content: center;
   }
   .slider-slide {
     width: 50%;
@@ -1039,26 +1034,6 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
   }
   [data-slider="list"].vertical {
     flex-direction: column;
-  }
-  .slide-caption {
-    z-index: 2;
-    grid-column-gap: .4em;
-    grid-row-gap: .4em;
-    border: 1px solid rgba($color: #fff, $alpha: 0.3);
-    background-color: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
-    -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
-    filter: brightness(1) saturate(1.2) contrast(0.85);
-    bottom: 30px;
-    right: 30px;
-    div {
-      color: #fff;
-      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
-    }
-    i {
-      color: #fff;
-      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
-    }
   }
 }
 @media (min-width: 881px) and (max-width: 1200px) {
