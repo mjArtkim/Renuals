@@ -35,30 +35,31 @@ onMounted(() => {
 </script>
 <template>
   <div class="footer">
-    <div class="footer__top">
-      <ul class="footer__link">
-        <li><a href="#">ABOUT</a></li>
-        <li><a href="#">WORKS</a></li>
-      </ul>
-      <div class="footer__mail">
-        <div class="footer__frs">
-          <a href="mailto:mjtwins1@gmail.com">
-            <div>mjtwins1@naver.com</div>
-          </a>
-        </div>
-        <div class="footer__sec">FEEL FREE TO REACH OUT ANYTIME</div>
-      </div>
-    </div>
+    
     <div class="footer__name">
       <div class="shape shape-1"></div>
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
       <div class="content">
+        <div class="footer__top">
+          <ul class="footer__link">
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">WORKS</a></li>
+          </ul>
+          <div class="footer__mail">
+            <div class="footer__frs">
+              <a href="mailto:mjtwins1@gmail.com">
+                <div>mjtwins1@naver.com</div>
+              </a>
+            </div>
+            <div class="footer__sec">FEEL FREE TO REACH OUT ANYTIME</div>
+          </div>
+        </div>
         <h1>MIN JI KIM</h1>
+        <div class="footer__copy">&copy; 2025 MINJI KIM. All right reserved. </div>
       </div>
       <div class="cursor"></div>
     </div>
-    <div class="footer__copy">&copy; 2025 MINJI KIM. All right reserved. </div>
   </div>
 </template>
 
@@ -68,17 +69,20 @@ onMounted(() => {
   overflow: hidden;
   width: 100%;
   --font-scale: 0.08;
-  padding: 0 50px;
+
 
   &__top {
     display: flex;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
+    z-index: 15;
+    padding: 0 50px;
   }
   &__link {
     display: flex;
     gap: 0 20px;
     font-size: 16px;
+    z-index: 15;
   }
   &__mail {
     text-align: right;
@@ -96,15 +100,16 @@ onMounted(() => {
   }
   &__name {
     position: relative;
-    height: 300px;
-    width: 100vw;
+    height: 500px;
+    width: 100%;
     background: #000;
     overflow: hidden;
     h1{
       position: relative;
       z-index: 10;
-      display: inline-block;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: clamp(30px, calc(var(--font-scale) * 240vw), 300px);
       font-weight: 900;
       line-height: 1;
@@ -114,9 +119,9 @@ onMounted(() => {
     position: relative;
   }
 }
-.shape-1 { --size: 650px; background: #005ffe; }
-.shape-2 { --size: 440px; background: #0087fe; }
-.shape-3 { --size: 270px; background: #adcbff; }
+.shape-1 { --size: 550px; background: #005ffe; }
+.shape-2 { --size: 340px; background: #0087fe; }
+.shape-3 { --size: 170px; background: #adcbff; }
 .shape {
   position: absolute;
   width: var(--size);
@@ -129,12 +134,10 @@ onMounted(() => {
   top: 0;
   left: 0;
   position: absolute;
-  display: flex;
   height: 100%;
   width: 100%;
   background: #f1f1f1;
   mix-blend-mode: screen;
-  justify-content: center;
 }
 .cursor {
   position: fixed;
@@ -162,17 +165,20 @@ onMounted(() => {
 }
 @media (max-width: 768px) {
   .footer {
+    margin-top: 20px;
     padding: 30px;
     &__top {
       display: block;
+      padding: 0;
     }
     &__link {
       display: flex;
       padding: 30px 0;
     }
     &__name {
-      height: 570px;
+      height: 750px;
       width: 100%;
+      background-color: transparent;
       h1{
         display: block;
         text-align: left;
