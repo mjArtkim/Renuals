@@ -178,8 +178,10 @@ onMounted(() => {
     top: 50%;
     left: 50%;
     display: inline-block;
-    background: #000000;
-    color: #fff;
+    background: #fff;
+    color: #292929;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.3);
     transform: skew(-10deg) rotate(-10deg) translate(-50%, -50%);
     padding: 10px 0;
     margin: 0;

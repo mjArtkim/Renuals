@@ -2,11 +2,13 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  cursor: none;
 }
 * {padding: 0; margin: 0; box-sizing: border-box;}
 
 
 body {
+  cursor: none;
   scroll-behavior: smooth;
   min-height: 100vh;
   transition:
@@ -25,11 +27,11 @@ body {
   background-color: #f1f1f1;
   word-break: keep-all;
 }
-button {border: 0; background-color: transparent; cursor: pointer;}
+button {border: 0; background-color: transparent; cursor: pointer; cursor: none;}
 .sound-only {position: absolute; left: -9999em; top: -9999em;}
 .clearfix:after {content: ''; display: block; clear: both;}
 ol, ul {list-style-type: none;}
-a {text-decoration: none; color: #292929 !important;}
+a {text-decoration: none; color: #292929 !important; cursor: none;}
 .cutxt {
   white-space: pre-line;
 }
@@ -39,4 +41,9 @@ a {text-decoration: none; color: #292929 !important;}
 .bold-20 {
   font-weight: 700;
   font-size: 20px;
+}
+@media (max-width: 880px) {
+  body, button, a, *, *::before, *::after{
+    cursor: default;
+  }
 }

@@ -1,23 +1,20 @@
 <script setup>
-import { onMounted, onBeforeUnmount, watch } from "vue"
-import { gsap } from "gsap"
-import { SplitText } from "gsap/SplitText"
-import { CustomEase } from "gsap/CustomEase"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { onMounted, onBeforeUnmount, watch } from "vue";
+import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
+import { CustomEase } from "gsap/CustomEase";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useI18n } from 'vue-i18n';
 
-import { useI18n } from 'vue-i18n'
 const { t, locale } = useI18n()
-
 gsap.registerPlugin(SplitText, CustomEase, ScrollTrigger)
-CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1")
-
+CustomEase.create("here-ease", "0.6, 0.05, 0, 1")
 let splitInstance = null
 let tween = null
 watch(locale, () => {
   if (!splitInstance) return
-  splitInstance.revert()
-
-  const sheading = document.querySelector('[data-split="sheading"]')
+  splitInstance.revert();
+  const sheading = document.querySelector('[data-split="sheading"]');
   sheading.innerHTML = `
   <li class="about__txt1">&quot;${t('new.abouttit')}&quot;</li>
   <li class="about__txt2">${t('new.abouttxt')}</li>
@@ -25,20 +22,17 @@ watch(locale, () => {
   splitInstance = SplitText.create(sheading, {
     type: "chars",
     charsClass: "letter"
-  })
-})
+  });
+});
 onMounted(() => {
-  const sheading = document.querySelector('[data-split="sheading"]')
-  const scroller = document.querySelector(".scroller")
+  const sheading = document.querySelector('[data-split="sheading"]');
+  const scroller = document.querySelector(".scroller");
   document.fonts.ready.then(() => {
     splitInstance = SplitText.create(sheading, {
       type: "chars",
       charsClass: "letter"
-    })
-
-
-  const targets = sheading.querySelectorAll(".letter")
-
+    });
+  const targets = sheading.querySelectorAll(".letter");
     tween = gsap.fromTo(
       targets,
       { yPercent: 110, opacity: 0 },
@@ -47,7 +41,7 @@ onMounted(() => {
         opacity: 1,
         duration: 0.6,
         stagger: 0.01,
-        ease: "osmo-ease",
+        ease: "here-ease",
         scrollTrigger: {
           trigger: sheading,
           start: "top 80%",
@@ -56,15 +50,15 @@ onMounted(() => {
           once: false 
         }
       }
-    )
-  })
-})
+    );
+  });
+});
 
 onBeforeUnmount(() => {
-  if (tween) tween.kill()
-  if (splitInstance) splitInstance.revert()
-  ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-})
+  if (tween) tween.kill();
+  if (splitInstance) splitInstance.revert();
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+});
 </script>
 
 <template>
@@ -73,9 +67,9 @@ onBeforeUnmount(() => {
       <div class="about__mail">
         <div class="about__ul">
           <div class="about__frs">
-            <a href="mailto:mjtwins1@gmail.com">
+            <a href="mailto:mjtwins1@naver.com">
               <i class="fa-solid fa-envelope"></i>
-              <div>mjtwins1@gmail.com</div>
+              <div>mjtwins1@naver.com</div>
             </a>
           </div>
           <div class="about__sec">FEEL FREE TO REACH OUT ANYTIME</div>

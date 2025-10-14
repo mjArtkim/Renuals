@@ -174,14 +174,14 @@ const scrollToBottom = () => {
         <div class="panel white"></div>
       </div>
     </section>
-    <div class="tools">
+    <section class="tools">
       <ToolView></ToolView>
-    </div>
-    <div class="works-main" id="third">
+    </section>
+    <section class="works-main" id="third">
       <h1>WORKS</h1>
       <WorksView></WorksView>
-    </div>
-    <div class="final" id="fourth">
+    </section>
+    <section class="final" id="fourth">
       <h1>CONTACT</h1>
       <div class="final-container">
         <div class="form-container">
@@ -193,15 +193,17 @@ const scrollToBottom = () => {
           </div>
         </div>
       </div>
-    </div> 
+    </section> 
+    <section>
       <Footer></Footer>
+    </section>
+  </div>
+  <transition name="fade">      
+    <div class="scroll-btn-group2" v-if="isScrolling">
+      <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
+      <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
     </div>
-    <transition name="fade">      
-      <div class="scroll-btn-group2" v-if="isScrolling">
-        <button class="scroll-btn top" @click="scrollToTop"><span class="material-icons-round">expand_less</span></button>
-        <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
-      </div>
-    </transition>
+  </transition>
 </template>
 
 

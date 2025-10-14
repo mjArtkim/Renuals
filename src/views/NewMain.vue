@@ -3,12 +3,11 @@ import { ref, onMounted } from "vue"
 import { gsap } from "gsap"
 import { SplitText } from "gsap/SplitText"
 import { CustomEase } from "gsap/CustomEase"
-
 import { useI18n } from 'vue-i18n'
-const { t, locale } = useI18n()
 
+const { t, locale } = useI18n()
 gsap.registerPlugin(SplitText, CustomEase)
-CustomEase.create("osmo-ease", "0.625, 0.05, 0, 1")
+CustomEase.create("main-ease", "0.7, 0.08, 0, 1")
 const headingRef = ref(null)
 const miniTitRef = ref(null)
 const nameRef = ref(null)
@@ -18,17 +17,15 @@ const miniTxtRef = ref(null)
 const config = {
   duration: 0.6,
   stagger: 0.05,
-  ease: "osmo-ease",
+  ease: "main-ease",
 }
 
 function animate(target) {
   if (!target) return
-
   const split = SplitText.create(target, {
     type: "words",
     wordsClass: "word",
   })
-
   gsap.fromTo(
     split.words,
     { yPercent: 50, opacity: 0 },
@@ -46,7 +43,6 @@ onMounted(() => {
   gsap.set([headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value], {
     opacity: 0,
   })
-
   document.fonts.ready.then(() => {
     const elements = [headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value]
     elements.forEach((el, i) => {
