@@ -929,39 +929,49 @@ onMounted(() => { initSlider() })
   }
 }
 .slide-caption {
-  display: flex;
   position: absolute;
-  justify-content: flex-start;
-  align-items: center;
   bottom: 30px;
   right: 30px;
   z-index: 2;
-  grid-column-gap: 0.4em;
-  grid-row-gap: 0.4em;
-  border: 1px solid rgba($color: #fff, $alpha: 0.3);
-  background-color: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
-  -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
-  filter: brightness(1) saturate(1.2) contrast(0.85);
-  white-space: nowrap;
-  border-radius: 0.25em;
-  padding: 0.4em 0.75em 0.4em 0.5em;
-  overflow: hidden;
-  div {
-      color: #fff;
-      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+  .caption {
+    position: relative;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    font-size: 14px;
+    border: 1px solid rgba($color: #fff, $alpha: 0.3);
+    border-radius: 5px;
+    color: #fff;
+    overflow: hidden;
+    padding: 5px 10px;
+    z-index: 0;
+    text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-color: rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
+      -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
+      transition: background-color 0.3s ease-in-out;
+      opacity: 1;
+      z-index: -1;
     }
-    i {
-      color: #fff;
-      text-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
-    }
+    &:hover::before{
+    opacity: 0.8;
+    background-color: rgba(0, 25, 106, 0.7);
+  }
+  }
+  div, i {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+  }
+
 }
-.caption {
-  display: flex;
-  align-items: center;
-  gap: 0 10px;
-  font-size: 14px;
-}
+
 .slide-caption {
   transition:
     transform 0.525s cubic-bezier(0.65, 0, 0.35, 1),
