@@ -89,7 +89,7 @@ function handleKeydown(event, index) {
   <header class="header">
     <div class="pc-gnb">
       <div id="pc-pf-gnb">
-        <router-link to="/"><div>logo</div></router-link>
+        <router-link to="/"><img src="@/assets/img/new/logo.webp" alt="logo" class="logo" /></router-link>
         <ul class="pf-ul" role="menubar">
           <li
             v-for="(item, index) in menuItems"
@@ -251,7 +251,7 @@ function handleKeydown(event, index) {
   top: 0;
   right: 0;
   width: 100%;
-  padding: 40px 50px 20px;
+  padding: 30px 50px 20px;
   display: grid;
   grid-template-columns: 20% 80%;
   background-image: linear-gradient(
