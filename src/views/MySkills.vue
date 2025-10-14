@@ -448,13 +448,17 @@ const scrollToBottom = () => {
 
 
 .final {
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   padding: 0 50px;
   --font-scale: 0.08;
+  @media (max-width: 768px) {
+    padding: 0 30px;
+  }
   h1 {
     padding: 50px 0;
     font-family:'GmarketSans';
-    font-size: clamp(60px, calc(var(--font-scale) * 94vw), 150px);
+    font-size: clamp(50px, calc(var(--font-scale) * 94vw), 150px);
     text-align: center;
   }
 }
@@ -466,10 +470,12 @@ const scrollToBottom = () => {
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center; 
-    padding: 0 30px;
+    gap: 20px 0;
   }
+}
+.form-container {
+  width: 100%;
 }
 @media (max-width: 768px) {
   .look-more {
