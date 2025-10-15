@@ -31,10 +31,6 @@ const props = defineProps({
         <div class="lock" v-if="showLock">🔒</div>
         <div class="title">{{ title }}</div>
       </div>
-      <!-- <div class="actions">
-        <button class="action-btn" v-if="showShare">⇪</button>
-        <button class="action-btn" v-if="showTabs">◱</button>
-      </div> -->
     </header>
     <main class="safari-body">
       <slot>
@@ -167,7 +163,7 @@ const props = defineProps({
 
 .safari-body{
   min-height: 400px;
-  padding: 50px;
+  padding: 30px 50px;
 }
 
 .placeholder{
@@ -186,7 +182,7 @@ const props = defineProps({
   .safari-window{ width: 100%; }
   .safari-body{
     min-height: 400px;
-    padding: 30px;
+    padding: 20px 30px 30px;
   }
   .light{
     width: 24px;

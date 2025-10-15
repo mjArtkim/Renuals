@@ -40,8 +40,8 @@ onMounted(async () => {
 const handleClick = (name) => {
   selectedName.value = name
   isSafariVisible.value = true
+  console.log('선택된 Skill:', selectedSkill.value)
 }
-
 </script>
 
 <template>
@@ -54,8 +54,19 @@ const handleClick = (name) => {
           :title="selectedName"
           @close="() => { isSafariVisible = false; selectedName = '' }"
         >
-          <div v-if="selectedSkill">
-            <div>{{ selectedSkill.name }}</div>                
+          <div v-if="selectedSkill" class="tool">
+            <div class="tool__tit">
+              <div class="tool__txt">{{ selectedSkill.name }}</div>                
+              <div 
+                class="tool__level"
+                :style="{
+                  borderColor: selectedSkill?.color,
+                  color: selectedSkill?.color
+                }"
+              >
+                {{ selectedSkill.level ? t(selectedSkill.level) : '' }}
+              </div>
+            </div>
             {{ selectedSkill.content ? t(selectedSkill.content) : '' }}
           </div>
         </SafariView>
@@ -108,6 +119,28 @@ const handleClick = (name) => {
     text-align: center;
     font-size: clamp(20px, calc(var(--font-scale) * 40vw), 50px);
     color: rgba($color: #000000, $alpha: 0.5);
+  }
+  .tool-txt {
+    padding-bottom: 20px;
+  }
+}
+.tool{
+  &__tit{
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    gap: 0 20px;
+  }
+  &__txt{
+    font-family:'GmarketSans';
+    font-size: clamp(18px, calc(var(--font-scale) * 20vw), 28px);
+    font-weight: 600;
+  }
+  &__level{
+    font-size: 14px;
+    border: 1px solid;
+    padding: 4px 8px;
+    border-radius: 5px;
   }
 }
 .nav-container {
@@ -225,9 +258,18 @@ const handleClick = (name) => {
     width: 9em;
   }
   .nav-item:hover .nav-item__tooltip{
-	opacity: 0;
-}
-
+	  opacity: 0;
+  }
+  .tool{
+    &__tit{
+      justify-content: space-between;
+    }
+    &__level{
+      font-size: 10px;
+      border: 1px solid;
+      padding: 2px 4px;
+    }
+  }
 }
 @media (min-width: 881px) and (max-width: 1200px)  {
   .cloneable {

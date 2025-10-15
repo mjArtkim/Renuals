@@ -146,12 +146,39 @@
     "skills":{
       "webdesign":"In my web design, I implement user-centered responsive layouts and effective navigation to ensure accessibility. Additionally, I incorporate interactive elements as supplementary features to enhance the overall user experience.",
       "appdesign":"In my app design process, I take into account user needs and behavior patterns, service objectives, information architecture, platform-specific requirements, visual consistency, accessibility, and technical constraints to create effective and user-centered solutions.",
-      "creative":"ADD CONTENT",
-      "uiux":"ADD CONTENT",
-      "development":"ADD CONTENT"
+      "creative":"I create designs that align with the client’s goals and vision, utilizing a wide range of creative tools. My skills span across 2D and 3D design, video production and editing and I am also proficient in presentation and various other forms of visual design.",
+      "uiux":"I deliver designs that encompass the entire process — from planning and prototyping to user experience design. Using XD and Figma, I create effective design prototypes and facilitate smooth collaboration between planners and developers. With a solid understanding of UI/UX principles, I meticulously refine every detail to achieve a polished and complete result.",
+      "development":"I continue to study development and strive to grow in line with the latest front-end trends. In addition to a solid foundation in HTML, CSS, and JavaScript, I develop web front-end projects using various libraries. Through close collaboration with back-end developers, I contribute to building efficient web structures by understanding data binding and overall architecture."
     },
     "program":{
-      "xd":"add content"
+      "xd":"I specialize in structuring and designing web and app prototypes using Adobe XD, facilitating seamless communication between planners and developers. During my work on Samsung Electronics projects, I effectively utilized XD in an environment where Figma was restricted, establishing an efficient system for design sharing and collaboration. Beyond visual execution, I leverage design thinking — testing prototypes, identifying issues from the user’s perspective, and developing creative, insight-driven solutions to deliver refined results.",
+      "ps":"I primarily use Photoshop to enhance the visual precision and completeness of prototypes. Beyond simple editing, I utilize it as a tool for visual problem-solving — adjusting color, texture, and balance to deliver refined visual solutions that align with client needs and brand identity.",
+      "ai":"I utilize Adobe Illustrator to create vector-based icons, logos, and illustrations, maintaining precise shapes and lines to ensure high-quality design output. For logos, I transfer designs to XD for integration into prototypes without resolution loss, and I also apply Illustrator in producing various print materials such as business cards, banners, and brochures.",
+      "pr":"I have produced high-quality video content using Premiere Pro, including editing, cutting, color grading, and subtitle insertion. By considering project intent and storytelling, I ensure that the message is communicated clearly. For several projects, including opening videos for the HR team, I imported After Effects files, edited them and delivered final outputs using Media Encoder.",
+      "ae":"I have created motion graphics, animation effects, and typography using After Effects, enhancing both engagement and message delivery in video content. I carefully craft motions and visual emphasis according to project intent, integrating them into Premiere Pro projects and for shorter videos, I sometimes produce final outputs directly from After Effects.",
+      "fg":"I have used Figma to create UI/UX designs and prototypes, initially exploring it as a tool for real-time collaboration and efficient design review with team members. In practice, I leveraged design systems and components to maintain consistency across projects and at a startup, I led UI planning, facilitating immediate communication and alignment between planners and developers.",
+      "vue":"I utilize Vue.js to systematically structure UI components and implement intuitive, seamless user interactions. By bridging frontend logic with design, I deliver both visual and functional experiences. Vue.js was primarily used in the development of Samsung’s HR system, offering excellent compatibility and enabling efficient component maintenance.",
+      "html":"I am proficient in structuring web pages and content using HTML. By applying semantic markup, I ensure accessibility and SEO, and I integrate HTML with CSS and JavaScript to build dynamic web pages. My foundational knowledge of HTML allowed me to adapt quickly to Vue.js-based templates and I have also built web pages using vanilla HTML in past portfolio projects.",
+      "css":"I utilize CSS to systematically design web page layouts and styles. By implementing responsive design with media queries, I ensure an optimal user experience across devices. I integrate CSS with HTML structure to deliver both visual quality and functionality and I effectively apply animations and interactive elements in line with current design trends.",
+      "js":"I have used JavaScript to implement dynamic functionality and user interactions on web pages. Through DOM manipulation, event handling, and data binding, I have developed functional and intuitive web environments while continuously improving my skills. I have built maintainable and scalable web applications using frameworks such as Vue.js and can leverage both vanilla JS and various libraries and frameworks to implement efficient and extensible web solutions.",
+      "ts":"TypeScript is not just a language, but a core tool for building stable and scalable frontend solutions. I recently began learning it and applied it to develop a new web portfolio site. Compared to JavaScript, it allowed me to fully leverage development tools and quickly identify errors, making coding and debugging much more efficient. I plan to continue using TypeScript actively to create stable and maintainable web applications.",
+      "flu":"I used Flutter to develop cross-platform mobile applications for iOS and Android. Although the widget-based architecture was initially unfamiliar, I learned it through self-study and hands-on practice, creating individual widgets in a component-like structure similar to Vue.js. I also utilized Google’s design-guided widgets and customized them as needed to implement the UI. The framework proved efficient and practical, allowing me to develop apps for both platforms simultaneously.",
+      "php":"I have experience learning and understanding PHP for web applications and server-side functionality. On GnuBoard (G5)-based sites, I studied server-side logic such as user management, bulletin boards, and email delivery, learning and utilizing PHP to enable data integration between backend and frontend and to implement dynamic features. This experience allowed me to understand how to operate web services reliably and handle user requests."
+    },
+    "level":{
+      "xd":"Professional",
+      "ps":"Professional",
+      "ai":"Professional",
+      "pr":"Advanced",
+      "ae":"Advanced",
+      "fg":"Advanced",
+      "vue":"Professional",
+      "html":"Professional",
+      "css":"Professional",
+      "js":"Professional",
+      "ts":"Intermediate",
+      "flu":"Intermediate",
+      "php":"Intermediate"
     }
   }
 }
