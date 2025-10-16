@@ -186,8 +186,8 @@ function handleKeydown(event, index) {
                   role="menuitem"
                   tabindex="0" 
                 >
-                  {{ sub.name }}
-                  <div class="intro-txt">{{ sub.intro }}</div>
+                  <div>{{ sub.name }}</div>
+                  <div class="intro-txt">- {{ sub.intro }}</div>
                 </a>
               </li>
             </ul>
@@ -244,7 +244,7 @@ function handleKeydown(event, index) {
     top: 10px;
     width: 70px;
     height: 70px;
-    z-index: 3;
+    z-index: 999;
     font-size: 28px;
     span {
       font-size: 50px;
@@ -268,86 +268,96 @@ function handleKeydown(event, index) {
   background-image: linear-gradient(
     -180deg,   
     rgba(241, 241, 241, 1) 0%,
-    rgba(241, 241, 241, 0.6) 40%,
-    rgba(241, 241, 241, 0.2) 70%,
-    rgba(241, 241, 241, 0) 100%
-    );
-  backdrop-filter: blur(1px) brightness(0.9) contrast(125%) saturate(100%);
-      -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
+    rgba(241, 241, 241, 0.7) 70%,
+    rgba(241, 241, 241, 0.4) 100%
+  );
+  backdrop-filter: blur(3px) brightness(0.9) contrast(140%) saturate(200%);
+  -webkit-backdrop-filter: blur(3px)  brightness(0.9) contrast(140%) saturate(200%);
   .pf-ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    li {
-      max-width: 180px;
-    }
-  }
-  .depth1 {
-    text-align: center;
-    font-size: 1.4em;
-  }
-  .depth2 {
-    text-align: center;
-    .depth2-item {
-      opacity: 0;
-      transform: translateY(-10px);
-      animation: fadeUp 0.4s ease forwards;
-      padding-left: 10px;
-      font-size: 0.8em;
-      line-height: 2;
-      &:hover > a{
-        color: #005ffe !important;
-        font-weight: 700;
-      }
-    }
-  }
-}
-#pf-gnb {
-    position: fixed !important;
-    top: 0;
-    right: 0;
-    width: 100%;
-    max-width: 600px;
-    height: 100vh !important;
-    padding: 50px 80px;
-    background-color: #fff;
-    border-left: 1px solid #eee;
-    overflow: auto;
-    opacity: 0;
-    transform: translateX(10px);
-    animation: fadeRight 0.4s ease forwards;
-    a {
-      color: #333;
-      transition: 0.2s;
-      &:hover {
-        color: #005ffe;
-        font-weight: 700;
-      }
-    }
     .depth1 {
-      line-height: 2.5;
-      font-size: 2em;
+      text-align: center;
+      font-size: 1.4em;
+      max-width: 180px;
+      .depth2 {
+        .depth2-item {
+          opacity: 0;
+          transform: translateY(-10px);
+          animation: fadeUp 0.4s ease forwards;
+          padding-left: 10px;
+          font-size: 0.8em;
+          line-height: 2;
+          &:hover > a{
+            color: #005ffe !important;
+            font-weight: 700;
+          }
+        }
+      }
     }
-    .depth2 {
-      .depth2-item {
-        opacity: 0;
-        transform: translateY(-10px);
-        animation: fadeUp 0.4s ease forwards;
-        padding-left: 10px;
-        font-size: 0.8em;
-        line-height: 2;
-        &:hover > a{
-          color: #005ffe!important;
+  }
+  
+}
+
+#pf-gnb {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  width: 100%;
+  max-width: 600px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 30px 40px;
+  background-color: #fff;
+  border-left: 1px solid #eee;
+  opacity: 0;
+  transform: translateX(10px);
+  animation: fadeRight 0.4s ease forwards;
+  -webkit-overflow-scrolling: touch;
+  .pf-ul{
+    .depth1 {
+      line-height: 2.6;
+      font-size: 20px;
+      a {
+        color: #333;
+        transition: 0.2s;
+        &:active {
+          color: #005ffe;
           font-weight: 700;
         }
       }
-    } 
+      .depth2 {
+        .depth2-item {
+          opacity: 0;
+          transform: translateY(-10px);
+          animation: fadeUp 0.4s ease forwards;
+          padding-left: 10px;
+          font-size: 16px;
+          line-height: 2;
+          a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            .intro-txt{
+              font-size: 12px;
+              color: #707070;
+            }
+          }
+          &:hover > a{
+            color: #005ffe!important;
+            font-weight: 700;
+          }
+        }
+      } 
+    }
+  }
 }
 .activegnb {
   color: #005ffe !important;
   font-weight: 700;
 }
-
-
 .intro-txt {
   font-size: 0.8em;
 }
@@ -365,7 +375,6 @@ function handleKeydown(event, index) {
       font-size: 24px;
       transition: ease-in-out 0.3s;
       color: #292929;
-
     }
     .active {
       font-weight: 700;
@@ -377,6 +386,19 @@ function handleKeydown(event, index) {
       background-color: rgba(255, 255, 255, 0.2);
       color: #005ffe;
     }
+  }
+}
+.pf-gnb-label {
+  right: 20px;
+  top: 20px;
+}
+.lang-box {
+  top: 45px;
+  right: 100px;
+}
+.lang-box {
+  button {
+    font-size: 16px;
   }
 }
 @keyframes fadeUp {
@@ -403,32 +425,6 @@ function handleKeydown(event, index) {
     display: none;
   }
 }
-  .pf-gnb-label {
-    right: 20px;
-    top: 20px;
-  }
-  .lang-box {
-    top: 45px;
-    right: 100px;
-  }
-  .lang-box {
-    button {
-      font-size: 16px;
-    }
-  }
-  #pf-gnb {
-    padding: 50px 50px;
-    .depth1 {
-      line-height: 2.2;
-      font-size: 24px;
-    }
-}
-
-
-@media screen and (min-width: 768px) {
-
-}
-
 /* 태블릿만 768px~1023px */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .pf-gnb-label {
@@ -436,7 +432,6 @@ function handleKeydown(event, index) {
         top: 20px;
     }
 }
-
 /* PC부터 1024px~ */
 @media screen and (min-width: 1201px) {
   .mobile-gnb{
