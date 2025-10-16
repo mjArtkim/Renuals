@@ -312,7 +312,6 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .description {
-  background-image: url('@/assets/img/bg_1.webp');
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
@@ -482,13 +481,13 @@ onMounted(() => {
 }
 .gray { 
   height: 100vh;
-  background-image: url('@/assets/img/bg_2.webp');
+
   background-repeat: no-repeat;
   background-size: cover;
 }
 .purple { 
   height: 100vh;
-  background-image: url('@/assets/img/bg_3.webp');
+
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -584,7 +583,7 @@ onMounted(() => {
   .grays { 
     height: 100%;
     padding: 20px;
-    background-image: url('@/assets/img/bg_2.webp');
+
     background-repeat: no-repeat;
     background-position: right;
     background-size: cover;
@@ -607,7 +606,7 @@ onMounted(() => {
   .purple { 
     height: 100%;
     padding: 20px;
-    background-image: url('@/assets/img/bg_3.webp');
+
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
