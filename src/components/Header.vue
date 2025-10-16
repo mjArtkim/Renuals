@@ -222,7 +222,6 @@ function handleKeydown(event, index) {
     cursor: pointer;
     font-size: 18px;
     transition: ease-in-out 0.3s;
-    font-family: 'HallymMjo';
     color: #292929;
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
   }
