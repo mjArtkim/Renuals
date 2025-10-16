@@ -310,7 +310,7 @@ function handleKeydown(event, index) {
   flex-direction: column;
   height: 100vh;
   padding: 30px 40px;
-  background-color: #fff;
+  background-color: #f1f1f1;
   border-left: 1px solid #eee;
   opacity: 0;
   transform: translateX(10px);
