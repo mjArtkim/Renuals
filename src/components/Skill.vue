@@ -4,6 +4,16 @@ import { gsap } from 'gsap'
 import { skills } from '@/data/skillsData.js'
 
 const selectedSkill = ref(null)
+const selectedCategory = ref('design')
+const selectedSkillm = ref(null)
+const isCategoryOpen = ref(false)
+const isSkillOpen = ref(false)
+const isOpen = ref({
+  design: true,
+  developer: false
+})
+const skillRefs = ref([])
+const categoryRefs = ref([])
 
 const selectSkill = (skill) => {
   if (selectedSkill.value?.id === skill.id) {
@@ -13,10 +23,7 @@ const selectSkill = (skill) => {
   }
 }
 
-const isOpen = ref({
-  design: true,
-  developer: false
-})
+
 const toggleGroup = (group) => {
   for (const key in isOpen.value) {
     if (key === group) {
@@ -31,13 +38,7 @@ const categories = {
   design: 'DESIGN',
   developer: 'DEVELOPER'
 }
-const selectedCategory = ref('design')
-const selectedSkillm = ref(null)
-const isCategoryOpen = ref(false)
-const isSkillOpen = ref(false)
 
-const skillRefs = ref([])
-const categoryRefs = ref([])
 const toggleSkillDropdown = async () => {
   isSkillOpen.value = !isSkillOpen.value
   await nextTick()
@@ -110,11 +111,11 @@ const selectSkillm = (skill, index) => {
               <transition name="expand">
               <ul v-show="isOpen.design" class="sk-lists">
                 <li 
-                v-for="item in skills.design" 
-                :key="item.id" 
-                :class="{ 'select-ac': selectedSkill?.id === item.id }" 
-                class="sk-ln-list"
-                @click="selectSkill(item)"  
+                  v-for="item in skills.design" 
+                  :key="item.id" 
+                  :class="{ 'select-ac': selectedSkill?.id === item.id }" 
+                  class="sk-ln-list"
+                  @click="selectSkill(item)"  
                 >
                   <div class="sk-list-txt">
                     <img :src="item.icon" />
@@ -143,11 +144,11 @@ const selectSkillm = (skill, index) => {
               <transition name="expand">
               <ul v-show="isOpen.developer"  class="sk-lists">
                 <li 
-                v-for="item in skills.developer" 
-                :key="item.id" 
-                :class="{ 'select-ac': selectedSkill?.id === item.id }" 
-                class="sk-ln-list"
-                @click="selectSkill(item)"
+                  v-for="item in skills.developer" 
+                  :key="item.id" 
+                  :class="{ 'select-ac': selectedSkill?.id === item.id }" 
+                  class="sk-ln-list"
+                  @click="selectSkill(item)"
                 >
                   <div class="sk-list-txt">
                     <img :src="item.icon" />

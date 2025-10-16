@@ -7,6 +7,10 @@ const { t } = useI18n()
 const navItems = ref([])
 const selectedName = ref('') 
 const isSafariVisible = ref(false)
+const navContainer = ref(null)
+let isDown = false
+let startX, scrollLeft
+
 const selectedSkill = computed(() => {
   return skills.design.find(item => item.name === selectedName.value) || null
 })
@@ -36,6 +40,43 @@ onMounted(async () => {
       toggleSiblingClass(navItems.value, index, 2, 'sibling-far', false)
     })
   })
+  navContainer.value = document.querySelector('.nav-container')
+  
+  navContainer.value.addEventListener('mousedown', (e) => {
+    isDown = true
+    navContainer.value.classList.add('dragging')
+    startX = e.pageX - navContainer.value.offsetLeft
+    scrollLeft = navContainer.value.scrollLeft
+  })
+  
+  navContainer.value.addEventListener('mouseleave', () => {
+    isDown = false
+    navContainer.value.classList.remove('dragging')
+  })
+  
+  navContainer.value.addEventListener('mouseup', () => {
+    isDown = false
+    navContainer.value.classList.remove('dragging')
+  })
+  
+  navContainer.value.addEventListener('mousemove', (e) => {
+    if (!isDown) return
+    e.preventDefault()
+    const x = e.pageX - navContainer.value.offsetLeft
+    const walk = (x - startX) * 2 // 스크롤 속도 조절
+    navContainer.value.scrollLeft = scrollLeft - walk
+  })
+  navContainer.value.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].pageX - navContainer.value.offsetLeft
+  scrollLeft = navContainer.value.scrollLeft
+}, { passive: true })
+
+navContainer.value.addEventListener('touchmove', (e) => {
+  const x = e.touches[0].pageX - navContainer.value.offsetLeft
+  const walk = (x - startX) * 2
+  navContainer.value.scrollLeft = scrollLeft - walk
+}, { passive: true })
+
 })
 const handleClick = (name) => {
   selectedName.value = name
@@ -72,7 +113,7 @@ const handleClick = (name) => {
       </div>
       <h2 v-else class="tool-none">Click App</h2>
     </div>
-    <div class="nav-container">
+    <div class="nav-container" ref="navContainer">
       <div class="nav-list">
         <div
           v-for="item in skills.design" 
@@ -234,10 +275,11 @@ const handleClick = (name) => {
   .nav-container {
     width: 90%;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
     justify-content: flex-start;
     top: 70px;
     bottom: auto;
-}
+  }
   .nav-list {
     align-items: flex-start;
   }

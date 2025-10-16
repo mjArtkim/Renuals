@@ -48,14 +48,14 @@ const handleClick = (index) => {
 const showInner = (index) => {
   const inner = cardRefs[index]?.querySelector('.skill__inner')
   if (inner) {
-    gsap.to(inner, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' })
+    gsap.to(inner, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out',  force3D: true })
   }
 }
 
 const hideInner = (index) => {
   const inner = cardRefs[index]?.querySelector('.skill__inner')
   if (inner) {
-    gsap.to(inner, { opacity: 0, y: 20, duration: 0.5, ease: 'power2.in' })
+    gsap.to(inner, { opacity: 0, y: 20, duration: 0.5, ease: 'power2.in', force3D: true })
   }
 }
 
@@ -141,22 +141,24 @@ onMounted(() => {
       content: '';
       background: #000;
       transition: all 0.4s ease-in-out;
-      transform: rotate(10deg) translate( 0%, -20%);
+      transform: translate(10%, -20%) rotate(10deg) ;
+      -webkit-transform: translate(10%, -20%) rotate(10deg) ;
     }
   }
   &__li.hover{
     min-width: 600px !important;
     background: transparent;
     &::before {
-      transform: rotate(10deg) translate( 100%, -20%);
+      transform:translate(200%, 00%) rotate(10deg) ;
+      -webkit-transform:translate( 200%, 00%) rotate(10deg) ;
     }
     .skill__img {
       opacity: 0;
       transform: scale(1.3);
     }
     .skill__name {
-      transform: translate(-200%, -50%) skew(-10deg) rotate(-10deg);
-      transition: all 0.4s ease-in-out;
+      transform: translate(-400%, -50%) skew(-10deg) rotate(-10deg);
+      -webkit-transform: translate(-400%, -50%) skew(-10deg) rotate(-10deg);
     }
     .skill__inner {
       pointer-events: auto;
@@ -182,7 +184,8 @@ onMounted(() => {
     color: #292929;
     border-radius: 5px;
     box-shadow: 1px 1px 3px rgba($color: #000000, $alpha: 0.3);
-    transform: skew(-10deg) rotate(-10deg) translate(-50%, -50%);
+    transform: translate(-50%, -50%) skew(-10deg) rotate(-10deg);
+    -webkit-transform:translate(-50%, -50%) skew(-10deg) rotate(-10deg);
     padding: 10px 0;
     margin: 0;
     text-transform: uppercase;
@@ -257,11 +260,11 @@ onMounted(() => {
       min-width: 220px;
       height: 150px;
       &::before {
-        height: 200%;
-        width: 130%;
+        height: 150%;
+        width: 150%;
         left: 0;
-        -webkit-transform: rotate(110deg) translateY(-20%);
-        transform: rotate(130deg) translateY(-20%);
+        -webkit-transform: translate(20%, -20%) rotate(130deg) ;
+        transform:translate(20%, -20%) rotate(130deg) ;
       }
     }
     &__inner{ 
@@ -276,8 +279,8 @@ onMounted(() => {
       width: 200px;
       top: 50%;
       left: 50%;
-      -webkit-transform: skew(-10deg) rotate(-10deg) translate(-50%, -100%);
-      transform: skew(-10deg) rotate(-10deg) translate(-50%, -100%);
+      -webkit-transform: translate(-50%, -50%) skew(-10deg) rotate(-10deg) ;
+      transform: translate(-50%, -50%) skew(-10deg) rotate(-10deg);
     }
     &__imga{
       margin-top: 10px;
@@ -291,16 +294,16 @@ onMounted(() => {
       width: 100%;
       background: transparent;
       &::before {
-        -webkit-transform: rotate(110deg) translateY(-150%);
-        transform: rotate(110deg) translateY(-150%);
+        -webkit-transform:translate(200%, -20%) rotate(110deg) ;
+        transform:translate(200%, -20%) rotate(110deg);
       }
       .skill__img {
         opacity: 0;
         transform: scale(1.3);
       }
       .skill__name {
-        -webkit-transform: skew(-10deg) rotate(-10deg) translate(-300%, -50%);
-        transform: skew(-10deg) rotate(-10deg) translate(-300%, -50%);
+        -webkit-transform:translate(-300%, -50%) skew(-10deg) rotate(-10deg);
+        transform:translate(-300%, -50%) skew(-10deg) rotate(-10deg);
       }
       .skill__inner {
         pointer-events: auto;
@@ -328,8 +331,8 @@ onMounted(() => {
         height: 350%;
         width: 200%;
         left: 0;
-        -webkit-transform: rotate(110deg) translateY(50%);
-        transform: rotate(130deg) translateY(50%);
+        -webkit-transform: translate(-5%, -20%) rotate(130deg) ;
+        transform:translate(-5%, -20%) rotate(130deg) ;
       }
     }
     &__inner{ 
@@ -338,10 +341,10 @@ onMounted(() => {
     }
     &__name{
       width: 200px;
-      top: 40%;
+      top: 50%;
       left: 50%;
-      -webkit-transform: skew(-10deg) rotate(-10deg) translate(-50%, -50%);
-      transform: skew(-10deg) rotate(-10deg) translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%) skew(-10deg) rotate(-10deg);
+      transform:translate(-50%, -50%) skew(-10deg) rotate(-10deg) ;
     }
     &__imga{
       margin-top: 10px;
@@ -355,16 +358,16 @@ onMounted(() => {
       width: 100%;
       background: transparent;
       &::before {
-        -webkit-transform: rotate(110deg) translateY(-150%);
-        transform: rotate(110deg) translateY(-150%);
+        -webkit-transform: translate(100%, -20%)rotate(110deg);
+        transform: translate(100%, -20%) rotate(110deg);
       }
       .skill__img {
         opacity: 0;
         transform: scale(1.3);
       }
       .skill__name {
-        -webkit-transform: skew(-10deg) rotate(-10deg) translate(-400%, -150%);
-        transform: skew(-10deg) rotate(-10deg) translate(-400%, -150%);
+        -webkit-transform:translate(-400%, -150%) skew(-10deg) rotate(-10deg);
+        transform:translate(-400%, -150%) skew(-10deg) rotate(-10deg);
       }
       .skill__inner {
         pointer-events: auto;
