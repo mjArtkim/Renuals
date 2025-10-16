@@ -19,11 +19,14 @@ const sendForm = async () => {
       email: email.value,
       phone: phone.value, 
       message: message.value
+    }, {
+      headers: { "Content-Type": "application/json" }
     })
+
     alert(res.data.message)
     name.value = email.value = phone.value = message.value = ""
   } catch (err) {
-    alert("서버 오류가 발생했습니다")
+    alert(err.response?.data?.message || "서버 오류가 발생했습니다")
   }
 }
 </script>
