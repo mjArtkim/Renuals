@@ -18,10 +18,10 @@
             <a href="mailto:mjtwins1@naver.com"><i class="fa-solid fa-envelope"></i></a>
           </button>
         </div>
-        <div class="view-more">
+        <!-- <div class="view-more">
           <router-link to="/other" class="view-more-button">View More</router-link>
           <i class="fa-solid fa-arrow-right"></i>
-        </div>
+        </div> -->
       </div>
       <div class="logo">
         <span class="circle circle1"></span>

@@ -42,10 +42,10 @@ onMounted(() => {
       <div class="shape shape-3"></div>
       <div class="content">
         <div class="footer__top">
-          <ul class="footer__link">
+          <!-- <ul class="footer__link">
             <li><a href="#">ABOUT</a></li>
             <li><a href="#">WORKS</a></li>
-          </ul>
+          </ul> -->
           <div class="footer__mail">
             <div class="footer__frs">
               <a href="mailto:mjtwins1@gmail.com">
@@ -72,7 +72,7 @@ onMounted(() => {
 
   &__top {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     align-items: center;
     z-index: 15;
     padding: 0 50px;
@@ -138,30 +138,12 @@ onMounted(() => {
   background: #f1f1f1;
   mix-blend-mode: screen;
 }
-.cursor {
-  position: fixed;
-  width: 30px;
-  height: 30px;
-  background: transparent;
-  border: 5px solid #5d00fe;
-  border-radius: 50%;
-  pointer-events: none;
-  user-select: none;
-  will-change: transform;
-  z-index: 10000;
-  transform: translate(-50%, -50%); 
-  margin: 0; 
-  mix-blend-mode: hard-light;
-}
+
 ::selection {
   color: #005ffe;
   background: #dde7ff;
 }
 
-@media (max-width: 880px) {
-  .cursor {display: none;}
-  .shape{display: none;}
-}
 @media (max-width: 768px) {
   .footer {
     margin-top: 20px;

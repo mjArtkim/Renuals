@@ -1,11 +1,12 @@
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { scrollBus } from '@/utils/scrollBus.js';
+import { RouterLink, RouterView } from 'vue-router';
+
 const isMenuVisible = ref(false);
 const activeIndex = ref(null);
-
 const screenWidth = ref(window.innerWidth)
-
 const updateWidth = () => {
   screenWidth.value = window.innerWidth
 }
@@ -13,7 +14,6 @@ const updateWidth = () => {
 onMounted(() => {
   window.addEventListener('resize', updateWidth)
 })
-
 onUnmounted(() => {
   window.removeEventListener('resize', updateWidth)
 })
@@ -38,11 +38,9 @@ const menuItems = computed(() => {
     },
     { title: t('menu.contact'), link: '#fourth', submenu: [] },
   ]
-
   if (screenWidth.value >= 1200) {
     return items.filter(item => item.title !== t('menu.home'))
   }
-
   return items
 })
 
@@ -57,18 +55,29 @@ function toggleItem(index) {
     activeIndex.value = index;
   }
 }
+
+const { t, locale } = useI18n();
+
 function handleClick(item, index, event) {
   if (item.submenu.length > 0) {
-    event.preventDefault()
-    toggleItem(index)
+    event.preventDefault();
+    toggleItem(index);
   } else {
-    if (item.link && item.link !== '#') {
-      window.location.href = item.link
+    event.preventDefault();
+    if (item.link.startsWith('#')) {
+      const targetId = item.link.replace('#', '');
+      scrollBus.emit('scrollToSection', targetId);
+      if (screenWidth.value < 1200) {
+        isMenuVisible.value = false
+      }
+    } else {
+      window.location.href = item.link;
+      if (screenWidth.value < 1200) {
+        isMenuVisible.value = false;
+      }
     }
   }
 }
-
-const { t, locale } = useI18n();
 
 function changeLanguage(lang) {
   locale.value = lang
@@ -89,7 +98,9 @@ function handleKeydown(event, index) {
   <header class="header">
     <div class="pc-gnb">
       <div id="pc-pf-gnb">
-        <router-link to="/"><img src="@/assets/img/new/logo.webp" alt="logo" class="logo" /></router-link>
+        <router-link to="/">
+          <img src="@/assets/img/new/logo.webp" alt="logo" class="logo" />
+        </router-link>
         <ul class="pf-ul" role="menubar">
           <li
             v-for="(item, index) in menuItems"

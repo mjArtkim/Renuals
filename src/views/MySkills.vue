@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { gsap, Expo } from "gsap";
+import { gsap } from "gsap";
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
+import { scrollBus }from '@/utils/scrollBus.js'
 import NewMainVue from '@/views/NewMain.vue'
 import NameCardVue from '@/components/NameCard.vue'
 import ContactFormVue from '@/components/ContactForm.vue'
@@ -14,45 +15,43 @@ import ToolView from '@/components/Tools.vue'
 import WorksView from '@/components/Work.vue'
 import Footer from '@/components/Footer.vue'
 
-const text = ref(' WORKS')
 gsap.registerPlugin(Physics2DPlugin);
-const { t, locale } = useI18n()
 gsap.registerPlugin(ScrollTrigger);
 
+const { t, locale } = useI18n();
+const text = ref(' WORKS');
 const scrollerRef = ref(null);
 let bodyScrollBar;
-const isScrolling = ref(false)
-let scrollTimeout = null
-const cursorRef = ref(null);
-const textRef = ref(null);
+const isScrolling = ref(false);
+let scrollTimeout = null;
 
-const pos = { x: 0, y: 0 };
-const vel = { x: 0, y: 0 };
-const set = {};
-function getScale(dx, dy) {
-  const distance = Math.sqrt(dx*dx + dy*dy);
-  return Math.min(distance / 300, 0.35);
-}
-function getAngle(dx, dy) {
-  return (Math.atan2(dy, dx) * 180) / Math.PI;
-}
-const loop = () => {
-  const rotation = getAngle(vel.x, vel.y);
-  const scale = getScale(vel.x, vel.y);
 
-  set.x(pos.x);
-  set.y(pos.y);
-  set.r(rotation);
-  set.sx(1 + scale);
-  set.sy(1 - scale);
-  set.rt(-rotation);
-};
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
     damping: 0.1,
     delegateTo: document,
   });
-
+  scrollBus.on('scrollToSection', (id) => {
+    const el = document.getElementById(id)
+    if (el && bodyScrollBar) {
+      bodyScrollBar.scrollIntoView(el, {
+        offsetTop: 0,
+        alignToTop: true,
+        onlyScrollIfNeeded: false,
+        behavior: 'smooth'
+      });
+      gsap.fromTo(
+        el,
+        { opacity: 0.5, filter: 'brightness(1.3)'},
+        {
+          opacity: 1,
+          filter: 'brightness(1)',
+          duration: 1.5,
+          ease: 'power2.out',
+        }
+      )
+    }
+  })
   ScrollTrigger.scrollerProxy(scrollerRef.value, {
     scrollTop(value) {
       if (arguments.length) {
@@ -69,15 +68,15 @@ onMounted(() => {
       };
     },
   });
-
+  
   bodyScrollBar.addListener(ScrollTrigger.update);
-
-
+  
   gsap.set(".panel", {
     zIndex: (i, target, targets) => targets.length - i,
   });
-
+  
   const images = gsap.utils.toArray('.panel'); 
+
   images.forEach((image, i) => {
   var tl = gsap.timeline({
     scrollTrigger: {
@@ -93,12 +92,12 @@ onMounted(() => {
   
   tl.to(image, { height: 0 });
 });
-
   gsap.set(".panel-text", {
     zIndex: (i, target, targets) => targets.length - i,
   });
 
   const texts = gsap.utils.toArray(".panel-text");
+  
   texts.forEach((text, i) => {
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -126,46 +125,18 @@ onMounted(() => {
     end: () => "+=" + images.length * window.innerHeight,
     invalidateOnRefresh: true,
   });
+  
   bodyScrollBar.addListener(({ offset }) => {
     isScrolling.value = offset.y > 0
   })
-  set.x = gsap.quickSetter(cursorRef.value, "x", "px");
-  set.y = gsap.quickSetter(cursorRef.value, "y", "px");
-  set.r = gsap.quickSetter(cursorRef.value, "rotate", "deg");
-  set.sx = gsap.quickSetter(cursorRef.value, "scaleX");
-  set.sy = gsap.quickSetter(cursorRef.value, "scaleY");
-  set.rt = gsap.quickSetter(textRef.value, "rotate", "deg");
-  const handleMouseMove = (evt) => {
-    const mouseX = evt.clientX;
-    const mouseY = evt.clientY;
 
-    gsap.to(pos, {
-      x: mouseX,
-      y: mouseY,
-      duration: 0.8,
-      ease: Expo.easeOut,
-      onUpdate: () => {
-        vel.x = mouseX - pos.x;
-        vel.y = mouseY - pos.y;
-      }
-    });
-
-    loop();
-  }
-
-  document.body.addEventListener("mousemove", handleMouseMove);
-  gsap.ticker.add(loop);
-
-  onBeforeUnmount(() => {
-    document.body.removeEventListener("mousemove", handleMouseMove);
-    gsap.ticker.remove(loop);
-  });
 });
 
 onBeforeUnmount(() => {
   ScrollTrigger.getAll().forEach(st => st.kill());
   if (bodyScrollBar) {
     bodyScrollBar.destroy();
+    scrollBus.all.clear()
   }
 });
 
@@ -186,14 +157,14 @@ const scrollToBottom = () => {
 </script>
 <template>
   <div class="scroller" ref="scrollerRef">
-    <section class="description" id="first">
+    <section class="description" id="one">
       <NewMainVue></NewMainVue>
     </section>
-    <section class="skill-view">
+    <section class="skill-view" id="first">
       <div class="sk-views">
         <AboutVue></AboutVue>
       </div>
-      <div class="new-skill">
+      <div class="new-skill" id="second">
         <SkillView></SkillView>
       </div>
     </section>
@@ -257,9 +228,6 @@ const scrollToBottom = () => {
       <button class="scroll-btn bottom" @click="scrollToBottom"><span class="material-icons-round">expand_more</span> </button>
     </div>
   </transition>
-  <div ref="cursorRef" class="cursor">
-    <div ref="textRef" class="inside-text">ART</div>
-  </div>
 </template>
 
 
@@ -281,6 +249,7 @@ const scrollToBottom = () => {
   z-index: 10;
   min-height: 100vh;
   overflow: hidden !important;
+  transition: filter 0.6s ease, opacity 0.6s ease;
 }
 .main-box {
   width: 100%;
@@ -510,6 +479,7 @@ const scrollToBottom = () => {
   min-height: 100vh;
   padding: 0 50px;
   --font-scale: 0.08;
+  transition: filter 0.6s ease, opacity 0.6s ease;
   @media (max-width: 768px) {
     padding: 0 30px;
   }
@@ -563,6 +533,7 @@ const scrollToBottom = () => {
   justify-content: end;
   align-items: center;  
   --font-scale: 0.08;
+  transition: filter 0.6s ease, opacity 0.6s ease;
   h1 {
     padding: 50px 0;
     font-family:'GmarketSans';
@@ -625,6 +596,7 @@ const scrollToBottom = () => {
   width: 100%;
   min-height: 100vh;    
   background-color: #f1f1f1;
+  transition: filter 0.6s ease, opacity 0.6s ease;
   .sk-views{
     height: 100%;
     display: flex;
@@ -637,6 +609,7 @@ const scrollToBottom = () => {
   position: relative;
   width: 100%;
   min-height: 100vh;
+  transition: filter 0.6s ease, opacity 0.6s ease;
 }
 @keyframes scroll-left {
   0% {
@@ -659,49 +632,5 @@ const scrollToBottom = () => {
 .fade-leave-from {
   opacity: 1;
   transform: translateY(0);
-}
-
-.cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-style: solid;
-  border-width: 2px;  
-  border-color: #004cfe;
-  border-radius: 75px;
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin:   50% 50%;
-  -o-transform-origin:      50% 50%;
-  -ms-transform-origin:   50% 50%;
-  transform-origin:       50% 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform:  translate(-50%, -50%);
-  -o-transform:    translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  transform:      translate(-50%, -50%);
-  will-change: width, height, transform, border;
-  z-index: 999;
-  pointer-events: none;
-}
-.inside-text {
-  width: 100%;
-  opacity: 1;
-  color: #004cfe;
-  font-size: 18px;
-  text-align: center;
-  font-weight: 600;
-  mix-blend-mode: hard-light;
-}
-
-@media (max-width: 880px) {
-  .cursor {display: none;}
-  .shape{display: none;}
 }
 </style>

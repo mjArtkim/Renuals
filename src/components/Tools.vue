@@ -40,7 +40,6 @@ onMounted(async () => {
 const handleClick = (name) => {
   selectedName.value = name
   isSafariVisible.value = true
-  console.log('선택된 Skill:', selectedSkill.value)
 }
 </script>
 

@@ -2,26 +2,50 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { posts } from '@/data/posts.js'
 import { useI18n } from 'vue-i18n'
+
 const { t, locale } = useI18n() 
 const allPosts = ref(
   [...posts].sort((a, b) => new Date(b.date) - new Date(a.date))
 )
 const visiblePosts = ref([])      
-const page = ref(1)              
-const limit = 8                
+const page = ref(1)                   
 const loading = ref(false)       
 const hasMore = ref(true)       
+
+const loadedImages = ref({})
+
+const screenWidth = ref(window.innerWidth)
+const limit = ref(4)
+const showTitle = ref(true)
+
+const updateLimitAndTitle = () => {
+  screenWidth.value = window.innerWidth
+  if (screenWidth.value <= 880) {
+    limit.value = 6
+    showTitle.value = true
+  } else {
+    limit.value = 4
+    showTitle.value = false
+  }
+}
 
 const loadMore = () => {
   if (loading.value || !hasMore.value) return
   loading.value = true
 
-  const start = (page.value - 1) * limit
-  const end = start + limit
+  const start = (page.value - 1) * limit.value
+  const end = start + limit.value
   const newItems = allPosts.value.slice(start, end)
 
   if (newItems.length > 0) {
     visiblePosts.value.push(...newItems)
+
+    newItems.forEach(post => {
+      const img = new Image()
+      img.src = post.image
+      img.onload = () => loadedImages.value[post.id] = true
+    })
+
     page.value++
   } else {
     hasMore.value = false
@@ -30,52 +54,62 @@ const loadMore = () => {
   loading.value = false
 }
 
-
+let scrollTimer = null
 const handleScroll = () => {
-  const scrollBottom = window.innerHeight + window.scrollY
-  const docHeight = document.documentElement.offsetHeight
-  if (scrollBottom >= docHeight - 10) {
-    loadMore()
-  }
+  if (scrollTimer) clearTimeout(scrollTimer)
+  scrollTimer = setTimeout(() => {
+    const scrollBottom = window.innerHeight + window.scrollY
+    const docHeight = document.documentElement.offsetHeight
+    if (scrollBottom >= docHeight - 10) loadMore()
+  }, 100)
 }
 
 const isModalOpen = ref(false)
 const selectedPost = ref(null)
-
 const openModal = (post) => {
   selectedPost.value = post
   isModalOpen.value = true
 }
-
 const closeModal = () => {
   isModalOpen.value = false
   selectedPost.value = null
 }
 
 onMounted(() => {
-  loadMore() 
+  updateLimitAndTitle()
+  loadMore()
   window.addEventListener('scroll', handleScroll)
+  window.addEventListener('resize', updateLimitAndTitle)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('resize', updateLimitAndTitle)
 })
 </script>
 <template>
   <div class="post-box">
-    <h2 class="post-tit">{{ t('menu.design') }}</h2>
+    <h2 v-if="showTitle" class="post-tit">{{ t('menu.design') }}</h2>
     <div class="post-board">
-      <transition-group name="fade" tag="div" class="post-board-inner">
+      <div class="post-board-inner">
         <div 
           v-for="post in visiblePosts" 
           :key="post.id" 
           class="post-thumbnail"
           @click="openModal(post)"
         >
-          <img :src="post.image" :alt="post.title" />
+          <div class="image-wrapper">
+            <img
+              v-if="loadedImages[post.id]"
+              :src="post.image"
+              :alt="post.title"
+              class="real-img"
+            />
+            <div v-else class="placeholder"></div>
+          </div>
           <div class="thumbnail-title">{{ post.title }}</div>
         </div>
-      </transition-group>
+      </div>
 
       <div v-if="loading" class="loading">Loading...</div>
 
@@ -106,8 +140,11 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 .post-box {
-  padding: 60px 0 0;
-  background-color: #333;
+  padding: 100px 0 0;
+  background-color: #f1f1f1;
+  @media screen and (max-width: 880px) {
+    padding: 30px 0 0;
+  }
 }
 .post-board {
   max-width: 1500px;
@@ -117,7 +154,7 @@ onUnmounted(() => {
 }
 .post-tit {
   font-size: 3vw;
-  color: #eee;
+  color: #707070;
   padding: 0 100px;
   @media (max-width: 1200px) {
     font-size: 9vw;
@@ -126,12 +163,13 @@ onUnmounted(() => {
 }
 .post-board-inner {
   display: grid;
-  gap: 10px;
+  gap: 40px;
   padding: 30px 20px;
   justify-items: center;
   @media screen and (max-width: 400px) {
       grid-template-columns: repeat(2, 1fr);
       padding: 30px 10px;
+      gap: 10px;
     }
   @media screen and (max-width: 616px) {
       grid-template-columns: repeat(2, 1fr);
@@ -139,33 +177,50 @@ onUnmounted(() => {
     }
     @media screen and (min-width: 617px)  and (max-width: 768px) {
       grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
     @media screen and (min-width: 769px)  and (max-width: 1500px) {
       grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
     @media screen and (min-width: 1501px) and (max-width: 1780px) {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }  
     @media screen and (min-width: 1781px) {
-      grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+      grid-template-columns: repeat(auto-fill, minmax(50%, auto));
     }
 }
 .post-thumbnail {
-  --size: clamp(160px, 21vw, 350px);
-  width: var(--size);
-  height: var(--size);
+  width: 100%;
+  height: 400px;
   cursor: pointer;
   border-radius: 8px;
   border: 1px solid #ddd;
   position: relative;
   overflow: hidden;
+  @media (max-width: 1500px) {
+    --size: clamp(160px, 21vw, 350px);
+    width: var(--size);
+    height: var(--size);
+  }
 }
-
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
 .post-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: top; 
+}
+.placeholder {
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  filter: blur(10px);
+  animation: pulse 1.5s infinite ease-in-out;
 }
 
 .thumbnail-title {
