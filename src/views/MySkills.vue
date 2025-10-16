@@ -587,7 +587,7 @@ const scrollToBottom = () => {
   }
   @media (max-width: 768px) {
     right: 20px;
-    bottom: 20px;
+    bottom: 100px;
   }
 }
 
