@@ -4,17 +4,18 @@ import { gsap } from "gsap";
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
 import { scrollBus }from '@/utils/scrollBus.js'
-import NewMainVue from '@/views/NewMain.vue'
-import NameCardVue from '@/components/NameCard.vue'
-import ContactFormVue from '@/components/ContactForm.vue'
 import { useI18n } from 'vue-i18n'
 import { Physics2DPlugin } from "gsap/Physics2DPlugin"
-import AboutVue from '@/components/About.vue'
-import SkillView from '@/components/NewSkill.vue'
-import ToolView from '@/components/Tools.vue'
-import WorksView from '@/components/Work.vue'
-import Footer from '@/components/Footer.vue'
+import NewMainVue from '@/views/NewMain.vue'
+import { defineAsyncComponent } from 'vue'
 
+const AboutVue = defineAsyncComponent(() => import('@/components/About.vue'))
+const SkillView = defineAsyncComponent(() => import('@/components/NewSkill.vue'))
+const ToolView = defineAsyncComponent(() => import('@/components/Tools.vue'))
+const WorksView = defineAsyncComponent(() => import('@/components/Work.vue'))
+const ContactFormVue = defineAsyncComponent(() => import('@/components/ContactForm.vue'))
+const NameCardVue = defineAsyncComponent(() => import('@/components/NameCard.vue'))
+const Footer = defineAsyncComponent(() => import('@/components/Footer.vue'))
 gsap.registerPlugin(Physics2DPlugin);
 gsap.registerPlugin(ScrollTrigger);
 
