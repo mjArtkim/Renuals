@@ -67,6 +67,7 @@ const { t, locale } = useI18n()
   border-top-right-radius: 100%;
   background: linear-gradient(0deg, rgba(255, 255, 255, 0.349) 0%, rgba(255, 255, 255, 0.815) 100%);
   transform: translate3d(0px, 0px, 25px);
+  -webkit-transform: translate3d(0px, 0px, 25px);
   border-left: 1px solid white;
   border-bottom: 1px solid white;
   transition: all 0.5s ease-in-out;
@@ -75,6 +76,7 @@ const { t, locale } = useI18n()
 .card-txt {
   padding: 100px 60px 0px 30px;
   transform: translate3d(0, 0, 26px);
+  -webkit-transform: translate3d(0, 0, 26px);
   .card-tit {
     display: block;
     color: #000000;
@@ -100,6 +102,7 @@ const { t, locale } = useI18n()
   align-items: center;
   justify-content: space-between;
   transform: translate3d(0, 0, 26px);
+  -webkit-transform: translate3d(0, 0, 26px);
 
   .view-more {
     display: flex;
@@ -109,6 +112,7 @@ const { t, locale } = useI18n()
     transition: all 0.2s ease-in-out;
     &:hover {  
       transform: translate3d(0, 0, 10px);
+      -webkit-transform: translate3d(0, 0, 10px);
     }
     .view-more-button {
       background: none;
@@ -196,6 +200,7 @@ const { t, locale } = useI18n()
 .logo .circle1 {
   width: 170px;
   transform: translate3d(0, 0, 20px);
+  -webkit-transform: translate3d(0, 0, 20px);
   border-radius: 50px;
   top: 8px;
   right: 8px;
@@ -204,6 +209,7 @@ const { t, locale } = useI18n()
 .logo .circle2 {
   width: 140px;
   transform: translate3d(0, 0, 40px);
+  -webkit-transform: translate3d(0, 0, 40px);
   top: 10px;
   right: 10px;
   -webkit-backdrop-filter: blur(1px);
@@ -215,6 +221,7 @@ const { t, locale } = useI18n()
 .logo .circle3 {
   width: 110px;
   transform: translate3d(0, 0, 60px);
+  -webkit-transform: translate3d(0, 0, 60px);
   top: 17px;
   right: 17px;
   transition-delay: 0.8s;
@@ -224,6 +231,7 @@ const { t, locale } = useI18n()
 .logo .circle4 {
   width: 80px;
   transform: translate3d(0, 0, 80px);
+  -webkit-transform: translate3d(0, 0, 80px);
   top: 23px;
   right: 23px;
   transition-delay: 1.2s;
@@ -233,6 +241,7 @@ const { t, locale } = useI18n()
 .logo .circle5 {
   width: 50px;
   transform: translate3d(0, 0, 100px);
+  -webkit-transform: translate3d(0, 0, 100px);
   top: 30px;
   right: 30px;
   display: grid;
@@ -247,27 +256,33 @@ const { t, locale } = useI18n()
 
 .parent:hover .name-card {
   transform: rotate3d(1, 1, 0, 30deg);
+  -webkit-transform: rotate3d(1, 1, 0, 30deg);
   box-shadow: rgba(5, 71, 17, 0.3) 30px 50px 25px -40px, rgba(5, 71, 17, 0.1) 0px 25px 30px 0px;
 }
 
 .parent:hover .name-card .bottom .social-buttons-container .social-button {
   transform: translate3d(0, 0, 50px);
+  -webkit-transform: translate3d(0, 0, 50px);
   box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
 }
 
 .parent:hover .name-card .logo .circle2 {
   transform: translate3d(0, 0, 60px);
+  -webkit-transform: translate3d(0, 0, 60px);
 }
 
 .parent:hover .name-card .logo .circle3 {
   transform: translate3d(0, 0, 80px);
+  -webkit-transform: translate3d(0, 0, 80px);
 }
 
 .parent:hover .name-card .logo .circle4 {
   transform: translate3d(0, 0, 100px);
+  -webkit-transform: translate3d(0, 0, 100px);
 }
 
 .parent:hover .name-card .logo .circle5 {
   transform: translate3d(0, 0, 120px);
+  -webkit-transform: translate3d(0, 0, 120px);
 }
 </style>

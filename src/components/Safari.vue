@@ -95,6 +95,7 @@ const props = defineProps({
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   color: #000;
   font-size: 14px;
   opacity: 0;

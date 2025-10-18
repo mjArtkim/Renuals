@@ -128,6 +128,7 @@ onMounted(() => {
   border-radius: 50%;
   will-change: transform;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   backface-visibility: hidden;
 }
 .content {

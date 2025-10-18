@@ -255,6 +255,7 @@ function handleKeydown(event, index) {
 .pf-gnb-label span.actives {
   color: #707070 !important;
   transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
 #pc-pf-gnb {
   position: fixed !important;
@@ -283,6 +284,7 @@ function handleKeydown(event, index) {
         .depth2-item {
           opacity: 0;
           transform: translateY(-10px);
+          -webkit-transform: translateY(-10px);
           animation: fadeUp 0.4s ease forwards;
           padding-left: 10px;
           font-size: 0.8em;
@@ -313,6 +315,7 @@ function handleKeydown(event, index) {
   border-left: 1px solid #eee;
   opacity: 0;
   transform: translateX(10px);
+  -webkit-transform: translateX(10px);
   animation: fadeRight 0.4s ease forwards;
   -webkit-overflow-scrolling: touch;
   .pf-ul{
@@ -331,6 +334,7 @@ function handleKeydown(event, index) {
         .depth2-item {
           opacity: 0;
           transform: translateY(-10px);
+          -webkit-transform: translateY(-10px);
           animation: fadeUp 0.4s ease forwards;
           padding-left: 10px;
           font-size: 16px;
@@ -404,12 +408,14 @@ function handleKeydown(event, index) {
   to {
     opacity: 1;
     transform: translateY(0);
+    -webkit-transform: translateY(0);
   }
 }
 @keyframes fadeRight {
   to {
     opacity: 1;
     transform: translateX(0);
+    -webkit-transform: translateX(0);
   }
 }
 .multiline-text {

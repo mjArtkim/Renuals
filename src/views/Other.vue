@@ -166,6 +166,7 @@ onUnmounted(() => {
   gap: 40px;
   padding: 30px 20px;
   justify-items: center;
+  grid-template-columns: repeat(2, 1fr);
   @media screen and (max-width: 400px) {
       grid-template-columns: repeat(2, 1fr);
       padding: 30px 10px;

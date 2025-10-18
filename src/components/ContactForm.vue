@@ -94,6 +94,7 @@ const sendForm = async () => {
     border: 1px solid #ddd;
     padding: 10px 15px;
     border-radius: 5px;
+    color: #707070;
     &:hover {
       background-color: #fff;
       transition: background-color 0.3s ease-in-out;

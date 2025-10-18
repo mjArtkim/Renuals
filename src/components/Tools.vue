@@ -249,12 +249,14 @@ const handleClick = (name) => {
   top: 0%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
   font-weight: 400;
 }
 
 .nav-item:hover .nav-item__tooltip{
 	opacity: 1;
   transform: translate(-50%, -150%); 
+  -webkit-transform: translate(-50%, -150%); 
 }
 @media (max-width: 880px) {
   .cloneable {

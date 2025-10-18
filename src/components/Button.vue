@@ -44,6 +44,7 @@ const textArray = text.split('');
   width: 220px;
   height: 80px;
   transform: rotate(355deg) skewX(-2deg);
+  -webkit-transform: rotate(355deg) skewX(-2deg);
 
   .bgs {
     position: absolute;
@@ -79,6 +80,7 @@ const textArray = text.split('');
     overflow: hidden;
     height: 100%;
     transform: translate(6px, -6px);
+    -webkit-transform: translate(6px, -6px);
     padding: 3px;
     background: linear-gradient(to bottom, var(--blue-100), var(--blue-400));
     position: relative;
@@ -140,6 +142,7 @@ const textArray = text.split('');
       &::before {
         opacity: 0;
         transform: translateY(-100%);
+        -webkit-transform: translateY(-100%);
       }
 
       &:nth-child(5) {
@@ -183,6 +186,7 @@ const textArray = text.split('');
       width: 24px;
       box-shadow: -2px 2px 5px var(--blue-400);
       transform: scale(0.9);
+      -webkit-transform: scale(0.9);
       background: linear-gradient(to bottom, var(--white), var(--blue-100));
       animation: swingArrow 1s ease-in-out infinite;
       animation-play-state: paused;

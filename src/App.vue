@@ -23,7 +23,6 @@ function getAngle(dx, dy) {
 const loop = () => {
   const rotation = getAngle(vel.x, vel.y)
   const scale = getScale(vel.x, vel.y)
-
   set.x(pos.x)
   set.y(pos.y)
   set.r(rotation)
@@ -31,14 +30,10 @@ const loop = () => {
   set.sy(1 - scale)
   set.rt(-rotation)
 }
-
 let handleMouseMove
-
 onMounted(async () => {
   await nextTick()
   if (!cursorRef.value || !textRef.value) return
-
-  // 초기 상태
   gsap.set(cursorRef.value, { scale: 1, x: 0, y: 0, rotate: 0 })
   gsap.set(textRef.value, { rotate: 0 })
 
@@ -49,7 +44,6 @@ onMounted(async () => {
   set.sy = gsap.quickSetter(cursorRef.value, 'scaleY')
   set.rt = gsap.quickSetter(textRef.value, 'rotate', 'deg')
 
-  // 마우스 움직임
   handleMouseMove = evt => {
     const mouseX = evt.clientX
     const mouseY = evt.clientY
@@ -70,7 +64,6 @@ onMounted(async () => {
   document.body.addEventListener('mousemove', handleMouseMove)
   gsap.ticker.add(loop)
 
-  // hover & 클릭 효과
   const hoverTargets = document.querySelectorAll('a, button, input, textarea')
   hoverTargets.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -118,6 +111,7 @@ onBeforeUnmount(() => {
   border-color: #004cfe;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
   will-change: width, height, transform,  border-color;
   z-index: 999;
   pointer-events: none;
