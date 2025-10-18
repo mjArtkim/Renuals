@@ -1002,6 +1002,7 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
   .overlay-count-row {
     position: absolute;
     top: 20px;
+    right: 30px;
     grid-column-gap: .4em;
     font-size: 3em;
   }
@@ -1013,7 +1014,7 @@ html:not(.wf-design-mode) [data-slider='slide'].active .slide-caption {
   .overlay-nav-row{
     position: absolute;
     top: 20px;
-    right: 30px;
+    left: 30px;
     grid-column-gap: 1em;
     grid-row-gap: 1em;
   }

@@ -22,7 +22,7 @@ const config = {
 
 function animate(target) {
   if (!target) return
-  const split = SplitText.create(target, {
+  const split = new SplitText(target, {
     type: "words",
     wordsClass: "word",
   })
@@ -40,15 +40,17 @@ function animate(target) {
 }
 
 onMounted(() => {
-  gsap.set([headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value], {
-    opacity: 0,
-  })
+  const elements = [headingRef.value, miniTitRef.value, nameRef.value, subListRef.value, miniTxtRef.value]
+  gsap.set(elements, { opacity: 0 })
+
   document.fonts.ready.then(() => {
-    const elements = [headingRef.value, miniTitRef.value,  nameRef.value, subListRef.value, miniTxtRef.value]
-    elements.forEach((el, i) => {
-      gsap.delayedCall(i * 0.4, () => {
-        gsap.to(el, { opacity: 1, duration: 0.4 })
-        animate(el)
+    requestAnimationFrame(() => {
+      elements.forEach((el, i) => {
+        if (!el) return
+        gsap.delayedCall(i * 0.4, () => {
+          gsap.to(el, { opacity: 1, duration: 0.4 })
+          animate(el)
+        })
       })
     })
   })
