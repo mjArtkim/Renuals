@@ -29,7 +29,7 @@ const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
-    damping: isMobile ? 0.2 : 0.15,
+    damping: isMobile ? 1 : 0.2,
     delegateTo: document,
     continuousScrolling: false,
   });
