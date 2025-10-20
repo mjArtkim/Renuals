@@ -31,7 +31,7 @@ onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
     damping: isMobile ? 0.5 : 0.2,
     delegateTo: document,
-    // continuousScrolling: false,
+    continuousScrolling: false,
   });
   scrollBus.on('scrollToSection', (id) => {
     const el = document.getElementById(id)
