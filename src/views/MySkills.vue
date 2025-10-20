@@ -29,9 +29,9 @@ const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
-    damping: isMobile ? 0.6 : 0.2,
+    damping: isMobile ? 0.5 : 0.2,
     delegateTo: document,
-    continuousScrolling: false,
+    // continuousScrolling: false,
   });
   scrollBus.on('scrollToSection', (id) => {
     const el = document.getElementById(id)
