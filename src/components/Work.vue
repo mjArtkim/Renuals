@@ -36,6 +36,7 @@ function initSlider() {
     paused: true,
     draggable: true,
     center: false,
+    speed: 0.5,
 
     onChange: (element, index) => {
       activeElement && activeElement.classList.remove('active');
@@ -538,6 +539,7 @@ function verticalLoop(items, config) {
       draggable = Draggable.create(proxy, {
         trigger: items[0].parentNode,
         type: "y",
+        resistance: 20,
         inertia: true,
         onPressInit() {
           let x = this.y;

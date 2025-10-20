@@ -31,6 +31,7 @@ onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
     damping: isMobile ? 0.2 : 0.15,
     delegateTo: document,
+    continuousScrolling: false,
   });
   scrollBus.on('scrollToSection', (id) => {
     const el = document.getElementById(id)
@@ -119,7 +120,7 @@ onMounted(() => {
   ScrollTrigger.create({
     trigger: "section.black",
     scroller: scrollerRef.value,
-    scrub: true,
+    scrub: 0.3,
     markers: false,
     pin: true,
     start: () => "top top",
