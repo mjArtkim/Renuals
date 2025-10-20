@@ -3,7 +3,7 @@ import { onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
-
+import { RouterLink, RouterView } from 'vue-router';
 gsap.registerPlugin(Draggable, InertiaPlugin)
 
 function initSlider() {
@@ -625,8 +625,9 @@ onMounted(() => { initSlider() })
               <div class="overlay-corner top-right"></div>
               <div class="overlay-corner bottom-left"></div>
               <div class="overlay-corner bottom-right"></div>
-            </div></button
-          ><button aria-label="previous slide" data-slider="button-next" class="button">
+            </div>
+          </button>
+          <button aria-label="previous slide" data-slider="button-next" class="button">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="100%"
@@ -659,7 +660,7 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="#" class="caption">
+                <a href="http://ideartk.com/backchun/" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -673,7 +674,7 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="#" class="caption">
+                <a href="https://www.djthirdparty.com" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -687,7 +688,7 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="#" class="caption">
+                <a href="https://prog.djthirdparty.com" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -701,7 +702,7 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="#" class="caption">
+                <a href="https://icbox.io/" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -715,10 +716,10 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="#" class="caption">
+                <router-link to="/other" class="caption" target="_blank">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -729,7 +730,7 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="#" class="caption">
+                <a href="http://ideartk.com/songjung/" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>

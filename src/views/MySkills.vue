@@ -25,11 +25,11 @@ const scrollerRef = ref(null);
 let bodyScrollBar;
 const isScrolling = ref(false);
 let scrollTimeout = null;
-
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
-    damping: 0.1,
+    damping: isMobile ? 0.2 : 0.15,
     delegateTo: document,
   });
   scrollBus.on('scrollToSection', (id) => {
@@ -165,9 +165,6 @@ const scrollToBottom = () => {
       <div class="sk-views">
         <AboutVue></AboutVue>
       </div>
-      <div class="new-skill" id="second">
-        <SkillView></SkillView>
-      </div>
     </section>
     <section class="black">
       <div class="text-wrap">
@@ -197,6 +194,11 @@ const scrollToBottom = () => {
         <div class="panel red"></div>
         <div class="panel orange"></div>
         <div class="panel white"></div>
+      </div>
+    </section>
+    <section class="skill-view">
+      <div class="new-skill" id="second">
+        <SkillView></SkillView>
       </div>
     </section>
     <section class="tools">

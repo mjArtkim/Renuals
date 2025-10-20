@@ -114,6 +114,7 @@ onMounted(() => {
   width: 100%;
   --font-scale: 0.08;
   padding: 0 50px;
+  margin-bottom: 30px;
   &__tit{
     font-family:'GmarketSans';
     font-size: clamp(50px, calc(var(--font-scale) * 94vw), 150px);
