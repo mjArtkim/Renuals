@@ -110,9 +110,7 @@ onUnmounted(() => {
           <div class="thumbnail-title">{{ post.title }}</div>
         </div>
       </div>
-
       <div v-if="loading" class="loading">Loading...</div>
-
       <div v-if="isModalOpen" class="modal-overlay" @click.self="closeModal">
         <div class="modal-content">
           <button class="close-btn" @click="closeModal">×</button>
@@ -184,11 +182,8 @@ onUnmounted(() => {
       grid-template-columns: repeat(3, 1fr);
       gap: 10px;
     }
-    @media screen and (min-width: 1501px) and (max-width: 1780px) {
+    @media screen and (min-width: 1501px) {
       grid-template-columns: repeat(2, 1fr);
-    }  
-    @media screen and (min-width: 1781px) {
-      grid-template-columns: repeat(auto-fill, minmax(50%, auto));
     }
 }
 .post-thumbnail {
