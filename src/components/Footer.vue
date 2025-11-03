@@ -7,29 +7,42 @@ gsap.registerPlugin(ScrollTrigger);
 
 onMounted(() => {
   const footerName = document.querySelector(".footer__name")
+  if (!footerName) return  // 요소가 없으면 바로 종료 (안전)
+  
   let isTracking = window.innerWidth > 880
+
   const handleMouseMove = (evt) => {
-
     if (!isTracking) return
-    const mouseX = evt.clientX
-    const mouseY = evt.clientY
-    const rect = document.querySelector('.footer__name').getBoundingClientRect()
 
-    gsap.to(".shape", {
-      x: mouseX - rect.left,
-      y: mouseY - rect.top,
-      stagger: -0.1
-    })
+const footerName = document.querySelector('.footer__name')
+if (!footerName) return // 요소 없으면 안전하게 종료
+
+const shapes = document.querySelectorAll('.shape')
+if (!shapes.length) return // shape이 없을 때도 종료
+
+const rect = footerName.getBoundingClientRect()
+const mouseX = evt.clientX
+const mouseY = evt.clientY
+
+gsap.to(shapes, {
+  x: mouseX - rect.left,
+  y: mouseY - rect.top,
+  stagger: -0.1
+})
   }
+
   const handleResize = () => {
     isTracking = window.innerWidth > 880
   }
+
   document.body.addEventListener("mousemove", handleMouseMove)
   window.addEventListener("resize", handleResize)
 
+  // 🔥 라우트 이동 또는 컴포넌트 해제 시 반드시 정리
   onUnmounted(() => {
     document.body.removeEventListener("mousemove", handleMouseMove)
     window.removeEventListener("resize", handleResize)
+    gsap.killTweensOf(".shape") // 애니메이션까지 완전히 정리
   })
 })
 </script>

@@ -4,13 +4,17 @@ import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 import { RouterLink, RouterView } from 'vue-router';
-gsap.registerPlugin(Draggable, InertiaPlugin)
+import ScrollTrigger from "gsap/ScrollTrigger"
+gsap.registerPlugin(Draggable, InertiaPlugin, ScrollTrigger)
 
 function initSlider() {
   const isMobile = window.innerWidth <= 880
   const wrapper = document.querySelector('[data-slider="list"]')
   const slides = gsap.utils.toArray('[data-slider="slide"]')
-
+  if (!wrapper || slides.length === 0) {
+    console.warn('⚠️ 슬라이드 요소를 찾을 수 없습니다.')
+    return
+  }
   const nextButton = document.querySelector('[data-slider="button-next"]')
   const prevButton = document.querySelector('[data-slider="button-prev"]')
 
@@ -23,12 +27,14 @@ function initSlider() {
 
   totalElement.textContent = totalSlides < 10 ? `0${totalSlides}` : totalSlides
 
-  stepsParent.innerHTML = ''
-  slides.forEach((_, index) => {
-    const stepClone = stepElement.cloneNode(true)
-    stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1
-    stepsParent.appendChild(stepClone)
-  })
+  if (stepsParent && stepElement) {
+    stepsParent.innerHTML = ''
+    slides.forEach((_, index) => {
+      const stepClone = stepElement.cloneNode(true)
+      stepClone.textContent = index + 1 < 10 ? `0${index + 1}` : index + 1
+      stepsParent.appendChild(stepClone)
+    })
+  }
 
   const allSteps = stepsParent.querySelectorAll('[data-slide-count="step"]')
   const loopFn = isMobile ? verticalLoop : horizontalLoop;
@@ -43,7 +49,6 @@ function initSlider() {
       const nextSibling = element.nextElementSibling || slides[0];
       nextSibling.classList.add('active');
       activeElement = nextSibling;
-      // const stepIndex = ((index % slides.length) + slides.length) % slides.length;
       gsap.to(allSteps, {
         y: `${-100 * index}%`,
         ease: 'power3',
@@ -591,13 +596,26 @@ function verticalLoop(items, config) {
   return timeline;
 }
 
-onUnmounted(() => {
-  window.removeEventListener('resize', onResize);
-  tl && tl.kill && tl.kill();
-  if (tl && tl.draggable) tl.draggable.kill();
-});
+onMounted(() => {
+  let loopInstance = initSlider()
 
-onMounted(() => { initSlider() })
+
+  const onResize = () => {
+    gsap.killTweensOf("*") // 기존 애니메이션 정리
+    ScrollTrigger.getAll().forEach(t => t.kill()) // 트리거 정리
+    initSlider() // 새로 초기화
+  }
+
+  window.addEventListener("resize", onResize)
+
+  onUnmounted(() => {
+    if (typeof onResize === "function") window.removeEventListener("resize", onResize)
+    gsap.killTweensOf("*")
+    ScrollTrigger.getAll().forEach(t => t.kill())
+  })
+
+  initSlider()
+})
 </script>
 <template>
   <section class="works">
@@ -672,25 +690,25 @@ onMounted(() => { initSlider() })
           <div data-slider="slide" class="slider-slide active">
             <div class="slide-inner">
               <img
-                src="@/assets/img/new/new_work_01.webp"
+                src="@/assets/img/tf/tf_00.webp"
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="https://www.djthirdparty.com" class="caption">
+                <router-link to="/mytalent" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                </router-link>
               </div>
             </div>
           </div>
           <div data-slider="slide" class="slider-slide">
             <div class="slide-inner">
               <img
-                src="@/assets/img/new/new_work_02.webp"
+                src="@/assets/img/new/new_work_01.webp"
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="https://prog.djthirdparty.com" class="caption">
+                <a href="https://djthirdparty.com" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -718,7 +736,7 @@ onMounted(() => { initSlider() })
                 loading="lazy"
               />
               <div class="slide-caption">
-                <router-link to="/other" class="caption" target="_blank">
+                <router-link to="/other" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </router-link>
@@ -922,7 +940,8 @@ onMounted(() => { initSlider() })
   max-width: 1024px;
   height: 100%; 
   margin: auto;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 30% 50%;
   @media (max-width: 1024px) {
     width: 70vw;
   }

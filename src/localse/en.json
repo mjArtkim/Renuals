@@ -180,5 +180,141 @@
       "flu":"Intermediate",
       "php":"Intermediate"
     }
+  },
+  "talent":{
+    "maintit":"Is an outdated and inefficient HR system still acceptable?",
+    "subtit":"The project aimed to transition an HR system previously managed by a subsidiary into an internally operated platform, while modernizing and elevating the overall user experience.",
+    "myrole":{
+      "tit":"My Role & Key Contributions",
+      "top":"Independently owned the end-to-end product cycle from requirements analysis → IA → UI/UX design → prototyping → front-end implementation",
+      "middle":[
+        "Identified missing requirements through rapid prototyping (Adobe XD)",
+        "Established a brand guideline including logo, color system, and UI components",
+        "Designed UX enhancements such as optimized modal flows and feedback interactions",
+        "Structured differentiated interfaces based on admin vs. user permissions",
+        "Ensured high implementation accuracy by being directly involved in the development handoff and publishing process"
+      ],
+      "bottom":"Platforms Web / Year 2023-24"
+    },
+    "problem":{
+      "tit":"Problem",
+      "top":"Is an outdated and inefficient HR system still acceptable?",
+      "middle":[
+        "HR tasks operated separately across 4 different platforms",
+        "Duplicate data entry required for both users and managers",
+        "Outdated UI with poor usability and confusing workflows",
+        "Mobile access blocked due to security concerns → Desktop-only optimization required",
+        "Increasing maintenance costs"
+      ],
+      "bottomtit":"Core Pain Point",
+      "bottom":"Support, approval, training management, and reporting — none of it could be handled in one place."
+    },
+    "object":{
+      "tit":"Objectives",
+      "top":"Integrated the degree application process into a single unified system and modernized the UI/UX to enhance user productivity and administrative efficiency.",
+      "middle":[
+        "Integrate all HR-related features into One Unified Platform",
+        "Provide differentiated permissions and views based on user roles",
+        "Improve readability, accessibility, and usability following modern UI/UX standards",
+        "Shorten task completion time, reduce errors, and cut maintenance costs",
+        "Build a Team-wide UI/UX Design System"
+      ]
+    },
+    "solution":{
+      "tit":"Solution Highlights",
+      "middle":[
+        "Consolidated 4 separate systems into one platform",
+        "Role-based customization for users and administrators",
+        "Clear and intuitive step-by-step workflows",
+        "Established a new, scalable UI/UX Design System",
+        "Improved data flow and operational sustainability"
+      ],
+      "bottom":"Built a platform where all HR training operations are completed in one place."
+    },
+    "approach":{
+      "tit":"Approach & Method",
+      "top":"With almost no existing planning documentation, I established and led the entire design process.",
+      "middle":{
+        "stage":{
+          "headone":"Stage",
+          "headtwo":"My Contribution",
+          "bodyone":[
+            "Information Gathering",
+            "Design Direction",
+            "UI/UX Architecture",
+            "Interaction Design",
+            "Publishing"
+          ],
+          "bodytwo":[
+            "Compiled screen requirements myself due to limited planning resources",
+            "Created logo, defined titles, and standardized color system",
+            "Structured screen layout based on desktop-first UX",
+            "Defined modal behavior, input flows, and feedback UI",
+            "Handled full transition from XD to Web implementation"
+          ]
+        }
+      },
+      "bottom":"I transformed vague needs into a structured design strategy and then reverse-engineered it into functional requirements."
+    },
+    "ia":{
+      "one":{
+        "tit":"Benchmarking-Based Initial Requirements Analysis",
+        "txt":"I reviewed reference websites provided by the planner to understand the project direction and expected UX style. From the provided benchmarks, I extracted key content structures and the initial Information Architecture (IA)."
+      },
+      "two":{
+        "tit":"Defining Screen Inventory & Structuring the IA",
+        "txt":"The timeline was tight — the entire project had to be completed within 3 months. So I quickly listed all necessary screens aligned with the actual service workflow. By categorizing features and reviewing duplicated or missing content, I established the foundational IA framework."
+      },
+      "three":{
+        "tit":"Information Architecture (IA) Design"
+      },
+      "four":{
+        "tit":"Establishing Brand & UI Assets First",
+        "txt":"To ensure smooth progress during the screen design phase, I first established the core brand assets such as the logo, titles, and color system. I refreshed the legacy color palette to align with modern visual trends and set up a style guide. I also structured core UI components, including modals and buttons, with SCSS-based implementation in mind from the start."
+      }
+    },
+    "design":{
+      "one":{
+        "tit":"LOGO",
+        "txt":"To create a unified system called My Talent from the existing Talent Fair, a new logo mark was introduced. The word “Talent” was retained from the previous system, while “My” was designed in a matching style to create a cohesive brand identity."
+      },
+      "two":{
+        "tit":"Color",
+        "txt":"The overall design concept was unified under a single primary color, while subtle changes were introduced through the balanced use of outer and inner shadows. For emphasis elements, I intentionally avoided red tones and instead used purple to create a distinct and differentiated visual identity."        
+      },
+      "three":{
+        "tit":"Typography System",
+        "txt":"Given the nature of the web platform and its deployment within Samsung’s internal environment, Samsung One UI Gothic (긴 고딕) was selected as the primary typeface. It provides excellent readability with well-balanced letter spacing, making it particularly suitable for content-heavy screens with numerous input fields. Its wide range of font weights also allows for a clear and flexible visual hierarchy. The default body text size was set to 16px to ensure accessibility and readability. Typography scale was systemically applied—larger font sizes and weights were used for table content to enhance visual separation. Based on the core body style, titles, subtitles, and the GNB were designed with distinct levels of emphasis while maintaining consistency throughout the interface. Page titles were emphasized using an underline style, providing a clear visual anchor and a consistent identity across pages. Subtitles were displayed in a structured list format, enabling users to quickly recognize and navigate through different sections. Instructional or descriptive text included icons or markers to highlight informational intent. Hyperlinks that direct to external pages or triggering additional actions were designed using the primary color and shadow accents, reinforcing their clickability through visual affordance."        
+      },
+      "four":{
+        "tit":"Tables",
+        "txt":"Tables are the most frequently used component in this system, so the design focused on enhancing both usability and maintainability.",
+        "content":[
+          "Vertical padding was set to 10px to ensure comfortable readability across various font sizes.",
+          "Color was applied to table headers to clearly distinguish them from the body area. For community-related sections, the primary blue color was used to bring more liveliness and refresh the user experience.",
+          "Input tables adopt a gray-tone color scheme to reduce eye fatigue, and placeholders were used to guide user input more intuitively.",
+          "Instead of a traditional table layout, a Flex Grid structure was implemented for greater flexibility in future updates and maintenance."
+        ]        
+      },
+      "five":{
+        "tit":"BUTTON",
+        "txt":"The primary button color was set to a blue tone, while the temporary save buttons used a secondary purple color, and payment-related query buttons were highlighted in green. Due to company guidelines prohibiting red, reset buttons were designed in black, and selection buttons in white. Shadows were applied to all buttons to create a sense of depth and to reinforce the visual prominence of the clickable elements."        
+      },
+      "six":{
+        "tit":"Visual-first UI Design with High-Fidelity Prototyping",
+        "txt":"Rather than investing time in low-fidelity wireframes, I directly developed high-fidelity prototypes using Adobe XD. Through agile iteration, I incorporated planning feedback into the design in real time, which helped accelerate decision-making and improve completeness."        
+      },
+      "seven":{
+        "tit":"One-Stop Execution from Design to Front-End Publishing",
+        "txt":"I continued beyond UI design to define interaction flows such as modal behavior and detailed feedback responses, and I personally carried out the front-end publishing. This ensured that the final implementation accurately reflected the design intent and maintained a high standard of UI quality."        
+      }
+    },
+    "view":{
+      "one":"Application & Selection",
+      "two":"Training Preparation",
+      "three":"Training Progress",
+      "four":"Executive Advisor & Trainee Management",
+      "five":"Admin"
+    }
   }
 }

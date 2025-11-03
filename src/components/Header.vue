@@ -262,8 +262,9 @@ function handleKeydown(event, index) {
   top: 0;
   right: 0;
   width: 100%;
-  padding: 30px 50px 20px;
+  padding: 20px 50px;
   display: grid;
+  align-items: center;
   grid-template-columns: 20% 80%;
   background-image: linear-gradient(
     -180deg,   

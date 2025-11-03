@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { gsap } from "gsap";
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
@@ -16,8 +16,8 @@ const WorksView = defineAsyncComponent(() => import('@/components/Work.vue'))
 const ContactFormVue = defineAsyncComponent(() => import('@/components/ContactForm.vue'))
 const NameCardVue = defineAsyncComponent(() => import('@/components/NameCard.vue'))
 const Footer = defineAsyncComponent(() => import('@/components/Footer.vue'))
-gsap.registerPlugin(Physics2DPlugin);
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Physics2DPlugin, ScrollTrigger);
+
 
 const { t, locale } = useI18n();
 const text = ref(' WORKS');
@@ -154,8 +154,6 @@ const scrollToBottom = () => {
     bodyScrollBar.scrollTo(0, maxScrollTop, 800);
   }
 };
-
-
 </script>
 <template>
   <div class="scroller" ref="scrollerRef">
@@ -167,7 +165,7 @@ const scrollToBottom = () => {
         <AboutVue></AboutVue>
       </div>
     </section>
-    <section class="black">
+    <!-- <section class="black">
       <div class="text-wrap">
         <div class="panel-text white-text">
           <div class="pan-tit">{{ t('menu.strengths') }}</div>
@@ -196,7 +194,7 @@ const scrollToBottom = () => {
         <div class="panel orange"></div>
         <div class="panel white"></div>
       </div>
-    </section>
+    </section> -->
     <section class="skill-view">
       <div class="new-skill" id="second">
         <SkillView></SkillView>
@@ -630,7 +628,7 @@ const scrollToBottom = () => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(20px); /* 살짝 아래에서 올라오는 느낌 */
+  transform: translateY(20px);
 }
 .fade-enter-to,
 .fade-leave-from {
