@@ -136,11 +136,11 @@ onBeforeUnmount(() => {
         <h2>{{ t('talent.myrole.tit') }}</h2>
         <div class="role__top">{{ t('talent.myrole.top') }}</div>
         <ul class="role__list" data-split>
-          <li>{{ t('talent.myrole.middle[0]') }}</li>
-          <li>{{ t('talent.myrole.middle[1]') }}</li>
-          <li>{{ t('talent.myrole.middle[2]') }}</li>
-          <li>{{ t('talent.myrole.middle[3]') }}</li>
-          <li>{{ t('talent.myrole.middle[4]') }}</li>
+          <li><p>{{ t('talent.myrole.middle[0]') }}</p></li>
+          <li><p>{{ t('talent.myrole.middle[1]') }}</p></li>
+          <li><p>{{ t('talent.myrole.middle[2]') }}</p></li>
+          <li><p>{{ t('talent.myrole.middle[3]') }}</p></li>
+          <li><p>{{ t('talent.myrole.middle[4]') }}</p></li>
         </ul>
         <div class="role__bottom">{{ t('talent.myrole.bottom') }}</div>
       </div>
@@ -148,11 +148,11 @@ onBeforeUnmount(() => {
         <h2>{{ t('talent.problem.tit') }}</h2>
         <div class="role__top">{{ t('talent.problem.top') }}</div>
         <ul class="role__list" data-split>
-          <li>{{ t('talent.problem.middle[0]') }}</li>
-          <li>{{ t('talent.problem.middle[1]') }}</li>
-          <li>{{ t('talent.problem.middle[2]') }}</li>
-          <li>{{ t('talent.problem.middle[3]') }}</li>
-          <li>{{ t('talent.problem.middle[4]') }}</li>
+          <li><p>{{ t('talent.problem.middle[0]') }}</p></li>
+          <li><p>{{ t('talent.problem.middle[1]') }}</p></li>
+          <li><p>{{ t('talent.problem.middle[2]') }}</p></li>
+          <li><p>{{ t('talent.problem.middle[3]') }}</p></li>
+          <li><p>{{ t('talent.problem.middle[4]') }}</p></li>
         </ul>
         <div class="role__bottom">
           <div>{{ t('talent.problem.bottomtit') }}</div>
@@ -166,21 +166,21 @@ onBeforeUnmount(() => {
         <h2>{{ t('talent.object.tit') }}</h2>
         <div class="role__top">{{ t('talent.object.top') }}</div>
         <ul class="role__list" data-split>
-          <li>{{ t('talent.object.middle[0]') }}</li>
-          <li>{{ t('talent.object.middle[1]') }}</li>
-          <li>{{ t('talent.object.middle[2]') }}</li>
-          <li>{{ t('talent.object.middle[3]') }}</li>
-          <li>{{ t('talent.object.middle[4]') }}</li>
+          <li><p>{{ t('talent.object.middle[0]') }}</p></li>
+          <li><p>{{ t('talent.object.middle[1]') }}</p></li>
+          <li><p>{{ t('talent.object.middle[2]') }}</p></li>
+          <li><p>{{ t('talent.object.middle[3]') }}</p></li>
+          <li><p>{{ t('talent.object.middle[4]') }}</p></li>
         </ul>
       </div>
       <div class="role">
         <h2>{{ t('talent.solution.tit') }}</h2>
         <ul class="role__list" data-split>
-          <li>{{ t('talent.solution.middle[0]') }}</li>
-          <li>{{ t('talent.solution.middle[1]') }}</li>
-          <li>{{ t('talent.solution.middle[2]') }}</li>
-          <li>{{ t('talent.solution.middle[3]') }}</li>
-          <li>{{ t('talent.solution.middle[4]') }}</li>
+          <li><p>{{ t('talent.solution.middle[0]') }}</p></li>
+          <li><p>{{ t('talent.solution.middle[1]') }}</p></li>
+          <li><p>{{ t('talent.solution.middle[2]') }}</p></li>
+          <li><p>{{ t('talent.solution.middle[3]') }}</p></li>
+          <li><p>{{ t('talent.solution.middle[4]') }}</p></li>
         </ul>
         <div class="role__bottom">
           <div>{{ t('talent.solution.bottom') }}</div>
@@ -205,21 +205,21 @@ onBeforeUnmount(() => {
           <li class="appro__thead">
             <h3>{{ t('talent.approach.middle.stage.headone') }}</h3>
             <ul class="appro__tbody">
-              <li>{{ t('talent.approach.middle.stage.bodyone[0]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodyone[1]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodyone[2]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodyone[3]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodyone[4]') }}</li>
+              <li><p>{{ t('talent.approach.middle.stage.bodyone[0]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodyone[1]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodyone[2]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodyone[3]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodyone[4]') }}</p></li>
             </ul>
           </li>
           <li class="appro__thead">
             <h3>{{ t('talent.approach.middle.stage.headtwo') }}</h3>
             <ul class="appro__tbody">
-              <li>{{ t('talent.approach.middle.stage.bodytwo[0]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodytwo[1]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodytwo[2]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodytwo[3]') }}</li>
-              <li>{{ t('talent.approach.middle.stage.bodytwo[4]') }}</li>
+              <li><p>{{ t('talent.approach.middle.stage.bodytwo[0]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodytwo[1]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodytwo[2]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodytwo[3]') }}</p></li>
+              <li><p>{{ t('talent.approach.middle.stage.bodytwo[4]') }}</p></li>
             </ul>
           </li>
         </ol>
@@ -291,10 +291,10 @@ onBeforeUnmount(() => {
         <h2>{{ t('talent.design.four.tit') }}</h2>
         <div class="mtsix__content">{{ t('talent.design.four.txt') }}</div>
         <ul class="mtsix__con" data-split>
-          <li>{{ t('talent.design.four.content[0]') }}</li>
-          <li>{{ t('talent.design.four.content[1]') }}</li>
-          <li>{{ t('talent.design.four.content[2]') }}</li>
-          <li>{{ t('talent.design.four.content[3]') }}</li>
+          <li><p>{{ t('talent.design.four.content[0]') }}</p></li>
+          <li><p>{{ t('talent.design.four.content[1]') }}</p></li>
+          <li><p>{{ t('talent.design.four.content[2]') }}</p></li>
+          <li><p>{{ t('talent.design.four.content[3]') }}</p></li>
         </ul>
       </div>
       <div class="mtsix__design">

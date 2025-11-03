@@ -1,11 +1,10 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, onMounted, onBeforeUnmount} from 'vue'
 import { gsap } from "gsap";
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Scrollbar from 'smooth-scrollbar'
 import { scrollBus }from '@/utils/scrollBus.js'
 import { useI18n } from 'vue-i18n'
-import { Physics2DPlugin } from "gsap/Physics2DPlugin"
 import NewMainVue from '@/views/NewMain.vue'
 import { defineAsyncComponent } from 'vue'
 
@@ -16,15 +15,13 @@ const WorksView = defineAsyncComponent(() => import('@/components/Work.vue'))
 const ContactFormVue = defineAsyncComponent(() => import('@/components/ContactForm.vue'))
 const NameCardVue = defineAsyncComponent(() => import('@/components/NameCard.vue'))
 const Footer = defineAsyncComponent(() => import('@/components/Footer.vue'))
-gsap.registerPlugin(Physics2DPlugin, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 
-const { t, locale } = useI18n();
-const text = ref(' WORKS');
+const { t } = useI18n();
 const scrollerRef = ref(null);
 let bodyScrollBar;
 const isScrolling = ref(false);
-let scrollTimeout = null;
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
 onMounted(() => {
@@ -72,66 +69,6 @@ onMounted(() => {
   });
   
   bodyScrollBar.addListener(ScrollTrigger.update);
-  
-  gsap.set(".panel", {
-    zIndex: (i, target, targets) => targets.length - i,
-  });
-  
-  const images = gsap.utils.toArray('.panel'); 
-
-  images.forEach((image, i) => {
-  var tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: "section.black",
-      scroller: scrollerRef.value,
-      start: () => "top -" + (window.innerHeight*(i+0.5)),
-      end: () => "+=" + window.innerHeight,
-      scrub: true,
-      toggleActions: "play none reverse none",
-      invalidateOnRefresh: true,
-    }
-  });
-  
-  tl.to(image, { height: 0 });
-});
-  gsap.set(".panel-text", {
-    zIndex: (i, target, targets) => targets.length - i,
-  });
-
-  const texts = gsap.utils.toArray(".panel-text");
-  
-  texts.forEach((text, i) => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "section.black",
-        scroller: scrollerRef.value,
-        start: () => "top -" + window.innerHeight * i,
-        end: () => "+=" + window.innerHeight,
-        scrub: true,
-        toggleActions: "play none reverse none",
-        invalidateOnRefresh: true,
-      },
-    });
-    tl
-      .to(text, { duration: 0.33, opacity: 1, y: "50%" })
-      .to(text, { duration: 0.33, opacity: 0, y: "0%" }, 0.66);
-  });
-
-  ScrollTrigger.create({
-    trigger: "section.black",
-    scroller: scrollerRef.value,
-    scrub: 0.3,
-    markers: false,
-    pin: true,
-    start: () => "top top",
-    end: () => "+=" + images.length * window.innerHeight,
-    invalidateOnRefresh: true,
-  });
-  
-  bodyScrollBar.addListener(({ offset }) => {
-    isScrolling.value = offset.y > 0
-  })
-
 });
 
 onBeforeUnmount(() => {
@@ -165,36 +102,6 @@ const scrollToBottom = () => {
         <AboutVue></AboutVue>
       </div>
     </section>
-    <!-- <section class="black">
-      <div class="text-wrap">
-        <div class="panel-text white-text">
-          <div class="pan-tit">{{ t('menu.strengths') }}</div>
-        </div>
-        <div class="panel-text blue-text">
-          <div class="pan-tit">{{ t('menu.endtoend') }}</div>
-          <div class="pan-txt">{{ t('menu.endtoendtxt') }}</div>
-        </div>
-        <div class="panel-text yellow-text">
-          <div class="pan-tit">{{ t('menu.usercd') }}</div>
-          <div class="pan-txt">{{ t('menu.usercdtxt') }}</div>     
-        </div>
-        <div class="panel-text orange-text">
-          <div class="pan-tit">{{ t('menu.collabo') }}</div>
-          <div class="pan-txt">{{ t('menu.collabotxt') }}</div>
-        </div>
-        <div class="panel-text white-text2">
-          <div class="pan-tit">{{ t('menu.global') }}</div>
-          <div class="pan-txt">{{ t('menu.globaltxt') }}</div>    
-        </div>
-      </div>
-      <div class="p-wrap">
-        <div class="panel purple"></div>
-        <div class="panel blue"></div>
-        <div class="panel red"></div>
-        <div class="panel orange"></div>
-        <div class="panel white"></div>
-      </div>
-    </section> -->
     <section class="skill-view">
       <div class="new-skill" id="second">
         <SkillView></SkillView>
