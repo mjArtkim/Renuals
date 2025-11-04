@@ -27,8 +27,8 @@ const menuItems = computed(() => {
       title: t('menu.work'),
       link: '#third',
       submenu: [
-        { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com' },
-        { name: t('menu.thp'), intro: t('menu.introducepage'), link: 'https://prog.djthirdparty.com' },
+        { name: t('menu.mytal'), intro: t('menu.uiux'), link: '/mytalent' },
+        { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com'  },
         { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
         { name: t('menu.sam'), intro: t('menu.businesspage'), link: 'http://ideartk.com/samyang/' },
         { name: t('menu.song'), intro: t('menu.introducepage'), link: 'http://ideartk.com/songjung/' },
@@ -264,7 +264,6 @@ function handleKeydown(event, index) {
   width: 100%;
   padding: 20px 50px;
   display: grid;
-  align-items: center;
   grid-template-columns: 20% 80%;
   background-image: linear-gradient(
     -180deg,   
@@ -277,6 +276,7 @@ function handleKeydown(event, index) {
   .pf-ul {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    padding-top: 10px;
     .depth1 {
       text-align: center;
       font-size: 1.4em;
