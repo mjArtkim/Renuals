@@ -14,7 +14,7 @@ const sendForm = async () => {
   }
 
   try {
-    const res = await axios.post("/contact.php", {
+    const res = await axios.post("/api/contact", {
       name: name.value,
       email: email.value,
       phone: phone.value, 
