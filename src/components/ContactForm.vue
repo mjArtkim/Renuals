@@ -6,14 +6,17 @@ const name = ref("")
 const email = ref("")
 const phone = ref("")
 const message = ref("")
+const isSending = ref(false)
 
 const sendForm = async () => {
+  if (isSending.value) return
   if (!name.value || !email.value || !phone.value || !message.value) {
     alert("Please fill in all fields.")
     return
   }
 
   try {
+    isSending.value = true
     const res = await axios.post("/api/contact", {
       name: name.value,
       email: email.value,
@@ -27,6 +30,8 @@ const sendForm = async () => {
     name.value = email.value = phone.value = message.value = ""
   } catch (err) {
     alert(err.response?.data?.message || "서버 오류가 발생했습니다")
+  } finally {
+    isSending.value = false
   }
 }
 </script>
@@ -50,7 +55,9 @@ const sendForm = async () => {
         <textarea v-model="message" placeholder="*CONTENTS" class="form__txt"></textarea>
       </div>
     </div>
-    <button type="submit" class="form__btn">SEND</button>
+    <button type="submit" class="form__btn" :disabled="isSending">
+      {{ isSending ? 'SENDING...' : 'SEND' }}
+    </button>
   </form>
 </template>
 
