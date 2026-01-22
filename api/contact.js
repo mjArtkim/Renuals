@@ -52,9 +52,11 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ status: "success", message: "메일이 전송되었습니다." })
   } catch (error) {
+    console.error("메일 전송 실패:", error)
+    const detail = error && error.message ? `메일 전송 실패: ${error.message}` : "메일 전송 실패: 서버 오류가 발생했습니다."
     return res.status(500).json({
       status: "error",
-      message: "메일 전송 실패: 서버 오류가 발생했습니다."
+      message: detail
     })
   }
 }
