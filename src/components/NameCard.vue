@@ -15,6 +15,9 @@
             <a href="https://github.com/mjArtkim" target="_blank"><img src="@/assets/img/github_mark.png"></a>
           </button>
           <button class="social-button">
+            <a href="https://www.behance.net/h201826287b817" target="_blank"><i class="fa-brands fa-behance"></i></a>
+          </button>
+          <button class="social-button">
             <a href="mailto:mjtwins1@naver.com"><i class="fa-solid fa-envelope"></i></a>
           </button>
         </div>
@@ -165,6 +168,9 @@ const { t, locale } = useI18n()
   transition: transform 0.2s ease-in-out 0.8s, box-shadow 0.2s ease-in-out 0.8s;
 }
 
+.bottom .social-buttons-container .social-button:nth-child(4) {
+  transition: transform 0.2s ease-in-out 1s, box-shadow 0.2s ease-in-out 1s;
+}
 
 .bottom .social-buttons-container .social-button:hover {
   background: linear-gradient(135deg,rgb(222, 236, 255) 0%, rgb(92, 152, 255) 100%);
