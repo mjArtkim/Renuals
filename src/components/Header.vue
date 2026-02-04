@@ -31,9 +31,9 @@ const menuItems = computed(() => {
         { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com'  },
         { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
         { name: t('menu.festival'), intro: t('menu.project'), link: 'https://www.festivalpu.com' },
-        { name: t('menu.sam'), intro: t('menu.businesspage'), link: 'http://ideartk.com/samyang/' },
-        { name: t('menu.song'), intro: t('menu.introducepage'), link: 'http://ideartk.com/songjung/' },
-        { name: t('menu.backc'), intro: t('menu.exhibpage'), link: 'http://ideartk.com/backchun/' },
+        // { name: t('menu.sam'), intro: t('menu.project'), link: 'http://ideartk.com/samyang/' },
+        { name: t('menu.song'), intro: t('menu.project'), link: 'http://ideartk.com/songjung/' },
+        { name: t('menu.backc'), intro: t('menu.project'), link: 'http://ideartk.com/backchun/' },
         { name: t('menu.design'), intro: t('menu.other'), link: '/other' },
       ]
     },
