@@ -21,9 +21,6 @@ It showcases my projects, skills, and experience as a web developer.
 
 ---
 
-## 📸 Preview
-
-![Portfolio Screenshot](./src/assets/img/scs_re.png)
 
 ---
 
