@@ -69,7 +69,7 @@ gsap.to(shapes, {
           </div>
         </div>
         <h1>MIN JI KIM</h1>
-        <div class="footer__copy">&copy; 2025 MINJI KIM. All right reserved. </div>
+        <div class="footer__copy">&copy; 2026 MINJI KIM. All right reserved. </div>
       </div>
     </div>
   </div>
@@ -129,6 +129,7 @@ gsap.to(shapes, {
   }
   &__copy {
     position: relative;
+    padding-left: 30px;
   }
 }
 .shape-1 { --size: 550px; background: #005ffe; }
@@ -182,6 +183,9 @@ gsap.to(shapes, {
         font-weight: 900;
         line-height: 1;
       }
+    }
+    &__copy {
+      padding-left: 10px;
     }
   }
 }
