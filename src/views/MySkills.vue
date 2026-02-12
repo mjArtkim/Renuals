@@ -23,6 +23,9 @@ const scrollerRef = ref(null);
 let bodyScrollBar;
 const isScrolling = ref(false);
 const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const updateScrollState = ({ offset }) => {
+  isScrolling.value = offset.y > 300
+}
 
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
@@ -69,11 +72,14 @@ onMounted(() => {
   });
   
   bodyScrollBar.addListener(ScrollTrigger.update);
+  bodyScrollBar.addListener(updateScrollState);
+  updateScrollState({ offset: bodyScrollBar.offset })
 });
 
 onBeforeUnmount(() => {
   ScrollTrigger.getAll().forEach(st => st.kill());
   if (bodyScrollBar) {
+    bodyScrollBar.removeListener(updateScrollState);
     bodyScrollBar.destroy();
     scrollBus.all.clear()
   }
