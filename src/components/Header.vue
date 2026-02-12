@@ -93,11 +93,6 @@ function handleKeydown(event, index) {
     activeIndex.value = null
   }
 }
-
-function scrollToTop() {
-  scrollBus.emit('scrollToTop')
-  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
-}
 </script>
 
 <template>
@@ -210,14 +205,6 @@ function scrollToTop() {
         </ul>
       </div>
     </div>
-    <button
-      type="button"
-      class="scroll-top-btn material-symbols-outlined"
-      aria-label="Scroll to top"
-      @click="scrollToTop"
-    >
-      keyboard_arrow_up
-    </button>
   </header>
 </template>
 
@@ -270,33 +257,6 @@ function scrollToTop() {
   color: #707070 !important;
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
-}
-.scroll-top-btn {
-  position: fixed;
-  right: 24px;
-  bottom: 24px;
-  z-index: 999;
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.85);
-  color: #111;
-  font-size: 20px;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-.scroll-top-btn:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 1);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
-}
-.scroll-top-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 #pc-pf-gnb {
   position: fixed !important;
