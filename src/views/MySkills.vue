@@ -51,6 +51,11 @@ onMounted(() => {
       )
     }
   })
+  scrollBus.on('scrollToTop', () => {
+    if (bodyScrollBar) {
+      bodyScrollBar.scrollTo(0, 0, 800);
+    }
+  })
   ScrollTrigger.scrollerProxy(scrollerRef.value, {
     scrollTop(value) {
       if (arguments.length) {
