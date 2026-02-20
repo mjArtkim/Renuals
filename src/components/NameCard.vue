@@ -9,7 +9,7 @@
       <div class="bottom">
         <div class="social-buttons-container">
           <button class="social-button">
-            <a href="https://www.instagram.com/mjtwinart/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.instagram.com/art_portfoilo/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
           </button>
           <button class="social-button">
             <a href="https://github.com/mjArtkim" target="_blank"><img src="@/assets/img/github_mark.png"></a>
