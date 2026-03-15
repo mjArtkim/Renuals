@@ -680,7 +680,7 @@ onMounted(() => {
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="http://ideartk.com/backchun/" class="caption">
+                <a href="https://www.festivalpu.com" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -750,7 +750,7 @@ onMounted(() => {
                 loading="lazy"
               />
               <div class="slide-caption">
-                <a href="http://ideartk.com/songjung/" class="caption">
+                <a href="https://prog.djthirdparty.com" class="caption">
                   <div>More</div>
                   <i class="fa-solid fa-arrow-right"></i>
                 </a>
