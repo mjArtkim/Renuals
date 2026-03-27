@@ -29,7 +29,7 @@ const updateScrollState = ({ offset }) => {
 
 onMounted(() => {
   bodyScrollBar = Scrollbar.init(scrollerRef.value, {
-    damping: isMobile ? 0.5 : 0.2,
+    damping: isMobile ? 0.38 : 0.2,
     delegateTo: document,
     continuousScrolling: false,
   });
