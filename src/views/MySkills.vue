@@ -22,72 +22,96 @@ const { t } = useI18n();
 const scrollerRef = ref(null);
 let bodyScrollBar;
 const isScrolling = ref(false);
-const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+const useNativeScroll = window.matchMedia('(max-width: 880px), (hover: none), (pointer: coarse)').matches;
 const updateScrollState = ({ offset }) => {
   isScrolling.value = offset.y > 300
 }
+const updateNativeScrollState = () => {
+  isScrolling.value = scrollerRef.value?.scrollTop > 300
+}
+
+const handleSectionScroll = (id) => {
+  const el = document.getElementById(id)
+  if (!el) return
+
+  if (bodyScrollBar) {
+    bodyScrollBar.scrollIntoView(el, {
+      offsetTop: 0,
+      alignToTop: true,
+      onlyScrollIfNeeded: false,
+    });
+  } else {
+    el.scrollIntoView({
+      block: 'start',
+      behavior: 'smooth',
+    })
+  }
+
+  gsap.fromTo(
+    el,
+    { opacity: 0.5, filter: 'brightness(1.3)'},
+    {
+      opacity: 1,
+      filter: 'brightness(1)',
+      duration: 1.5,
+      ease: 'power2.out',
+    }
+  )
+}
 
 onMounted(() => {
-  bodyScrollBar = Scrollbar.init(scrollerRef.value, {
-    damping: isMobile ? 0.38 : 0.2,
-    delegateTo: document,
-    continuousScrolling: false,
-  });
-  scrollBus.on('scrollToSection', (id) => {
-    const el = document.getElementById(id)
-    if (el && bodyScrollBar) {
-      bodyScrollBar.scrollIntoView(el, {
-        offsetTop: 0,
-        alignToTop: true,
-        onlyScrollIfNeeded: false,
-        behavior: 'smooth'
-      });
-      gsap.fromTo(
-        el,
-        { opacity: 0.5, filter: 'brightness(1.3)'},
-        {
-          opacity: 1,
-          filter: 'brightness(1)',
-          duration: 1.5,
-          ease: 'power2.out',
+  scrollBus.on('scrollToSection', handleSectionScroll)
+
+  if (useNativeScroll) {
+    scrollerRef.value.addEventListener('scroll', updateNativeScrollState, { passive: true })
+    updateNativeScrollState()
+  } else {
+    bodyScrollBar = Scrollbar.init(scrollerRef.value, {
+      damping: 0.2,
+      delegateTo: document,
+      continuousScrolling: false,
+    });
+    ScrollTrigger.scrollerProxy(scrollerRef.value, {
+      scrollTop(value) {
+        if (arguments.length) {
+          bodyScrollBar.scrollTop = value;
         }
-      )
-    }
-  })
-  ScrollTrigger.scrollerProxy(scrollerRef.value, {
-    scrollTop(value) {
-      if (arguments.length) {
-        bodyScrollBar.scrollTop = value;
-      }
-      return bodyScrollBar.scrollTop;
-    },
-    getBoundingClientRect() {
-      return {
-        top: 0,
-        left: 0,
-        width: window.innerWidth,
-        height: window.innerHeight,
-      };
-    },
-  });
-  
-  bodyScrollBar.addListener(ScrollTrigger.update);
-  bodyScrollBar.addListener(updateScrollState);
-  updateScrollState({ offset: bodyScrollBar.offset })
+        return bodyScrollBar.scrollTop;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+    });
+
+    bodyScrollBar.addListener(ScrollTrigger.update);
+    bodyScrollBar.addListener(updateScrollState);
+    updateScrollState({ offset: bodyScrollBar.offset })
+  }
+
+  ScrollTrigger.refresh()
 });
 
 onBeforeUnmount(() => {
   ScrollTrigger.getAll().forEach(st => st.kill());
+  scrollBus.off('scrollToSection', handleSectionScroll)
+  scrollerRef.value?.removeEventListener('scroll', updateNativeScrollState)
   if (bodyScrollBar) {
+    bodyScrollBar.removeListener(ScrollTrigger.update);
     bodyScrollBar.removeListener(updateScrollState);
     bodyScrollBar.destroy();
-    scrollBus.all.clear()
   }
 });
 
 const scrollToTop = () => {
   if (bodyScrollBar) {
     bodyScrollBar.scrollTo(0, 0, 800); 
+  } else {
+    scrollerRef.value?.scrollTo({ top: 0, behavior: 'smooth' })
   }
 };
 
@@ -95,11 +119,16 @@ const scrollToBottom = () => {
   if (bodyScrollBar) {
     const maxScrollTop = bodyScrollBar.limit.y;
     bodyScrollBar.scrollTo(0, maxScrollTop, 800);
+  } else if (scrollerRef.value) {
+    scrollerRef.value.scrollTo({
+      top: scrollerRef.value.scrollHeight - scrollerRef.value.clientHeight,
+      behavior: 'smooth',
+    })
   }
 };
 </script>
 <template>
-  <div class="scroller" ref="scrollerRef">
+  <div class="scroller" :class="{ 'native-scroll': useNativeScroll }" ref="scrollerRef">
     <section class="description" id="one">
       <NewMainVue></NewMainVue>
     </section>
@@ -156,6 +185,14 @@ const scrollToBottom = () => {
   height: 100vh;
   overflow: hidden;
   overflow-x: hidden !important;
+  &.native-scroll {
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    scroll-behavior: smooth;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 .description {
   background-repeat: no-repeat;
