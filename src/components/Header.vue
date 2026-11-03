@@ -29,6 +29,7 @@ const menuItems = computed(() => {
       title: t('menu.work'),
       link: '#third',
       submenu: [
+        { name: t('menu.dolbome'), intro: t('menu.uiux'), link: '/dolbome' },
         { name: t('menu.mytal'), intro: t('menu.uiux'), link: '/mytalent' },
         { name: t('menu.themeSeries'), intro: t('menu.personalWork'), link: '/djs' },
         // { name: t('menu.halo'), intro: t('menu.project'), link: 'https://www.beparthalo.com' },

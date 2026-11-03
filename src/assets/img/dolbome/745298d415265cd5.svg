@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1200" height="1200" viewBox="0 0 1200 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle id="Ambient / COMMUNITY" cx="600" cy="600" r="600" fill="url(#paint0_radial_0_133)"/>
+<defs>
+<radialGradient id="paint0_radial_0_133" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 600) scale(600)">
+<stop stop-color="#B4D7B1" stop-opacity="0.32"/>
+<stop offset="1" stop-color="#101D19" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>
