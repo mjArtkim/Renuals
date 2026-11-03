@@ -1,0 +1,2094 @@
+.dolbome-project .community-cover {
+  background-color: #fff3f6;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-bottom: 72px;
+  padding-top: 48px;
+  padding-left: 120px;
+  padding-right: 120px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-cover__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 64px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-cover__subtitle {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 24px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-cover__screens {
+  align-content: stretch;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  overflow: clip;
+  padding-top: 32px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-section__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-section__intro {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-section__summary {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-tech__list {
+  align-content: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-tech__badge {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: clip;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  position: relative;
+  border-radius: 28px;
+  flex-shrink: 0;
+  width: min(100%, 240px);
+}
+.dolbome-project .community-tech__label {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 16px;
+  text-align: center;
+  width: min(100%, 240px);
+}
+.dolbome-project .community-content__section {
+  word-break: break-word;
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-overview__heading {
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 38px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .case-numbered-heading__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+.dolbome-project .case-numbered-heading__text {
+  min-width: 0;
+}
+.dolbome-project .case-lead__line {
+  margin-bottom: 0;
+}
+.dolbome-project .case-content__row {
+  align-content: stretch;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .case-scope__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 276px);
+}
+.dolbome-project .community-scope__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 23px;
+  width: min(100%, 276px);
+}
+.dolbome-project .community-scope__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 17px;
+  width: min(100%, 276px);
+}
+.dolbome-project .case-body__line {
+  margin-bottom: 0;
+}
+.dolbome-project .community-project__meta {
+  background-color: #f7f8fa;
+  align-content: stretch;
+  display: flex;
+  font-weight: 700;
+  gap: 40px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 17px;
+  text-align: center;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-project__meta-item {
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 350px);
+}
+.dolbome-project .community-muted__section {
+  word-break: break-word;
+  background-color: #f7f8fa;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-process__heading {
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 38px;
+  white-space: nowrap;
+}
+.dolbome-project .community-process__number {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 32px;
+  width: min(100%, 234px);
+}
+.dolbome-project .community-process__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 24px;
+  width: min(100%, 234px);
+}
+.dolbome-project .community-process__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 17px;
+  width: min(100%, 234px);
+}
+.dolbome-project .case-card__row {
+  align-content: stretch;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .case-process__card {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 282px);
+}
+.dolbome-project .community-planning__section {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-planning__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 38px;
+  white-space: nowrap;
+}
+.dolbome-project .community-planning__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-planning__highlight {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-wireframe__section {
+  background-color: #f7f8fa;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-wireframe__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 38px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .case-split__row {
+  align-content: stretch;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-state__list {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  gap: 51px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-state__label {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 16px;
+  width: min(100%, 384px);
+}
+.dolbome-project .community-state__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 18px;
+  width: min(100%, 384px);
+}
+.dolbome-project .case-state__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 384px);
+}
+.dolbome-project .case-color__panel {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 576px);
+}
+.dolbome-project .case-color__palette {
+  align-content: stretch;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 576px);
+}
+.dolbome-project .case-color__swatch {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .community-color__label {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 16px;
+  width: min(100%, 576px);
+}
+.dolbome-project .community-swatch__pink {
+  background-color: #ffb2c5;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 10px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .community-swatch__label {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 12px;
+  width: min(100%, 130px);
+}
+.dolbome-project .community-swatch__blush {
+  background-color: #facac9;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 10px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .community-swatch__mint {
+  background-color: #c2f1ce;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 10px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .community-swatch__white {
+  background-color: #fff;
+  border-width: 1px;
+  border-color: #e5e7eb;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 10px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .community-typography__panel {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 576px);
+}
+.dolbome-project .community-typography__label {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 16px;
+  width: min(100%, 576px);
+}
+.dolbome-project .community-font__name {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 30px;
+  width: min(100%, 576px);
+}
+.dolbome-project .community-font__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 18px;
+  width: min(100%, 576px);
+}
+.dolbome-project .community-font__note {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 14px;
+  width: min(100%, 576px);
+}
+.dolbome-project .case-description__line {
+  margin-bottom: 0;
+}
+.dolbome-project .community-screen__grid {
+  align-content: stretch;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-screen__grid--continuation {
+  align-content: stretch;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding-top: 40px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-screen__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 373px);
+}
+.dolbome-project .community-screen__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 22px;
+  width: min(100%, 373px);
+  white-space: pre-wrap;
+}
+.dolbome-project .community-screen__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 16px;
+  width: min(100%, 373px);
+}
+.dolbome-project .case-detail__row {
+  align-content: stretch;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-implementation__card {
+  background-color: #f7f8fa;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  overflow: clip;
+  padding: 32px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 580px);
+}
+.dolbome-project .community-implementation__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 30px;
+  width: min(100%, 516px);
+}
+.dolbome-project .community-implementation__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 18px;
+  width: min(100%, 516px);
+}
+.dolbome-project .community-template__tree-panel {
+  background-color: #222833;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: flex-start;
+  overflow: clip;
+  padding: 32px;
+  position: relative;
+  border-radius: 16px;
+  flex-shrink: 0;
+  font-size: 16px;
+  width: min(100%, 584px);
+  white-space: pre-wrap;
+}
+.dolbome-project .community-template__tree-title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffb2c5;
+  width: min(100%, 520px);
+}
+.dolbome-project .community-template__tree {
+  position: relative;
+  flex-shrink: 0;
+  color: #eceff4;
+  width: min(100%, 520px);
+}
+.dolbome-project .case-file-tree__line {
+  margin-bottom: 0;
+}
+.dolbome-project .community-style__tree-panel {
+  background-color: #222833;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  align-items: flex-start;
+  overflow: clip;
+  padding: 32px;
+  position: relative;
+  border-radius: 16px;
+  flex-shrink: 0;
+  width: min(100%, 584px);
+}
+.dolbome-project .community-style__tree-title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffb2c5;
+  font-size: 16px;
+  width: min(100%, 520px);
+  white-space: pre-wrap;
+}
+.dolbome-project .community-style__tree {
+  position: relative;
+  flex-shrink: 0;
+  color: #eceff4;
+  font-size: 16px;
+  width: min(100%, 520px);
+  white-space: pre-wrap;
+}
+.dolbome-project .community-file-tree__note {
+  position: relative;
+  flex-shrink: 0;
+  color: #a8b0bc;
+  font-size: 15px;
+  width: min(100%, 520px);
+}
+.dolbome-project .community-file-map__row {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-file-map__number {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 28px;
+  width: min(100%, 60px);
+}
+.dolbome-project .community-file-map__design {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 350px);
+}
+.dolbome-project .community-file-map__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 23px;
+  width: min(100%, 350px);
+}
+.dolbome-project .community-file-map__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #777e87;
+  font-size: 16px;
+  width: min(100%, 350px);
+}
+.dolbome-project .community-file-map__files {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 678px);
+}
+.dolbome-project .community-file-map__label {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ee587f;
+  font-size: 13px;
+  width: min(100%, 678px);
+}
+.dolbome-project .community-file-map__path {
+  position: relative;
+  flex-shrink: 0;
+  color: #242a32;
+  font-size: 18px;
+  width: min(100%, 678px);
+  white-space: pre-wrap;
+}
+.dolbome-project .community-closing__section {
+  word-break: break-word;
+  background-color: #222833;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-bottom: 110px;
+  padding-top: 100px;
+  padding-left: 120px;
+  padding-right: 120px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .community-closing__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 48px;
+  color: #fff;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-closing__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #ccd1d9;
+  font-size: 22px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .community-closing__role {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffb2c5;
+  width: min(100%, 800px);
+}
+.dolbome-project .case-closing__meta {
+  align-content: stretch;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 18px;
+  width: min(100%, 1200px);
+  white-space: pre-wrap;
+}
+.dolbome-project .case-closing__stack {
+  position: relative;
+  flex-shrink: 0;
+  color: #fff;
+  width: min(100%, 376px);
+}
+.dolbome-project .case-closing__section {
+  word-break: break-word;
+  background-color: #242a32;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .case-closing__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 46px;
+  color: #fff;
+  white-space: nowrap;
+}
+.dolbome-project .shopping-cover {
+  background-color: #fff4ec;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-bottom: 96px;
+  padding-top: 48px;
+  padding-left: 120px;
+  padding-right: 120px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .shopping-cover__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 60px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-cover__subtitle {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 25px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-cover__screens {
+  align-content: stretch;
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-top: 24px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-section__intro {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-section__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-tech__list {
+  align-content: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-tech__badge {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: clip;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  position: relative;
+  border-radius: 24px;
+  flex-shrink: 0;
+  width: min(100%, 240px);
+}
+.dolbome-project .shopping-tech__label {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 16px;
+  text-align: center;
+  width: min(100%, 240px);
+}
+.dolbome-project .shopping-content__section {
+  word-break: break-word;
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .shopping-overview__heading {
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 38px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-scope__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 23px;
+  width: min(100%, 276px);
+}
+.dolbome-project .shopping-scope__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 17px;
+  width: min(100%, 276px);
+}
+.dolbome-project .shopping-muted__section {
+  word-break: break-word;
+  background-color: #f6f7f9;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .shopping-process__heading {
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 38px;
+  white-space: nowrap;
+}
+.dolbome-project .shopping-process__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-process__number {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 32px;
+  width: min(100%, 234px);
+}
+.dolbome-project .shopping-process__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 23px;
+  width: min(100%, 234px);
+}
+.dolbome-project .shopping-process__card-description {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 17px;
+  width: min(100%, 234px);
+}
+.dolbome-project .shopping-planning__heading {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 38px;
+  white-space: nowrap;
+}
+.dolbome-project .case-heading__list {
+  margin-bottom: 0;
+}
+.dolbome-project .shopping-flow__card {
+  background-color: #f6f7f9;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 282px);
+}
+.dolbome-project .shopping-flow__label {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 18px;
+  width: min(100%, 242px);
+}
+.dolbome-project .shopping-flow__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 16px;
+  width: min(100%, 242px);
+}
+.dolbome-project .shopping-wireframe__section {
+  background-color: #f6f7f9;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .shopping-wireframe__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 38px;
+  white-space: nowrap;
+}
+.dolbome-project .shopping-state__list {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-state__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 20px;
+  width: min(100%, 384px);
+}
+.dolbome-project .shopping-state__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 16px;
+  width: min(100%, 384px);
+}
+.dolbome-project .shopping-ui__section {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .shopping-ui__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 38px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-color__label {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 15px;
+  width: min(100%, 576px);
+}
+.dolbome-project .shopping-swatch__orange {
+  background-color: #f50;
+  border-width: 1px;
+  border-color: #e3e5e9;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 8px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .shopping-swatch__label {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 12px;
+  width: min(100%, 130px);
+}
+.dolbome-project .shopping-swatch__white {
+  background-color: #fff;
+  border-width: 1px;
+  border-color: #e3e5e9;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 8px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .shopping-swatch__gray {
+  background-color: #f6f7f9;
+  border-width: 1px;
+  border-color: #e3e5e9;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 8px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .shopping-swatch__ink {
+  background-color: #242a32;
+  border-width: 1px;
+  border-color: #e3e5e9;
+  border-style: solid;
+  height: 100px;
+  position: relative;
+  border-radius: 8px;
+  flex-shrink: 0;
+  width: min(100%, 130px);
+}
+.dolbome-project .shopping-typography__panel {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 576px);
+}
+.dolbome-project .shopping-typography__label {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 15px;
+  width: min(100%, 576px);
+}
+.dolbome-project .shopping-font__name {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 30px;
+  width: min(100%, 576px);
+}
+.dolbome-project .shopping-font__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 18px;
+  width: min(100%, 576px);
+}
+.dolbome-project .shopping-font__note {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 15px;
+  width: min(100%, 576px);
+}
+.dolbome-project .shopping-desktop__section {
+  background-color: #fff4ec;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .shopping-screen__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 20px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-screen__group-title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 20px;
+  width: min(100%, 1200px);
+  white-space: pre-wrap;
+}
+.dolbome-project .shopping-desktop-screen__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 584px);
+}
+.dolbome-project .shopping-desktop-screen__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 18px;
+  width: min(100%, 584px);
+}
+.dolbome-project .shopping-mobile-screen__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 373px);
+}
+.dolbome-project .shopping-mobile-screen__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 22px;
+  width: min(100%, 373px);
+  white-space: pre-wrap;
+}
+.dolbome-project .shopping-mobile-screen__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 16px;
+  width: min(100%, 373px);
+}
+.dolbome-project .shopping-implementation__card {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 28px;
+  padding-bottom: 28px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 384px);
+}
+.dolbome-project .shopping-implementation__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 24px;
+  width: min(100%, 336px);
+}
+.dolbome-project .shopping-implementation__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 17px;
+  width: min(100%, 336px);
+}
+.dolbome-project .shopping-file-tree {
+  position: relative;
+  flex-shrink: 0;
+  color: #f0f2f5;
+  width: min(100%, 520px);
+}
+.dolbome-project .shopping-file-tree__row {
+  align-content: stretch;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 16px;
+  width: min(100%, 1200px);
+  white-space: pre-wrap;
+}
+.dolbome-project .shopping-file-tree__panel {
+  background-color: #242a32;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  padding: 32px;
+  position: relative;
+  border-radius: 14px;
+  flex-shrink: 0;
+  width: min(100%, 584px);
+}
+.dolbome-project .shopping-file-tree__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffb08a;
+  width: min(100%, 520px);
+}
+.dolbome-project .shopping-shared__files-card {
+  background-color: #f6f7f9;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  overflow: clip;
+  padding: 28px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 580px);
+}
+.dolbome-project .shopping-shared__files-title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 22px;
+  width: min(100%, 524px);
+}
+.dolbome-project .shopping-shared__files-description {
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 17px;
+  width: min(100%, 524px);
+  white-space: pre-wrap;
+}
+.dolbome-project .shopping-file-map__row {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 28px;
+  padding-right: 28px;
+  padding-top: 26px;
+  padding-bottom: 26px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-file-map__number {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 28px;
+  width: min(100%, 56px);
+}
+.dolbome-project .shopping-file-map__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 22px;
+  width: min(100%, 240px);
+}
+.dolbome-project .shopping-file-map__files {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 792px);
+}
+.dolbome-project .shopping-file-map__files--multiline {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 792px);
+  white-space: pre-wrap;
+}
+.dolbome-project .shopping-file-map__template-path {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 16px;
+  width: min(100%, 792px);
+}
+.dolbome-project .shopping-file-map__template-path--multiline {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #242831;
+  font-size: 18px;
+  width: min(100%, 792px);
+  white-space: pre-wrap;
+}
+.dolbome-project .shopping-file-map__style-path {
+  position: relative;
+  flex-shrink: 0;
+  color: #717782;
+  font-size: 16px;
+  width: min(100%, 792px);
+}
+.dolbome-project .shopping-closing__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #cbd1d9;
+  font-size: 22px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .shopping-closing__role {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #ffb08a;
+  width: min(100%, 800px);
+}
+.dolbome-project .careers-accent__section {
+  background-color: #e8485a;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .careers-cover__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 76px;
+  color: #fff;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-text__line {
+  margin-bottom: 0;
+}
+.dolbome-project .careers-project__meta {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  color: #fff;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-project__meta-title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 26px;
+  width: min(100%, 500px);
+}
+.dolbome-project .careers-project__meta-description {
+  position: relative;
+  flex-shrink: 0;
+  font-size: 19px;
+  width: min(100%, 620px);
+  white-space: pre-wrap;
+}
+.dolbome-project .careers-audience__section {
+  word-break: break-word;
+  background-color: #eef2f3;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .careers-audience__heading {
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 54px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-audience__list {
+  align-content: stretch;
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-audience__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 568px);
+}
+.dolbome-project .careers-audience__label {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #697174;
+  font-size: 15px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-audience__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 30px;
+  width: min(100%, 568px);
+}
+.dolbome-project .careers-audience__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 21px;
+  width: min(100%, 568px);
+}
+.dolbome-project .careers-section__intro {
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 22px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-process__section {
+  background-color: #353a3c;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .careers-process__heading {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 60px;
+  color: #fff;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-process__divider {
+  background-color: #596063;
+  height: 1px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-process__number {
+  position: relative;
+  flex-shrink: 0;
+  color: #ff7979;
+  font-size: 25px;
+  width: min(100%, 100px);
+}
+.dolbome-project .careers-process__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 30px;
+  color: #fff;
+  width: min(100%, 226px);
+}
+.dolbome-project .careers-process__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #eef2f3;
+  font-size: 21px;
+  width: min(100%, 794px);
+}
+.dolbome-project .careers-feature__row {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-content__section {
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .careers-content__divider {
+  background-color: #cdd2d4;
+  height: 1px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-wireframe__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 56px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-wireframe__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 22px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-specification__card {
+  word-break: break-word;
+  background-color: #eef2f3;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  height: 570px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  width: min(100%, 444px);
+}
+.dolbome-project .careers-specification__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 23px;
+  width: min(100%, 428px);
+  white-space: pre-wrap;
+}
+.dolbome-project .careers-specification__description {
+  min-width: 0;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 19px;
+  width: 100%;
+}
+.dolbome-project .careers-muted__section {
+  background-color: #eef2f3;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .careers-mobile-screen__card {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 368px);
+}
+.dolbome-project .careers-mobile-screen__title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 24px;
+  width: min(100%, 368px);
+  white-space: pre-wrap;
+}
+.dolbome-project .careers-mobile-screen__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 18px;
+  width: min(100%, 368px);
+}
+.dolbome-project .careers-employer__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 56px;
+  color: #fff;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-employer__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #eef2f3;
+  font-size: 22px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-employer__mobile-screen {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 330px);
+}
+.dolbome-project .careers-employer__features {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 830px);
+}
+.dolbome-project .careers-employer__feature-title {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 32px;
+  color: #fff;
+  width: min(100%, 830px);
+}
+.dolbome-project .careers-employer__feature-description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 23px;
+  color: #fff;
+  width: min(100%, 830px);
+}
+.dolbome-project .careers-employer__divider {
+  background-color: #596063;
+  height: 1px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 830px);
+}
+.dolbome-project .careers-platform__label {
+  word-break: break-word;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #eef2f3;
+  font-size: 17px;
+  width: min(100%, 830px);
+}
+.dolbome-project .careers-implementation__section {
+  word-break: break-word;
+  background-color: #fff;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+  padding-left: 120px;
+  padding-right: 120px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.dolbome-project .careers-implementation__heading {
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 56px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-template__tree-panel {
+  background-color: #353a3c;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 584px);
+}
+.dolbome-project .careers-template__tree-title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #f50;
+  font-size: 18px;
+  width: min(100%, 520px);
+}
+.dolbome-project .careers-template__tree {
+  position: relative;
+  flex-shrink: 0;
+  font-size: 19px;
+  color: #fff;
+  width: min(100%, 520px);
+  white-space: pre-wrap;
+}
+.dolbome-project .careers-style__tree-panel {
+  background-color: #eef2f3;
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 36px;
+  padding-bottom: 36px;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  width: min(100%, 584px);
+}
+.dolbome-project .careers-style__tree-title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  font-size: 18px;
+  width: min(100%, 520px);
+}
+.dolbome-project .careers-style__tree {
+  position: relative;
+  flex-shrink: 0;
+  font-size: 19px;
+  width: min(100%, 520px);
+  white-space: pre-wrap;
+}
+.dolbome-project .careers-file-map__heading {
+  word-break: break-word;
+  display: block;
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 54px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-file-map__description {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 22px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-file-map__row {
+  word-break: break-word;
+  align-content: stretch;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 19px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-file-map__screen {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 240px);
+}
+.dolbome-project .careers-file-map__template {
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 444px);
+}
+.dolbome-project .careers-file-map__style {
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 468px);
+}
+.dolbome-project .careers-file-map__note {
+  word-break: break-word;
+  position: relative;
+  flex-shrink: 0;
+  color: #697174;
+  font-size: 16px;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-reusable__feature {
+  align-content: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  overflow: clip;
+  position: relative;
+  flex-shrink: 0;
+  width: min(100%, 400px);
+}
+.dolbome-project .careers-reusable__title {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 27px;
+  width: min(100%, 400px);
+}
+.dolbome-project .careers-reusable__path {
+  position: relative;
+  flex-shrink: 0;
+  color: #697174;
+  font-size: 17px;
+  width: min(100%, 400px);
+}
+.dolbome-project .careers-reusable__description {
+  position: relative;
+  flex-shrink: 0;
+  color: #353a3c;
+  font-size: 22px;
+  width: min(100%, 760px);
+}
+.dolbome-project .careers-closing__description {
+  position: relative;
+  flex-shrink: 0;
+  font-size: 22px;
+  color: #fff;
+  width: min(100%, 1200px);
+}
+.dolbome-project .careers-closing__role {
+  font-weight: 700;
+  position: relative;
+  flex-shrink: 0;
+  color: #e8485a;
+  width: min(100%, 800px);
+}
+
+/*# sourceMappingURL=dolbome-design.css.map */

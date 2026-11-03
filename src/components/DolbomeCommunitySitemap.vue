@@ -104,7 +104,6 @@ $line: #d9dde2;
   background: white;
   color: #242a32;
   font-size: 12px;
-  line-height: 1.6;
   h3,
   h4,
   p,
