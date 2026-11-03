@@ -221,3 +221,53 @@
     .case-section:first-child > .case-flow:first-child > p { font-size: 26px; line-height: 1.4; }
   }
 }
+
+// Commerce and careers contain desktop-sized file maps and role/description rows.
+// Reflow the actual containers, rather than clipping overflowing content.
+@media (max-width: 767px) {
+  .dolbome-case:is(.shopping, .careers) {
+    .case-section {
+      width: 100%;
+      padding-inline: 20px;
+      align-items: stretch;
+    }
+    .case-flow {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      height: auto;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .case-row {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      flex-wrap: nowrap;
+      gap: 20px;
+    }
+    .case-row > *,
+    .case-column > * {
+      min-width: 0;
+      max-width: 100%;
+    }
+    .case-row > .case-flow {
+      width: 100%;
+      flex: 0 1 auto;
+      align-self: stretch;
+    }
+    .case-flow p {
+      width: 100%;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+    .case-numbered { width: 100%; }
+    .case-numbered > li { width: auto; }
+    .case-row[data-design-name='기술'] {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px;
+      > .case-flow { width: calc(50% - 6px); }
+    }
+  }
+}

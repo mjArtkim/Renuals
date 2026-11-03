@@ -564,8 +564,11 @@ $cream: #f6f3dd;
     }
   }
   .case-reader {
+    width: 100%;
+    min-width: 0;
     height: 100%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     overscroll-behavior: contain;
     overflow-anchor: none;
     background: #fff;
