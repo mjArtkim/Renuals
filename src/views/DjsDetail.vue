@@ -1,5 +1,8 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 import { RouterLink } from 'vue-router'
 import { gsap } from 'gsap'
 import { Observer } from 'gsap/Observer'
@@ -116,46 +119,51 @@ import thirdMobile from '@/assets/img/djs/0c80a.png'
 import haloMobile from '@/assets/img/djs/7d2a8.png'
 import teamMobile from '@/assets/img/djs/e489e.png'
 
-const projects = [
-  { name: 'THIRD PARTY', description: '아티스트 중심의 음악 · 투어 아카이브', stack: 'Vue · Firebase · SCSS · Vercel', url: 'www.djthirdparty.com', image: third, mobile: thirdMobile },
-  { name: 'HALŌ', description: '공연의 분위기와 투어 · 영상을 담는 공간', stack: 'Vue · TypeScript · Tailwind CSS · SCSS', url: 'www.beparthalo.com', image: halo, mobile: haloMobile },
-  { name: 'TEAM PROGRESSIVE HOUSE', description: '여러 아티스트와 음악 · 영상을 연결하는 허브', stack: 'Vue · TypeScript · Tailwind CSS · SCSS', url: 'prog.djthirdparty.com', image: team, mobile: teamMobile },
-]
+const projects = computed(() => [
+  { name: 'THIRD PARTY', description: t('djs.thirdSummary'), stack: 'Vue · Firebase · SCSS · Vercel', url: 'www.djthirdparty.com', image: third, mobile: thirdMobile },
+  { name: 'HALŌ', description: t('djs.haloSummary'), stack: 'Vue · TypeScript · Tailwind CSS · SCSS', url: 'www.beparthalo.com', image: halo, mobile: haloMobile },
+  { name: 'TEAM PROGRESSIVE HOUSE', description: t('djs.teamSummary'), stack: 'Vue · TypeScript · Tailwind CSS · SCSS', url: 'prog.djthirdparty.com', image: team, mobile: teamMobile },
+])
 </script>
 
 <template>
-  <main ref="page" class="djs-detail panel-deck" @keydown="handleKey">
-    <nav class="panel-controls" data-panel-controls aria-label="연작 섹션 이동">
-      <RouterLink to="/" class="back-link">포트폴리오 ↗</RouterLink>
+  <main :lang="locale" ref="page" class="djs-detail panel-deck" @keydown="handleKey">
+    <nav class="panel-controls" data-panel-controls :aria-label="t('djs.sectionNavigation')">
+      <RouterLink to="/" class="back-link">{{ t('djs.back') }}</RouterLink>
       <div class="panel-position" aria-live="polite" aria-atomic="true">{{ String(currentPanel + 1).padStart(2, '0') }} / 08 <span>{{ panelLabels[currentPanel] }}</span></div>
+      <div class="panel-actions">
+        <div class="language-switch" role="group" :aria-label="t('djs.language')">
+          <button v-for="language in ['ko', 'en']" :key="language" type="button" :aria-pressed="locale === language" @click="locale = language">{{ language === 'ko' ? 'KR' : 'EN' }}</button>
+        </div>
       <div class="panel-buttons">
-        <button type="button" aria-label="이전 섹션" @click="showPanel(currentPanel - 1, -1)">↑</button>
-        <button type="button" aria-label="다음 섹션" @click="showPanel(currentPanel + 1, 1)">↓</button>
+        <button type="button" :aria-label="t('djs.previous')" @click="showPanel(currentPanel - 1, -1)">↑</button>
+        <button type="button" :aria-label="t('djs.next')" @click="showPanel(currentPanel + 1, 1)">↓</button>
+      </div>
       </div>
     </nav>
     <section class="section cover" aria-labelledby="cover-title">
       <div class="section-inner">
         <h1 id="cover-title">FOR THE MUSIC.<br />BUILT FOR THE FANS.</h1>
         <div class="cover-intro">
-          <h2>음악을 좋아하는 마음을, 직접 만드는 웹 경험으로.</h2>
-          <p>Third Party · HALŌ · Team Progressive House 세 개의 실제 운영 사이트로 이어지는 개인 웹 연작. 기획과 디자인, 퍼블리싱과 프론트엔드<br class="desktop-break" /> 구현을 연결했습니다.</p>
+          <h2>{{ t('djs.coverSubtitle') }}</h2>
+          <p>{{ t('djs.coverDescription') }}<br class="desktop-break" />{{ t('djs.coverDescriptionEnd') }}</p>
         </div>
         <div class="previews">
           <figure v-for="(project, index) in projects" :key="project.name">
-            <a :href="`https://${project.url}`" target="_blank" rel="noopener noreferrer" :aria-label="`${project.name} 사이트 새 창에서 보기`" class="preview-image" :class="{ 'halo-preview': index === 1 }">
-              <img :src="project.image" :alt="`${project.name} 메인 화면`" />
+            <a :href="`https://${project.url}`" target="_blank" rel="noopener noreferrer" :aria-label="t('djs.openSite', { name: project.name })" class="preview-image" :class="{ 'halo-preview': index === 1 }">
+              <img :src="project.image" :alt="t('djs.mainAlt', { name: project.name })" />
             </a>
             <figcaption>{{ project.name }}</figcaption>
           </figure>
         </div>
-        <p class="note">INDEPENDENT FANMADE PROJECTS — 아티스트·소속사와 무관한 비공식 팬 프로젝트</p>
+        <p class="note">{{ t('djs.unofficialIntro') }}</p>
       </div>
     </section>
 
     <section class="section overview light" aria-labelledby="overview-title">
       <div class="section-inner">
-        <h2 id="overview-title">하나의 음악 취향 세 가지 웹의 방향.</h2>
-        <p class="lead">아티스트의 음악을 모으는 공간에서 시작해, 공연의 분위기를 담고 장르의 아티스트들을 연결하는 연작으로 확장했습니다.</p>
+        <h2 id="overview-title">{{ t('djs.overviewTitle') }}</h2>
+        <p class="lead">{{ t('djs.overviewDescription') }}</p>
         <ol class="project-list">
           <li v-for="(project, index) in projects" :key="project.name">
             <span class="number">0{{ index + 1 }}</span>
@@ -163,7 +171,7 @@ const projects = [
             <div class="project-meta"><p>{{ project.stack }}</p><a :href="`https://${project.url}`" target="_blank" rel="noopener noreferrer">{{ project.url }}</a></div>
           </li>
         </ol>
-        <p class="note">공통: 개인 작업 · 실제 서비스 운영 · PC / Mobile 화면 구성 · SCSS 활용</p>
+        <p class="note">{{ t('djs.common') }}</p>
       </div>
     </section>
 
@@ -171,14 +179,14 @@ const projects = [
       <div class="section-inner">
         <h2 id="third-title" class="project-title">THIRD PARTY</h2>
         <div class="third-copy">
-          <h3>음악과 투어 정보를 한곳에서.</h3>
-          <p>음원 아카이브와 투어 일정을 중심으로 아티스트의 콘텐츠를 탐색하는 팬메이드 사이트입니다.</p>
+          <h3>{{ t('djs.thirdTitle') }}</h3>
+          <p>{{ t('djs.thirdDescription') }}</p>
           <p class="stack">Vue · Firebase · SCSS / Deployment / Vercel</p>
-          <p>운영을 위한 간단한 어드민 기능도 함께 구현했습니다.</p>
+          <p>{{ t('djs.thirdAdmin') }}</p>
           <a href="https://www.djthirdparty.com" target="_blank" rel="noopener noreferrer">www.djthirdparty.com ↗</a>
         </div>
-        <div class="capture third-capture"><img :src="third" alt="Third Party 메인 · 음악 콘텐츠 화면" loading="lazy" /></div>
-        <p class="note">기획 · 디자인 · 퍼블리싱 · Vue 구현 · Firebase 활용 · Vercel 배포 · 간단한 어드민</p>
+        <div class="capture third-capture"><img :src="third" :alt="t('djs.thirdAlt')" loading="lazy" /></div>
+        <p class="note">{{ t('djs.thirdCredits') }}</p>
       </div>
     </section>
 
@@ -187,20 +195,20 @@ const projects = [
         <h2 id="halo-title" class="project-title">HALŌ</h2>
         <div class="project-layout halo-layout">
           <div class="captures halo-captures">
-            <div class="capture halo-main"><img :src="halo" alt="HALŌ 공연 메인 화면" loading="lazy" /></div>
-            <div class="capture halo-tour"><img :src="tour" alt="HALŌ 투어 일정 모달 화면" loading="lazy" /></div>
+            <div class="capture halo-main"><img :src="halo" :alt="t('djs.haloAlt')" loading="lazy" /></div>
+            <div class="capture halo-tour"><img :src="tour" :alt="t('djs.tourAlt')" loading="lazy" /></div>
           </div>
           <div class="project-copy">
-            <h3>공연의 몰입감을 웹의 분위기로.</h3>
-            <p>공연 사진과 영상, 투어 정보가 이어지는 팬메이드 웹사이트입니다.</p>
+            <h3>{{ t('djs.haloTitle') }}</h3>
+            <p>{{ t('djs.haloDescription') }}</p>
             <p class="stack">Vue · TypeScript / Tailwind CSS · SCSS</p>
             <hr />
-            <h4>연작의 연결점</h4>
-            <p class="accent">투어 데이터는 Third Party 사이트의 데이터를 사용합니다.</p>
+            <h4>{{ t('djs.connectionLabel') }}</h4>
+            <p class="accent">{{ t('djs.haloData') }}</p>
             <a href="https://www.beparthalo.com" target="_blank" rel="noopener noreferrer">www.beparthalo.com ↗</a>
           </div>
         </div>
-        <p class="note">기획 · 디자인 · 퍼블리싱 · Vue / TypeScript 구현 · Third Party 투어 데이터 활용</p>
+        <p class="note">{{ t('djs.haloCredits') }}</p>
       </div>
     </section>
 
@@ -209,60 +217,60 @@ const projects = [
         <h2 id="team-title" class="project-title">TEAM<br />PROGRESSIVE HOUSE</h2>
         <div class="project-layout">
           <div class="captures">
-            <div class="capture team-main"><img :src="team" alt="Team Progressive House 아티스트 메인 화면" loading="lazy" /></div>
-            <div class="capture team-artist"><img :src="artist" alt="Matisse &amp; Sadko 아티스트 상세 모달" loading="lazy" /></div>
+            <div class="capture team-main"><img :src="team" :alt="t('djs.teamAlt')" loading="lazy" /></div>
+            <div class="capture team-artist"><img :src="artist" :alt="t('djs.artistAlt')" loading="lazy" /></div>
           </div>
           <div class="project-copy">
-            <h3>취향이 이어지는 아티스트 허브.</h3>
-            <p>DubVision, Matisse &amp; Sadko, Third Party, Sick Individuals의 음악과 영상을 한 공간에서 탐색하도록 구성했습니다.</p>
+            <h3>{{ t('djs.teamTitle') }}</h3>
+            <p>{{ t('djs.teamDescription') }}</p>
             <p class="stack">Vue · TypeScript / Tailwind CSS · SCSS</p>
-            <p>아티스트 소개 · 음악 카드 / 영상 콘텐츠 · 상세 모달</p>
+            <p>{{ t('djs.teamFeatures') }}</p>
             <a href="https://prog.djthirdparty.com" target="_blank" rel="noopener noreferrer">prog.djthirdparty.com ↗</a>
           </div>
         </div>
-        <p class="note">기획 · 디자인 · 퍼블리싱 · Vue / TypeScript 구현</p>
+        <p class="note">{{ t('djs.teamCredits') }}</p>
       </div>
     </section>
 
     <section class="section connected" aria-labelledby="connected-title">
       <div class="section-inner">
-        <h2 id="connected-title">서로 다른 화면,<br />이어지는 데이터.</h2>
-        <p class="lead">세 사이트를 개별 작업으로 완성하면서, Third Party와 HALŌ 사이에는 투어 데이터를 재사용하는 연결점을 만들었습니다.</p>
+        <h2 id="connected-title">{{ t('djs.connectedTitle') }}<br />{{ t('djs.connectedTitleEnd') }}</h2>
+        <p class="lead">{{ t('djs.connectedDescription') }}</p>
         <div class="data-cards">
-          <article><span>01 / SOURCE</span><h3>THIRD PARTY</h3><p>투어 데이터</p><p class="stack">Vue · Firebase · SCSS / Vercel 배포 · 간단한 어드민</p></article>
-          <article><span>02 / REUSE</span><h3>HALŌ</h3><p>Third Party의 투어 데이터를 사용</p><p class="stack">Vue · TypeScript / Tailwind CSS · SCSS</p></article>
+          <article><span>01 / SOURCE</span><h3>THIRD PARTY</h3><p>{{ t('djs.tourData') }}</p><p class="stack">{{ t('djs.sourceStack') }}</p></article>
+          <article><span>02 / REUSE</span><h3>HALŌ</h3><p>{{ t('djs.reuseData') }}</p><p class="stack">Vue · TypeScript / Tailwind CSS · SCSS</p></article>
         </div>
         <hr />
-        <h3 class="connected-subtitle">같은 정보도, 프로젝트의 분위기에 맞게.</h3>
-        <p class="lead">Third Party는 아티스트의 음악과 일정에, HALŌ는 공연 경험과 콘텐츠에 초점을 맞췄습니다.<br />데이터의 연결은 유지하면서 각 사이트의 시각적 방향을 달리했습니다.</p>
-        <p class="note">데이터 사용 관계를 요약한 설명입니다. API 구성과 동기화 방식 등 세부 구현은 별도로 단정하지 않았습니다.</p>
+        <h3 class="connected-subtitle">{{ t('djs.connectedSubtitle') }}</h3>
+        <p class="lead">{{ t('djs.connectedBody') }}<br />{{ t('djs.connectedBodyEnd') }}</p>
+        <p class="note">{{ t('djs.dataNote') }}</p>
       </div>
     </section>
 
     <section class="section responsive" aria-labelledby="responsive-title">
       <div class="section-inner">
         <h2 id="responsive-title">DESKTOP TO MOBILE.</h2>
-        <h3>화면은 달라도, 음악을 탐색하는 경험은 이어지도록.</h3>
+        <h3>{{ t('djs.responsiveSubtitle') }}</h3>
         <div class="mobile-previews">
           <figure v-for="(project, index) in projects" :key="project.name">
-            <div class="capture mobile-capture" :class="{ 'team-mobile': index === 2 }"><img :src="project.mobile" :alt="`${project.name} 모바일 실제 사이트 화면`" loading="lazy" /></div>
+            <div class="capture mobile-capture" :class="{ 'team-mobile': index === 2 }"><img :src="project.mobile" :alt="t('djs.mobileAlt', { name: project.name })" loading="lazy" /></div>
             <figcaption>{{ project.name }}</figcaption>
-            <p v-if="index === 2" class="stack">PC와 모바일의<br />실제 사이트 화면</p>
+            <p v-if="index === 2" class="stack">{{ t('djs.mobileCaption') }}<br />{{ t('djs.mobileCaptionEnd') }}</p>
           </figure>
         </div>
-        <p class="note">세 사이트의 기존 캡처를 작업 사례 이미지로 배치했습니다.</p>
+        <p class="note">{{ t('djs.captureNote') }}</p>
       </div>
     </section>
 
     <section class="section practice light" aria-labelledby="practice-title">
       <div class="section-inner">
         <h2 id="practice-title">FANMADE.<br />SELF-INITIATED.<br />LIVE ON THE WEB.</h2>
-        <h3>좋아하는 음악을, 실제로 방문하는 웹사이트로.</h3>
-        <p class="lead">개인의 관심사에서 출발해 기획·디자인·퍼블리싱과 프런트엔드 구현, 실제 운영까지 경험했습니다.<br />Third Party와 HALŌ는 검색을 통한 팬들의 유입을 경험하며, 공개된 웹사이트를 운영하는 작업으로 이어졌습니다.</p>
+        <h3>{{ t('djs.practiceSubtitle') }}</h3>
+        <p class="lead">{{ t('djs.practiceBody') }}<br />{{ t('djs.practiceBodyEnd') }}</p>
         <hr />
         <div class="site-links"><div v-for="project in projects" :key="project.name"><h4>{{ project.name }}</h4><a :href="`https://${project.url}`" target="_blank" rel="noopener noreferrer">{{ project.url }}</a></div></div>
-        <p class="note">검색 유입 경험은 제작자의 운영 경험을 바탕으로 작성했습니다. 검색 순위는 시점·환경에 따라 달라집니다.</p>
-        <p class="note">UNOFFICIAL FANMADE WEBSITES · 아티스트나 소속사의 공식 사이트가 아닌 개인 팬 프로젝트입니다.</p>
+        <p class="note">{{ t('djs.searchNote') }}</p>
+        <p class="note">{{ t('djs.unofficialNote') }}</p>
       </div>
     </section>
   </main>
@@ -494,6 +502,12 @@ $muted: #a5aba8;
     .back-link { font-size: 14px; }
   }
   .panel-position { display: flex; gap: 16px; font-size: 14px; font-variant-numeric: tabular-nums; }
+  .panel-actions, .language-switch { display: flex; align-items: center; gap: 8px; }
+  .language-switch button {
+    color: $muted; min-width: 32px; min-height: 44px; font: inherit; font-size: 12px;
+    &[aria-pressed='true'] { color: $lime; font-weight: 700; }
+    &:focus-visible { outline: 2px solid $lime; outline-offset: 4px; }
+  }
   .panel-buttons {
     display: flex; gap: 8px;
     button {
@@ -526,6 +540,7 @@ $muted: #a5aba8;
   .djs-detail.panel-deck {
     .section { padding: 104px 24px 48px; }
     .panel-controls { left: 12px; right: 12px; top: 12px; padding: 8px; gap: 8px; }
+    .panel-actions, .language-switch { gap: 4px; }
     .panel-position { font-size: 12px; span { display: none; } }
     .panel-controls .back-link { font-size: 12px; }
     .panel-buttons { gap: 4px; }
@@ -535,6 +550,9 @@ $muted: #a5aba8;
     .accent { font-size: 20px; }
     .mobile-previews { width: 100%; }
   }
+}
+@media (max-width: 400px) {
+  .djs-detail.panel-deck .panel-position { display: none; }
 }
 @media (max-width: 359px) {
   .djs-detail.panel-deck {
