@@ -1,4 +1,6 @@
 .dolbome-case {
+  width: 100%;
+  min-width: 0;
   max-width: 1440px;
   margin: 0 auto;
   background: #fff;
@@ -57,6 +59,11 @@
 }
 @media (max-width: 767px) {
   .dolbome-case {
+    // Fixed desktop widths must also shrink inside nested rows and numbered lists.
+    * { min-width: 0; max-width: 100%; }
+    .case-flow { height: auto; }
+    .case-numbered { width: 100%; }
+    .case-numbered > li > .case-column { width: 100%; }
     .case-section { padding: 48px 24px; gap: 24px; }
     .case-section > p:first-child, .case-section > ol, .core-screens h2 { font-size: 22px; line-height: 1.45; }
     .case-section ol li { margin-inline-start: 28px; }
