@@ -215,7 +215,6 @@ $line: #d9dde2;
       padding: 8px 4px;
       border: 1px solid $line;
       font-size: 11px;
-      overflow-wrap: anywhere;
     }
   }
   .sitemap-reference {

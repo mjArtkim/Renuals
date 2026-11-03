@@ -6,7 +6,6 @@
   background: #fff;
   color: #242a32;
   font-family: "Pretendard", sans-serif;
-  overflow-wrap: anywhere;
 
   *,
   *::before,
@@ -119,7 +118,6 @@
         min-width: 0;
         max-width: 100%;
         white-space: normal;
-        overflow-wrap: anywhere;
         > p, > h2 { font-size: inherit; }
       }
       &--display {
@@ -168,7 +166,6 @@
 
     p {
       white-space: normal;
-      word-break: keep-all;
     }
 
     .core-screens {

@@ -35,7 +35,6 @@ import screen8_1169 from "@/assets/img/dolbome/screens/8-1169.png";
     <section class="careers-accent__section case-panel">
       <div class="careers-cover__title case-text--display">
         <p class="careers-text__line">{{ t("dolbome.copy.c165") }}</p>
-        <p class="careers-text__line--last">{{ t("dolbome.copy.c166") }}</p>
       </div>
       <div class="careers-project__meta case-grid">
         <div class="careers-project__meta-title case-text--subheading">
