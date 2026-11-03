@@ -28,11 +28,39 @@ let context;
 let animating = false;
 let boundaryReady = true;
 let motionPreference;
+let momentum;
+let contentTween;
+let scrollTarget = 0;
+
+function stopMomentum() {
+  momentum?.kill();
+  contentTween?.kill();
+}
+
+function releaseMomentum(self) {
+  if (animating || motionPreference.matches) return;
+  const velocity = gsap.utils.clamp(-2400, 2400, -self.velocityY);
+  if (Math.abs(velocity) < 100) return;
+  const travel = { value: 0 };
+  let previous = 0;
+  boundaryReady = true;
+  momentum = gsap.to(travel, {
+    value: velocity * 0.22,
+    duration: 0.85,
+    ease: "power3.out",
+    onUpdate: () => {
+      const delta = travel.value - previous;
+      previous = travel.value;
+      moveContent(delta);
+    },
+  });
+}
 
 function showPanel(index, direction = 1) {
   if (animating || !panels.length) return;
   const next = gsap.utils.wrap(0, panels.length, index);
   if (next === currentPanel.value) return;
+  stopMomentum();
   const previous = panels[currentPanel.value];
   const incoming = panels[next];
   const focusWasInside = previous.contains(document.activeElement);
@@ -56,8 +84,8 @@ function showPanel(index, direction = 1) {
   animation = gsap
     .timeline({
       defaults: {
-        duration: motionPreference.matches ? 0 : 0.8,
-        ease: "power3.inOut",
+        duration: motionPreference.matches ? 0 : 1.05,
+        ease: "power3.out",
       },
       onComplete: finish,
     })
@@ -66,7 +94,7 @@ function showPanel(index, direction = 1) {
 }
 
 function moveContent(delta) {
-  if (animating || Math.abs(delta) < 1) return;
+  if (animating || Math.abs(delta) < 0.01) return;
   const panel = panels[currentPanel.value];
   const maximum = Math.max(0, panel.scrollHeight - panel.clientHeight);
   const atBoundary =
@@ -131,12 +159,35 @@ onMounted(() => {
       lockAxis: true,
       ignore: "[data-panel-controls]",
       onPress: () => {
+        stopMomentum();
         boundaryReady = true;
       },
+      onRelease: releaseMomentum,
       onChangeY: (self) => {
         // Wheel and finger movement have opposite directions.
         if (self.event.ctrlKey || self.event.touches?.length > 1) return;
-        moveContent(self.event.type === "wheel" ? self.deltaY : -self.deltaY);
+        if (self.axis === "x") return;
+        if (self.event.type !== "wheel" || motionPreference.matches) {
+          moveContent(self.event.type === "wheel" ? self.deltaY : -self.deltaY);
+          return;
+        }
+        if (animating) return;
+        const panel = panels[currentPanel.value];
+        const maximum = Math.max(0, panel.scrollHeight - panel.clientHeight);
+        if ((self.deltaY > 0 && panel.scrollTop >= maximum - 2) ||
+            (self.deltaY < 0 && panel.scrollTop <= 2)) {
+          moveContent(self.deltaY);
+          return;
+        }
+        if (!contentTween?.isActive()) scrollTarget = panel.scrollTop;
+        scrollTarget = gsap.utils.clamp(0, maximum, scrollTarget + self.deltaY);
+        boundaryReady = false;
+        contentTween?.kill();
+        contentTween = gsap.to(panel, {
+          scrollTop: scrollTarget,
+          duration: 0.4,
+          ease: "power2.out",
+        });
       },
       onStopDelay: 0.25,
       onStop: () => {
@@ -147,6 +198,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+  stopMomentum();
   observer?.kill();
   animation?.kill();
   context?.revert();
