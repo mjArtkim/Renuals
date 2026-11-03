@@ -7,6 +7,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/dolbome',
+      name: 'dolbome-uiux',
+      component: () => import('../views/DolbomeUiux.vue'),
+      meta: { standalone: true },
+    },
+    {
       path: '/djs',
       name: 'djs-detail',
       component: () => import('../views/DjsDetail.vue'),
