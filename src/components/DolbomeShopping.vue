@@ -34,6 +34,7 @@ import screen2_1684 from "@/assets/img/dolbome/screens/2-1684.png";
   </div>
   <article v-else class="dolbome-case shopping">
     <section class="shopping-cover case-panel">
+      <p class="community-section__description case-text--lead">[2026.06-2026.7]</p>
       <p class="shopping-cover__title case-text--display">
         {{ t("dolbome.copy.c084") }}
       </p>

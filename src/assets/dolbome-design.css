@@ -61,6 +61,10 @@
   font-size: 20px;
   width: min(100%, 1200px);
 }
+.dolbome-project .community-section__white {
+  font-size: 16px;
+  color: #fff;
+}
 .dolbome-project .community-tech__list {
   align-content: stretch;
   display: flex;

@@ -33,6 +33,7 @@ import screen8_1169 from "@/assets/img/dolbome/screens/8-1169.png";
   </div>
   <article v-else class="dolbome-case careers">
     <section class="careers-accent__section case-panel">
+      <div class="community-section__white">[2026.04-2026.05]</div>
       <div class="careers-cover__title case-text--display">
         <p class="careers-text__line">{{ t("dolbome.copy.c165") }}</p>
       </div>

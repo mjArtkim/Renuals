@@ -38,6 +38,7 @@ onMounted(() => emit("ready"));
   </div>
   <article v-else class="dolbome-case community">
     <section class="community-cover case-panel">
+      <p class="community-section__description case-text--lead">[2026.08-2026.10]</p>
       <p class="community-cover__title case-text--display">
         {{ t("dolbome.copy.c000") }}
       </p>
