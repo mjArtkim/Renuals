@@ -44,6 +44,8 @@
     }
   },
   "menu": {
+    "themeSeries": "Theme Series",
+    "personalWork": "Personal Work",
     "home": "HOME",
     "about": "ABOUT",
     "contact": "CONTECT",
