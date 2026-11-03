@@ -7,6 +7,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: '/djs',
+      name: 'djs-detail',
+      component: () => import('../views/DjsDetail.vue'),
+      meta: { standalone: true },
+    },
+    {
       path: '/',
       name: 'home',
       component: MySkillsView,

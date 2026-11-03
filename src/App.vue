@@ -1,7 +1,9 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { gsap, Expo } from 'gsap'
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
+
+const route = useRoute()
 import Header from '@/components/Header.vue'
 
 const cursorRef = ref(null)
@@ -90,7 +92,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <Header></Header>
+  <Header v-if="!route.meta.standalone"></Header>
   <RouterView />
   <div ref="cursorRef" class="cursor">
     <div ref="textRef" class="inside-text">ART</div>

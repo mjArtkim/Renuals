@@ -28,9 +28,10 @@ const menuItems = computed(() => {
       link: '#third',
       submenu: [
         { name: t('menu.mytal'), intro: t('menu.uiux'), link: '/mytalent' },
-        { name: t('menu.halo'), intro: t('menu.project'), link: 'https://www.beparthalo.com' },
-        { name: t('menu.thp'), intro: t('menu.project'), link: 'https://prog.djthirdparty.com' },
-        { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com'  },
+        { name: t('menu.themeSeries'), intro: t('menu.personalWork'), link: '/djs' },
+        // { name: t('menu.halo'), intro: t('menu.project'), link: 'https://www.beparthalo.com' },
+        // { name: t('menu.thp'), intro: t('menu.project'), link: 'https://prog.djthirdparty.com' },
+        // { name: t('menu.thirdparty'), intro: t('menu.introducepage'), link: 'https://www.djthirdparty.com'  },
         { name: t('menu.festival'), intro: t('menu.project'), link: 'https://www.festivalpu.com' },
         { name: t('menu.incon'), intro: t('menu.landpage'), link: 'https://icbox.io/' },
         // { name: t('menu.song'), intro: t('menu.project'), link: 'http://ideartk.com/songjung/' },
