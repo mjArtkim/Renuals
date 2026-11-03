@@ -73,6 +73,21 @@ const viewport = ref(null);
 const track = ref(null);
 const detail = ref(null);
 const detailTitle = ref(null);
+const isScrolling = ref(false);
+
+function updateDetailScroll() {
+  isScrolling.value = (detail.value?.scrollTop ?? 0) > 300;
+}
+
+function scrollToTop() {
+  detail.value?.scrollTo({ top: 0, behavior: motion?.matches ? "auto" : "smooth" });
+}
+
+function scrollToBottom() {
+  const reader = detail.value;
+  if (!reader) return;
+  reader.scrollTo({ top: reader.scrollHeight - reader.clientHeight, behavior: motion?.matches ? "auto" : "smooth" });
+}
 let swipeObserver;
 let wheelObserver;
 let animation;
@@ -103,6 +118,7 @@ function selectProject(index) {
 async function resetDetailScroll() {
   await nextTick();
   if (detail.value) detail.value.scrollTop = 0;
+  isScrolling.value = false;
   detailTitle.value?.focus({ preventScroll: true });
 }
 
@@ -116,6 +132,7 @@ async function syncRoute() {
     swipeObserver?.disable();
     wheelObserver?.disable();
     if (detail.value) detail.value.scrollTop = 0;
+  isScrolling.value = false;
     detailTitle.value?.focus({ preventScroll: true });
     return;
   }
@@ -314,14 +331,13 @@ onBeforeUnmount(() => {
       </footer>
     </div>
 
-    <div v-if="isDetail" ref="detail" class="case-reader">
+    <div v-if="isDetail" ref="detail" class="case-reader" @scroll.passive="updateDetailScroll">
       <header class="case-header">
         <button type="button" @click="updateQuery(activeIndex, 'poster')">
           {{ t("dolbome.copy.c248") }}
         </button>
         <h1 ref="detailTitle" tabindex="-1">{{ project.title }}</h1>
         <div class="case-header-actions">
-          <span>0{{ activeIndex + 1 }} / CASE STUDY</span>
           <div
             class="language-switch"
             role="group"
@@ -360,6 +376,16 @@ onBeforeUnmount(() => {
         </button>
       </footer>
     </div>
+    <Transition name="fade">
+      <div v-if="isDetail && isScrolling" class="scroll-btn-group2">
+        <button type="button" class="scroll-btn top" :aria-label="t('dolbome.controls.scrollTop')" @click="scrollToTop">
+          <span class="material-icons-round" aria-hidden="true">expand_less</span>
+        </button>
+        <button type="button" class="scroll-btn bottom" :aria-label="t('dolbome.controls.scrollBottom')" @click="scrollToBottom">
+          <span class="material-icons-round" aria-hidden="true">expand_more</span>
+        </button>
+      </div>
+    </Transition>
   </main>
 </template>
 
@@ -367,6 +393,9 @@ onBeforeUnmount(() => {
 $cream: #f6f3dd;
 .dolbome-project {
   line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  &:lang(en) { word-break: normal; }
   position: fixed;
   inset: 0;
   background: #101d19;
@@ -760,5 +789,40 @@ $cream: #f6f3dd;
       font-size: 14px;
     }
   }
+}
+.dolbome-project {
+  .scroll-btn-group2 {
+    position: fixed;
+    right: 50px;
+    bottom: 80px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .scroll-btn {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(36, 42, 50, 0.12);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.88);
+      color: #242a32;
+      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+  }
+  .fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease, transform 0.3s ease; }
+  .fade-enter-from, .fade-leave-to { opacity: 0; transform: translateY(12px); }
+}
+@media (max-width: 767px) {
+  .dolbome-project .scroll-btn-group2 {
+    right: 20px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dolbome-project .fade-enter-active, .dolbome-project .fade-leave-active { transition: none; }
 }
 </style>

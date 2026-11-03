@@ -326,7 +326,7 @@
     }
   },
   "djs": {
-    "back": "Portfolio ↗",
+    "back": "ART ↗",
     "coverSubtitle": "A love of music, crafted into web experiences.",
     "coverDescription": "Third Party · HALŌ · Team Progressive House — a personal series of three live websites, connecting planning, design, web publishing and frontend",
     "coverDescriptionEnd": " development.",
@@ -549,8 +549,7 @@
       "c162": "Cards / Reviews / Inquiries",
       "c163": "From planning to screen design, from design to publishing.",
       "c164": "I designed the purchase flow and management features, then built desktop and mobile pages with Thymeleaf / SCSS.",
-      "c165": "Connecting people looking for work and employers looking for people",
-      "c166": "in one journey.",
+      "c165": "Connecting people looking for work and employers looking for people in one journey.",
       "c167": "Dolbome Careers",
       "c168": "Scope: Planning / Wireframes / UI Design / Web Publishing",
       "c169": "Stack: Thymeleaf / HTML / SCSS",
@@ -826,6 +825,8 @@
       "a035": "Original screen / search"
     },
     "controls": {
+      "scrollTop": "Scroll to top",
+      "scrollBottom": "Scroll to bottom",
       "nextCase": "Next / {name} →",
       "language": "Choose language"
     },

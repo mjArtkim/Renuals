@@ -6,7 +6,6 @@
   background: #fff;
   color: #242a32;
   font-family: "Pretendard", sans-serif;
-  overflow-wrap: anywhere;
 }
 .dolbome-case *,
 .dolbome-case *::before,
@@ -109,7 +108,6 @@
     min-width: 0;
     max-width: 100%;
     white-space: normal;
-    overflow-wrap: anywhere;
   }
   .dolbome-case .case-text--display > p, .dolbome-case .case-text--display > h2, .dolbome-case .case-text--heading > p, .dolbome-case .case-text--heading > h2, .dolbome-case .case-text--subheading > p, .dolbome-case .case-text--subheading > h2, .dolbome-case .case-text--lead > p, .dolbome-case .case-text--lead > h2, .dolbome-case .case-text--body > p, .dolbome-case .case-text--body > h2, .dolbome-case .case-text--caption > p, .dolbome-case .case-text--caption > h2, .dolbome-case .case-text--small > p, .dolbome-case .case-text--small > h2 {
     font-size: inherit;
@@ -157,7 +155,6 @@
   }
   .dolbome-case p {
     white-space: normal;
-    word-break: keep-all;
   }
   .dolbome-case .core-screens {
     padding: 48px 24px;

@@ -14,7 +14,6 @@
   height: 100%;
 }
 .dolbome-project .community-cover__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -23,7 +22,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .community-cover__subtitle {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -43,7 +41,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .community-section__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #777e87;
@@ -89,7 +86,6 @@
   width: min(100%, 240px);
 }
 .dolbome-project .community-tech__label {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -99,7 +95,6 @@
   width: min(100%, 240px);
 }
 .dolbome-project .community-content__section {
-  word-break: break-word;
   background-color: #fff;
   align-content: stretch;
   display: flex;
@@ -198,7 +193,6 @@
   width: min(100%, 350px);
 }
 .dolbome-project .community-muted__section {
-  word-break: break-word;
   background-color: #f7f8fa;
   align-content: stretch;
   display: flex;
@@ -220,7 +214,6 @@
   flex-shrink: 0;
   color: #242a32;
   font-size: 38px;
-  white-space: nowrap;
 }
 .dolbome-project .community-process__number {
   font-weight: 700;
@@ -287,17 +280,14 @@
   height: 100%;
 }
 .dolbome-project .community-planning__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
   color: #242a32;
   font-size: 38px;
-  white-space: nowrap;
 }
 .dolbome-project .community-planning__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #777e87;
@@ -305,7 +295,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .community-planning__highlight {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -329,7 +318,6 @@
   height: 100%;
 }
 .dolbome-project .community-wireframe__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
@@ -349,7 +337,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .community-state__list {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   gap: 51px;
@@ -418,7 +405,6 @@
   width: min(100%, 130px);
 }
 .dolbome-project .community-color__label {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -438,7 +424,6 @@
   width: min(100%, 130px);
 }
 .dolbome-project .community-swatch__label {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #777e87;
@@ -479,7 +464,6 @@
   width: min(100%, 130px);
 }
 .dolbome-project .community-typography__panel {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   flex-direction: column;
@@ -537,7 +521,6 @@
   display: flex;
   gap: 40px;
   align-items: flex-start;
-  padding-top: 40px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -554,7 +537,6 @@
   width: min(100%, 373px);
 }
 .dolbome-project .community-screen__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -564,7 +546,6 @@
   white-space: pre-wrap;
 }
 .dolbome-project .community-screen__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #777e87;
@@ -756,7 +737,6 @@
   white-space: pre-wrap;
 }
 .dolbome-project .community-closing__section {
-  word-break: break-word;
   background-color: #222833;
   align-content: stretch;
   display: flex;
@@ -812,7 +792,6 @@
   width: min(100%, 376px);
 }
 .dolbome-project .case-closing__section {
-  word-break: break-word;
   background-color: #242a32;
   align-content: stretch;
   display: flex;
@@ -833,7 +812,6 @@
   flex-shrink: 0;
   font-size: 46px;
   color: #fff;
-  white-space: nowrap;
 }
 .dolbome-project .shopping-cover {
   background-color: #fff4ec;
@@ -851,7 +829,6 @@
   height: 100%;
 }
 .dolbome-project .shopping-cover__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -860,7 +837,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .shopping-cover__subtitle {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -880,7 +856,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .shopping-section__intro {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #717782;
@@ -919,7 +894,6 @@
   width: min(100%, 240px);
 }
 .dolbome-project .shopping-tech__label {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -929,7 +903,6 @@
   width: min(100%, 240px);
 }
 .dolbome-project .shopping-content__section {
-  word-break: break-word;
   background-color: #fff;
   align-content: stretch;
   display: flex;
@@ -969,7 +942,6 @@
   width: min(100%, 276px);
 }
 .dolbome-project .shopping-muted__section {
-  word-break: break-word;
   background-color: #f6f7f9;
   align-content: stretch;
   display: flex;
@@ -991,7 +963,6 @@
   flex-shrink: 0;
   color: #242831;
   font-size: 38px;
-  white-space: nowrap;
 }
 .dolbome-project .shopping-process__description {
   position: relative;
@@ -1029,7 +1000,6 @@
   flex-shrink: 0;
   color: #242831;
   font-size: 38px;
-  white-space: nowrap;
 }
 .dolbome-project .case-heading__list {
   margin-bottom: 0;
@@ -1081,17 +1051,14 @@
   height: 100%;
 }
 .dolbome-project .shopping-wireframe__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
   color: #242831;
   font-size: 38px;
-  white-space: nowrap;
 }
 .dolbome-project .shopping-state__list {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   gap: 24px;
@@ -1132,7 +1099,6 @@
   height: 100%;
 }
 .dolbome-project .shopping-ui__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
@@ -1142,7 +1108,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .shopping-color__label {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1162,7 +1127,6 @@
   width: min(100%, 130px);
 }
 .dolbome-project .shopping-swatch__label {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #717782;
@@ -1203,7 +1167,6 @@
   width: min(100%, 130px);
 }
 .dolbome-project .shopping-typography__panel {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   flex-direction: column;
@@ -1260,7 +1223,6 @@
   height: 100%;
 }
 .dolbome-project .shopping-screen__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #717782;
@@ -1268,7 +1230,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .shopping-screen__group-title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1289,7 +1250,6 @@
   width: min(100%, 584px);
 }
 .dolbome-project .shopping-desktop-screen__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1309,7 +1269,6 @@
   width: min(100%, 373px);
 }
 .dolbome-project .shopping-mobile-screen__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1319,7 +1278,6 @@
   white-space: pre-wrap;
 }
 .dolbome-project .shopping-mobile-screen__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #717782;
@@ -1533,7 +1491,6 @@
   height: 100%;
 }
 .dolbome-project .careers-cover__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1545,7 +1502,6 @@
   margin-bottom: 0;
 }
 .dolbome-project .careers-project__meta {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   gap: 80px;
@@ -1571,7 +1527,6 @@
   white-space: pre-wrap;
 }
 .dolbome-project .careers-audience__section {
-  word-break: break-word;
   background-color: #eef2f3;
   align-content: stretch;
   display: flex;
@@ -1662,7 +1617,6 @@
   height: 100%;
 }
 .dolbome-project .careers-process__heading {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1700,7 +1654,6 @@
   width: min(100%, 794px);
 }
 .dolbome-project .careers-feature__row {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   gap: 40px;
@@ -1733,7 +1686,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .careers-wireframe__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
@@ -1743,7 +1695,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .careers-wireframe__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #353a3c;
@@ -1751,7 +1702,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .careers-specification__card {
-  word-break: break-word;
   background-color: #eef2f3;
   align-content: stretch;
   display: flex;
@@ -1811,7 +1761,6 @@
   width: min(100%, 368px);
 }
 .dolbome-project .careers-mobile-screen__title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1821,7 +1770,6 @@
   white-space: pre-wrap;
 }
 .dolbome-project .careers-mobile-screen__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #353a3c;
@@ -1829,7 +1777,6 @@
   width: min(100%, 368px);
 }
 .dolbome-project .careers-employer__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
@@ -1839,7 +1786,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .careers-employer__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #eef2f3;
@@ -1868,7 +1814,6 @@
   width: min(100%, 830px);
 }
 .dolbome-project .careers-employer__feature-title {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1877,7 +1822,6 @@
   width: min(100%, 830px);
 }
 .dolbome-project .careers-employer__feature-description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   font-size: 23px;
@@ -1892,7 +1836,6 @@
   width: min(100%, 830px);
 }
 .dolbome-project .careers-platform__label {
-  word-break: break-word;
   font-weight: 700;
   position: relative;
   flex-shrink: 0;
@@ -1901,7 +1844,6 @@
   width: min(100%, 830px);
 }
 .dolbome-project .careers-implementation__section {
-  word-break: break-word;
   background-color: #fff;
   align-content: stretch;
   display: flex;
@@ -1989,7 +1931,6 @@
   white-space: pre-wrap;
 }
 .dolbome-project .careers-file-map__heading {
-  word-break: break-word;
   display: block;
   font-weight: 700;
   position: relative;
@@ -1999,7 +1940,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .careers-file-map__description {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #353a3c;
@@ -2007,7 +1947,6 @@
   width: min(100%, 1200px);
 }
 .dolbome-project .careers-file-map__row {
-  word-break: break-word;
   align-content: stretch;
   display: flex;
   gap: 24px;
@@ -2036,7 +1975,6 @@
   width: min(100%, 468px);
 }
 .dolbome-project .careers-file-map__note {
-  word-break: break-word;
   position: relative;
   flex-shrink: 0;
   color: #697174;
