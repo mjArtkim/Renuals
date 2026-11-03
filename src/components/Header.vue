@@ -2,7 +2,9 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { scrollBus } from '@/utils/scrollBus.js';
-import { RouterLink, RouterView } from 'vue-router';
+import { RouterLink, RouterView, useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const isMenuVisible = ref(false);
 const activeIndex = ref(null);
@@ -74,12 +76,21 @@ function handleClick(item, index, event) {
         isMenuVisible.value = false
       }
     } else {
-      window.location.href = item.link;
+      if (item.link.startsWith('/')) router.push(item.link);
+      else window.location.href = item.link;
       if (screenWidth.value < 1200) {
         isMenuVisible.value = false;
       }
     }
   }
+}
+
+function handleSubClick(sub, event) {
+  if (!sub.link.startsWith('/') || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  isMenuVisible.value = false;
+  activeIndex.value = null;
+  router.push(sub.link);
 }
 
 function changeLanguage(lang) {
@@ -134,6 +145,7 @@ function handleKeydown(event, index) {
               >
                 <a 
                   :href="sub.link"
+                  @click="handleSubClick(sub, $event)"
                   role="menuitem"
                   tabindex="0" 
                 >
@@ -186,6 +198,7 @@ function handleKeydown(event, index) {
               >
                 <a 
                   :href="sub.link"
+                  @click="handleSubClick(sub, $event)"
                   role="menuitem"
                   tabindex="0" 
                 >
