@@ -5,21 +5,47 @@
   margin: 0 auto;
   background: #fff;
   color: #242a32;
-  font-family: 'Pretendard', sans-serif;
-  line-height: 1.6;
-  *, *::before, *::after { box-sizing: border-box; }
-  p, h2, ol, li { margin: 0; padding: 0; }
-  img { display: block; }
-  .case-section { width: 100%; height: auto; min-height: 0; scroll-margin-top: 88px; }
-  .case-flow { max-width: 100%; min-width: 0; }
-  .case-section > .case-flow { width: 100%; }
-  .case-row { flex-wrap: wrap; }
-  .case-column > .case-flow { width: 100%; min-width: 0; }
-  .case-row > .case-column { height: auto; }
-  .case-section > p, .case-section > ol { overflow-wrap: anywhere; }
-  &:lang(en) {
-    .case-flow { height: auto; min-height: 0; white-space: normal; overflow: visible; overflow-wrap: anywhere; }
-    .case-section > .case-flow:first-child { line-height: 1.45; }
+  font-family: "Pretendard", sans-serif;
+  overflow-wrap: anywhere;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  p,
+  h2,
+  ol,
+  li {
+    margin: 0;
+    padding: 0;
+  }
+  img {
+    display: block;
+  }
+
+  > section {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    scroll-margin-top: 88px;
+    > :not(.dolbome-screen) {
+      width: 100%;
+    }
+  }
+  .case-panel {
+    min-width: 0;
+    > :not(.dolbome-screen) {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+  .case-grid {
+    min-width: 0;
+    flex-wrap: wrap;
+    > * {
+      height: auto;
+    }
   }
   .core-screens {
     display: flex;
@@ -27,8 +53,13 @@
     gap: 28px;
     padding: 100px 120px;
     background: #fff3f6;
-    h2 { font-size: 38px; line-height: 1.6; }
-    .section-description { font-size: 20px; color: #777e87; }
+    h2 {
+      font-size: 38px;
+    }
+    .section-description {
+      font-size: 20px;
+      color: #777e87;
+    }
   }
 }
 .poster-visual {
@@ -36,7 +67,13 @@
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  .poster-ambient { position: absolute; width: 84%; left: 8%; top: -12%; opacity: 0.8; }
+  .poster-ambient {
+    position: absolute;
+    width: 84%;
+    left: 8%;
+    top: -12%;
+    opacity: 0.8;
+  }
   .poster-screens {
     position: absolute;
     left: 50%;
@@ -48,226 +85,140 @@
 }
 @media (max-width: 1199px) {
   .dolbome-case {
-    .case-section { padding: 64px 48px; }
-    .case-section > p:first-child, .case-section > ol { font-size: 32px; line-height: 1.5; }
-    .case-section > ol span { line-height: 1.5; }
-    .case-row { gap: 24px; }
-    .case-row > .case-flow { flex-shrink: 1; }
-    .core-screens h2 { font-size: 32px; }
-  }
-  .poster-visual .poster-screens { width: 84vw; top: 24%; }
-}
-@media (max-width: 767px) {
-  .dolbome-case {
-    // Fixed desktop widths must also shrink inside nested rows and numbered lists.
-    * { min-width: 0; max-width: 100%; }
-    .case-flow { height: auto; }
-    .case-numbered { width: 100%; }
-    .case-numbered > li > .case-column { width: 100%; }
-    .case-section { padding: 48px 24px; gap: 24px; }
-    .case-section > p:first-child, .case-section > ol, .core-screens h2 { font-size: 22px; line-height: 1.45; }
-    .case-section ol li { margin-inline-start: 28px; }
-    .case-section > p, .section-description { font-size: 14px; line-height: 1.65; white-space: normal; }
-    .case-row { flex-direction: column; align-items: stretch; gap: 24px; }
-    .case-row > .case-flow { width: 100%; height: auto; }
-    .case-row > .dolbome-screen { align-self: center; }
-    .case-flow { font-size: 14px; line-height: 1.65; word-break: keep-all; white-space: normal; overflow-wrap: anywhere; }
-    .case-flow p { white-space: pre-wrap; }
-    .case-row[data-design-name='기술'] { flex-direction: row; gap: 12px; }
-    .case-row[data-design-name='기술'] > .case-flow { width: calc(50% - 8px); }
-    .case-row[data-design-name='기술'] p { width: 100%; font-size: 13px; }
-  }
-  .poster-visual .poster-screens { width: 160vw; top: 24%; }
-  .poster-visual .poster-ambient { width: 160%; left: -30%; top: 0; }
-}
+    > section {
+      padding: 64px 48px;
+    }
 
-// Apply the mobile scale to nested Figma typography, including multiline cover titles.
-@media (max-width: 767px) {
-  .dolbome-case {
-    .db-653d605073 { font-size: 26px; line-height: 1.45; }
-    .db-cb41befb52 { font-size: 18px; line-height: 1.45; }
-    .db-b4009be04b { font-size: 16px; line-height: 1.65; }
-    .db-8a94f21c75 { font-size: 13px; line-height: 1.65; }
-    .db-013f9e5894 { font-size: 22px; line-height: 1.45; }
-    .db-e0a9de895e { font-size: 16px; line-height: 1.65; }
-    .db-ad82c75553 { font-size: 16px; line-height: 1.65; }
-    .db-3b136dbce6 { font-size: 14px; line-height: 1.65; }
-    .db-157a80797d { font-size: 14px; line-height: 1.65; }
-    .db-e3911dc7be { font-size: 22px; line-height: 1.45; }
-    .db-cc21b1beda { font-size: 16px; line-height: 1.65; }
-    .db-c99c17feda { font-size: 22px; line-height: 1.45; }
-    .db-2b5bb40fd4 { font-size: 18px; line-height: 1.45; }
-    .db-0cac69b025 { font-size: 14px; line-height: 1.65; }
-    .db-55e1ea2b5b { font-size: 22px; line-height: 1.45; }
-    .db-c75ed7b57d { font-size: 16px; line-height: 1.65; }
-    .db-f959449042 { font-size: 16px; line-height: 1.65; }
-    .db-d058db951a { font-size: 22px; line-height: 1.45; }
-    .db-a7f568cd76 { font-size: 13px; line-height: 1.65; }
-    .db-ccdba7ed7c { font-size: 14px; line-height: 1.65; }
-    .db-05e21b194e { font-size: 13px; line-height: 1.65; }
-    .db-6d57f76fbe { font-size: 12px; line-height: 1.65; }
-    .db-87b0dbc407 { font-size: 13px; line-height: 1.65; }
-    .db-0e8a71d3a7 { font-size: 18px; line-height: 1.45; }
-    .db-3467b7cc4a { font-size: 14px; line-height: 1.65; }
-    .db-b07d6181ee { font-size: 14px; line-height: 1.65; }
-    .db-40d24d4427 { font-size: 16px; line-height: 1.65; }
-    .db-a129302e5b { font-size: 13px; line-height: 1.65; }
-    .db-d33cde70f8 { font-size: 18px; line-height: 1.45; }
-    .db-499b19e86e { font-size: 14px; line-height: 1.65; }
-    .db-026d058b62 { font-size: 13px; line-height: 1.65; }
-    .db-cd6ddeb172 { font-size: 13px; line-height: 1.65; }
-    .db-ce5348a5a2 { font-size: 13px; line-height: 1.65; }
-    .db-3990a1585b { font-size: 13px; line-height: 1.65; }
-    .db-5b50ecaf23 { font-size: 18px; line-height: 1.45; }
-    .db-2a0220fef5 { font-size: 16px; line-height: 1.65; }
-    .db-582c7c169c { font-size: 13px; line-height: 1.65; }
-    .db-22c586c491 { font-size: 13px; line-height: 1.65; }
-    .db-51a11aa82d { font-size: 14px; line-height: 1.65; }
-    .db-51641c30e2 { font-size: 26px; line-height: 1.45; }
-    .db-92d98d1f88 { font-size: 16px; line-height: 1.65; }
-    .db-dc33eb099d { font-size: 14px; line-height: 1.65; }
-    .db-05cde45bc7 { font-size: 26px; line-height: 1.45; }
-    .db-e3ce2d2540 { font-size: 18px; line-height: 1.45; }
-    .db-9d5bdad906 { font-size: 16px; line-height: 1.65; }
-    .db-20bc627279 { font-size: 13px; line-height: 1.65; }
-    .db-15adb6dd52 { font-size: 22px; line-height: 1.45; }
-    .db-aa8bcb27c5 { font-size: 16px; line-height: 1.65; }
-    .db-e5ae6cc952 { font-size: 16px; line-height: 1.65; }
-    .db-00983f8e94 { font-size: 14px; line-height: 1.65; }
-    .db-52de20cec4 { font-size: 22px; line-height: 1.45; }
-    .db-0b62ba1f4c { font-size: 16px; line-height: 1.65; }
-    .db-3d5b4fd680 { font-size: 22px; line-height: 1.45; }
-    .db-75560bf044 { font-size: 16px; line-height: 1.65; }
-    .db-5382f78c68 { font-size: 14px; line-height: 1.65; }
-    .db-b39ba7ce69 { font-size: 22px; line-height: 1.45; }
-    .db-92b1cf42c0 { font-size: 14px; line-height: 1.65; }
-    .db-f1f52e2bd9 { font-size: 13px; line-height: 1.65; }
-    .db-3581ee77cd { font-size: 22px; line-height: 1.45; }
-    .db-cf79c91843 { font-size: 16px; line-height: 1.65; }
-    .db-9af2422779 { font-size: 13px; line-height: 1.65; }
-    .db-2920802c0c { font-size: 22px; line-height: 1.45; }
-    .db-5c0d7a049c { font-size: 13px; line-height: 1.65; }
-    .db-b932354335 { font-size: 12px; line-height: 1.65; }
-    .db-6bc5833a52 { font-size: 13px; line-height: 1.65; }
-    .db-4b946d04cd { font-size: 18px; line-height: 1.45; }
-    .db-474677408c { font-size: 14px; line-height: 1.65; }
-    .db-88570b2b7e { font-size: 13px; line-height: 1.65; }
-    .db-6cdbb565ab { font-size: 16px; line-height: 1.65; }
-    .db-984111666c { font-size: 16px; line-height: 1.65; }
-    .db-c3f71c5c7d { font-size: 14px; line-height: 1.65; }
-    .db-7d4169b343 { font-size: 16px; line-height: 1.65; }
-    .db-71f8bfd125 { font-size: 13px; line-height: 1.65; }
-    .db-73fc03f6d6 { font-size: 18px; line-height: 1.45; }
-    .db-f720b27731 { font-size: 14px; line-height: 1.65; }
-    .db-86816a3e2b { font-size: 13px; line-height: 1.65; }
-    .db-412d7d37be { font-size: 16px; line-height: 1.65; }
-    .db-de1c4e73ba { font-size: 14px; line-height: 1.65; }
-    .db-a6338aa2ab { font-size: 18px; line-height: 1.45; }
-    .db-f0b81eccef { font-size: 16px; line-height: 1.65; }
-    .db-f500577890 { font-size: 14px; line-height: 1.65; }
-    .db-3a8ed70bd9 { font-size: 13px; line-height: 1.65; }
-    .db-8aa70e691e { font-size: 14px; line-height: 1.65; }
-    .db-6f496b41c6 { font-size: 22px; line-height: 1.45; }
-    .db-1ea8f89d20 { font-size: 16px; line-height: 1.65; }
-    .db-efba1a5283 { font-size: 26px; line-height: 1.45; }
-    .db-08483e1b48 { font-size: 18px; line-height: 1.45; }
-    .db-1b4d49df04 { font-size: 14px; line-height: 1.65; }
-    .db-cf0944a521 { font-size: 26px; line-height: 1.45; }
-    .db-2f2d7aa329 { font-size: 16px; line-height: 1.65; }
-    .db-901a6a12ca { font-size: 13px; line-height: 1.65; }
-    .db-8e68e07e85 { font-size: 18px; line-height: 1.45; }
-    .db-cb54a4717a { font-size: 16px; line-height: 1.65; }
-    .db-ca0c3469fb { font-size: 26px; line-height: 1.45; }
-    .db-e389ada3a7 { font-size: 18px; line-height: 1.45; }
-    .db-8ec64d1f6c { font-size: 18px; line-height: 1.45; }
-    .db-70905e7c42 { font-size: 16px; line-height: 1.65; }
-    .db-34c649f923 { font-size: 26px; line-height: 1.45; }
-    .db-54de09abfe { font-size: 16px; line-height: 1.65; }
-    .db-fc888f3a2e { font-size: 16px; line-height: 1.65; }
-    .db-e39bb2dea1 { font-size: 14px; line-height: 1.65; }
-    .db-3d2ffabfe0 { font-size: 18px; line-height: 1.45; }
-    .db-8bf4faf8c1 { font-size: 14px; line-height: 1.65; }
-    .db-2140db4d61 { font-size: 26px; line-height: 1.45; }
-    .db-366a6ee9e0 { font-size: 16px; line-height: 1.65; }
-    .db-811f52737f { font-size: 22px; line-height: 1.45; }
-    .db-6b1f688d27 { font-size: 16px; line-height: 1.65; }
-    .db-a3886bcaf8 { font-size: 14px; line-height: 1.65; }
-    .db-99f625783c { font-size: 26px; line-height: 1.45; }
-    .db-af288a679b { font-size: 14px; line-height: 1.65; }
-    .db-344298c35f { font-size: 14px; line-height: 1.65; }
-    .db-77168fb035 { font-size: 14px; line-height: 1.65; }
-    .db-76b0e1013c { font-size: 14px; line-height: 1.65; }
-    .db-44caab69cd { font-size: 26px; line-height: 1.45; }
-    .db-216f27f7cb { font-size: 18px; line-height: 1.45; }
-    .db-abc1e9649f { font-size: 14px; line-height: 1.65; }
-    .db-855ba01ce2 { font-size: 16px; line-height: 1.65; }
-    .db-f76ab1d335 { font-size: 16px; line-height: 1.65; }
-    .db-4f5fa2d7bf { font-size: 14px; line-height: 1.65; }
-    .db-dae3fd7975 { font-size: 13px; line-height: 1.65; }
-    .db-0dc6d0526e { font-size: 16px; line-height: 1.65; }
-    // Numbered headings use the same scale even when wrapped across multiple lines.
-    .case-section ol,
-    .case-section ol .case-flow,
-    .case-section > .case-heading-group,
-    .case-section > .case-heading-group > p {
-      font-size: 22px;
-      line-height: 1.45;
+    .case-grid {
+      gap: 24px;
+      > :not(.dolbome-screen) {
+        flex-shrink: 1;
+      }
     }
-    .case-section > .case-heading-group > p {
-      margin-inline-start: 28px;
-      width: auto;
+    .core-screens {
+      padding: 64px 48px;
+      h2 { font-size: 32px; }
     }
-    .case-section:first-child > .case-flow:first-child,
-    .case-section:first-child > .case-flow:first-child > p { font-size: 26px; line-height: 1.4; }
+  }
+  .poster-visual .poster-screens {
+    width: 84vw;
+    top: 24%;
   }
 }
 
-// Commerce and careers contain desktop-sized file maps and role/description rows.
-// Reflow the actual containers, rather than clipping overflowing content.
 @media (max-width: 767px) {
-  .dolbome-case:is(.shopping, .careers) {
-    .case-section {
-      width: 100%;
-      padding-inline: 20px;
-      align-items: stretch;
+  .dolbome-case {
+    .case-text {
+      &--display,
+      &--heading,
+      &--subheading,
+      &--lead,
+      &--body,
+      &--caption,
+      &--small {
+        min-width: 0;
+        max-width: 100%;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        > p, > h2 { font-size: inherit; }
+      }
+      &--display {
+        font-size: 26px;
+      }
+      &--heading {
+        font-size: 22px;
+      }
+      &--subheading {
+        font-size: 18px;
+      }
+      &--lead {
+        font-size: 16px;
+      }
+      &--body {
+        font-size: 14px;
+      }
+      &--caption {
+        font-size: 13px;
+      }
+      &--small {
+        font-size: 12px;
+      }
     }
-    .case-flow {
-      width: 100%;
-      max-width: 100%;
-      min-width: 0;
+
+    > section {
+      padding: 48px 24px;
+      gap: 24px;
+    }
+    .case-panel {
       height: auto;
-      white-space: normal;
-      overflow-wrap: anywhere;
     }
-    .case-row {
-      display: flex;
+    .case-grid {
+      height: auto;
       flex-direction: column;
       align-items: stretch;
-      flex-wrap: nowrap;
-      gap: 20px;
+      gap: 24px;
+      > :not(.dolbome-screen) {
+        width: 100%;
+        height: auto;
+      }
+      > .dolbome-screen {
+        align-self: center;
+      }
     }
-    .case-row > *,
-    .case-column > * {
-      min-width: 0;
-      max-width: 100%;
-    }
-    .case-row > .case-flow {
-      width: 100%;
-      flex: 0 1 auto;
-      align-self: stretch;
-    }
-    .case-flow p {
-      width: 100%;
+
+    p {
       white-space: normal;
-      overflow-wrap: anywhere;
+      word-break: keep-all;
     }
-    .case-numbered { width: 100%; }
-    .case-numbered > li { width: auto; }
-    .case-row[data-design-name='기술'] {
+
+    .core-screens {
+      padding: 48px 24px;
+      h2 { font-size: 22px; }
+    }
+
+    .community-tech__list,
+    .shopping-tech__list {
       flex-direction: row;
       flex-wrap: wrap;
       gap: 12px;
-      > .case-flow { width: calc(50% - 6px); }
     }
+    .community-tech__label,
+    .shopping-tech__label {
+      width: 100%;
+      font-size: 13px;
+    }
+    .community-tech__list > .community-tech__badge,
+    .shopping-tech__list > .shopping-tech__badge {
+      width: calc(50% - 6px);
+    }
+  }
+  .dolbome-case:is(.shopping, .careers) {
+    > section {
+      padding-inline: 20px;
+      align-items: stretch;
+    }
+    .case-grid {
+      gap: 20px;
+      > :not(.dolbome-screen) {
+        flex: 0 1 auto;
+        align-self: stretch;
+      }
+    }
+    .shopping-tech__list {
+      flex-direction: row;
+      gap: 12px;
+    }
+    .shopping-tech__list > .shopping-tech__badge {
+      width: calc(50% - 6px);
+    }
+  }
+  .poster-visual .poster-screens {
+    width: 160vw;
+    top: 24%;
+  }
+  .poster-visual .poster-ambient {
+    width: 160%;
+    left: -30%;
+    top: 0;
   }
 }

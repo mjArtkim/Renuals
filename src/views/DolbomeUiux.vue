@@ -366,6 +366,7 @@ onBeforeUnmount(() => {
 <style scoped lang="scss">
 $cream: #f6f3dd;
 .dolbome-project {
+  line-height: 1.6;
   position: fixed;
   inset: 0;
   background: #101d19;
@@ -439,7 +440,6 @@ $cream: #f6f3dd;
   }
   h1 {
     font-size: clamp(48px, 6.7vw, 104px);
-    line-height: 1.25;
     letter-spacing: -3px;
   }
   .project-description {
@@ -666,7 +666,6 @@ $cream: #f6f3dd;
     }
     .project-description {
       font-size: 13px;
-      line-height: 1.6;
     }
     .open-project {
       font-size: 12px;
